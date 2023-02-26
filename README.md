@@ -59,7 +59,9 @@
 
 > Read: Big Java (Chapter 4-5-6), Java Coding Standard
 
-> Lab: package com.nbicocchi.exercises.arrays/strings 
+> Lab: package com.nbicocchi.exercises.arrays 
+
+> Lab: package com.nbicocchi.exercises.strings
 
 * Types, variables, constants
 * Methods and parameter passing

@@ -7,15 +7,19 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 public class CopyBinaryLong {
-    public static void copyBinaryLong(String src, String dst) throws IOException {
-        try (FileChannel inChannel = new FileInputStream(src).getChannel();
-             FileChannel outChannel = new FileOutputStream(dst).getChannel()) {
+    public static void copyBinaryLong(String src, String dst) {
+        try (FileInputStream in = new FileInputStream(src);
+             FileOutputStream out = new FileOutputStream(dst)) {
+            FileChannel inChannel = in.getChannel();
+            FileChannel outChannel = out.getChannel();
             ByteBuffer buffer = ByteBuffer.allocate(1024);
             while (inChannel.read(buffer) != -1) {
                 buffer.flip();
                 outChannel.write(buffer);
                 buffer.clear();
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
