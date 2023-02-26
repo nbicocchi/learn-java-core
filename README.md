@@ -42,7 +42,7 @@
 ### Project
 * Stored on a GitHub repository (complete with README.md and LICENCE files)
 * Respect Java Coding Standard (see books/)
-* 1000-2000 lines of logic code, excluding GUI/XML files
+* 1000+ lines of logic code, excluding GUI/XML files
 * Refer to [this project](https://github.com/logesh0304/RegexAssist) as a well-made example
 
 ---
