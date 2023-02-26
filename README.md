@@ -200,7 +200,7 @@ Can we use JavaScript, TypeScript, Kotlin, Dart, Swift, C++, C#?
 > No! Only Java and Python are allowed. If you learn properly Java and Python, you will be able to quickly learn any modern object-oriented language. 
 
 Which kind of project can we do?
-> You can code a video game, a managing software, an Android app. See project-examples/ as a reference.
+> You can code a video game, a managing software, an Android app.
 
 Can we use external libraries?
 > Sure! The object-oriented paradigm has been initially proposed for promoting the reuse of code and building larger projects! For example, for developing games [LibGDX](https://libgdx.com/), [Slick2D](https://slick.ninjacave.com/), or [Tiled](https://www.mapeditor.org/) are useful. 
