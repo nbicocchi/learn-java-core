@@ -19,7 +19,8 @@
 * [IntelliJ Tutorial](https://www.jetbrains.com/idea/resources/)
 * [Java SE Tutorial](https://docs.oracle.com/javase/tutorial/)
 * [Java SE API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
-* [Baeldung](https://www.baeldung.com/)
+* [Get Started with Java, Baeldung](https://www.baeldung.com/get-started-with-java-series)
+* [w3resource's Java programming tutorial](https://www.w3resource.com/java-tutorial/)
 
 ### Other Exercises
 * https://codingbat.com/java/
