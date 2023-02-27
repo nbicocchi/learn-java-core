@@ -57,14 +57,14 @@
 
 [E2] Basics
 
-> Read: Big Java (Chapter 2-4-5-6-7), Java Coding Standard
+> Read: Big Java (Chapter 2-4-5-6-7)
 
 > Lab: [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays), [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings)
 
 * Variables, methods and parameter passing
 * Fundamental data types
 * Strings
-* Input and Output
+* Input and output
 * Decisions
 * Loops
 * Arrays
@@ -76,12 +76,13 @@
 
 > Lab: [com.nbicocchi.exercises.oop](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/oop)
 
-* Classes, objects, packages
-* Attributes, methods, visibility
-* Constructors, getters/setters, toString()
-* Inheritance, upcasting, downcasting
-* Polymorphism, method overloading/overriding 
-* Abstract methods, abstract classes, interfaces
+* Instance variables and encapsulation
+* Specifying the public interface of a class (and its implementation)
+* Static variables and methods
+* Inheritance hierarchies
+* Abstract classes
+* Interfaces
+* Object: the cosmic superclass
 * Wrapper types
 * UML class diagrams
 
