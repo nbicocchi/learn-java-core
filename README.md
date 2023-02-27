@@ -59,8 +59,7 @@
 
 > Read: Big Java (Chapter 2-4-5-6-7)
 
-> Lab: [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays), [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings)
-
+> Lab: [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings), [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays)
 * Variables, methods and parameter passing
 * Fundamental data types
 * Strings
@@ -70,9 +69,9 @@
 * Arrays
 * [Coding Standard](https://github.com/nbicocchi/java-core/blob/main/assets/books/Java-Coding-Standard.pdf)
 
-[E3] Object Oriented Programming
+[E3] Object Oriented Design
 
-> Read: Big Java (Chapter 3-8-9-10)
+> Read: Big Java (Chapter 3-8-9-10-12)
 
 > Lab: [com.nbicocchi.exercises.oop](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/oop)
 
@@ -81,20 +80,22 @@
 * Static variables and methods
 * Inheritance hierarchies
 * Abstract classes
-* Interfaces
+* Interfaces (and anonymous implementations)
 * Object: the cosmic superclass
 * Wrapper types
 * UML class diagrams
 
 [E4] Data Structures (Collections Framework)
 
-> Read: Big Java (Chapter 15)
+> Read: Big Java (Chapter 14-15)
 
 > Lab: package [com.nbicocchi.exercises.collections](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/collections)
 
-* Collection (Set, Queue, List) interface and its implementations
-* Map interface and its implementations
-* Iterator and ListIterator (definition and use)
+* Iterable and Iterator interfaces
+* List interface and its implementations (ArrayList, LinkedList)
+* Set interface and its implementations (HashSet, LinkedHashSet, TreeSet)
+* Deque interface and its implementations (ArrayDeque, LinkedList)
+* Map interface and its implementations (HashMap, LinkedHashMap, TreeMap)
 * Sorting and searching
 
 [E5] Generic Data Structures (Generics)
@@ -103,10 +104,11 @@
 
 > Lab: [com.nbicocchi.exercises.generics](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/generics)
 
-* Array sub-typing
-* Object sub-typing
-* Collection sub-typing
-* Bounded wildcards types
+* Generic classes and type parameters
+* Implementing generic types
+* Generic methods
+* Constraining type parameters
+* Type erasure
 
 [E6] Functional Interfaces
 
@@ -115,10 +117,10 @@
 
 > Lab: [com.nbicocchi.exercises.functional](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/functional)
 
-* Anonymous classes
 * Lambda expressions
 * Functional interfaces
-* Streams
+* The Stream concept
+* Producing, transforming, and collecting streams
 
 [E7] Exceptions
 
@@ -126,10 +128,11 @@
 
 > Lab: [com.nbicocchi.exercises.exceptions](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/exceptions)
 
-* Exceptions (checked and unchecked) and Errors
-* Catching Exceptions (try/catch/finally)
-* Throwing Exceptions (throw)
-* Delegation models (complete, partial, no delegation) (throws)
+* Throwing exceptions
+* Catching exceptions
+* Checked exceptions
+* Closing resources
+* Designing your own Exception types
 
 [E8] NIO Framework
 
@@ -137,10 +140,10 @@
 
 > Lab: [com.nbicocchi.exercises.nio](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/nio)
 
-* Path
-* Files
-* Buffer
-* FileChannel
+* NIO vs IO
+* Manipulating paths (Path, Paths)
+* Reading, writing, manipulating files (Files)
+* Reading and writing large files (Buffer, Channel)
 
 ---
 

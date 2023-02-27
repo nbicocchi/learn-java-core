@@ -1,17 +1,15 @@
 package com.nbicocchi.exercises.nio;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class CopyBinaryLong {
     public static void copyBinaryLong(String src, String dst) {
-        try (FileInputStream in = new FileInputStream(src);
-             FileOutputStream out = new FileOutputStream(dst)) {
-            FileChannel inChannel = in.getChannel();
-            FileChannel outChannel = out.getChannel();
+        try (FileChannel inChannel = FileChannel.open(Paths.get(src), StandardOpenOption.READ);
+             FileChannel outChannel = FileChannel.open(Paths.get(dst), StandardOpenOption.CREATE)) {
             ByteBuffer buffer = ByteBuffer.allocate(1024);
             while (inChannel.read(buffer) != -1) {
                 buffer.flip();
