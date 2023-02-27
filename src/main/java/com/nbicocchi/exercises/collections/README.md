@@ -73,8 +73,6 @@ where:
 
 ## Java Exercises (Sets)
 
----
-
 **[Intersection.java]** Write a method returning the intersection of two given sets of Integers (without using library
 functions).
 
@@ -153,8 +151,6 @@ where:
 * [1, n] is the range in which searching for primes.
 
 ## Java Exercises (Maps)
-
----
 
 **[ValuesKeys.java]** Write a static method accepting a ```Map<String, String>``` and returning true if some values have been used as keys as well.
 
