@@ -137,12 +137,13 @@
 
 [E8] NIO Framework
 
-> Read: Big Java (Chapter 21)
+> Read: Big Java (Chapter 21.5)
 
 > Lab: [com.nbicocchi.exercises.nio](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/nio)
 
 * NIO vs IO
 * Manipulating paths (Path, Paths)
+* Java System Properties and portable paths
 * Reading, writing, manipulating files (Files)
 * Reading and writing large files (Buffer, Channel)
 

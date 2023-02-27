@@ -5,11 +5,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileCreateDelete {
-    public static void createFile(String src, String dst) throws IOException {
+    public static void createFile(String src) throws IOException {
         Files.createFile(Paths.get(src));
     }
 
-    public static void deleteFile(String src, String dst) throws IOException {
+    public static void deleteFile(String src) throws IOException {
         Files.deleteIfExists(Paths.get(src));
     }
 }
