@@ -111,7 +111,7 @@
 * Constraining type parameters
 * Type erasure
 
-[E6] Functional Interfaces
+[E6] Functional Programming
 
 > Read: Big Java (Chapter 19), 
 > Object Oriented vs Functional Programming (Chapter 1)
