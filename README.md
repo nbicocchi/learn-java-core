@@ -67,7 +67,7 @@
 * Input and output
 * Decisions
 * Loops
-* Arrays
+* Arrays (and brief introduction to ArrayList)
 * [Coding Standard](https://github.com/nbicocchi/java-core/blob/main/assets/books/Java-Coding-Standard.pdf)
 
 [E3] Object Oriented Design
@@ -158,10 +158,11 @@
 > Read: Introduction to Programming Using Java (Chapter 6-13),
 > Watch: [JavaFX GUI Full Course](https://www.youtube.com/watch?v=9XJicRt_FaI)
 
-* Structure of JavaFX (key interfaces)
-* Layout management
-* Event delegation model
-* Scene Builder
+* Structure of a JavaFX application 
+* Introduction to Scene Builder
+* Events
+* Controls
+* Layouts
 
 [P2] Multi-threading
 
