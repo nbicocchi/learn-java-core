@@ -59,7 +59,7 @@
 
 > Read: Big Java (Chapter 4-5-6), Java Coding Standard
 
-> Lab: [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays), [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings),
+> Lab: [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays), [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings)
 
 * Types, variables, constants
 * Methods and parameter passing
@@ -74,7 +74,7 @@
 
 > Read: Big Java (Chapter 2-3-8-9-10)
 
-> Lab: package com.nbicocchi.exercises.oop
+> Lab: [com.nbicocchi.exercises.oop](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/oop)
 
 * Classes, objects, packages
 * Attributes, methods, visibility
@@ -89,7 +89,7 @@
 
 > Read: Big Java (Chapter 15)
 
-> Lab: package com.nbicocchi.exercises.collections
+> Lab: package [com.nbicocchi.exercises.collections](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/collections)
 
 * Collection (Set, Queue, List) interface and its implementations
 * Map interface and its implementations
@@ -100,7 +100,7 @@
 
 > Read: Big Java (Chapter 18)
 
-> Lab: package com.nbicocchi.exercises.generics
+> Lab: [com.nbicocchi.exercises.generics](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/generics)
 
 * Array sub-typing
 * Object sub-typing
@@ -112,7 +112,7 @@
 > Read: Big Java (Chapter 19), 
 > Object Oriented vs Functional Programming (Chapter 1)
 
-> Lab: package com.nbicocchi.exercises.functional
+> Lab: [com.nbicocchi.exercises.functional](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/functional)
 
 * Anonymous classes
 * Lambda expressions
@@ -123,7 +123,7 @@
 
 > Read: Big Java (Chapter 11)
 
-> Lab: package com.nbicocchi.exercises.exceptions
+> Lab: [com.nbicocchi.exercises.exceptions](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/exceptions)
 
 * Exceptions (checked and unchecked) and Errors
 * Catching Exceptions (try/catch/finally)
@@ -134,7 +134,7 @@
 
 > Read: Big Java (Chapter 21)
 
-> Lab: package com.nbicocchi.exercises.nio
+> Lab: [com.nbicocchi.exercises.nio](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/nio)
 
 * Path
 * Files
