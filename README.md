@@ -15,16 +15,15 @@
 * [YouTube OOP Java](https://www.youtube.com/watch?v=y3H3xwI0prM&list=PLhlcRDRHVUzTruZmXalUSJAK26pouP8ST)
 * [YouTube IntelliJ](https://www.youtube.com/c/intellijidea/videos)
 
-### Tutorials
+### Official Tutorials
 * [IntelliJ Tutorial](https://www.jetbrains.com/idea/resources/)
 * [Java SE Tutorial](https://docs.oracle.com/javase/tutorial/)
 * [Java SE API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
-* [Get Started with Java, Baeldung](https://www.baeldung.com/get-started-with-java-series)
-* [w3resource's Java programming tutorial](https://www.w3resource.com/java-tutorial/)
 
-### Other Exercises
-* https://codingbat.com/java/
+### Other Tutorials/Exercises
+* https://www.baeldung.com/
 * https://www.w3resource.com/
+* https://codingbat.com/java/
 * https://www.programiz.com/
 * https://exercism.io/
 
