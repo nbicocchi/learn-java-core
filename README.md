@@ -184,8 +184,6 @@
 
 > Read: [Connecting JavaFX to a REST API](https://edencoding.com/connect-javafx-to-a-rest-api/)
 
-> Code: [https://github.com/nbicocchi/java-rest](https://github.com/nbicocchi/java-rest)
-
 * Motivations and basic concepts
 * Resources, Operations, Representations (JSON, XML)
 * GET/POST/PUT/DELETE requests
