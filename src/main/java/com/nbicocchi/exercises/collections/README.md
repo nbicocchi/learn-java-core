@@ -2,8 +2,6 @@
 
 ## Java Exercises (Lists)
 
----
-
 **[Reverse.java]** Write a method reversing the order of words in a sentence (represented as a ```List<String>```) using
 a LinkedList as a stack (see LinkedList.push() and .pop() methods). Each word has to be pushed to the stack and fetched
 later. If the stack is behaving correctly, the order is reversed.

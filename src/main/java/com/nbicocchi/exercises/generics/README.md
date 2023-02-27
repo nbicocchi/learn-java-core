@@ -2,8 +2,6 @@
 
 ## Java Exercises (Generics)
 
----
-
 **[PrintIterable.java]** Write a generic static method returning a string representing all the elements of an object
 implementing the Iterable<E> interface. The elements should be separated by commas.
 

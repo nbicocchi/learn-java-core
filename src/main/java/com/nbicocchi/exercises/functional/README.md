@@ -2,8 +2,6 @@
 
 ## Java Exercises (Functional)
 
----
-
 **[JustPrint.java]** Given a list of String, print all the elements using the Stream approach (see Stream.forEach()).
 
 Examples:

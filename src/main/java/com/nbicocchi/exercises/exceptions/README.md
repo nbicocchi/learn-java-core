@@ -2,8 +2,6 @@
 
 ## Java Exercises (Exceptions)
 
---- 
-
 **[Division.java]** Write a method receiving two doubles (a, b) and returning their division. If b == 0, the method
 throws IllegalArgumentException. *Note well: IllegalArgumentException is an unchecked exception so its declaration in
 the method signature is not required!* The method has the following prototype:

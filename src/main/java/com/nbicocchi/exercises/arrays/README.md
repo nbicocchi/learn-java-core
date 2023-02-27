@@ -2,8 +2,6 @@
 
 ## Java Exercises (Arrays)
 
----
-
 **[GuessNumber.java]** Write a method implementing a simple quiz game. The computer selects a random number between 0
 and 5 then ask the user to guess the number.
 If the answer is correct, 1 is written in a cell of an int[], 0 otherwise. After 10 questions, the methods returns the

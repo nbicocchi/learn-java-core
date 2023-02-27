@@ -2,8 +2,6 @@
 
 ## Java Exercises (Strings)
 
----
-
 **[Concatenate.java]** Write a method accepting a String[] returning a single string representing the concatenation
 of all strings of the array (see StringBuilder class).
 
