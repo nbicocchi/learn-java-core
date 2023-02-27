@@ -57,22 +57,22 @@
 
 [E2] Basics
 
-> Read: Big Java (Chapter 4-5-6), Java Coding Standard
+> Read: Big Java (Chapter 2-4-5-6-7), Java Coding Standard
 
 > Lab: [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays), [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings)
 
-* Types, variables, constants
-* Methods and parameter passing
-* Flow control
-* Loops
+* Variables, methods and parameter passing
+* Fundamental data types
 * Strings
-* Arrays 
-* Terminal I/O
-* Coding Standard
+* Input and Output
+* Decisions
+* Loops
+* Arrays
+* [Coding Standard](https://github.com/nbicocchi/java-core/blob/main/assets/books/Java-Coding-Standard.pdf)
 
 [E3] Object Oriented Programming
 
-> Read: Big Java (Chapter 2-3-8-9-10)
+> Read: Big Java (Chapter 3-8-9-10)
 
 > Lab: [com.nbicocchi.exercises.oop](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/oop)
 
