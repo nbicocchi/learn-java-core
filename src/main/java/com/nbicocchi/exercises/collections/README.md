@@ -153,7 +153,12 @@ where:
 ## Java Exercises (Maps)
 
 **[MorseCode]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation.
-You have to use a ```Map<Characher, String>>``` as a conversion table.
+You have to use a ```Map<Characher, String>>``` as a conversion table (dot='.', dash='_').
+
+Examples:
+
+* morseCode("hello") -> ".... . ._.. ._.. ___"
+* morseCode("world") -> ".__ ___ ._. ._.. _.."
 
 The method has the following prototype:
 
