@@ -1,7 +1,5 @@
 package com.nbicocchi.exercises.oop.phonebook;
 
-import com.nbicocchi.exercises.oop.common.Person;
-
 import java.util.ArrayList;
 
 /**

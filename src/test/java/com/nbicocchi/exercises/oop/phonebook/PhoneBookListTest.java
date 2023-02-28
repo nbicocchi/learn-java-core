@@ -1,6 +1,5 @@
 package com.nbicocchi.exercises.oop.phonebook;
 
-import com.nbicocchi.exercises.oop.common.Person;
 import org.junit.jupiter.api.BeforeEach;
 
 class PhoneBookListTest extends PhoneBookTestBase {

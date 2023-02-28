@@ -1,29 +1,12 @@
-package com.nbicocchi.exercises.oop.bankaccountv2;
+package com.nbicocchi.exercises.oop.bankaccount;
 
-public class BankAccountUnicredit implements BankAccount {
+public class BankAccountUnicredit extends AbstractBankAccount {
     static final double FeeDeposit = 0.01;
     static final double FeeWithdraw = 0.01;
     static final double AnnualInterest = 0.02;
-    String IBAN;
-    double balance;
 
     public BankAccountUnicredit(String IBAN, double balance) {
-        this.IBAN = IBAN;
-        this.balance = balance;
-    }
-
-    @Override
-    public String getIBAN() {
-        return IBAN;
-    }
-
-    public void setIBAN(String IBAN) {
-        this.IBAN = IBAN;
-    }
-
-    @Override
-    public String getCountry() {
-        return IBAN.substring(0, 2);
+        super(IBAN, balance);
     }
 
     @Override
@@ -49,14 +32,6 @@ public class BankAccountUnicredit implements BankAccount {
     public void addAnnualInterest() {
         double amount = balance * AnnualInterest;
         balance += amount;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
     }
 
     @Override

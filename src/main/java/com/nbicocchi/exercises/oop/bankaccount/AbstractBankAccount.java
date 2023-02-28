@@ -1,4 +1,4 @@
-package com.nbicocchi.exercises.oop.bankaccountv3;
+package com.nbicocchi.exercises.oop.bankaccount;
 
 public abstract class AbstractBankAccount implements BankAccount {
     String IBAN;

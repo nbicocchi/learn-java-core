@@ -1,4 +1,4 @@
-package com.nbicocchi.exercises.oop.bankaccountv1;
+package com.nbicocchi.exercises.oop.bankaccount;
 
 import org.junit.jupiter.api.Test;
 

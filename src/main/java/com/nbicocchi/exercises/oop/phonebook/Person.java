@@ -1,6 +1,4 @@
-package com.nbicocchi.exercises.oop.common;
-
-import java.util.Objects;
+package com.nbicocchi.exercises.oop.phonebook;
 
 public class Person {
     String name;
@@ -35,21 +33,6 @@ public class Person {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Person person = (Person) o;
-        return Objects.equals(name, person.name) && Objects.equals(lastname, person.lastname) && Objects.equals(phone, person.phone);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, lastname, phone);
     }
 
     @Override

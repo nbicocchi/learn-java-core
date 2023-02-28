@@ -1,4 +1,4 @@
-package com.nbicocchi.exercises.oop.bankaccountv2;
+package com.nbicocchi.exercises.oop.bankaccount;
 
 public interface BankAccount {
     String getIBAN();

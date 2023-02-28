@@ -1,34 +1,15 @@
-package com.nbicocchi.exercises.oop.shapev2;
+package com.nbicocchi.exercises.oop.shape;
 
 import java.awt.*;
 
-public class Rectangle implements Shape {
-    Color color;
-    boolean filled;
+public class Rectangle extends AbstractShape {
     Point upperLeft;
     Point bottomRight;
 
     public Rectangle(Color color, boolean filled, Point upperLeft, Point bottomRight) {
-        this.color = color;
-        this.filled = filled;
+        super(color, filled);
         this.upperLeft = upperLeft;
         this.bottomRight = bottomRight;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public boolean isFilled() {
-        return filled;
-    }
-
-    public void setFilled(boolean filled) {
-        this.filled = filled;
     }
 
     public Point getUpperLeft() {
@@ -71,6 +52,6 @@ public class Rectangle implements Shape {
 
     @Override
     public String toString() {
-        return "Rectangle{" + "color=" + color + ", filled=" + filled + ", upperLeft=" + upperLeft + ", bottomRight=" + bottomRight + '}';
+        return "Rectangle{" + "upperLeft=" + upperLeft + ", bottomRight=" + bottomRight + ", color='" + color + '\'' + ", filled=" + filled + '}';
     }
 }

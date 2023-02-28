@@ -1,34 +1,15 @@
-package com.nbicocchi.exercises.oop.shapev2;
+package com.nbicocchi.exercises.oop.shape;
 
 import java.awt.*;
 
-public class Circle implements Shape {
-    Color color;
-    boolean filled;
+public class Circle extends AbstractShape {
     Point center;
     double radius;
 
     public Circle(Color color, boolean filled, Point center, double radius) {
-        this.color = color;
-        this.filled = filled;
+        super(color, filled);
         this.center = center;
         this.radius = radius;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public boolean isFilled() {
-        return filled;
-    }
-
-    public void setFilled(boolean filled) {
-        this.filled = filled;
     }
 
     public Point getCenter() {
@@ -69,6 +50,6 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return "Circle{" + "center=" + center + ", radius=" + radius + '}';
+        return "Circle{" + "center=" + center + ", radius=" + radius + ", color='" + color + '\'' + ", filled=" + filled + '}';
     }
 }

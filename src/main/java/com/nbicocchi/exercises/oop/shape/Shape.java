@@ -1,4 +1,4 @@
-package com.nbicocchi.exercises.oop.shapev2;
+package com.nbicocchi.exercises.oop.shape;
 
 import java.awt.*;
 

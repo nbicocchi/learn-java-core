@@ -1,12 +1,12 @@
-package com.nbicocchi.exercises.oop.shapev1;
+package com.nbicocchi.exercises.oop.shape;
 
 import java.awt.*;
 
-public abstract class Shape {
+public abstract class AbstractShape implements Shape {
     Color color;
     boolean filled;
 
-    public Shape(Color color, boolean filled) {
+    public AbstractShape(Color color, boolean filled) {
         this.color = color;
         this.filled = filled;
     }
@@ -27,9 +27,9 @@ public abstract class Shape {
         this.filled = filled;
     }
 
-    public abstract double getArea();
-
     public abstract double getPerimeter();
+
+    public abstract double getArea();
 
     public abstract void move(Point movement);
 

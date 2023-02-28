@@ -1,7 +1,5 @@
 package com.nbicocchi.exercises.oop.library;
 
-import com.nbicocchi.exercises.oop.common.Person;
-
 import java.time.LocalDateTime;
 
 /**

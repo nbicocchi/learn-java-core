@@ -1,7 +1,5 @@
 package com.nbicocchi.exercises.oop.phonebook;
 
-import com.nbicocchi.exercises.oop.common.Person;
-
 /**
  * Interface representing a generic PhoneBook Implementing classes must provide
  * methods for inserting, deleting and searching persons within the PhoneBook
