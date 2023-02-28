@@ -60,7 +60,11 @@
 
 > Read: Big Java (Chapter 2-4-5-6-7)
 
-> Lab: [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings), [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays)
+> Lab: 
+> [com.nbicocchi.exercises.warmup](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/warmup),
+> [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays),
+> [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings) 
+
 * Variables, methods and parameter passing
 * Fundamental data types
 * Decisions
