@@ -310,6 +310,8 @@ where:
 * **strings** is the array
 * **searched** is the string to be searched
 
+---
+
 **[DeepCopy]** Write a method accepting an int[][] and returning a deep copy of the original. 
 Deep copies differ from shallow copies in that the whole multidimensional array is duplicated instead of the first tier of pointers only.
 
