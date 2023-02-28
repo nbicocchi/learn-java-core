@@ -63,11 +63,12 @@
 > Lab: [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings), [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays)
 * Variables, methods and parameter passing
 * Fundamental data types
-* Strings
-* Input and output
 * Decisions
 * Loops
 * Arrays (and brief introduction to ArrayList)
+* Strings
+* Input and output
+* Random numbers
 * [Coding Standard](https://github.com/nbicocchi/java-core/blob/main/assets/books/Java-Coding-Standard.pdf)
 
 [E3] Object Oriented Design
