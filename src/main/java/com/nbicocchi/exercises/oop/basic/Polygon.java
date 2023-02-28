@@ -6,7 +6,11 @@ import java.util.Arrays;
 /**
  * Write a class named Polygon representing an irregular polygon.
  * Internally, the class represents an irregular polygon as an array of 2d points (vertices).
- * Supported methods:
+ *
+ * The class implements one constructor:
+ * Polygon(Point[] vertices)
+ *
+ * The class have also to implement the following methods:
  * getters and setters
  * int getVerticesNumber() - returns the number of vertices
  * void move(Point movement) - moves the polygon as specified by movement (treated as a vector)

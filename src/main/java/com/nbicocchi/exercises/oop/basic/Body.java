@@ -3,9 +3,10 @@ package com.nbicocchi.exercises.oop.basic;
 /**
  * Implement a Body class representing a two-dimensional body (x, y) capable of moving with a certain speed (vx, vy).
  * The class implements three constructors:
- * Body() - Setting x = y = vx = vy = 0
+ * Body() Setting x = y = vx = vy = 0
  * Body(x, y) Setting x, y as specified and vx = vy = 0
  * Body(x, y, vx, vy) Setting x, y, vx, vy as specified
+ *
  * The class have also to implement the following methods:
  * getters and setters for x, y, vx, vy
  * progress(t) updating x, y considering a constant movement at velocity vx, vy for t seconds

@@ -4,7 +4,10 @@ import java.awt.*;
 
 /**
  * Write a Java class representing a Circle (Point center, int radius) capable of moving on a 2D plane
- * Methods:
+ * The class implements one constructor:
+ * Circle(Point center, int radius)
+ *
+ * The class have also to implement the following methods:
  * getters and setters
  * double getArea()
  * double getPerimeter()
@@ -13,6 +16,7 @@ import java.awt.*;
  * void moveDown() (center.y -= 1)
  * void moveLeft() (center.x -= 1)
  * void moveRight() (center.x += 1)
+ * toString()
  *
  * @author Nicola Bicocchi
  */
