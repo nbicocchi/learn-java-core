@@ -69,7 +69,7 @@ where:
 * **item** is the item to be added.
 * **times** is the number of times to repeat the add operation.
 
----
+## Java Exercises (Deque)
 
 ## Java Exercises (Sets)
 
