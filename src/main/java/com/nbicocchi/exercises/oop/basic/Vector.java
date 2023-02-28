@@ -2,7 +2,6 @@ package com.nbicocchi.exercises.oop.basic;
 
 import java.util.Arrays;
 import java.util.random.RandomGenerator;
-import java.util.random.RandomGeneratorFactory;
 
 /**
  * Write a class named Vector representing a vector of integers with additional features.
@@ -26,6 +25,14 @@ public class Vector {
         this.v = v;
     }
 
+    public int[] getV() {
+        return v;
+    }
+
+    public void setV(int[] v) {
+        this.v = v;
+    }
+
     public String show() {
         return Arrays.toString(v);
     }
@@ -33,7 +40,7 @@ public class Vector {
     public int search(int value) {
         int[] copy = Arrays.copyOf(v, v.length);
         Arrays.sort(copy);
-        return Arrays.binarySearch(v, value);
+        return Arrays.binarySearch(copy, value);
     }
 
     public void sort() {

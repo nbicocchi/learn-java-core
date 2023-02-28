@@ -24,7 +24,7 @@
 * https://jenkov.com/
 * https://www.baeldung.com/
 * https://www.w3resource.com/
-* https://codingbat.com/java/
+* https://codingbat.com/
 * https://www.programiz.com/
 * https://exercism.io/
 

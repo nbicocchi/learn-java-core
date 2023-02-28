@@ -152,6 +152,21 @@ where:
 
 ## Java Exercises (Maps)
 
+**[MorseCode]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation.
+You have to use a ```Map<Characher, String>>``` as a conversion table.
+
+The method has the following prototype:
+
+```
+public static String morseCode(String string);
+```
+
+where:
+
+* **string** is the string to be converted in Morse.
+
+---
+
 **[ValuesKeys.java]** Write a static method accepting a ```Map<String, String>``` and returning true if some values have been used as keys as well.
 
 The method has the following prototype:
@@ -163,6 +178,26 @@ public static boolean valuesKeys(Map<String, String> map);
 where:
 
 * **map** is the map to be checked.
+
+---
+
+**[InvertMap]** Write a static method accepting a ```Map<Integer, String>``` and returning a ```Map<String, Integer>``` in which the original keys and values have been inverted.
+In case of repeated values (thus associated to multiple keys) you can select one of the keys.
+
+Examples:
+
+* invertMap({1: "Hello", 3: "World"}) → {"Hello": 1, "World": 3}
+* invertMap({1: "Hello", 3: "Hello"}) → {"Hello": 3}
+
+The method has the following prototype:
+
+```
+public static Map<String, Integer> invertMap(Map<Integer, String> src);
+```
+
+where:
+
+* **src** is the map to be inverted.
 
 ---
 
