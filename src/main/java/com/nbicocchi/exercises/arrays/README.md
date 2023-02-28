@@ -2,20 +2,6 @@
 
 ## Java Exercises (Arrays)
 
-**[GuessNumber.java]** Write a method implementing a simple quiz game. The computer selects a random number between 0
-and 5 then ask the user to guess the number.
-If the answer is correct, 1 is written in a cell of an int[], 0 otherwise. After 10 questions, the methods returns the
-array representing the answers
-(see java.util.random.RandomGenerator, java.util.Scanner).
-
-The method has the following prototype:
-
-```
-public static int[] guessNumber();
-```
-
----
-
 **[CopyArray.java]** Write a method accepting a double[] and returning a copy of the initial double[] (see
 System.arraycopy()).
 
