@@ -1,21 +1,26 @@
 package com.nbicocchi.exercises.arrays;
 
+import java.util.Arrays;
+
 public class BubbleSort {
-    public static int[] bubbleSort(int[] v) {
-        int[] sorted = new int[v.length];
-        System.arraycopy(v, 0, sorted, 0, v.length);
+    public static void bubbleSort(int[] v) {
         boolean changed = true;
         while (changed) {
             changed = false;
-            for (int i = 0; i < sorted.length - 1; i++) {
-                if (sorted[i] > sorted[i + 1]) {
+            for (int i = 0; i < v.length - 1; i++) {
+                if (v[i] > v[i + 1]) {
                     changed = true;
-                    int tmp = sorted[i];
-                    sorted[i] = sorted[i + 1];
-                    sorted[i + 1] = tmp;
+                    int tmp = v[i];
+                    v[i] = v[i + 1];
+                    v[i + 1] = tmp;
                 }
             }
         }
+    }
+
+    public static int[] bubbleSortCopy(int[] v) {
+        int[] sorted = Arrays.copyOf(v, v.length);
+        bubbleSort(sorted);
         return sorted;
     }
 }

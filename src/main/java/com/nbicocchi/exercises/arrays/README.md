@@ -126,8 +126,7 @@ where:
 
 ---
 
-**[BubbleSort.java]** Write a method accepting an int[] and returning another int[] containing the same elements but
-sorted (using the Bubble sort algorithm) (see System.arraycopy()).
+**[BubbleSort.java]** Write two methods for ordering an int[]. The only difference between the two methods is that the first one orders the original int[] directly and returns void, while the second one returns a sorted COPY of the original int[] (you can use the Bubble Sort algorithm).
 
 Examples:
 
@@ -138,7 +137,8 @@ Examples:
 The method has the following prototype:
 
 ```
-public static int[] bubbleSort(int[] v);
+public static void bubbleSort(int[] v);
+public static int[] bubbleSortCopy(int[] v);
 ```
 
 where:
@@ -303,6 +303,8 @@ If the String is not present return false. Write two different versions:
 (a) uses brute-force search (i.e., which is slow! because tests all elements of the array);
 (b) sorts the array and uses binary search (which is much faster!) (see java.util.Arrays)
 
+Both versions should not modify the original array!
+
 Examples:
 
 * containsBruteForce(["car", "boat", "bike", "plane"], "bike") → true
@@ -321,3 +323,12 @@ where:
 
 * **strings** is the array
 * **searched** is the string to be searched
+
+**[DeepCopy]** Write a method accepting an int[][] and returning a deep copy of the original. 
+Deep copies differ from shallow copies in that the whole multidimensional array is duplicated instead of the first tier of pointers only.
+
+The method has the following prototype:
+
+```
+public static int[][] deepCopy(int[][] original) {
+```

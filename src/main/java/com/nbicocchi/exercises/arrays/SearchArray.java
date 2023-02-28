@@ -13,7 +13,8 @@ public class SearchArray {
     }
 
     public static boolean containsBinary(String[] strings, String searched) {
-        Arrays.sort(strings);
-        return Arrays.binarySearch(strings, searched) >= 0;
+        String[] copy = Arrays.copyOf(strings, strings.length);
+        Arrays.sort(copy);
+        return Arrays.binarySearch(copy, searched) >= 0;
     }
 }
