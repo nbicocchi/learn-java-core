@@ -2,26 +2,22 @@
 
 ## Java Exercises (Lists)
 
-**[Reverse.java]** Write a method reversing the order of words in a sentence (represented as a ```List<String>```) using
-a LinkedList as a stack (see LinkedList.push() and .pop() methods). Each word has to be pushed to the stack and fetched
-later. If the stack is behaving correctly, the order is reversed.
+**[DownSize]** Write a method that removes every nth String from a ```List<String>```.
 
-Examples:
-
-* reverse(["Hello", "World!"]) → ["World!", "Hello"]
-* reverse(["I", "am"]) → ["am", "I"]
+* downSize(["A", "B", "C", "D", "E", "F"], 2) -> ["A", "C", "E"] 
+* downSize(["A", "B", "C", "D", "E", "F"], 3) -> ["A", "B", "D", "E"]
 
 The method has the following prototype:
 
 ```
-public static List<String> reverse(List<String> sentence);
+public static void downsize(List<String> list, int n);
 ```
 
 where:
 
-* **sentence** is the list of words to be reversed.
+* **list** is the list to be downsized
+* **n** represents the intensity of the downsizing
 
----
 
 **[SortAccount.java]** Given the following class Account:
 
@@ -70,6 +66,27 @@ where:
 * **times** is the number of times to repeat the add operation.
 
 ## Java Exercises (Deque)
+
+**[Reverse.java]** Write a method reversing the order of words in a sentence (represented as a ```List<String>```) using
+an ArrayDeque as a stack (see .addLast() and .pollLast() methods). Each word has to be pushed to the stack and fetched
+later. If the stack is behaving correctly, the order is reversed.
+
+Examples:
+
+* reverse(["Hello", "World!"]) → ["World!", "Hello"]
+* reverse(["I", "am"]) → ["am", "I"]
+
+The method has the following prototype:
+
+```
+public static List<String> reverse(List<String> sentence);
+```
+
+where:
+
+* **sentence** is the list of words to be reversed.
+
+---
 
 ## Java Exercises (Sets)
 
