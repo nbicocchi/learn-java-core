@@ -7,3 +7,6 @@
 * https://github.com/eugenp/tutorials/tree/master/core-java-modules/core-java-concurrency-basic
 * https://github.com/Beerkay/JavaMultiThreading
 
+TODO: collections speedtest fatti con libro intero (arraylist vs linkedlist) (treeset vs hashset)
+
+

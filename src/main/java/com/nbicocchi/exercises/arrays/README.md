@@ -112,7 +112,9 @@ where:
 
 ---
 
-**[BubbleSort.java]** Write two methods for ordering an int[]. The only difference between the two methods is that the first one orders the original int[] directly and returns void, while the second one returns a sorted COPY of the original int[] (you can use the Bubble Sort algorithm).
+**[BubbleSort.java]** Write two methods for ordering an int[]. The only difference between the two methods is that the
+first one orders the original int[] directly and returns void, while the second one returns a sorted COPY of the
+original int[] (you can use the Bubble Sort algorithm).
 
 Examples:
 
@@ -312,11 +314,12 @@ where:
 
 ---
 
-**[DeepCopy]** Write a method accepting an int[][] and returning a deep copy of the original. 
-Deep copies differ from shallow copies in that the whole multidimensional array is duplicated instead of the first tier of pointers only.
+**[DeepCopy]** Write a method accepting an int[][] and returning a deep copy of the original.
+Deep copies differ from shallow copies in that the whole multidimensional array is duplicated instead of the first tier
+of pointers only.
 
 The method has the following prototype:
 
 ```
-public static int[][] deepCopy(int[][] original) {
+public static int[][] deepCopy(int[][] original);
 ```

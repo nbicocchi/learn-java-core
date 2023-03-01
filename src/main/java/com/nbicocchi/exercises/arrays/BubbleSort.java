@@ -3,6 +3,12 @@ package com.nbicocchi.exercises.arrays;
 import java.util.Arrays;
 
 public class BubbleSort {
+    public static int[] bubbleSortCopy(int[] v) {
+        int[] sorted = Arrays.copyOf(v, v.length);
+        bubbleSort(sorted);
+        return sorted;
+    }
+
     public static void bubbleSort(int[] v) {
         boolean changed = true;
         while (changed) {
@@ -16,11 +22,5 @@ public class BubbleSort {
                 }
             }
         }
-    }
-
-    public static int[] bubbleSortCopy(int[] v) {
-        int[] sorted = Arrays.copyOf(v, v.length);
-        bubbleSort(sorted);
-        return sorted;
     }
 }
