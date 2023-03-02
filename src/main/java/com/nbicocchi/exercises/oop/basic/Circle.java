@@ -2,24 +2,6 @@ package com.nbicocchi.exercises.oop.basic;
 
 import java.awt.*;
 
-/**
- * Write a Java class representing a Circle (Point center, int radius) capable of moving on a 2D plane
- * The class implements one constructor:
- * Circle(Point center, int radius)
- *
- * The class have also to implement the following methods:
- * getters and setters
- * double getArea()
- * double getPerimeter()
- * boolean contains(Point point)
- * void moveUp() (center.y += 1)
- * void moveDown() (center.y -= 1)
- * void moveLeft() (center.x -= 1)
- * void moveRight() (center.x += 1)
- * toString()
- *
- * @author Nicola Bicocchi
- */
 public class Circle {
     Point center;
     int radius;
@@ -57,20 +39,8 @@ public class Circle {
         return Math.hypot(point.x - center.x, point.y - center.y) < radius;
     }
 
-    public void moveUp() {
-        center.translate(0, 1);
-    }
-
-    public void moveDown() {
-        center.translate(0, -1);
-    }
-
-    public void moveLeft() {
-        center.translate(-1, 0);
-    }
-
-    public void moveRight() {
-        center.translate(1, 0);
+    public void translate(int dx, int dy) {
+        center.translate(dx, dy);
     }
 
     @Override

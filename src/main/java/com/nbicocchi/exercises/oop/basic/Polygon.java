@@ -20,17 +20,9 @@ import java.util.Arrays;
  * @author Nicola Bicocchi
  */
 public class Polygon {
-    Point[] vertices;
+    private final Point[] vertices;
 
     public Polygon(Point[] vertices) {
-        this.vertices = vertices;
-    }
-
-    public Point[] getVertices() {
-        return vertices;
-    }
-
-    public void setVertices(Point[] vertices) {
         this.vertices = vertices;
     }
 
