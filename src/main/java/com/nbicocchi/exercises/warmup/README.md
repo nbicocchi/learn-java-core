@@ -2,7 +2,8 @@
 
 ## Java Exercises (Warmup)
 
-**[XMasTree]** Print to screen a simplified Christmas tree as the one below.
+**[XMasTree]** Print to screen the little story below. 
+Remember: strings can be [multi-line](https://www.baeldung.com/java-multiline-string)!
 
 ```
 +--------------[The Christmass Child Eater Monster]-------------------+
