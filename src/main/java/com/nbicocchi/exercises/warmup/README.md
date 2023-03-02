@@ -34,7 +34,7 @@ pillows. Then he wait for kid to go to sleep, then *CRUNCH* he bites off
 head. Yummy!!! I like head. He come Christmass eve and eat till full,
 usualy 7-9 kids a year then he go to sleep and wait till next time.
 Just because you aint scared of monster dont mean he wont eat ya.
-Some times eats parents too,forgot to say that earlier.
+Some times eats parents too, forgot to say that earlier.
 
                           Credits: Krogg <krogg.no.to.spam@inspace.net>
 ```
