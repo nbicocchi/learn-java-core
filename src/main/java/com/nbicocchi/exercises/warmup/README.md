@@ -27,7 +27,7 @@ Remember: strings can be [multi-line](https://www.baeldung.com/java-multiline-st
 |       \)()()()()()()()(),' /####\_ \###/          || ||             |
 |        ",_____________,'  (#######\\\#/          (_) (_)            |
 +---------------------------------------------------------------------+
-He eats kids,good or bad ones. They all taste the same to him. He comes
+He eats kids, good or bad ones. They all taste the same to him. He comes
 once a year and eats kids. Mostly retards and waterheads but he eats
 some regular ones too. He likes to shrink himself and hide inside kids
 pillows. Then he wait for kid to go to sleep, then *CRUNCH* he bites off
@@ -36,7 +36,7 @@ usualy 7-9 kids a year then he go to sleep and wait till next time.
 Just because you aint scared of monster dont mean he wont eat ya.
 Some times eats parents too,forgot to say that earlier.
 
-                            Credits: Krogg <krogg.no.to.spam@inspace.net>
+                          Credits: Krogg <krogg.no.to.spam@inspace.net>
 ```
 
 **[GuessNumber.java]** Write a program implementing a simple quiz game. The computer selects a random number between 0
