@@ -182,6 +182,7 @@ public static long howManyTimes(String filename, String word);
 where:
 
 * **filename** is the filename of the book.
+* **subString** is the sub string of interest.
 * **word** is the word of interest.
 
 For reading the file and transforming it into a ```List<String>```, you can use:
