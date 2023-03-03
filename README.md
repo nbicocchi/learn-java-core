@@ -48,7 +48,7 @@
 
 ---
 
-### Exercises Modules
+### Introduction
 [E1] From Functions to Objects
 
 * Evolution of programming languages
@@ -56,6 +56,7 @@
 * Modularization, reuse of code, and object-oriented programming
 * Object-oriented programming key features
 
+### Exercises Modules
 [E2] Basics
 
 > Read: Big Java (Chapter 2-4-5-6-7)
