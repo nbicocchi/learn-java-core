@@ -30,31 +30,26 @@ public class Polygon {
      * @return the perimeter of the polygon
      */
     public double getPerimeter() {
-        return 0.0;
+        double perimeter = 0.0;
+        for (int i = 0; i < vertices.length; i++) {
+            int next = (i + 1) % vertices.length;
+            perimeter += Math.hypot(vertices[i].x - vertices[next].x, vertices[i].y - vertices[next].y);
+        }
+        return perimeter;
     }
 
     /**
      * Returns the area of the polygon
      * @return the area of the polygon
-     * @see <a></href="https://arachnoid.com/area_irregular_polygon/index.html></a>
+     * @see "https://arachnoid.com/area_irregular_polygon/index.html"
      */
     public double getArea() {
-        double sum = 0;
+        double area = 0.0;
         for (int i = 0; i < vertices.length; i++) {
             int next = (i + 1) % vertices.length;
-            sum += (vertices[i].x * vertices[next].y) - (vertices[i].y * vertices[next].x);
+            area += (vertices[i].x * vertices[next].y) - (vertices[i].y * vertices[next].x);
         }
-        return sum / 2.0;
-    }
-
-    /**
-     * Moves the polygon by translating all its vertices
-     * @param movement a Point representing the movement vector
-     */
-    public void move(Point movement) {
-        for (Point vertex : vertices) {
-            vertex.translate(movement.x, movement.y);
-        }
+        return area / 2.0;
     }
 
     @Override

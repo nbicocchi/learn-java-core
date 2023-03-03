@@ -2,7 +2,94 @@
 
 ## Java Exercises (OOP Design)
 
-**[basic.Letter]** Provide a class for authoring a simple letter.
+Before starting this module, generate the JavaDoc documentation of the whole oop package.
+
+Click on the oop package then select Tools -> Generate JavaDoc...
+
+---
+
+**[basic.ClickCounter]** Write a class named ClickCounter representing a simple device to keep track of how many times a button (in this case a method) is clicked.
+Internally, the class represents the number of clicks with an int value.
+The class provides the following methods:
+* public int getValue() returning the current number of clicks.
+* public void click() increasing the number of clicks of 1 unit.
+* public void undo() decreasing the number of clicks of 1 unit (but preventing negative click values).
+* public void reset() setting the number of clicks to 0.
+
+Refer to the JavaDoc documentation for further details.
+
+---
+
+**[basic.RationalNumber]** Write a class named RationalNumber representing a rational number.
+Internally, the class represents numerator and denominator as int values.
+The class provides the following methods:
+* public RationalNumber(int numerator, int denominator) creating the rational number.
+* getters and setters.
+* public RationalNumber add(RationalNumber o) for adding another number to the current number.
+* public RationalNumber multiply(RationalNumber o) for multiplying another number with the current number.
+
+Refer to the JavaDoc documentation for further details.
+
+---
+
+**[basic.Circle]** Write a class named Circle representing a Circle on a 2D plane.
+Internally, the class uses a Point object and a double value for representing the center and the radius of the Circle, respectively. 
+The class provides the following methods:
+* public Circle(Point center, int radius) creating the circle.
+* getters and setters.
+* public double getPerimeter() returning the perimeter of the circle.
+* public double getArea() returning the area of the circle.
+* public boolean contains(Point point) returning true if point is contained within the circle.
+* public void translate(int dx, int dy) moving the circle on the 2D plane. dx and dy are the x and y components of the translation vector.
+* public String toString().
+
+Refer to the JavaDoc documentation for further details.
+
+---
+
+**[basic.Polygon]** Write a class named Polygon representing an irregular polygon.
+Internally, the class uses an array of Point objects for representing the vertices of the polygon.
+The class provides the following methods:
+* public Polygon(Point[] vertices) creating the polygon.
+* public int getVerticesCount() returning the number of vertices.
+* public double getPerimeter() returning the perimeter of the polygon.
+* public double getArea() returning the area of the polygon.
+* public String toString().
+
+Refer to the JavaDoc documentation for further details.
+
+---
+
+**[basic.BankAccount]** Write a class named BankAccount representing a bank account.
+Internally, the class uses a double value for representing the balance of the account.
+The class provides the following methods:
+* public BankAccount() creating an empty account.
+* public BankAccount(double balance) creating an account with the specified balance.
+* public double getBalance() getting the current balance.
+* public void deposit(double amount) depositing the specific amount into the account.
+* public void withdraw(double amount) withdrawing the specified amount from the account.
+
+Refer to the JavaDoc documentation for further details.
+
+--- 
+
+**[basic.EnhancedArray]** Write a class named EnhancedArray representing an enhanced array.
+Internally, the class keeps an int array but provides its key functionalities via a set of methods:
+
+* public EnhancedArray(int capacity) creating a new array of the specified capacity. 
+* public int size() returning the capacity of the array.
+* public int get(int index) returning the element at the specified index.
+* public void set(int index, int value) setting the element at the specified index with value
+* public boolean contains(int value) returning true if the specified value is contained within the array.
+* public void resetZero() setting all the elements to 0.
+* public void resetRandom() setting all the elements to random values between [0, size()]
+* public int[] toArray() returning a copy of the internal array.
+
+Refer to the JavaDoc documentation for further details.
+
+---
+
+**[basic.Letter]** Write a class for authoring a simple letter.
 In the constructor, supply the names of the sender and the recipient:
 
 ```
@@ -36,26 +123,35 @@ blank line
 sender name
 ```
 
----
-
-**[basic.Polygon]** Write a class named Polygon representing an irregular polygon.
-Internally, the class represents an irregular polygon as an array of 2d points (vertices).
+Refer to the JavaDoc documentation for further details.
 
 ---
 
-**[amphibious]**
+**[amphibious package]**
 
-**[reverse]**
+---
 
-**[shape]**
+**[reverse package]**
 
-**[bankaccount]**
+---
 
-**[phonebook]**
+**[shape package]**
 
-**[polynomials]**
+---
 
-**[library]**
+**[bankaccount package]**
 
+---
 
+**[phonebook package]**
+
+---
+
+**[polynomials package]**
+
+---
+
+**[library package]**
+
+---
 

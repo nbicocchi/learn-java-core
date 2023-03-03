@@ -49,10 +49,10 @@ public class EnhancedArray {
      * @return true if the value is contained within the array
      */
     public boolean contains(int value) {
-        int[] copy = Arrays.copyOf(v, v.length);
-        Arrays.sort(copy);
-        if (Arrays.binarySearch(copy, value) >= 0) {
-            return true;
+        for (int i : v) {
+            if (i == value) {
+                return true;
+            }
         }
         return false;
     }
@@ -61,9 +61,7 @@ public class EnhancedArray {
      * Resets all the elements of the array to zero
      */
     public void resetZero() {
-        for (int i = 0; i < v.length; i++) {
-            v[i] = 0;
-        }
+        Arrays.fill(v, 0);
     }
 
     /**

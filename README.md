@@ -8,7 +8,7 @@
 * [Mermaid](https://mermaid.js.org/)
 
 ### Books
-* Big Java - Early Objects; Horstmann; Wiley Press (intermediate) [Book resources](https://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=11274&itemId=1119499097&resourceId=44689)
+* Big Java - Early Objects 7th Edition; Horstmann; Wiley Press (intermediate) [Book resources](https://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=11274&itemId=1119499097&resourceId=44689)
 * Effective Java; Bloch; O'Reilly (advanced)
 
 ### Videos

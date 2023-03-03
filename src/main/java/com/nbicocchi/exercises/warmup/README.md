@@ -51,7 +51,5 @@ Write a program asking the user if monkeys are smiling and print an alert if we 
 Two users are asked to guess the right price. The user which proposed the number closer to the right price wins.
 Note that Math.abs(n) returns the absolute value of a number (see java.util.random.RandomGenerator, java.util.Scanner).
 
-
-
 **[InterestRate]** Write a program that prints the balance of an account after the first, second, and third year. 
 The account has an initial balance of $1,000 and earns 5 percent interest per year.
