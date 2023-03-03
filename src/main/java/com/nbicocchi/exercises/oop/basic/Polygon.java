@@ -4,32 +4,40 @@ import java.awt.*;
 import java.util.Arrays;
 
 /**
- * Write a class named Polygon representing an irregular polygon.
- * Internally, the class represents an irregular polygon as an array of 2d points (vertices).
- *
- * The class implements one constructor:
- * Polygon(Point[] vertices)
- *
- * The class have also to implement the following methods:
- * getters and setters
- * int getVerticesNumber() - returns the number of vertices
- * void move(Point movement) - moves the polygon as specified by movement (treated as a vector)
- * double getArea() - returns the area of the polygon, computed using the formula that can be found here
- * (<a href="https://arachnoid.com/area_irregular_polygon/index.html">...</a>)
- *
- * @author Nicola Bicocchi
+ * A class representing an irregular polygon on a 2D plane capable of calculating its perimeter and area.
  */
 public class Polygon {
-    private final Point[] vertices;
+    final Point[] vertices;
 
+    /**
+     * Constructs a new polygon from an array of points representing its vertices
+     * @param vertices the Point array representing the vertices
+     */
     public Polygon(Point[] vertices) {
         this.vertices = vertices;
     }
 
-    public int getVerticesNumber() {
+    /**
+     * Returns the number of vertices
+     * @return the number of vertices
+     */
+    public int getVerticesCount() {
         return vertices.length;
     }
 
+    /**
+     * Returns the perimeter of the polygon
+     * @return the perimeter of the polygon
+     */
+    public double getPerimeter() {
+        return 0.0;
+    }
+
+    /**
+     * Returns the area of the polygon
+     * @return the area of the polygon
+     * @see <a></href="https://arachnoid.com/area_irregular_polygon/index.html></a>
+     */
     public double getArea() {
         double sum = 0;
         for (int i = 0; i < vertices.length; i++) {
@@ -39,6 +47,10 @@ public class Polygon {
         return sum / 2.0;
     }
 
+    /**
+     * Moves the polygon by translating all its vertices
+     * @param movement a Point representing the movement vector
+     */
     public void move(Point movement) {
         for (Point vertex : vertices) {
             vertex.translate(movement.x, movement.y);

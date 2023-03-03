@@ -1,7 +1,10 @@
 package com.nbicocchi.exercises.oop.basic;
 
+/**
+ * A class representing a click counter keeping track of how many times the click() method is called.
+ */
 public class ClickCounter {
-    private int value;
+    int value;
 
     /**
      * Gets the current value of this counter.
@@ -20,8 +23,7 @@ public class ClickCounter {
     }
 
     /**
-     * Undo accidental clicks by decreasing internal counter.
-     * Prevents also the counter to go below 0.
+     * Undo accidental clicks by decreasing internal counter. Prevents also the counter to go below 0.
      */
     public void undo() {
         value = Math.max(value - 1, 0);
