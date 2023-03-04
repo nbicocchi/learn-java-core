@@ -127,6 +127,24 @@ Refer to the JavaDoc documentation for further details.
 
 ---
 
+**[reverse package]** Given the following Reverser interface, provide two implementations namely ReverserFast and ReverserSlow using two different strategies for reversing a String. Provide also a simple main() in which the Reverser interface is implemented anonymously. 
+
+```
+public interface Reverser {
+    /**
+     * Reverses a string
+     * @param s the string to be reversed
+     * @return the reversed string
+     */
+    String reverse(String s);
+}
+```
+
+The following diagram might provide some inspiration. 
+
+![reverse](../../../../../../../assets/uml/reverse.svg)
+
+---
 **[bankaccount package]** Define two classes, namely BankAccountEasy and BankAccountPro implementing the BankAccount interface (reported below), with some differences. 
 * BankAccountPro represents a fully fledged bank account, allowing international transfers, negative balances, and a 2pc interest rate. However, all this comes with the cost of 1 Euro for each operation (deposit, withdrawal). Note well: the first two characters of IBANs represent a country code.
 * BankAccountEasy represents a basic bank account, which does not support negative balances, international transfers, and does not pay any interest. Nevertheless, deposits and withdrawals are free.
@@ -135,14 +153,6 @@ Both accounts must refuse to set invalid IBANs or positive fees (money being add
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
 ![bankaccount](../../../../../../../assets/uml/bankaccount.svg)
-
----
-
-**[amphibious package]**
-
----
-
-**[reverse package]**
 
 ---
 

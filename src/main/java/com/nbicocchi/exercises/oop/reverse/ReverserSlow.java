@@ -1,6 +1,6 @@
 package com.nbicocchi.exercises.oop.reverse;
 
-public class EngineSlow implements Reverser {
+public class ReverserSlow implements Reverser {
     @Override
     public String reverse(String s) {
         StringBuilder output = new StringBuilder();

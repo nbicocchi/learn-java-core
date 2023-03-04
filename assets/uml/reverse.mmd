@@ -1,0 +1,17 @@
+classDiagram
+direction BT
+class Reverser {
+<<Interface>>
+  + reverse(String) String
+}
+class ReverserFast {
+  + ReverserFast() 
+  + reverse(String) String
+}
+class ReverserSlow {
+  + ReverserSlow() 
+  + reverse(String) String
+}
+
+ReverserFast  ..>  Reverser 
+ReverserSlow  ..>  Reverser 

@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EngineSlowTest {
+class ReverserFastTest {
     @Test
     void reverse() {
-        Reverser r = new EngineSlow();
+        Reverser r = new ReverserFast();
         assertEquals("!dlroW olleH", r.reverse("Hello World!"));
     }
 }
