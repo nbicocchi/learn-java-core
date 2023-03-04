@@ -1,0 +1,52 @@
+classDiagram
+direction BT
+class AbstractBankAccount {
+  + AbstractBankAccount(String, double, double, double)
+  # String IBAN
+  # double balance
+  # double interestRate
+  # double operationFee
+  + addInterest() void
+  # applyFee() void
+  # checkIBAN(String) void
+  + deposit(double) void
+  + getBalance() double
+  + getIBAN() String
+  + getInterestRate() double
+  + getOperationFee() double
+  + setBalance(double) void
+  + setIBAN(String) void
+  + setInterestRate(double) void
+  + setOperationFee(double) void
+  + transfer(BankAccount, double) double
+  + withdraw(double) double
+}
+class BankAccount {
+<<Interface>>
+  + addInterest() void
+  + deposit(double) void
+  + getBalance() double
+  + getIBAN() String
+  + getInterestRate() double
+  + getOperationFee() double
+  + setBalance(double) void
+  + setIBAN(String) void
+  + setInterestRate(double) void
+  + setOperationFee(double) void
+  + transfer(BankAccount, double) double
+  + withdraw(double) double
+}
+class BankAccountEasy {
+  + BankAccountEasy(String, double)
+  + transfer(BankAccount, double) double
+  + withdraw(double) double
+}
+class BankAccountPro {
+  + BankAccountPro(String, double, double, double)
+  + deposit(double) void
+  + withdraw(double) double
+}
+
+AbstractBankAccount  ..>  BankAccount
+BankAccountEasy  -->  AbstractBankAccount
+BankAccountPro  -->  AbstractBankAccount
