@@ -139,7 +139,14 @@ Refer to the JavaDoc documentation for further details.
 
 ---
 
-**[bankaccount package]**
+**[bankaccount package]** Define two classes, namely BankAccountEasy and BankAccountPro implementing the BankAccount interface (reported below), with some differences. 
+* BankAccountPro represent a fully fledged bank account, allowing international transfers, negative balances, and a 2pc interest rate. However, all this comes with the cost of 1 Euro for each operation (deposit, withdrawal, transfer). Note well: the first two characters of IBANs represent a country code.
+* BankAccountEasy represent a basic bank account, which does not support negative balances, international transfers, and does not pay any interest. Nevertheless, all operations are free.
+
+Both accounts must refuse to set invalid IBANs or positive fees (money being added for each operation).
+The following diagram might provide some inspiration.
+
+![bankaccount](../../../../../../../assets/uml/bankaccount.svg)
 
 ---
 
