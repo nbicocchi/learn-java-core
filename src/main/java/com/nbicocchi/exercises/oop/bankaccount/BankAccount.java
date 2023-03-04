@@ -1,5 +1,8 @@
 package com.nbicocchi.exercises.oop.bankaccount;
 
+/**
+ * Defines common features of bank accounts.
+ */
 public interface BankAccount {
     String getIBAN();
 
