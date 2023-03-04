@@ -3,12 +3,13 @@ package com.nbicocchi.exercises.oop.phonebook;
 import java.util.ArrayList;
 
 /**
- * A PhoneBook implementation internally using ArrayList. Slow!
+ * A PhoneBook implementation internally using ArrayList. Its capacity is limited to 256 persons.
  *
  * @author Nicola Bicocchi
- * @see PhoneBook
+ * @see PhoneBook Interface
  */
 public class PhoneBookList implements PhoneBook {
+    public static final int MAX_PERSONS = 256;
     final ArrayList<Person> phoneBook;
 
     public PhoneBookList() {
@@ -17,6 +18,9 @@ public class PhoneBookList implements PhoneBook {
 
     @Override
     public void addPerson(Person p) {
+        if (phoneBook.size() >= MAX_PERSONS) {
+            throw new IllegalArgumentException("Phonebook is full");
+        }
         phoneBook.add(p);
     }
 
@@ -53,7 +57,8 @@ public class PhoneBookList implements PhoneBook {
     @Override
     public void deleteByNumber(String phone) {
         Person p = searchByNumber(phone);
-        if (p != null)
+        if (p != null) {
             phoneBook.remove(p);
+        }
     }
 }

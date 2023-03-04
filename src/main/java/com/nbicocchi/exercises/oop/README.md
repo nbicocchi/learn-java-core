@@ -145,7 +145,19 @@ The following diagram might provide some inspiration.
 ![reverse](../../../../../../../assets/uml/reverse.svg)
 
 ---
-**[bankaccount package]** Define two classes, namely BankAccountEasy and BankAccountPro implementing the BankAccount interface (reported below), with some differences. 
+
+**[phonebook package]** Define two classes, namely PhoneBookArray and PhoneBookList implementing the PhoneBook interface (reported below).
+* PhoneBookArray internally models the phone book as a ```Person[]```.
+* PhoneBookList internally models the phone book as a ```ArrayList<Person>```.
+
+Both implementations limit the number of persons to 256.
+The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
+
+![phonebook](../../../../../../../assets/uml/phonebook.svg)
+
+---
+
+**[bankaccount package]** Define two classes, namely BankAccountEasy and BankAccountPro implementing the BankAccount interface (reported below).
 * BankAccountPro represents a fully fledged bank account, allowing international transfers, negative balances, and a 2pc interest rate. However, all this comes with the cost of 1 Euro for each operation (deposit, withdrawal). Note well: the first two characters of IBANs represent a country code.
 * BankAccountEasy represents a basic bank account, which does not support negative balances, international transfers, and does not pay any interest. Nevertheless, deposits and withdrawals are free.
 
@@ -156,11 +168,19 @@ The following diagram might provide some inspiration. Refer to the JavaDoc docum
 
 ---
 
-**[shape package]**
+**[shape package]** Define two classes, namely Circle and Rectangle representing a circle and rectangle on a 2D plane.
+* Circle internally uses a Point object and a double value for representing its center and radius.
+* Rectangle internally uses two Point objects for representing its upper-left and bottom-right vertices.
 
----
+Both shapes must also support:
+* an id (String) for identifying the shape
+* a color (String) for coloring the shape
+* the capability of moving on the 2D plane (move() method)
+* the capability of resizing (resize() method)
+* the capability of computing area and perimeter (getArea(), getPerimeter() methods)
+The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
-**[phonebook package]**
+![shape](../../../../../../../assets/uml/shape.svg)
 
 ---
 

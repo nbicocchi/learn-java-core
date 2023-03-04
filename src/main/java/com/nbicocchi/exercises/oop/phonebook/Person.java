@@ -44,7 +44,7 @@ public class Person {
         if (o == null || getClass() != o.getClass())
             return false;
         Person person = (Person) o;
-        return name.equals(person.name) && lastname.equals(person.lastname) && phone.equals(person.phone);
+        return Objects.equals(name, person.name) && Objects.equals(lastname, person.lastname) && Objects.equals(phone, person.phone);
     }
 
     @Override

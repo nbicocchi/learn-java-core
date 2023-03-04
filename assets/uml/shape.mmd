@@ -1,0 +1,62 @@
+classDiagram
+direction BT
+class AbstractShape {
+  + AbstractShape(String, Color) 
+  ~ Color color
+  ~ String id
+  + getArea() double
+  + getColor() Color
+  + getId() String
+  + getPerimeter() double
+  + move(Point) void
+  + resize(double) void
+  + setColor(Color) void
+  + setId(String) void
+}
+class Circle {
+  + Circle(String, Color, Point, double) 
+  ~ Point center
+  ~ double radius
+  + getArea() double
+  + getCenter() Point
+  + getPerimeter() double
+  + getRadius() double
+  + move(Point) void
+  + resize(double) void
+  + setCenter(Point) void
+  + setRadius(double) void
+  + toString() String
+}
+class Computable {
+<<Interface>>
+  + getArea() double
+  + getPerimeter() double
+}
+class Movable {
+<<Interface>>
+  + move(Point) void
+}
+class Rectangle {
+  + Rectangle(String, Color, Point, Point) 
+  ~ Point bottomRight
+  ~ Point upperLeft
+  + getArea() double
+  + getBottomRight() Point
+  + getPerimeter() double
+  + getUpperLeft() Point
+  + move(Point) void
+  + resize(double) void
+  + setBottomRight(Point) void
+  + setUpperLeft(Point) void
+  + toString() String
+}
+class Resizable {
+<<Interface>>
+  + resize(double) void
+}
+
+AbstractShape  ..>  Computable 
+AbstractShape  ..>  Movable 
+AbstractShape  ..>  Resizable 
+Circle  -->  AbstractShape 
+Rectangle  -->  AbstractShape 

@@ -6,8 +6,8 @@ public class Circle extends AbstractShape {
     Point center;
     double radius;
 
-    public Circle(Color color, boolean filled, Point center, double radius) {
-        super(color, filled);
+    public Circle(String id, Color color, Point center, double radius) {
+        super(id, color);
         this.center = center;
         this.radius = radius;
     }
@@ -30,7 +30,7 @@ public class Circle extends AbstractShape {
 
     @Override
     public double getPerimeter() {
-        return 2 * Math.PI * radius;
+        return 2.0 * Math.PI * radius;
     }
 
     @Override
@@ -50,6 +50,6 @@ public class Circle extends AbstractShape {
 
     @Override
     public String toString() {
-        return "Circle{" + "center=" + center + ", radius=" + radius + ", color='" + color + '\'' + ", filled=" + filled + '}';
+        return "Circle{" + "center=" + center + ", radius=" + radius + ", id='" + id + '\'' + ", color=" + color + '}';
     }
 }

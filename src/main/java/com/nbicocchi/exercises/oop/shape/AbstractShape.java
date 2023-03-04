@@ -2,13 +2,26 @@ package com.nbicocchi.exercises.oop.shape;
 
 import java.awt.*;
 
-public abstract class AbstractShape implements Shape {
+public abstract class AbstractShape implements Computable, Movable, Resizable {
+    String id;
     Color color;
-    boolean filled;
 
-    public AbstractShape(Color color, boolean filled) {
+    /**
+     * Constructs a shape with the specified id, and color
+     * @param id the id to be assigned to the shape
+     * @param color the color to be assigned to the shape
+     */
+    public AbstractShape(String id, Color color) {
+        this.id = id;
         this.color = color;
-        this.filled = filled;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Color getColor() {
@@ -17,14 +30,6 @@ public abstract class AbstractShape implements Shape {
 
     public void setColor(Color color) {
         this.color = color;
-    }
-
-    public boolean isFilled() {
-        return filled;
-    }
-
-    public void setFilled(boolean filled) {
-        this.filled = filled;
     }
 
     public abstract double getPerimeter();
