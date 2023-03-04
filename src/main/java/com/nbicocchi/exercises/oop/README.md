@@ -132,7 +132,7 @@ Refer to the JavaDoc documentation for further details.
 * BankAccountEasy represents a basic bank account, which does not support negative balances, international transfers, and does not pay any interest. Nevertheless, deposits and withdrawals are free.
 
 Both accounts must refuse to set invalid IBANs or positive fees (money being added for each operation).
-The following diagram might provide some inspiration.
+The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
 ![bankaccount](../../../../../../../assets/uml/bankaccount.svg)
 
