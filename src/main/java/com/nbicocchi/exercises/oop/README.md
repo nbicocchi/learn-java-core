@@ -151,6 +151,7 @@ The following diagram might provide some inspiration.
 * PhoneBookList internally models the phone book as a ```ArrayList<Person>```.
 
 Both implementations limit the number of persons to 256.
+
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
 ![phonebook](../../../../../../../assets/uml/phonebook.svg)
@@ -162,6 +163,7 @@ The following diagram might provide some inspiration. Refer to the JavaDoc docum
 * BankAccountEasy represents a basic bank account, which does not support negative balances, international transfers, and does not pay any interest. Nevertheless, deposits and withdrawals are free.
 
 Both accounts must refuse to set invalid IBANs or positive fees (money being added for each operation).
+
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
 ![bankaccount](../../../../../../../assets/uml/bankaccount.svg)
@@ -178,6 +180,7 @@ Both shapes must also support:
 * the capability of moving on the 2D plane (move() method)
 * the capability of resizing (resize() method)
 * the capability of computing area and perimeter (getArea(), getPerimeter() methods)
+
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
 ![shape](../../../../../../../assets/uml/shape.svg)
