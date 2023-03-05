@@ -131,6 +131,26 @@ Refer to the JavaDoc documentation for further details.
 
 The following diagram might provide some inspiration.
 
+```mermaid
+classDiagram
+direction BT
+class Reverser {
+  <<Interface>>
+  + reverse(String) String
+}
+class ReverserFast {
+  + ReverserFast() 
+  + reverse(String) String
+}
+class ReverserSlow {
+  + ReverserSlow() 
+  + reverse(String) String
+}
+
+ReverserFast  ..|>  Reverser 
+ReverserSlow  ..|>  Reverser 
+```
+
 ---
 
 **[phonebook package]** Define two classes, namely PhoneBookArray and PhoneBookList implementing the PhoneBook interface (reported below).
@@ -140,6 +160,56 @@ The following diagram might provide some inspiration.
 Both implementations limit the number of persons to 256.
 
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
+
+```mermaid
+classDiagram
+direction BT
+class Person {
+  ~ String lastname
+  ~ String name
+  ~ String phone
+  + Person(String, String, String) 
+  + equals(Object) boolean
+  + getLastname() String
+  + getName() String
+  + getPhone() String
+  + hashCode() int
+  + setLastname(String) void
+  + setName(String) void
+  + setPhone(String) void
+  + toString() String
+}
+class PhoneBook {
+  <<Interface>>
+  + addPerson(Person) void
+  + removePerson(Person) void
+  + searchByLastname(String) Person
+  + searchByName(String) Person
+  + searchByNumber(String) Person
+}
+class PhoneBookArray {
+  + int MAX_PERSONS
+  ~ Person[] phoneBook
+  + PhoneBookArray() 
+  + addPerson(Person) void
+  + removePerson(Person) void
+  + searchByLastname(String) Person
+  + searchByName(String) Person
+  + searchByNumber(String) Person
+}
+class PhoneBookList {
+  + int MAX_PERSONS
+  ~ ArrayList~Person~ phoneBook
+  + PhoneBookList() 
+  + addPerson(Person) void
+  + removePerson(Person) void
+  + searchByLastname(String) Person
+  + searchByName(String) Person
+  + searchByNumber(String) Person
+}
+PhoneBookArray  ..|>  PhoneBook 
+PhoneBookList  ..|>  PhoneBook 
+```
 
 ---
 
@@ -151,6 +221,61 @@ Both accounts must refuse to set invalid IBANs or positive fees (money being add
 
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
+```mermaid
+classDiagram
+direction BT
+class AbstractBankAccount {
+  <<abstract>>
+  ~ String IBAN
+  ~ double balance
+  ~ double interestRate
+  ~ double operationFee
+  + AbstractBankAccount(String, double, double, double)
+  + addInterest() void
+  ~ applyFee() void
+  ~ checkIBAN(String) void
+  + deposit(double) void
+  + getBalance() double
+  + getIBAN() String
+  + getInterestRate() double
+  + getOperationFee() double
+  + setBalance(double) void
+  + setIBAN(String) void
+  + setInterestRate(double) void
+  + setOperationFee(double) void
+  + transfer(BankAccount, double) double
+  + withdraw(double) double
+}
+class BankAccount {
+  <<Interface>>
+  + addInterest() void
+  + deposit(double) void
+  + getBalance() double
+  + getIBAN() String
+  + getInterestRate() double
+  + getOperationFee() double
+  + setBalance(double) void
+  + setIBAN(String) void
+  + setInterestRate(double) void
+  + setOperationFee(double) void
+  + transfer(BankAccount, double) double
+  + withdraw(double) double
+}
+class BankAccountEasy {
+  + BankAccountEasy(String, double)
+  + transfer(BankAccount, double) double
+  + withdraw(double) double
+}
+class BankAccountPro {
+  + BankAccountPro(String, double, double, double)
+  + deposit(double) void
+  + withdraw(double) double
+}
+
+AbstractBankAccount  ..>  BankAccount
+BankAccountEasy  --|>  AbstractBankAccount
+BankAccountPro  --|>  AbstractBankAccount
+```
 ---
 
 **[shape package]** Define two classes, namely Circle and Rectangle representing a circle and rectangle on a 2D plane.
@@ -171,8 +296,8 @@ classDiagram
 direction BT
 class AbstractShape {
   <<abstract>>
-  Color color
-  String id
+  ~ Color color
+  ~ String id
   + AbstractShape(String, Color) 
   + getArea() double
   + getColor() Color
@@ -184,8 +309,8 @@ class AbstractShape {
   + setId(String) void
 }
 class Circle {
-  Point center
-  double radius
+  ~ Point center
+  ~ double radius
   + Circle(String, Color, Point, double) 
   + getArea() double
   + getCenter() Point
@@ -198,8 +323,8 @@ class Circle {
   + toString() String
 }
 class Rectangle {
-  Point bottomRight
-  Point upperLeft
+  ~ Point bottomRight
+  ~ Point upperLeft
   + Rectangle(String, Color, Point, Point) 
   + getArea() double
   + getBottomRight() Point
@@ -252,13 +377,13 @@ direction BT
 class AbstractPoly {
   <<abstract>>
   + AbstractPoly() 
-  # derive() double[]
+  ~ derive() double[]
   + equals(Object) boolean
   + hashCode() int
   + toString() String
 }
 class ArrayPoly {
-  double[] coefficients
+  ~ double[] coefficients
   + ArrayPoly(double[]) 
   + coefficient(int) double
   + coefficients() double[]
@@ -266,7 +391,7 @@ class ArrayPoly {
   + derivative() Poly
 }
 class ListPoly {
-  ArrayList~Double~ coefficients
+  ~ ArrayList~Double~ coefficients
   + ListPoly(double[]) 
   + coefficient(int) double
   + coefficients() double[]
@@ -294,14 +419,14 @@ ListPoly  --|>  AbstractPoly
 classDiagram
 direction BT
 class Book {
-    int pages
+    ~ int pages
     + Book(String, int, int)
     + getPages() int
     + setPages(int) void
     + toString() String
 }
 class Dvd {
-    int length
+    ~ int length
     + Dvd(String, int, int)
     + getLength() int
     + setLength(int) void
@@ -309,8 +434,8 @@ class Dvd {
 }
 class Item {
     <<Abstract>>
-    String title
-    int year
+    ~ String title
+    ~ int year
     + Item(String, int)
     + getTitle() String
     + getYear() int
@@ -318,16 +443,16 @@ class Item {
     + setYear(int) void
 }
 class Library {
-    ArrayList~Rent~ rents
+    ~ ArrayList~Rent~ rents
     + Library()
     + addRent(Rent) void
     + getExpired() ArrayList~Rent~
     + removeRent(Rent) void
 }
 class Person {
-    String id
-    String lastname
-    String name
+  ~ String id
+  ~ String lastname
+  ~ String name
   + Person(String, String, String)
   + getId() String
   + getLastname() String
@@ -338,10 +463,10 @@ class Person {
   + toString() String
 }
 class Rent {
-    LocalDateTime begin
-    LocalDateTime end
-    Item item
-    Person person
+    ~ LocalDateTime begin
+    ~ LocalDateTime end
+    ~ Item item
+    ~ Person person
     + Rent(Item, Person, LocalDateTime, LocalDateTime)
     + equals(Object) boolean
     + getBegin() LocalDateTime
