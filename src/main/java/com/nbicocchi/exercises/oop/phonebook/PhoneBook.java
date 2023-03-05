@@ -15,7 +15,7 @@ public interface PhoneBook {
     void addPerson(Person person);
 
     /**
-     * Deletes a person from the phone book
+     * Removes a person from the phone book
      *
      * @param person The person to be removed from the phone book
      */

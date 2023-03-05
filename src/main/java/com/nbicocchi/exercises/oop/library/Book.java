@@ -1,8 +1,5 @@
 package com.nbicocchi.exercises.oop.library;
 
-/**
- * Class representing a Book
- */
 public class Book extends Item {
     int pages;
 

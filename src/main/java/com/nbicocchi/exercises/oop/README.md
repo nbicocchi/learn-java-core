@@ -16,7 +16,7 @@ The class provides the following methods:
 * public void undo() decreasing the number of clicks of 1 unit (but preventing negative click values).
 * public void reset() setting the number of clicks to 0.
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -44,7 +44,7 @@ The class provides the following methods:
 * public RationalNumber multiply(RationalNumber o) for multiplying another number with the current number.
 * public String toString().
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -76,7 +76,7 @@ The class provides the following methods:
 * public void translate(int dx, int dy) moving the circle on the 2D plane. dx and dy are the x and y components of the translation vector.
 * public String toString().
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -108,7 +108,7 @@ The class provides the following methods:
 * public double getArea() returning the area of the polygon.
 * public String toString().
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -135,7 +135,7 @@ The class provides the following methods:
 * public void deposit(double amount) depositing the specific amount into the account.
 * public void withdraw(double amount) withdrawing the specified amount from the account.
 
-The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -164,7 +164,7 @@ Internally, the class keeps an int array but provides its key functionalities vi
 * public void resetRandom() setting all the elements to random values between [0, size()].
 * public int[] toArray() returning a copy of the internal array.
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -218,7 +218,7 @@ blank line
 sender name
 ```
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -237,7 +237,7 @@ class Letter {
 
 **[reverse package]** Given the Reverser interface defining a single method *reverse* for reversing a string, provide two implementations namely ReverserFast and ReverserSlow providing two different strategies for reversing a String. As a suggestion, ReverserSlow could use a char array (see String.valueOf()), while ReverserFast could use a StringBuilder. Provide also a simple main() in which the Reverser interface is implemented anonymously.
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -267,7 +267,7 @@ ReverserSlow  ..|>  Reverser
 
 Both implementations limit the number of persons to 256.
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -327,7 +327,7 @@ PhoneBookList  ..|>  PhoneBook
 
 Both accounts must refuse to set invalid IBANs or positive fees (money being added for each operation).
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -397,7 +397,7 @@ Both shapes must also support:
 * the capability of resizing (resize() method)
 * the capability of computing area and perimeter (getArea(), getPerimeter() methods)
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -478,7 +478,7 @@ As prescribed by the Poly interface, both implementations must provide:
 * a method *derivative()* returning the derivative polynomial.
 * a method *equals(Object o)* for being comparable with other Poly objects.
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram
@@ -530,7 +530,7 @@ ListPoly  --|>  AbstractPoly
 
 Provide and implementation of all the needed classes, and write a method *getExpired()* returning all the late rents.
 
-Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
 ```mermaid
 classDiagram

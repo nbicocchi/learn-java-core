@@ -1,8 +1,5 @@
 package com.nbicocchi.exercises.oop.library;
 
-/**
- * Class representing a DVD
- */
 public class Dvd extends Item {
     int length;
 

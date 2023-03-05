@@ -37,16 +37,11 @@ public class Letter {
      */
     public String getText() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Dear ")
-                .append(to)
-                .append(":\n\n");
+        sb.append("Dear ").append(to).append(":\n\n");
         for (String line : lines) {
             sb.append(line).append("\n");
         }
-        sb.append("\n")
-                .append("Sincerely,")
-                .append("\n")
-                .append(from);
+        sb.append("\n").append("Sincerely,\n\n").append(from);
         return sb.toString();
     }
 }

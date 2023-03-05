@@ -2,9 +2,6 @@ package com.nbicocchi.exercises.oop.library;
 
 import java.util.Objects;
 
-/**
- * Class generalizing Books and DVDs
- */
 public abstract class Item {
     String title;
     int year;

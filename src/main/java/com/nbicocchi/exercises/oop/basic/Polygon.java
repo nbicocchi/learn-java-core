@@ -53,21 +53,6 @@ public class Polygon {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Polygon polygon = (Polygon) o;
-        return Arrays.equals(vertices, polygon.vertices);
-    }
-
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(vertices);
-    }
-
-    @Override
     public String toString() {
         return "Polygon{" + "vertices=" + Arrays.toString(vertices) + '}';
     }
