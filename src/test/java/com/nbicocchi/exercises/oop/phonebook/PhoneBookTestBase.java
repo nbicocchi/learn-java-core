@@ -15,6 +15,12 @@ abstract class PhoneBookTestBase {
     }
 
     @Test
+    void deleteByNumber() {
+        pb.removePerson(new Person("Marco", "Rizzo", "45243"));
+        assertNull(pb.searchByLastname("Rizzo"));
+    }
+
+    @Test
     void searchByName() {
         assertEquals(new Person("Nicola", "Bicocchi", "34567"), pb.searchByName("Nicola"));
     }
@@ -27,11 +33,5 @@ abstract class PhoneBookTestBase {
     @Test
     void searchByNumber() {
         assertEquals(new Person("Nicola", "Bicocchi", "34567"), pb.searchByNumber("34567"));
-    }
-
-    @Test
-    void deleteByNumber() {
-        pb.deleteByNumber("34567");
-        assertNull(pb.searchByLastname("Bicocchi"));
     }
 }

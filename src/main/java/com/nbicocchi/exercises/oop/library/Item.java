@@ -1,5 +1,7 @@
 package com.nbicocchi.exercises.oop.library;
 
+import java.util.Objects;
+
 /**
  * Class generalizing Books and DVDs
  */
@@ -26,5 +28,20 @@ public abstract class Item {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Item item = (Item) o;
+        return year == item.year && Objects.equals(title, item.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, year);
     }
 }

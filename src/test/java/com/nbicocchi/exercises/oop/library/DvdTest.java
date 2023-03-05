@@ -45,4 +45,11 @@ class DvdTest {
         dvd.setLength(140);
         assertEquals(140, dvd.getLength());
     }
+
+    @Test
+    void equalsHashCode() {
+        Dvd other  = new Dvd("Moon", 2011, 130);
+        assertEquals(dvd, other);
+        assertEquals(dvd.hashCode(), other.hashCode());
+    }
 }

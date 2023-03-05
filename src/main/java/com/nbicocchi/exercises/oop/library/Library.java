@@ -1,5 +1,6 @@
 package com.nbicocchi.exercises.oop.library;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Library {
@@ -9,18 +10,18 @@ public class Library {
         rents = new ArrayList<>();
     }
 
-    public void addRent(Rent rent) {
-        rents.add(rent);
+    public boolean addRent(Rent rent) {
+        return rents.add(rent);
     }
 
-    public void removeRent(Rent rent) {
-        rents.remove(rent);
+    public boolean removeRent(Rent rent) {
+        return rents.remove(rent);
     }
 
-    public ArrayList<Rent> getExpired() {
+    public ArrayList<Rent> getExpired(LocalDate now) {
         ArrayList<Rent> expired = new ArrayList<>();
         for (Rent rent : rents) {
-            if (rent.isExpired()) {
+            if (rent.isExpired(now)) {
                 expired.add(rent);
             }
         }

@@ -533,6 +533,18 @@ Refer to the following UML diagram and the JavaDoc documentation for further ins
 ```mermaid
 classDiagram
 direction BT
+class Item {
+    <<Abstract>>
+    ~ String title
+    ~ int year
+    + Item(String, int)
+    + getTitle() String
+    + getYear() int
+    + setTitle(String) void
+    + setYear(int) void
+    + equals(Object) boolean
+    + hashCode() int
+}
 class Book {
     ~ int pages
     + Book(String, int, int)
@@ -547,16 +559,6 @@ class Dvd {
     + setLength(int) void
     + toString() String
 }
-class Item {
-    <<Abstract>>
-    ~ String title
-    ~ int year
-    + Item(String, int)
-    + getTitle() String
-    + getYear() int
-    + setTitle(String) void
-    + setYear(int) void
-}
 class Person {
     ~ String id
     ~ String lastname
@@ -568,33 +570,35 @@ class Person {
     + setId(String) void
     + setLastname(String) void
     + setName(String) void
+    + equals(Object) boolean
+    + hashCode() int
     + toString() String
 }
 class Rent {
-    ~ LocalDateTime begin
-    ~ LocalDateTime end
+    ~ LocalDate begin
+    ~ LocalDate end
     ~ Item item
     ~ Person person
-    + Rent(Item, Person, LocalDateTime, LocalDateTime)
-    + equals(Object) boolean
-    + getBegin() LocalDateTime
-    + getEnd() LocalDateTime
+    + Rent(Item, Person, LocalDate, LocalDate)
+    + getBegin() LocalDate
+    + getEnd() LocalDate
     + getItem() Item
     + getPerson() Person
-    + hashCode() int
-    + isExpired() boolean
-    + setBegin(LocalDateTime) void
-    + setEnd(LocalDateTime) void
+    + setBegin(LocalDate) void
+    + setEnd(LocalDate) void
     + setItem(Item) void
     + setPerson(Person) void
+    + isExpired(LocalDate) boolean
+    + equals(Object) boolean
+    + hashCode() int
     + toString() String
 }
 class Library {
     ~ ArrayList~Rent~ rents
     + Library()
-    + addRent(Rent) void
-    + removeRent(Rent) void
-    + getExpired() ArrayList~Rent~
+    + addRent(Rent) boolean
+    + removeRent(Rent) boolean
+    + getExpired(LocalDate) ArrayList~Rent~
 }
 
 Book  --|>  Item

@@ -1,15 +1,15 @@
 package com.nbicocchi.exercises.oop.library;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Rent {
     Item item;
     Person person;
-    LocalDateTime begin;
-    LocalDateTime end;
+    LocalDate begin;
+    LocalDate end;
 
-    public Rent(Item item, Person person, LocalDateTime begin, LocalDateTime end) {
+    public Rent(Item item, Person person, LocalDate begin, LocalDate end) {
         this.item = item;
         this.person = person;
         this.begin = begin;
@@ -32,24 +32,24 @@ public class Rent {
         this.person = person;
     }
 
-    public LocalDateTime getBegin() {
+    public LocalDate getBegin() {
         return begin;
     }
 
-    public void setBegin(LocalDateTime begin) {
+    public void setBegin(LocalDate begin) {
         this.begin = begin;
     }
 
-    public LocalDateTime getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
 
-    public void setEnd(LocalDateTime end) {
+    public void setEnd(LocalDate end) {
         this.end = end;
     }
 
-    public boolean isExpired() {
-        return end.isBefore(LocalDateTime.now());
+    public boolean isExpired(LocalDate now) {
+        return end.isBefore(now);
     }
 
     @Override

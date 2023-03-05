@@ -45,4 +45,11 @@ class BookTest {
         book.setPages(180);
         assertEquals(180, book.getPages());
     }
+
+    @Test
+    void equalsHashCode() {
+        Book other  = new Book("Soffocare", 2002, 170);
+        assertEquals(book, other);
+        assertEquals(book.hashCode(), other.hashCode());
+    }
 }
