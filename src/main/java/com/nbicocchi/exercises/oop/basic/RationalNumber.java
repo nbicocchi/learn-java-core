@@ -1,5 +1,7 @@
 package com.nbicocchi.exercises.oop.basic;
 
+import java.util.Objects;
+
 /**
  * A class representing a ration number supporting addition and multiplication with other rational numbers.
  */
@@ -53,6 +55,21 @@ public class RationalNumber {
         int n = this.numerator * o.numerator;
         int d = this.denominator * o.denominator;
         return new RationalNumber(n, d);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        RationalNumber that = (RationalNumber) o;
+        return numerator == that.numerator && denominator == that.denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numerator, denominator);
     }
 
     @Override

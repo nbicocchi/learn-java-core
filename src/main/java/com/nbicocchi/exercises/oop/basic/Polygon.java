@@ -49,7 +49,22 @@ public class Polygon {
             int next = (i + 1) % vertices.length;
             area += (vertices[i].x * vertices[next].y) - (vertices[i].y * vertices[next].x);
         }
-        return area / 2.0;
+        return Math.abs(area / 2.0);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Polygon polygon = (Polygon) o;
+        return Arrays.equals(vertices, polygon.vertices);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(vertices);
     }
 
     @Override

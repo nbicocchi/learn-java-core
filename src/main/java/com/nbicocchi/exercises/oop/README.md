@@ -35,7 +35,7 @@ class ClickCounter {
 
 **[basic.RationalNumber]** Write a class named RationalNumber representing a rational number.
 RationalNumbers are immutable objects, indeed they cannot be changed after creation.
-Internally, the class represents numerator and denominator as int values.
+Internally, the class represents numerator and denominator as int values. RationalNumbers must support equality with other RationalNumbers (see Object.equals(), Object.hashCode()) 
 The class provides the following methods:
 * public RationalNumber(int numerator, int denominator) creating the rational number.
 * public getNumerator() returning the numerator.
@@ -57,6 +57,8 @@ class RationalNumber {
   + getDenominator() int
   + add(RationalNumber) RationalNumber
   + multiply(RationalNumber) RationalNumber
+  + equals(Object) boolean
+  + hashCode() int
   + toString() String
 }
 ```
