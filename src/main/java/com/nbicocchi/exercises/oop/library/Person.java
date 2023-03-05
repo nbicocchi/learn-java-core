@@ -3,12 +3,12 @@ package com.nbicocchi.exercises.oop.library;
 public class Person {
     String name;
     String lastname;
-    String phone;
+    String id;
 
-    public Person(String name, String lastname, String phone) {
+    public Person(String name, String lastname, String id) {
         this.name = name;
         this.lastname = lastname;
-        this.phone = phone;
+        this.id = id;
     }
 
     public String getName() {
@@ -27,16 +27,16 @@ public class Person {
         this.lastname = lastname;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getId() {
+        return id;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return "Person{" + "name='" + name + '\'' + ", lastname='" + lastname + '\'' + ", phone='" + phone + '\'' + '}';
+        return "Person{" + "name='" + name + '\'' + ", lastname='" + lastname + '\'' + ", id='" + id + '\'' + '}';
     }
 }

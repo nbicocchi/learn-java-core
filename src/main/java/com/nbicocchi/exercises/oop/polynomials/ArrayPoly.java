@@ -1,13 +1,14 @@
 package com.nbicocchi.exercises.oop.polynomials;
 
+import java.util.Arrays;
+
 /**
- * Class representing a polynomial with coefficients stored as on array of
- * doubles
+ * Polynomial with coefficients stored as a double[]
  *
  * @author Nicola Bicocchi
  */
 public class ArrayPoly extends AbstractPoly {
-    private final double[] coefficients;
+    final double[] coefficients;
 
     public ArrayPoly(double[] coefficients) {
         this.coefficients = coefficients;
@@ -30,6 +31,6 @@ public class ArrayPoly extends AbstractPoly {
 
     @Override
     public double[] coefficients() {
-        return coefficients;
+        return Arrays.copyOf(coefficients, coefficients.length);
     }
 }

@@ -4,23 +4,23 @@ package com.nbicocchi.exercises.oop.library;
  * Class representing a DVD
  */
 public class Dvd extends Item {
-    int duration;
+    int length;
 
-    public Dvd(String title, int year, int duration) {
+    public Dvd(String title, int year, int length) {
         super(title, year);
-        this.duration = duration;
+        this.length = length;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getLength() {
+        return length;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setLength(int length) {
+        this.length = length;
     }
 
     @Override
     public String toString() {
-        return "Dvd{" + "duration=" + duration + ", title='" + title + '\'' + ", year=" + year + '}';
+        return "Dvd{" + "duration=" + length + ", title='" + title + '\'' + ", year=" + year + '}';
     }
 }

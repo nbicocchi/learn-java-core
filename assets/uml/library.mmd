@@ -1,0 +1,67 @@
+classDiagram
+direction BT
+class Book {
+  + Book(String, int, int) 
+  ~ int pages
+  + getPages() int
+  + setPages(int) void
+  + toString() String
+}
+class Dvd {
+  + Dvd(String, int, int) 
+  ~ int length
+  + getLength() int
+  + setLength(int) void
+  + toString() String
+}
+class Item {
+  + Item(String, int) 
+  ~ String title
+  ~ int year
+  + getTitle() String
+  + getYear() int
+  + setTitle(String) void
+  + setYear(int) void
+}
+class Library {
+  + Library() 
+  ~ ArrayList~Rent~ rents
+  + addRent(Rent) void
+  + getExpired() ArrayList~Rent~
+  + removeRent(Rent) void
+}
+class Person {
+  + Person(String, String, String) 
+  ~ String id
+  ~ String lastname
+  ~ String name
+  + getId() String
+  + getLastname() String
+  + getName() String
+  + setId(String) void
+  + setLastname(String) void
+  + setName(String) void
+  + toString() String
+}
+class Rent {
+  + Rent(Item, Person, LocalDateTime, LocalDateTime) 
+  ~ LocalDateTime begin
+  ~ LocalDateTime end
+  ~ Item item
+  ~ Person person
+  + equals(Object) boolean
+  + getBegin() LocalDateTime
+  + getEnd() LocalDateTime
+  + getItem() Item
+  + getPerson() Person
+  + hashCode() int
+  + isExpired() boolean
+  + setBegin(LocalDateTime) void
+  + setEnd(LocalDateTime) void
+  + setItem(Item) void
+  + setPerson(Person) void
+  + toString() String
+}
+
+Book  -->  Item 
+Dvd  -->  Item 

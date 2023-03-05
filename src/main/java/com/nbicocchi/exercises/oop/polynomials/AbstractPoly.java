@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Nicola Bicocchi
  */
 public abstract class AbstractPoly implements Poly {
-    double[] derive() {
+    protected double[] derive() {
         double[] tmp = new double[Math.max(1, degree())];
         for (int i = 1; i <= degree(); i++) {
             tmp[i - 1] = coefficient(i) * i;

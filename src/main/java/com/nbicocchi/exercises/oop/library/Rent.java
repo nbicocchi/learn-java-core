@@ -1,10 +1,8 @@
 package com.nbicocchi.exercises.oop.library;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-/**
- * Rent implements a rent of an Item for a delimited time frame
- */
 public class Rent {
     Item item;
     Person person;
@@ -52,6 +50,21 @@ public class Rent {
 
     public boolean isExpired() {
         return end.isBefore(LocalDateTime.now());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Rent rent = (Rent) o;
+        return Objects.equals(item, rent.item) && Objects.equals(person, rent.person) && Objects.equals(begin, rent.begin) && Objects.equals(end, rent.end);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(item, person, begin, end);
     }
 
     @Override

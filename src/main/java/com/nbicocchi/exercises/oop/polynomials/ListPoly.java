@@ -1,20 +1,19 @@
 package com.nbicocchi.exercises.oop.polynomials;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Class representing a polynomial with coefficients stored as a list
+ * Polynomial with coefficients stored as an ArrayList
  *
  * @author Nicola Bicocchi
  */
 public class ListPoly extends AbstractPoly {
-    final List<Double> coefficients;
+    ArrayList<Double> coefficients;
 
-    public ListPoly(double[] coeffs) {
-        coefficients = new ArrayList<>();
-        for (double c : coeffs) {
-            coefficients.add(c);
+    public ListPoly(double[] coefficients) {
+        this.coefficients = new ArrayList<>();
+        for (double c : coefficients) {
+            this.coefficients.add(c);
         }
     }
 

@@ -37,12 +37,12 @@ class DvdTest {
 
     @Test
     void getDuration() {
-        assertEquals(130, dvd.getDuration());
+        assertEquals(130, dvd.getLength());
     }
 
     @Test
     void setDuration() {
-        dvd.setDuration(140);
-        assertEquals(140, dvd.getDuration());
+        dvd.setLength(140);
+        assertEquals(140, dvd.getLength());
     }
 }

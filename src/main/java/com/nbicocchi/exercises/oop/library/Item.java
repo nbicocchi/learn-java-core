@@ -4,8 +4,8 @@ package com.nbicocchi.exercises.oop.library;
  * Class generalizing Books and DVDs
  */
 public abstract class Item {
-    String title;
-    int year;
+    protected String title;
+    protected int year;
 
     public Item(String title, int year) {
         this.title = title;
@@ -26,10 +26,5 @@ public abstract class Item {
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" + "title='" + title + '\'' + ", year=" + year + '}';
     }
 }

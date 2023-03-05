@@ -189,9 +189,13 @@ The following diagram might provide some inspiration. Refer to the JavaDoc docum
 
 **[polynomials package]**
 
+![polynomials](../../../../../../../assets/uml/polynomials.svg)
+
 ---
 
 **[library package]**
+
+![library](../../../../../../../assets/uml/library.svg)
 
 ---
 
