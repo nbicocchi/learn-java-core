@@ -25,6 +25,11 @@ public class PhoneBookList implements PhoneBook {
     }
 
     @Override
+    public void removePerson(Person person) {
+        phoneBook.remove(person);
+    }
+
+    @Override
     public Person searchByName(String name) {
         for (Person p : phoneBook) {
             if (p.getName().equals(name)) {
@@ -52,13 +57,5 @@ public class PhoneBookList implements PhoneBook {
             }
         }
         return null;
-    }
-
-    @Override
-    public void deleteByNumber(String phone) {
-        Person p = searchByNumber(phone);
-        if (p != null) {
-            phoneBook.remove(p);
-        }
     }
 }

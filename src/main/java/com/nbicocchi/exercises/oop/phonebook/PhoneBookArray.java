@@ -26,6 +26,17 @@ public class PhoneBookArray implements PhoneBook {
     }
 
     @Override
+    public void removePerson(Person person) {
+        for (int i = 0; i < MAX_PERSONS; i++) {
+            if (phoneBook[i] != null) {
+                if (phoneBook[i].equals(person)) {
+                    phoneBook[i] = null;
+                }
+            }
+        }
+    }
+
+    @Override
     public Person searchByName(String name) {
         for (int i = 0; i < MAX_PERSONS; i++) {
             if (phoneBook[i] != null) {
@@ -59,16 +70,5 @@ public class PhoneBookArray implements PhoneBook {
             }
         }
         return null;
-    }
-
-    @Override
-    public void deleteByNumber(String phone) {
-        for (int i = 0; i < MAX_PERSONS; i++) {
-            if (phoneBook[i] != null) {
-                if (phoneBook[i].getPhone().equals(phone)) {
-                    phoneBook[i] = null;
-                }
-            }
-        }
     }
 }

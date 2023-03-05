@@ -8,14 +8,21 @@ package com.nbicocchi.exercises.oop.phonebook;
  */
 public interface PhoneBook {
     /**
-     * Add a person to the phone book
+     * Adds a person to the phone book
      *
-     * @param p The person to be added to the PhoneBook
+     * @param person The person to be added to the phone book
      */
-    void addPerson(Person p);
+    void addPerson(Person person);
 
     /**
-     * Search a person within the phone book by name
+     * Deletes a person from the phone book
+     *
+     * @param person The person to be removed from the phone book
+     */
+    void removePerson(Person person);
+
+    /**
+     * Searches a person within the phone book by name
      *
      * @param name The name to be searched
      *
@@ -24,7 +31,7 @@ public interface PhoneBook {
     Person searchByName(String name);
 
     /**
-     * Search a person within the phone book by lastname
+     * Searches a person within the phone book by lastname
      *
      * @param lastname The lastname to be searched
      *
@@ -33,18 +40,11 @@ public interface PhoneBook {
     Person searchByLastname(String lastname);
 
     /**
-     * Search a person within the phone book by number
+     * Searches a person within the phone book by number
      *
      * @param phone The phone to be searched
      *
      * @return The person found, null otherwise
      */
     Person searchByNumber(String phone);
-
-    /**
-     * Delete a person from the phone book
-     *
-     * @param phone The phone number to be searched.
-     */
-    void deleteByNumber(String phone);
 }
