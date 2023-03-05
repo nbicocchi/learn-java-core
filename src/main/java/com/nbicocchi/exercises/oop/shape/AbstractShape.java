@@ -4,14 +4,14 @@ import java.awt.*;
 
 public abstract class AbstractShape implements Computable, Movable, Resizable {
     String id;
-    Color color;
+    String color;
 
     /**
      * Constructs a shape with the specified id, and color
      * @param id the id to be assigned to the shape
      * @param color the color to be assigned to the shape
      */
-    public AbstractShape(String id, Color color) {
+    public AbstractShape(String id, String color) {
         this.id = id;
         this.color = color;
     }
@@ -24,11 +24,11 @@ public abstract class AbstractShape implements Computable, Movable, Resizable {
         this.id = id;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 

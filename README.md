@@ -79,6 +79,7 @@
 [E3] Object Oriented Design
 
 > Read: Big Java (Chapter 3-8-9-10-12)
+> Read: UML Distilled (Chapter 3)
 
 > Lab: [com.nbicocchi.exercises.oop](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/oop)
 
@@ -90,7 +91,7 @@
 * Interfaces (and anonymous implementations)
 * Object: the cosmic superclass
 * Wrapper types
-* UML class diagrams
+* UML class diagrams 
 
 [E4] Data Structures (Collections Framework)
 

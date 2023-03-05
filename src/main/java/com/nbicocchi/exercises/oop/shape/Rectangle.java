@@ -6,7 +6,7 @@ public class Rectangle extends AbstractShape {
     Point upperLeft;
     Point bottomRight;
 
-    public Rectangle(String id, Color color, Point upperLeft, Point bottomRight) {
+    public Rectangle(String id, String color, Point upperLeft, Point bottomRight) {
         super(id, color);
         this.upperLeft = upperLeft;
         this.bottomRight = bottomRight;

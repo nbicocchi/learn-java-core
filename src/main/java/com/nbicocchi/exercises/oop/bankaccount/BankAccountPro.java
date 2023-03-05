@@ -9,10 +9,8 @@ public class BankAccountPro extends AbstractBankAccount {
      * Constructs a new bank account
      * @param IBAN the IBAN of the bank account
      * @param balance the initial balance of the bank account
-     * @param operationFee the fee to be applied to deposit and withdraw operations
-     * @param interestRate the interest rate to be applied
      */
-    public BankAccountPro(String IBAN, double balance, double operationFee, double interestRate) {
+    public BankAccountPro(String IBAN, double balance) {
         super(IBAN, balance, 1, 0.02);
     }
 

@@ -6,7 +6,7 @@ public class Circle extends AbstractShape {
     Point center;
     double radius;
 
-    public Circle(String id, Color color, Point center, double radius) {
+    public Circle(String id, String color, Point center, double radius) {
         super(id, color);
         this.center = center;
         this.radius = radius;
