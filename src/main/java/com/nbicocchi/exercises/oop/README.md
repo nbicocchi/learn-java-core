@@ -129,9 +129,7 @@ Refer to the JavaDoc documentation for further details.
 
 **[reverse package]** Given the Reverser interface defining a single method *reverse* for reversing a string, provide two implementations namely ReverserFast and ReverserSlow providing two different strategies for reversing a String. As a suggestion, ReverserSlow could use a char array (see String.valueOf()), while ReverserFast could use a StringBuilder. Provide also a simple main() in which the Reverser interface is implemented anonymously.
 
-The following diagram might provide some inspiration. 
-
-![reverse](../../../../../../../assets/uml/reverse.svg)
+The following diagram might provide some inspiration.
 
 ---
 
@@ -143,8 +141,6 @@ Both implementations limit the number of persons to 256.
 
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
-![phonebook](../../../../../../../assets/uml/phonebook.svg)
-
 ---
 
 **[bankaccount package]** Define two classes, namely BankAccountEasy and BankAccountPro implementing the BankAccount interface (reported below).
@@ -154,8 +150,6 @@ The following diagram might provide some inspiration. Refer to the JavaDoc docum
 Both accounts must refuse to set invalid IBANs or positive fees (money being added for each operation).
 
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
-
-![bankaccount](../../../../../../../assets/uml/bankaccount.svg)
 
 ---
 
@@ -172,7 +166,71 @@ Both shapes must also support:
 
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
-![shape](../../../../../../../assets/uml/shape.svg)
+```mermaid
+classDiagram
+direction BT
+class AbstractShape {
+  <<abstract>>
+  Color color
+  String id
+  + AbstractShape(String, Color) 
+  + getArea() double
+  + getColor() Color
+  + getId() String
+  + getPerimeter() double
+  + move(Point) void
+  + resize(double) void
+  + setColor(Color) void
+  + setId(String) void
+}
+class Circle {
+  Point center
+  double radius
+  + Circle(String, Color, Point, double) 
+  + getArea() double
+  + getCenter() Point
+  + getPerimeter() double
+  + getRadius() double
+  + move(Point) void
+  + resize(double) void
+  + setCenter(Point) void
+  + setRadius(double) void
+  + toString() String
+}
+class Rectangle {
+  Point bottomRight
+  Point upperLeft
+  + Rectangle(String, Color, Point, Point) 
+  + getArea() double
+  + getBottomRight() Point
+  + getPerimeter() double
+  + getUpperLeft() Point
+  + move(Point) void
+  + resize(double) void
+  + setBottomRight(Point) void
+  + setUpperLeft(Point) void
+  + toString() String
+}
+class Computable {
+  <<Interface>>
+  + getArea() double
+  + getPerimeter() double
+}
+class Movable {
+  <<Interface>>
+  + move(Point) void
+}
+class Resizable {
+  <<Interface>>
+  + resize(double) void
+}
+
+AbstractShape  ..>  Computable 
+AbstractShape  ..>  Movable 
+AbstractShape  ..>  Resizable 
+Circle  --|>  AbstractShape 
+Rectangle  --|>  AbstractShape 
+```
 
 ---
 
@@ -192,30 +250,31 @@ The following diagram might provide some inspiration. Refer to the JavaDoc docum
 classDiagram
 direction BT
 class AbstractPoly {
+  <<abstract>>
   + AbstractPoly() 
-  ~ derive() double[]
+  # derive() double[]
   + equals(Object) boolean
   + hashCode() int
   + toString() String
 }
 class ArrayPoly {
+  double[] coefficients
   + ArrayPoly(double[]) 
-  ~ double[] coefficients
   + coefficient(int) double
   + coefficients() double[]
   + degree() int
   + derivative() Poly
 }
 class ListPoly {
+  ArrayList~Double~ coefficients
   + ListPoly(double[]) 
-  ~ ArrayList~Double~ coefficients
   + coefficient(int) double
   + coefficients() double[]
   + degree() int
   + derivative() Poly
 }
 class Poly {
-<<Interface>>
+  <<Interface>>
   + coefficient(int) double
   + coefficients() double[]
   + degree() int
@@ -223,8 +282,8 @@ class Poly {
 }
 
 AbstractPoly  ..>  Poly 
-ArrayPoly  -->  AbstractPoly 
-ListPoly  -->  AbstractPoly 
+ArrayPoly  --|>  AbstractPoly 
+ListPoly  --|>  AbstractPoly 
 ```
 
 ---
@@ -303,7 +362,6 @@ Dvd  --|>  Item
 Rent "*" --> "1" Person
 Rent "*" --> "1" Item
 Library "1" --> "*" Rent
-
 ```
 
 ---
