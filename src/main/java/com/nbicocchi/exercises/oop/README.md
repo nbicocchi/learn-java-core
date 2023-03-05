@@ -127,18 +127,7 @@ Refer to the JavaDoc documentation for further details.
 
 ---
 
-**[reverse package]** Given the following Reverser interface, provide two implementations namely ReverserFast and ReverserSlow using two different strategies for reversing a String. Provide also a simple main() in which the Reverser interface is implemented anonymously. 
-
-```
-public interface Reverser {
-    /**
-     * Reverses a string
-     * @param s the string to be reversed
-     * @return the reversed string
-     */
-    String reverse(String s);
-}
-```
+**[reverse package]** Given the Reverser interface defining a single method *reverse* for reversing a string, provide two implementations namely ReverserFast and ReverserSlow providing two different strategies for reversing a String. As a suggestion, ReverserSlow could use a char array (see String.valueOf()), while ReverserFast could use a StringBuilder. Provide also a simple main() in which the Reverser interface is implemented anonymously.
 
 The following diagram might provide some inspiration. 
 
@@ -187,7 +176,25 @@ The following diagram might provide some inspiration. Refer to the JavaDoc docum
 
 ---
 
-**[polynomials package]**
+```mermaid
+graph TD;
+	A-->B;
+	A-->C;
+	B-->D;
+	C-->D;
+```
+
+**[polynomials package]** Define two classes, namely ArrayPoly and ListPoly providing two implementations of the Poly interface representing a generic polynomial p = c0 + c1 * x^1 + c2 * x^2 + ... + cn * x^n.
+* ArrayPoly internally stores the coefficients (c0 ... cn) as a double[].
+* ListPoly internally stores the coefficients (c0 ... cn) as an ```ArrayList<Double>```.
+
+As prescribed by the Poly interface, both implementations must provide:
+* a method *coefficient(int degree)* returning the coefficient of a given degree (0 ... n)
+* a method *coefficients()* returning a double[] containing all the coefficients
+* a method *degree()* returning the degree of the polynomial (the number of coefficients - 1)
+* a method *derivative()* returning the derivative polynomial
+
+The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
 ![polynomials](../../../../../../../assets/uml/polynomials.svg)
 

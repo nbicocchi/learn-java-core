@@ -3,10 +3,10 @@ package com.nbicocchi.exercises.oop.reverse;
 public class ReverserSlow implements Reverser {
     @Override
     public String reverse(String s) {
-        StringBuilder output = new StringBuilder();
-        for (int i = s.length() - 1; i >= 0; i--) {
-            output.append(s.charAt(i));
+        char[] chars = new char[s.length()];
+        for (int i = 0; i < s.length(); i++) {
+            chars[s.length() - 1 - i] = s.charAt(i);
         }
-        return output.toString();
+        return String.valueOf(chars);
     }
 }

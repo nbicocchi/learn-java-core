@@ -1,40 +1,41 @@
 classDiagram
 direction BT
 class Book {
-  + Book(String, int, int) 
-  ~ int pages
-  + getPages() int
-  + setPages(int) void
-  + toString() String
+    int pages
+    + Book(String, int, int)
+    + getPages() int
+    + setPages(int) void
+    + toString() String
 }
 class Dvd {
-  + Dvd(String, int, int) 
-  ~ int length
-  + getLength() int
-  + setLength(int) void
-  + toString() String
+    int length
+    + Dvd(String, int, int)
+    + getLength() int
+    + setLength(int) void
+    + toString() String
 }
 class Item {
-  + Item(String, int) 
-  ~ String title
-  ~ int year
-  + getTitle() String
-  + getYear() int
-  + setTitle(String) void
-  + setYear(int) void
+    <<Abstract>>
+    String title
+    int year
+    + Item(String, int)
+    + getTitle() String
+    + getYear() int
+    + setTitle(String) void
+    + setYear(int) void
 }
 class Library {
-  + Library() 
-  ~ ArrayList~Rent~ rents
-  + addRent(Rent) void
-  + getExpired() ArrayList~Rent~
-  + removeRent(Rent) void
+    ArrayList~Rent~ rents
+    + Library()
+    + addRent(Rent) void
+    + getExpired() ArrayList~Rent~
+    + removeRent(Rent) void
 }
 class Person {
-  + Person(String, String, String) 
-  ~ String id
-  ~ String lastname
-  ~ String name
+    String id
+    String lastname
+    String name
+  + Person(String, String, String)
   + getId() String
   + getLastname() String
   + getName() String
@@ -44,24 +45,28 @@ class Person {
   + toString() String
 }
 class Rent {
-  + Rent(Item, Person, LocalDateTime, LocalDateTime) 
-  ~ LocalDateTime begin
-  ~ LocalDateTime end
-  ~ Item item
-  ~ Person person
-  + equals(Object) boolean
-  + getBegin() LocalDateTime
-  + getEnd() LocalDateTime
-  + getItem() Item
-  + getPerson() Person
-  + hashCode() int
-  + isExpired() boolean
-  + setBegin(LocalDateTime) void
-  + setEnd(LocalDateTime) void
-  + setItem(Item) void
-  + setPerson(Person) void
-  + toString() String
+    LocalDateTime begin
+    LocalDateTime end
+    Item item
+    Person person
+    + Rent(Item, Person, LocalDateTime, LocalDateTime)
+    + equals(Object) boolean
+    + getBegin() LocalDateTime
+    + getEnd() LocalDateTime
+    + getItem() Item
+    + getPerson() Person
+    + hashCode() int
+    + isExpired() boolean
+    + setBegin(LocalDateTime) void
+    + setEnd(LocalDateTime) void
+    + setItem(Item) void
+    + setPerson(Person) void
+    + toString() String
 }
 
-Book  -->  Item 
-Dvd  -->  Item 
+Book  --|>  Item
+Dvd  --|>  Item
+Rent "*" --> "1" Person
+Rent "*" --> "1" Item
+Library "1" --> "*" Rent
+
