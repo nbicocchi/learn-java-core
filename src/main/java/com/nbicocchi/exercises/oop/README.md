@@ -4,7 +4,7 @@
 
 Before starting this module, generate the JavaDoc documentation of the whole oop package.
 
-Click on the oop package then select Tools -> Generate JavaDoc...
+In IntelliJ, click on the oop package then select Tools -> Generate JavaDoc...
 
 ---
 
@@ -16,32 +16,50 @@ The class provides the following methods:
 * public void undo() decreasing the number of clicks of 1 unit (but preventing negative click values).
 * public void reset() setting the number of clicks to 0.
 
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+
 ```mermaid
 classDiagram
 direction BT
 class ClickCounter {
     ~ int value
     + ClickCounter()
-    + click() void
     + getValue() int
+    + click() void
     + undo() void
     + reset() void
 }
 ```
 
-Refer to the JavaDoc documentation for further details.
-
 ---
 
 **[basic.RationalNumber]** Write a class named RationalNumber representing a rational number.
+RationalNumbers are immutable objects, indeed they cannot be changed after creation.
 Internally, the class represents numerator and denominator as int values.
 The class provides the following methods:
 * public RationalNumber(int numerator, int denominator) creating the rational number.
-* getters and setters.
+* public getNumerator() returning the numerator.
+* public getDenominator() returning the denominator.
 * public RationalNumber add(RationalNumber o) for adding another number to the current number.
 * public RationalNumber multiply(RationalNumber o) for multiplying another number with the current number.
+* public String toString().
 
-Refer to the JavaDoc documentation for further details.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+
+```mermaid
+classDiagram
+direction BT
+class RationalNumber {
+  ~ int denominator
+  ~ int numerator
+  + RationalNumber(int, int) 
+  + getNumerator() int
+  + getDenominator() int
+  + add(RationalNumber) RationalNumber
+  + multiply(RationalNumber) RationalNumber
+  + toString() String
+}
+```
 
 ---
 
@@ -56,12 +74,31 @@ The class provides the following methods:
 * public void translate(int dx, int dy) moving the circle on the 2D plane. dx and dy are the x and y components of the translation vector.
 * public String toString().
 
-Refer to the JavaDoc documentation for further details.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+
+```mermaid
+classDiagram
+direction BT
+class Circle {
+  ~ Point center
+  ~ int radius
+  + Circle(Point, int) 
+  + getCenter() Point
+  + getRadius() int
+  + setCenter(Point) void
+  + setRadius(int) void
+  + getPerimeter() double
+  + getArea() double
+  + contains(Point) boolean
+  + translate(int, int) void
+  + toString() String
+}
+```
 
 ---
 
 **[basic.Polygon]** Write a class named Polygon representing an irregular polygon.
-Internally, the class uses an array of Point objects for representing the vertices of the polygon.
+Internally, the class uses a Point[] for representing the vertices of the polygon.
 The class provides the following methods:
 * public Polygon(Point[] vertices) creating the polygon.
 * public int getVerticesCount() returning the number of vertices.
@@ -69,7 +106,21 @@ The class provides the following methods:
 * public double getArea() returning the area of the polygon.
 * public String toString().
 
-Refer to the JavaDoc documentation for further details.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+
+```mermaid
+classDiagram
+direction BT
+class Polygon {
+  ~ Point[] vertices
+  + Polygon(Point[]) 
+  + getVerticesCount() int
+  + getPerimeter() double
+  + getArea() double
+  + toString() String
+}
+
+```
 
 ---
 
@@ -82,7 +133,20 @@ The class provides the following methods:
 * public void deposit(double amount) depositing the specific amount into the account.
 * public void withdraw(double amount) withdrawing the specified amount from the account.
 
-Refer to the JavaDoc documentation for further details.
+The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
+
+```mermaid
+classDiagram
+direction BT
+class BankAccount {
+     ~ double balance
+    + BankAccount()
+    + BankAccount(double)
+    + getBalance() double
+    + deposit(double) void
+    + withdraw(double) void
+}
+```
 
 --- 
 
@@ -98,7 +162,23 @@ Internally, the class keeps an int array but provides its key functionalities vi
 * public void resetRandom() setting all the elements to random values between [0, size()]
 * public int[] toArray() returning a copy of the internal array.
 
-Refer to the JavaDoc documentation for further details.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+
+```mermaid
+classDiagram
+direction BT
+class EnhancedArray {
+  ~ int[] v
+  + EnhancedArray(int) 
+  + size() int
+  + get(int) int
+  + set(int, int) void
+  + contains(int) boolean
+  + resetZero() void
+  + resetRandom() void
+  + toArray() int[]
+}
+```
 
 ---
 
@@ -136,13 +216,26 @@ blank line
 sender name
 ```
 
-Refer to the JavaDoc documentation for further details.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
+
+```mermaid
+classDiagram
+direction BT
+class Letter {
+  ~ String from
+  ~ String to
+  ~ ArrayList~String~ lines
+  + Letter(String, String)
+  + addLine(String) void 
+  + getText() String
+}
+```
 
 ---
 
 **[reverse package]** Given the Reverser interface defining a single method *reverse* for reversing a string, provide two implementations namely ReverserFast and ReverserSlow providing two different strategies for reversing a String. As a suggestion, ReverserSlow could use a char array (see String.valueOf()), while ReverserFast could use a StringBuilder. Provide also a simple main() in which the Reverser interface is implemented anonymously.
 
-The following diagram might provide some inspiration.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
 
 ```mermaid
 classDiagram
@@ -172,7 +265,7 @@ ReverserSlow  ..|>  Reverser
 
 Both implementations limit the number of persons to 256.
 
-The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
 
 ```mermaid
 classDiagram
@@ -232,7 +325,7 @@ PhoneBookList  ..|>  PhoneBook
 
 Both accounts must refuse to set invalid IBANs or positive fees (money being added for each operation).
 
-The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
 
 ```mermaid
 classDiagram
@@ -302,7 +395,7 @@ Both shapes must also support:
 * the capability of resizing (resize() method)
 * the capability of computing area and perimeter (getArea(), getPerimeter() methods)
 
-The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
 
 ```mermaid
 classDiagram
@@ -382,7 +475,7 @@ As prescribed by the Poly interface, both implementations must provide:
 * a method *degree()* returning the degree of the polynomial (the number of coefficients - 1)
 * a method *derivative()* returning the derivative polynomial
 
-The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
 
 ```mermaid
 classDiagram
@@ -427,6 +520,8 @@ ListPoly  --|>  AbstractPoly
 ---
 
 **[library package]**
+
+Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
 
 ```mermaid
 classDiagram
