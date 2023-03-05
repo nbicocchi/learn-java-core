@@ -156,10 +156,10 @@ Internally, the class keeps an int array but provides its key functionalities vi
 * public EnhancedArray(int capacity) creating a new array of the specified capacity. 
 * public int size() returning the capacity of the array.
 * public int get(int index) returning the element at the specified index.
-* public void set(int index, int value) setting the element at the specified index with value
+* public void set(int index, int value) setting the element at the specified index with value.
 * public boolean contains(int value) returning true if the specified value is contained within the array.
 * public void resetZero() setting all the elements to 0.
-* public void resetRandom() setting all the elements to random values between [0, size()]
+* public void resetRandom() setting all the elements to random values between [0, size()].
 * public int[] toArray() returning a copy of the internal array.
 
 Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
@@ -470,10 +470,11 @@ Rectangle  --|>  AbstractShape
 * ListPoly internally stores the coefficients (c0 ... cn) as an ```ArrayList<Double>```.
 
 As prescribed by the Poly interface, both implementations must provide:
-* a method *coefficient(int degree)* returning the coefficient of a given degree (0 ... n)
-* a method *coefficients()* returning a double[] containing all the coefficients
-* a method *degree()* returning the degree of the polynomial (the number of coefficients - 1)
-* a method *derivative()* returning the derivative polynomial
+* a method *coefficient(int degree)* returning the coefficient of a given degree (0 ... n).
+* a method *coefficients()* returning a double[] containing all the coefficients.
+* a method *degree()* returning the degree of the polynomial (the number of coefficients - 1).
+* a method *derivative()* returning the derivative polynomial.
+* a method *equals(Object o)* for being comparable with other Poly objects.
 
 Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
 
@@ -519,7 +520,13 @@ ListPoly  --|>  AbstractPoly
 
 ---
 
-**[library package]**
+**[library package]** A library needs a software system for managing subscribers, rents of books and dvds, and be notified about late returns. 
+* Books can be modelled with a title (String), a publication year (int), and a number of pages (int).
+* Dvds can be modelled with a title (String), a publication year (int), and a length in minutes (int).
+* People can be modelled with an id (String), a name (String), and a lastname (String).
+* Rents can be modelled with an item (a book or a dvd), a person, and two dates representing the beginning and the end of the rent.
+
+Provide and implementation of all the needed classes, and write a method *getExpired()* returning all the late rents.
 
 Refer to the following UML diagram and the JavaDoc documentation for further inspiration.
 
@@ -550,25 +557,18 @@ class Item {
     + setTitle(String) void
     + setYear(int) void
 }
-class Library {
-    ~ ArrayList~Rent~ rents
-    + Library()
-    + addRent(Rent) void
-    + getExpired() ArrayList~Rent~
-    + removeRent(Rent) void
-}
 class Person {
-  ~ String id
-  ~ String lastname
-  ~ String name
-  + Person(String, String, String)
-  + getId() String
-  + getLastname() String
-  + getName() String
-  + setId(String) void
-  + setLastname(String) void
-  + setName(String) void
-  + toString() String
+    ~ String id
+    ~ String lastname
+    ~ String name
+    + Person(String, String, String)
+    + getId() String
+    + getLastname() String
+    + getName() String
+    + setId(String) void
+    + setLastname(String) void
+    + setName(String) void
+    + toString() String
 }
 class Rent {
     ~ LocalDateTime begin
@@ -588,6 +588,13 @@ class Rent {
     + setItem(Item) void
     + setPerson(Person) void
     + toString() String
+}
+class Library {
+    ~ ArrayList~Rent~ rents
+    + Library()
+    + addRent(Rent) void
+    + removeRent(Rent) void
+    + getExpired() ArrayList~Rent~
 }
 
 Book  --|>  Item
