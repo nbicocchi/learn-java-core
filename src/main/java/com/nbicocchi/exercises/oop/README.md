@@ -16,6 +16,19 @@ The class provides the following methods:
 * public void undo() decreasing the number of clicks of 1 unit (but preventing negative click values).
 * public void reset() setting the number of clicks to 0.
 
+```mermaid
+classDiagram
+direction BT
+class ClickCounter {
+    ~ int value
+    + ClickCounter()
+    + click() void
+    + getValue() int
+    + undo() void
+    + reset() void
+}
+```
+
 Refer to the JavaDoc documentation for further details.
 
 ---
