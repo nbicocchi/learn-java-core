@@ -176,14 +176,6 @@ The following diagram might provide some inspiration. Refer to the JavaDoc docum
 
 ---
 
-```mermaid
-graph TD;
-	A-->B;
-	A-->C;
-	B-->D;
-	C-->D;
-```
-
 **[polynomials package]** Define two classes, namely ArrayPoly and ListPoly providing two implementations of the Poly interface representing a generic polynomial p = c0 + c1 * x^1 + c2 * x^2 + ... + cn * x^n.
 * ArrayPoly internally stores the coefficients (c0 ... cn) as a double[].
 * ListPoly internally stores the coefficients (c0 ... cn) as an ```ArrayList<Double>```.
@@ -202,7 +194,80 @@ The following diagram might provide some inspiration. Refer to the JavaDoc docum
 
 **[library package]**
 
-![library](../../../../../../../assets/uml/library.svg)
+```mermaid
+classDiagram
+direction BT
+class Book {
+    int pages
+    + Book(String, int, int)
+    + getPages() int
+    + setPages(int) void
+    + toString() String
+}
+class Dvd {
+    int length
+    + Dvd(String, int, int)
+    + getLength() int
+    + setLength(int) void
+    + toString() String
+}
+class Item {
+    <<Abstract>>
+    String title
+    int year
+    + Item(String, int)
+    + getTitle() String
+    + getYear() int
+    + setTitle(String) void
+    + setYear(int) void
+}
+class Library {
+    ArrayList~Rent~ rents
+    + Library()
+    + addRent(Rent) void
+    + getExpired() ArrayList~Rent~
+    + removeRent(Rent) void
+}
+class Person {
+    String id
+    String lastname
+    String name
+  + Person(String, String, String)
+  + getId() String
+  + getLastname() String
+  + getName() String
+  + setId(String) void
+  + setLastname(String) void
+  + setName(String) void
+  + toString() String
+}
+class Rent {
+    LocalDateTime begin
+    LocalDateTime end
+    Item item
+    Person person
+    + Rent(Item, Person, LocalDateTime, LocalDateTime)
+    + equals(Object) boolean
+    + getBegin() LocalDateTime
+    + getEnd() LocalDateTime
+    + getItem() Item
+    + getPerson() Person
+    + hashCode() int
+    + isExpired() boolean
+    + setBegin(LocalDateTime) void
+    + setEnd(LocalDateTime) void
+    + setItem(Item) void
+    + setPerson(Person) void
+    + toString() String
+}
+
+Book  --|>  Item
+Dvd  --|>  Item
+Rent "*" --> "1" Person
+Rent "*" --> "1" Item
+Library "1" --> "*" Rent
+
+```
 
 ---
 
