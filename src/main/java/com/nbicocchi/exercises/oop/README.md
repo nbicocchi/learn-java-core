@@ -188,7 +188,44 @@ As prescribed by the Poly interface, both implementations must provide:
 
 The following diagram might provide some inspiration. Refer to the JavaDoc documentation for further details.
 
-![polynomials](../../../../../../../assets/uml/polynomials.svg)
+```mermaid
+classDiagram
+direction BT
+class AbstractPoly {
+  + AbstractPoly() 
+  ~ derive() double[]
+  + equals(Object) boolean
+  + hashCode() int
+  + toString() String
+}
+class ArrayPoly {
+  + ArrayPoly(double[]) 
+  ~ double[] coefficients
+  + coefficient(int) double
+  + coefficients() double[]
+  + degree() int
+  + derivative() Poly
+}
+class ListPoly {
+  + ListPoly(double[]) 
+  ~ ArrayList~Double~ coefficients
+  + coefficient(int) double
+  + coefficients() double[]
+  + degree() int
+  + derivative() Poly
+}
+class Poly {
+<<Interface>>
+  + coefficient(int) double
+  + coefficients() double[]
+  + degree() int
+  + derivative() Poly
+}
+
+AbstractPoly  ..>  Poly 
+ArrayPoly  -->  AbstractPoly 
+ListPoly  -->  AbstractPoly 
+```
 
 ---
 
