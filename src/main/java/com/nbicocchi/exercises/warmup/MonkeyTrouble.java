@@ -9,7 +9,7 @@ public class MonkeyTrouble {
         boolean aSmile = scanner.nextBoolean();
         System.out.print("Is monkey (b) smiling? (true/false) ");
         boolean bSmile = scanner.nextBoolean();
-        if ((aSmile && bSmile) || (!aSmile && bSmile)) {
+        if ((aSmile && bSmile) || (!aSmile && !bSmile)) {
             System.out.println("We are in trouble!");
         } else {
             System.out.println("We are not in trouble!");
