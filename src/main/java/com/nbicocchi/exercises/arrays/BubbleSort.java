@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class BubbleSort {
     public static int[] bubbleSortCopy(int[] v) {
-        int[] sorted = Arrays.copyOf(v, v.length);
-        bubbleSort(sorted);
-        return sorted;
+        int[] copy = Arrays.copyOf(v, v.length);
+        bubbleSort(copy);
+        return copy;
     }
 
     public static void bubbleSort(int[] v) {
