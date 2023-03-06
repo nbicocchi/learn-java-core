@@ -167,6 +167,41 @@ where:
 
 * [1, n] is the range in which searching for primes.
 
+---
+
+**[WordAfterWord.java]** Download the [Ulysses, by James Joyce](https://github.com/laumann/ds/blob/master/hashing/books/) book.
+Write a method, reading all the unique words of the book (all words have to be converted in lowercase), 
+and sorting them in alphabetical order. Given a word, the method returns the next word (in alphabetical order)
+contained within the book (See TreeSet.tailSet()).
+
+The method has the following prototype:
+
+```
+public static String wordAfterWord(String filename, String word) throws IOException;
+```
+
+where:
+
+* **filename** is the filename of the book.
+* **string** the word to be searched.
+
+For reading the file and transforming it into a ```List<String>```, you can use:
+
+```
+public static List<String> getLines(String filename) throws IOException {
+    return Files.readAllLines(Path.of(filename));
+}
+```
+
+For splitting a line into a list of single words, you can use:
+
+```
+public static List<String> lineToWords(String line) {
+    return Arrays.asList(line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+"));
+}
+```
+
+
 ## Java Exercises (Maps)
 
 **[MorseCode]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation.
