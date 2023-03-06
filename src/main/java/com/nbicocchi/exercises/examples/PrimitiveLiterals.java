@@ -14,6 +14,7 @@ public class PrimitiveLiterals {
         String str = "Java";
         String stuName = null;
         boolean boolVal = true;
+
         System.out.println(count);
         System.out.println(hexaVal);
         System.out.println(binary);
