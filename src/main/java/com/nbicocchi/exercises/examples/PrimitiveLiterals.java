@@ -12,7 +12,7 @@ public class PrimitiveLiterals {
         char ch1 = '\u0021';
         char ch2 = 65;
         String str = "Java";
-        String stuName = null;
+        String name = null;
         boolean boolVal = true;
 
         System.out.println(count);
@@ -25,7 +25,7 @@ public class PrimitiveLiterals {
         System.out.println(ch1);
         System.out.println(ch2);
         System.out.println(str);
-        System.out.println(stuName);
+        System.out.println(name);
         System.out.println(boolVal);
     }
 }
