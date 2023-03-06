@@ -1,16 +1,15 @@
 package com.nbicocchi.exercises.collections;
 
-import java.time.LocalDateTime;
-import java.util.Collections;
+import java.time.LocalDate;
 import java.util.List;
 
 public class SortAccount {
     public static class Account {
         double amount;
         double interestRate;
-        LocalDateTime duePayment;
+        LocalDate duePayment;
 
-        public Account(double amount, double interestRate, LocalDateTime duePayment) {
+        public Account(double amount, double interestRate, LocalDate duePayment) {
             this.amount = amount;
             this.interestRate = interestRate;
             this.duePayment = duePayment;
@@ -24,22 +23,20 @@ public class SortAccount {
             return interestRate;
         }
 
-        public LocalDateTime getDuePayment() {
+        public LocalDate getDuePayment() {
             return duePayment;
-        }
-
-        public void applyInterest() {
-            amount += amount * interestRate;
         }
     }
 
     public static void sortByAmount(List<Account> accounts) {
-        Collections.sort(accounts, (a1, a2) -> Double.valueOf(a1.getAmount()).compareTo(a2.getAmount()));
+        accounts.sort((a1, a2) -> Double.compare(a1.getAmount(), a2.getAmount()));
     }
+
     public static void sortByInterestRate(List<Account> accounts) {
-        Collections.sort(accounts, (a1, a2) -> Double.valueOf(a1.getInterestRate()).compareTo(a2.getInterestRate()));
+        accounts.sort((a1, a2) -> Double.compare(a1.getInterestRate(), a2.getInterestRate()));
     }
+
     public static void sortByDuePayment(List<Account> accounts) {
-        Collections.sort(accounts, (a1, a2) -> a1.getDuePayment().compareTo(a2.getDuePayment()));
+        accounts.sort((a1, a2) -> a1.getDuePayment().compareTo(a2.getDuePayment()));
     }
 }
