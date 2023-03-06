@@ -183,7 +183,7 @@ public static String wordAfterWord(String filename, String word) throws IOExcept
 where:
 
 * **filename** is the filename of the book.
-* **string** the word to be searched.
+* **string** is the word to be searched.
 
 For reading the file and transforming it into a ```List<String>```, you can use:
 
