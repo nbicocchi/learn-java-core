@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.random.RandomGenerator;
 
 /**
- * A class representing an enhanced int array providing methods for its manipulation instead of the [] notation.
+ * An enhanced int array providing methods for its manipulation instead of the [] notation.
  */
 public class EnhancedArray {
     int[] v;

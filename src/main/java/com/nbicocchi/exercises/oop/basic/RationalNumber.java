@@ -3,7 +3,7 @@ package com.nbicocchi.exercises.oop.basic;
 import java.util.Objects;
 
 /**
- * A class representing a ration number supporting addition and multiplication with other rational numbers.
+ * A rational number supporting addition and multiplication with other rational numbers.
  */
 public class RationalNumber {
     final int numerator;

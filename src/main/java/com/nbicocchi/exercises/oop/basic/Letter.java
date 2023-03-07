@@ -3,7 +3,7 @@ package com.nbicocchi.exercises.oop.basic;
 import java.util.ArrayList;
 
 /**
- * A class representing a letter written in a standard format.
+ * A letter written in a standard format.
  * Its methods allow for setting sender, recipient and the lines of the body of the letter.
  * Once all the components have been set, the getText() methods returns the letter in a standard format.
  */

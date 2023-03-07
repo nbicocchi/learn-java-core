@@ -2,11 +2,67 @@
 
 ## Introduction to generic programming
 
-### Generic programming
+### The Need for Generics 
+
+**(Avoid casts and runtime errors)**
+
+Let's imagine a scenario where we want to create a list to store *Integer*.
+
+We might try to write the following:
+
+```
+List list = new LinkedList();
+list.add(new Integer(1));
+Integer i = list.iterator().next();
+```
+
+Surprisingly, the compiler will complain about the last line. It doesn't know what data type is returned. The compiler will require an explicit casting:
+
+```
+Integer i = (Integer) list.iterator.next();
+```
+
+There is no contract that could guarantee that the return type of the list is an *Integer*. The defined list could hold any object. We only know that we are retrieving a list by inspecting the context. When looking at types, it can only guarantee that it is an *Object* and therefore requires an explicit cast to ensure that the type is safe.
+
+This cast can be annoying, is also clutters our code, and It can cause type-related runtime errors if a programmer makes a mistake with the explicit casting.
+
+```
+List list = new LinkedList();
+list.add(new Integer(1));
+list.add(new String("Hello world!"));
+Integer i = (Integer) list.iterator().next();
+```
+
+It would be much easier if programmers could express their intention to use specific types and the compiler ensured the correctness of such types. This is the core idea behind generics. Let's modify the first line of the previous code snippet:
+
+```
+List<Integer> list = new LinkedList<>();
+```
+
+By adding the diamond operator <> containing the type, we narrow the specialization of this list to only *Integer* type. In other words, we specify the type held inside the list. The compiler can enforce the type at compile time. In small programs, this might seem like a trivial addition. But in larger programs, this can add significant robustness and makes the program easier to read.
+
+**(Reuse of code)**
 
 There are situations when methods and classes do not depend on the data types on which they operate. For example, the algorithm to find an element in an array can process arrays of strings, integers or custom classes. It does not matter what the array stores: the algorithm is always the same. Yet we cannot write this algorithm as a single method, because it requires different arguments (`int[]`, `String[]`, etc).
 
-Since version 5, Java has supported generic programming that introduces abstraction over types. Generic methods and classes can handle different types in the same general way.A concrete type is determined only when a developer creates an object of the class or invokes the method. This approach enables us to write more abstract code and develop reusable software libraries. Let us consider it step by step using examples written in Java.
+```
+public static void bubbleSort(int[] v) {
+    boolean changed = true;
+    while (changed) {
+        changed = false;
+        for (int i = 0; i < v.length - 1; i++) {
+            if (v[i] > v[i + 1]) {
+                changed = true;
+                int tmp = v[i];
+                v[i] = v[i + 1];
+                v[i + 1] = tmp;
+            }
+        }
+    }
+}
+```
+
+Since version 5, Java has supported generic programming that introduces abstraction over types. Generic methods and classes can handle different types in the same general way. A concrete type is determined only when a developer creates an object of the class or invokes the method. This approach enables us to write more abstract code and develop reusable software libraries. Let us consider it step by step using examples written in Java.
 
 ### Type parameters
 
@@ -49,18 +105,44 @@ class GenericType<T> {
 After being declared, a type parameter can be used inside the class body as an ordinary type. For instance, the above example uses the type parameter `T` as:
 
 -   a type for a *field*
--   a* constructor* argument type
--   an* instance method* argument and return type
+-   a *constructor* argument type
+-   an *instance method* argument and return type
 
 The behavior of both instance methods does not depend on the concrete type of `T`; it can take/return a string or a number in the same way.
 
-A class can have any number of type parameters. For example, the following class has three.
+```
+GenericType<Integer> obj1 = new GenericType<Integer>(10);
+
+GenericType<String> obj2 = new GenericType<String>("abc");
+```
+
+A class can have any number of type parameters. For example, the following class has two.
 
 ```
-class Three<T, U, V> {
-    T t;
-    U u;
-    V v;
+public class Pair<K, V> {
+    K first;
+    V second;
+
+    public Pair(K first, V second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public K getFirst() {
+        return first;
+    }
+
+    public void setFirst(K first) {
+        this.first = first;
+    }
+
+    public V getSecond() {
+        return second;
+    }
+
+    public void setSecond(V second) {
+        this.second = second;
+    }
 }
 ```
 
@@ -81,17 +163,7 @@ The most commonly used type parameter names are:
 
 ### Creating objects of generic classes
 
-To create an object of a generic class (standard or custom), we need to specify the type argument following the type name.
-
-```
-GenericType<Integer> obj1 = new GenericType<Integer>(10);
-
-GenericType<String> obj2 = new GenericType<String>("abc");
-```
-
-It is important to note that a type argument must be a reference type. Primitive types like int or double are invalid type arguments.
-
-Java 7 made it possible to replace the type arguments required to invoke the constructor of a generic class with an empty set of type arguments, as long as the compiler can *infer *the type arguments from the context.
+To create an object of a generic class (standard or custom), we need to specify the type argument following the type name. Java 7 made it possible to replace the type arguments required to invoke the constructor of a generic class with an empty set of type arguments, as long as the compiler can *infer* the type arguments from the context.
 
 ```
 GenericType<Integer> obj1 = new GenericType<>(10);
@@ -99,15 +171,7 @@ GenericType<Integer> obj1 = new GenericType<>(10);
 GenericType<String> obj2 = new GenericType<>("abc");
 ```
 
-We will use this format in all further examples.
-
 The pair of angle brackets `<>` is informally called the diamond operator.
-
-Sometimes, declaring a variable with a generic type can be lengthy and difficult to read. Starting from Java 10, we can write `var` instead of a specific type to force automatic type inference based on the type of assigned value.
-
-```
-var obj3 = new GenericType<>("abc");
-```
 
 After we have created an object with a specified type argument, we can invoke methods of the class that take or return the type parameter:
 
@@ -153,7 +217,7 @@ This class shows that a generic class can have methods (like length) that do not
 The following code creates an instance of `ImmutableArray` to store three strings and then output the items to the standard output.
 
 ```
-var stringArray = new ImmutableArray<>(new String[] {"item1", "item2", "item3"});
+ImmutableArray<String> stringArray = new ImmutableArray<>(new String[] {"item1", "item2", "item3"});
 
 for (int i = 0; i < stringArray.length(); i++) {
     System.out.print(stringArray.get(i) + " ");
@@ -163,14 +227,9 @@ for (int i = 0; i < stringArray.length(); i++) {
 It is possible to parameterize `ImmutableArray` with any reference type, including arrays, standard classes, or your own classes.
 
 ```
-var doubleArray = new ImmutableArray<>(new Double[] {1.03, 2.04});
-
-MyClass obj1 = ..., obj2 = ...; // suppose, you have two objects of your custom class
-
-var array = new ImmutableArray<>(new MyClass[] {obj1, obj2});
+ImmutableArray<Double> doubleArray = new ImmutableArray<>(new Double[] {1.03, 2.04});
 ```
 
-We used `var` in the above examples to save space. Instead of using var, we could have explicitly specified the type, e.g. `ImmutableArray<String> stringArray = ...;` and so on.
 
 ### Conclusion
 

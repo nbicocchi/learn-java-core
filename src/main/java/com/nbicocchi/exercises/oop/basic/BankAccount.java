@@ -1,7 +1,7 @@
 package com.nbicocchi.exercises.oop.basic;
 
 /**
- * A class representing a bank account storing a balance and supporting deposit and withdraw operations.
+ * A bank account storing a balance and supporting deposit and withdraw operations.
  */
 public class BankAccount {
     double balance;

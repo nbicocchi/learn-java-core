@@ -1,7 +1,7 @@
 package com.nbicocchi.exercises.oop.basic;
 
 /**
- * A class representing a click counter keeping track of how many times the click() method is called.
+ * A click counter keeping track of how many times the click() method is called.
  */
 public class ClickCounter {
     int value = 0;

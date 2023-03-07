@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Arrays;
 
 /**
- * A class representing an irregular polygon on a 2D plane capable of calculating its perimeter and area.
+ * An irregular polygon on a 2D plane capable of calculating its perimeter and area.
  */
 public class Polygon {
     final Point[] vertices;

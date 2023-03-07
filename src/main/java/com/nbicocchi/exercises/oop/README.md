@@ -184,6 +184,33 @@ class EnhancedArray {
 
 ---
 
+**[basic.EnhancedImmutableArray]** Write a class named EnhancedImmutableArray representing an immutable array.
+The class is immutable because it does not provide methods to modify the items of the array. 
+It internally keeps an int array but provides its key functionalities via a set of methods:
+
+* public EnhancedImmutableArray(int[] array) creating a new immutable array with the specified elements. 
+* public int size() returning the capacity of the array.
+* public int get(int index) returning the element at the specified index.
+* public boolean contains(int value) returning true if the specified value is contained within the array.
+* public int[] toArray() returning a copy of the internal array.
+
+Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
+
+```mermaid
+classDiagram
+direction BT
+class EnhancedImmutableArray {
+  ~ int[] v
+  + EnhancedImmutableArray(int[]) 
+  + size() int
+  + get(int) int
+  + contains(int) boolean
+  + toArray() int[]
+}
+```
+
+---
+
 **[basic.Letter]** Write a class for authoring a simple letter.
 In the constructor, supply the names of the sender and the recipient:
 
