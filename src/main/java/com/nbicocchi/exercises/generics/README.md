@@ -173,16 +173,14 @@ public interface Measurer {
 ```
 
 ```
-public static <T> T max(T[] values, Measurer<T> measurer);
-public static <T> T min(T[] values, Measurer<T> measurer);
+public static <T> T max(T[] array, Measurer<T> measurer);
+public static <T> T min(T[] array, Measurer<T> measurer);
 ```
 
 where:
 
-* **values** is the array in which searching for minimum and maximum
+* **array** is the array in which searching for minimum and maximum
 * **measurer** is an object implementing the Measurer<T> interface
-
-
 
 ---
 
@@ -201,7 +199,6 @@ where:
 * **cmp** is an object implementing the Comparator interface
 
 ---
-
 
 **[mycollections package]** Implement a generic version of the minimalist collection framework contained within the
 *exercises.collections.mycollections* package.

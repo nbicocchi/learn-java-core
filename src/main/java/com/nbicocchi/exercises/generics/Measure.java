@@ -11,9 +11,9 @@ public class Measure {
         return max;
     }
 
-    public static <T> T min(T[] values, Measurer<T> measurer) {
-        T min = values[0];
-        for (T item : values) {
+    public static <T> T min(T[] array, Measurer<T> measurer) {
+        T min = array[0];
+        for (T item : array) {
             if (measurer.measure(item) < measurer.measure(min)) {
                 min = item;
             }
