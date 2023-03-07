@@ -337,28 +337,6 @@ Integer num = instance4.get(); // It does not compile
 
 A compile-time error will be detected by the programmer, not a user of the program. Because generics let the compiler take care of typecasting, generics are both safer and more flexible compared to the `Object` class.
 
-### Generics without specifying a type argument
-
-When you create an instance of a generic class, you have the option to not specify an argument type at all.
-
-```
-GenericType instance5 = new GenericType("my-string");
-```
-
-In this case, the field of the class is `Object`, and the `get` method returns an `Object` as well.
-
-The above code is equivalent to the following line:
-
-```
-GenericType<Object> instance5 = new GenericType<>("abc"); // it is parameterized with Object
-```
-
-Usually, you will not use generics parameterized by `Object` due to the same problems as presented above. Just remember that this possibility exists.
-
-### Conclusion
-
-Both generics and Objects allow you to write generalized code. Using `Object`, however, may require explicit typecasting, which can lead to error-prone code. Generics provide type safety by shifting type-checking responsibilities to the Java compiler.
-
 
 ---
 
