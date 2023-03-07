@@ -2,19 +2,23 @@
 
 ## Java Exercises (Generics)
 
-**[PrintIterable.java]** Write a generic static method returning a string representing all the elements of an object
+**[IterableToString.java]** Write a generic static method returning a string representing all the elements of an object
 implementing the Iterable<E> interface. The elements should be separated by commas.
 
 Examples:
 
-* printIterable([1, 2, 3]) → "1, 2, 3, "
-* printIterable(["a", "b", "c"]) → "a, b, c, "
+* iterableToString([1, 2, 3]) → "1, 2, 3, "
+* iterableToString(["a", "b", "c"]) → "a, b, c, "
 
 The method has the following prototype:
 
 ```
-public static <E> String printIterable(Iterable<E> src);
+public static <E> String iterableToString(Iterable<E> src);
 ```
+
+where:
+
+* **src** is the Iterable object to be converted to String.
 
 ---
 
@@ -33,6 +37,11 @@ The method has the following prototype:
 public static <T extends Number> double divide(T a, T b);
 ```
 
+where:
+
+* **a** is the divided.
+* **b** is the divisor.
+
 ---
 
 **[Append.java]** Write a generic static method that appends the elements of one list to another list of the same type.
@@ -41,12 +50,18 @@ Examples:
 
 * append([], [1, 2]) → [1, 2]
 * append([1, 2], [3, 4]) → [1, 2, 3, 4]
+* append(["a", "c"], ["c", "d"]) → ["a", "c", "c", "d"]
 
 The method has the following prototype:
 
 ```
-public static <T> void append(List<T> a, List<T> b);
+public static <T> void append(List<T> dst, List<T> src);
 ```
+
+where:
+
+* **dst** is the destination to which append values.
+* **src** is the source of the values.
 
 ---
 
@@ -63,12 +78,17 @@ Examples:
 
 * reverse([1, 2]) → [2, 1]
 * reverse([1, 2, 3, 4]) → [4, 3, 2, 1]
+* reverse(["hello", "world"]) → ["world", "hello"]
 
 The method has the following prototype:
 
 ```
 public static <T> void reverse(List<T> list);
 ```
+
+where:
+
+* **list** is the list to be reversed.
 
 ---
 
@@ -79,12 +99,18 @@ Examples:
 
 * countOccurrences([1, 2, 2, 2], 2) → 3
 * countOccurrences([null, null, 3, 4], null) → 2
+* countOccurrences(["hello", "world", null, null], "hello") → 1
 
 The method has the following prototype:
 
 ```
 public static <T> int countOccurrences(T[] src, T item);
 ```
+
+where:
+
+* **src** is the array to be searched within.
+* **item** is the item to be searched.
 
 ---
 
@@ -100,7 +126,8 @@ public class Pair<K, V> {
 
 ---
 
-**[PairSameType.java]** Modify the Pair class (see Pair.java) so that both values have the same type.
+**[PairSameType.java]** Modify the Pair class (see Pair.java) so that both values have the same type. Furthermore, add a method *void swap()* that swaps the first and second elements of the pair. 
+
 
 ```
 public class Pair<K> {
@@ -108,38 +135,38 @@ public class Pair<K> {
 }
 ```
 
----
-
-**[PairSameTypeSwap.java]** Add a method swap to the PairSameType class (see PairSameType.java) that swaps the first and
-second elements of the pair. The method has the following prototype:
-
 ```
 public void swap();
 ```
 
 ---
 
-**[PairUtil.java]** Write a generic static method whose argument is a Pair object. The method should return a new pair,
+**[PairUtil.java]** Write a generic static method whose argument is a Pair object. The method returns a new pair,
 with the first and second element swapped. The method has the following prototype:
 
 ```
 public static <K, V> Pair<V, K> swap(Pair<K, V> src);
 ```
 
+where:
+
+* **src** is a generic Pair of two objects with different types.
+
 ---
 
-**[MapToPairs.java]** Write a generic static method that, given a Map<K, V>, returns a List<Pair<K, V>> of the key/value
-pairs in the map. The method has the following prototype:
+**[MapToPairs.java]** Write a generic static method that, given a Map<K, V>, returns a List<Pair<K, V>> of the key/value pairs in the map. The method has the following prototype:
 
 ```
 public static <K, V> List<Pair<K, V>> mapToPairs(Map<K, V> src);
 ```
 
+where:
+
+* **src** is generic key/value map.
+
 ---
 
-**[Measure.java]** Make the Measurer interface (see below) into a generic interface. Additionally, implement two static
-generic methods returning the maximum and minimum values of the array (see prototype below). The Measurer object
-provides the sorting criteria.
+**[Measure.java]** Transform the Measurer interface (reported below) into a generic interface. Additionally, implement two static generic methods returning the maximum and minimum values of an array (see prototype below), using a Measurer object as the sorting criterion. Note well: The *measure()* method of the Measurer interface associates every object to an easy to sort double value!
 
 ```
 public interface Measurer {
@@ -152,10 +179,17 @@ public static <T> T max(T[] values, Measurer<T> measurer);
 public static <T> T min(T[] values, Measurer<T> measurer);
 ```
 
+where:
+
+* **values** is the array in which searching for minimum and maximum
+* **measurer** is an object implementing the Measurer<T> interface
+
+
+
 ---
 
 **[MinMax.java]** Write two generic static methods returning the maximum and minimum values of a generic list. An
-instance of Comparator (see java.util.Comparator<T>) is used as a sorting criteria. The methods have the following
+instance of Comparator (see java.util.Comparator<T>) is used as a sorting criterion. The methods have the following
 prototype:
 
 ```
@@ -163,10 +197,15 @@ public static <T> T max(List<T> list, Comparator<? super T> cmp);
 public static <T> T min(List<T> list, Comparator<? super T> cmp);
 ```
 
+where:
+
+* **list** is the list in which searching for minimum and maximum
+* **cmp** is an object implementing the Comparator interface
+
 ---
 
 
-**[mycollection package]** Implement a generic version of the minimalist collection framework contained within the
+**[mycollections package]** Implement a generic version of the minimalist collection framework contained within the
 *exercises.collections.mycollections* package.
 
 ---
