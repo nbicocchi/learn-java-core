@@ -64,6 +64,20 @@ where:
 
 ---
 
+**[CheckLicencePlate.java]** Write a method to check if a string representing a car licence plate respects 
+the italian format (i.e., LLDDDLL where L represents a letter while D a digit). If the string does not respect the
+format, the method throws IllegalArgumentException (see Character.isDigit() and Character.isLetter() methods).
+
+```
+public static void checkLicencePlate(String licence);
+```
+
+where:
+
+* **licence** is the licence plate to be verified.
+
+---
+
 **[CheckString.java]** Write a method to check if a string is an alternating sequence of letters and numbers (for
 example, a0b3h4z1r4). The method delegates ParseException for notifying the caller about eventual malformations (see
 Character.isDigit() and Character.isLetter() methods). The method has the following prototype:
