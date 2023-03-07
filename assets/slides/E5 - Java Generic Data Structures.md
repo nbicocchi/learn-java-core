@@ -2,9 +2,7 @@
 
 ## Introduction to generic programming
 
-### The Need for Generics 
-
-**(Avoid casts and runtime errors)**
+### Avoid cast and runtime errors
 
 Let's imagine a scenario where we want to create a list to store *Integer*.
 
@@ -31,6 +29,7 @@ List list = new LinkedList();
 list.add(new Integer(1));
 list.add(new String("Hello world!"));
 Integer i = (Integer) list.iterator().next();
+Integer i = (Integer) list.iterator().next(); // run-time error!
 ```
 
 It would be much easier if programmers could express their intention to use specific types and the compiler ensured the correctness of such types. This is the core idea behind generics. Let's modify the first line of the previous code snippet:
@@ -41,25 +40,28 @@ List<Integer> list = new LinkedList<>();
 
 By adding the diamond operator <> containing the type, we narrow the specialization of this list to only *Integer* type. In other words, we specify the type held inside the list. The compiler can enforce the type at compile time. In small programs, this might seem like a trivial addition. But in larger programs, this can add significant robustness and makes the program easier to read.
 
-**(Reuse of code)**
+### Reuse of code
 
 There are situations when methods and classes do not depend on the data types on which they operate. For example, the algorithm to find an element in an array can process arrays of strings, integers or custom classes. It does not matter what the array stores: the algorithm is always the same. Yet we cannot write this algorithm as a single method, because it requires different arguments (`int[]`, `String[]`, etc).
 
 ```
-public static void bubbleSort(int[] v) {
-    boolean changed = true;
-    while (changed) {
-        changed = false;
-        for (int i = 0; i < v.length - 1; i++) {
-            if (v[i] > v[i + 1]) {
-                changed = true;
-                int tmp = v[i];
-                v[i] = v[i + 1];
-                v[i + 1] = tmp;
+public class BubbleSort {
+    public static void bubbleSort(int[] v) {
+        boolean changed = true;
+        while (changed) {
+            changed = false;
+            for (int i = 0; i < v.length - 1; i++) {
+                if (v[i] > v[i + 1]) {
+                    changed = true;
+                    int tmp = v[i];
+                    v[i] = v[i + 1];
+                    v[i + 1] = tmp;
+                }
             }
         }
     }
 }
+
 ```
 
 Since version 5, Java has supported generic programming that introduces abstraction over types. Generic methods and classes can handle different types in the same general way. A concrete type is determined only when a developer creates an object of the class or invokes the method. This approach enables us to write more abstract code and develop reusable software libraries. Let us consider it step by step using examples written in Java.
@@ -111,12 +113,12 @@ After being declared, a type parameter can be used inside the class body as an o
 The behavior of both instance methods does not depend on the concrete type of `T`; it can take/return a string or a number in the same way.
 
 ```
-GenericType<Integer> obj1 = new GenericType<Integer>(10);
+GenericType<Integer> obj1 = new GenericType<>(10);
 
-GenericType<String> obj2 = new GenericType<String>("abc");
+GenericType<String> obj2 = new GenericType<>("abc");
 ```
 
-A class can have any number of type parameters. For example, the following class has two.
+A class can have any number of type parameters. For example, the following class has two. Most generic classes have just one or two type parameters.
 
 ```
 public class Pair<K, V> {
@@ -145,8 +147,6 @@ public class Pair<K, V> {
     }
 }
 ```
-
-But most generic classes have just one or two type parameters.
 
 ### The naming convention for type parameters
 
@@ -177,9 +177,9 @@ After we have created an object with a specified type argument, we can invoke me
 
 ```
 Integer number = obj1.get(); // 10
-String string = obj2.get();  // "abc"
-
 System.out.println(obj1.set(20));    // prints the number 20
+
+String string = obj2.get();  // "abc"
 System.out.println(obj2.set("def")); // prints the string "def"
 ```
 
@@ -188,6 +188,13 @@ If a class has multiple type parameters, we need to specify all of them when cre
 ```
 GenericType<Type1, Type2, ..., TypeN> obj = new GenericType<>(...);
 ```
+
+For example:
+
+```
+Map<Integer, String> map = new HashMap<>();
+```
+
 
 ### Custom generic array
 

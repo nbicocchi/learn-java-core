@@ -1,16 +1,17 @@
 package com.nbicocchi.exercises.strings;
 
 public class EqualIsNot {
-    // Alternative methods here
-    // https://www.techiedelight.com/find-occurrences-of-substring-string-java/
-
     public static boolean equalIsNot(String string) {
-        int is = countMatches(string, "is");
-        int not = countMatches(string, "not");
-        return is == not;
+        return countMatches(string, "is") == countMatches(string, "not");
     }
 
-    /* Counts how many times the substring appears in the larger string. */
+    /**
+     * Counts how many times a substring appears in a given string.
+     * @param text the given string
+     * @param str the substring to be searched
+     * @return the number of matches
+     * @see "https://www.techiedelight.com/find-occurrences-of-substring-string-java/"
+     */
     public static int countMatches(String text, String str) {
         if (isEmpty(text) || isEmpty(str)) {
             return 0;
@@ -29,7 +30,11 @@ public class EqualIsNot {
         return count;
     }
 
-    /* Checks if a string is empty ("") or null. */
+    /**
+     * Checks if a string is empty ("") or null.
+     * @param s the string to be verified
+     * @return true if the string is null or empty
+     */
     public static boolean isEmpty(String s) {
         return s == null || s.length() == 0;
     }
