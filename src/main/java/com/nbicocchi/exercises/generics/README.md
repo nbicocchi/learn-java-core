@@ -132,11 +132,9 @@ public class Pair<K, V> {
 ```
 public class Pair<K> {
     ...
+    public void swap();
+    ...
 }
-```
-
-```
-public void swap();
 ```
 
 ---
