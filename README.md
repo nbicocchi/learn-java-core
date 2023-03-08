@@ -42,8 +42,8 @@
 
 ### Project
 * Stored on a GitHub repository (complete with README.md and LICENCE files)
-* Respect [Java Coding Standard](https://github.com/nbicocchi/java-core/blob/main/assets/books/Java-Coding-Standard.pdf)
 * 500+ lines of logic code per person, 1000+ per couple, excluding GUI/XML files
+* Respect [Java Coding Standard](https://github.com/nbicocchi/java-core/blob/main/assets/books/Java-Coding-Standard.pdf)
 * Refer to [this project](https://github.com/logesh0304/RegexAssist) as a well-made example
 
 ---
