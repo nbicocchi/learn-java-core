@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.random.RandomGenerator;
 
 public class FillArray {
-    public static double[] fillArray(int size, int value, boolean randomize) {
+    public static double[] fillArray(int size, double value, boolean randomize) {
         double[] dst = new double[size];
         Arrays.fill(dst, value);
         if (randomize) {

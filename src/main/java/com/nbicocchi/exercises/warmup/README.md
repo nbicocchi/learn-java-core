@@ -39,8 +39,7 @@ Some times eats parents too, forgot to say that earlier.
                           Credits: Krogg <krogg.no.to.spam@inspace.net>
 ```
 
-**[GuessNumber.java]** Write a program implementing a simple quiz game. The computer selects a random number between 0
-and 3 then ask the user to guess the number. The game ends when the user correctly guesses the number 0.
+**[GuessNumber.java]** Write a program implementing a simple quiz game. The computer selects a random number between 0 and 3 then ask the user to guess the number. The game ends when the user correctly guesses the number 0.
 (see java.util.random.RandomGenerator, java.util.Scanner).
 
 **[MonkeyTrouble]** We have two monkeys, a and b, and two boolean values (aSmile and bSmile) indicate if each is smiling. 

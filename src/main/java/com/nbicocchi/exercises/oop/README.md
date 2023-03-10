@@ -121,7 +121,6 @@ class Polygon {
   + getArea() double
   + toString() String
 }
-
 ```
 
 ---

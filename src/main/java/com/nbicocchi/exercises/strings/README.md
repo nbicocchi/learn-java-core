@@ -109,13 +109,12 @@ where:
 
 ---
 
-**[GoodAroundTheBeginning.java]** Write a method accepting a string and returning true if "good" appears either at
-index 0 or 1 of the given string (see String.startsWith() method).
+**[GoodAroundTheBeginning.java]** Write a method accepting a string and returning true if "good" appears either at index 0 or 1 of the given string (see String.startsWith() method).
 
 Examples:
 
 * goodAroundTheBeginning("good Sweet") → true
-* goodAroundTheBeginning(" good Sweet") → false
+* goodAroundTheBeginning(" good Sweet") → true
 * goodAroundTheBeginning("goo") → false
 
 The method has the following prototype:
@@ -232,7 +231,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public boolean int equalIsNot(String string);
+public boolean equalIsNot(String string);
 ```
 
 where:
@@ -253,7 +252,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public boolean int sumDigits(String string);
+public int sumDigits(String string);
 ```
 
 where:

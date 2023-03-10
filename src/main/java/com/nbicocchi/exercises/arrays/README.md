@@ -35,7 +35,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public static double[] fillArray(int size, int value, boolean randomize);
+public static double[] fillArray(int size, double value, boolean randomize);
 ```
 
 where:
