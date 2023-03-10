@@ -52,8 +52,8 @@ public class RationalNumber {
      * @return a new rational representing the product
      */
     public RationalNumber multiply(RationalNumber o) {
-        int n = this.numerator * o.numerator;
-        int d = this.denominator * o.denominator;
+        int n = numerator * o.numerator;
+        int d = denominator * o.denominator;
         return new RationalNumber(n, d);
     }
 
