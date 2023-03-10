@@ -5,8 +5,7 @@ package com.nbicocchi.exercises.collections.mycollections;
  *
  * @author Nicola Bicocchi
  */
-public class MyLinkedList extends MyAbstractList implements MyQueue {
-
+public class MyLinkedList extends MyAbstractList implements MyDeque {
     private Node head;
 
     public MyLinkedList() {
@@ -32,15 +31,19 @@ public class MyLinkedList extends MyAbstractList implements MyQueue {
     }
 
     @Override
-    public void remove(int index) {
+    public Object remove(int index) {
+        Object removed;
         checkBoundaries(index, size - 1);
         if (index == 0) {
+            removed = head.getPayload();
             head = head.getNext();
         } else {
-            Node current = getNodeByIndex(index - 1);
-            current.setNext(current.getNext().getNext());
+            Node previous = getNodeByIndex(index - 1);
+            removed = previous.getNext().getPayload();
+            previous.setNext(previous.getNext().getNext());
         }
         size--;
+        return removed;
     }
 
     @Override
@@ -69,14 +72,26 @@ public class MyLinkedList extends MyAbstractList implements MyQueue {
     }
 
     @Override
-    public Object peek() {
-        return get(0);
+    public void addFirst(Object o) {
+        add(o, 0);
     }
 
     @Override
-    public Object poll() {
+    public Object removeFirst() {
         Object payload = get(0);
         remove(0);
+        return payload;
+    }
+
+    @Override
+    public void addLast(Object o) {
+        add(o);
+    }
+
+    @Override
+    public Object removeLast() {
+        Object payload = get(size - 1);
+        remove(size - 1);
         return payload;
     }
 

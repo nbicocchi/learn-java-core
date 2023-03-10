@@ -10,7 +10,6 @@ abstract class MyListTestBase {
     @Test
     void add() {
         l.add("nicola");
-        assertEquals("nicola", l.get(0));
         l.add("barbara", 0);
         assertEquals("barbara", l.get(0));
         assertEquals("nicola", l.get(1));
@@ -22,7 +21,6 @@ abstract class MyListTestBase {
         l.add("nicola");
         l.add("barbara");
         l.add("marzia");
-        assertEquals("nicola", l.get(0));
         l.remove(2);
         l.remove("barbara");
         assertEquals("nicola", l.get(0));
@@ -42,6 +40,7 @@ abstract class MyListTestBase {
     void contains() {
         assertEquals(0, l.size());
         l.add("nicola");
+        assertEquals(1, l.size());
         assertTrue(l.contains("nicola"));
         assertFalse(l.contains("marzia"));
     }

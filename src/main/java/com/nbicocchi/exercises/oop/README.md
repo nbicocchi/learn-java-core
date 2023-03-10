@@ -172,12 +172,12 @@ direction BT
 class EnhancedArray {
   ~ int[] v
   + EnhancedArray(int) 
-  + size() int
   + get(int) int
   + set(int, int) void
   + contains(int) boolean
   + resetZero() void
   + resetRandom() void
+  + size() int
   + toArray() int[]
 }
 ```

@@ -1,39 +1,28 @@
 package com.nbicocchi.exercises.collections.mycollections;
 
-public abstract class MyAbstractList implements MyList {
-    int size;
+public abstract class MyAbstractList extends MyAbstractCollection implements MyList {
+    static class MyListIterator implements MyIterator {
+        MyList list;
+        int position;
 
-    public MyAbstractList() {
-        this.size = 0;
-    }
-
-    void checkBoundaries(int index, int limit) {
-        if (index < 0 || index > limit) {
-            throw new ArrayIndexOutOfBoundsException();
+        public MyListIterator(MyList list) {
+            this.list = list;
+            this.position = 0;
         }
-    }
 
-    public boolean contains(Object o) {
-        for (int i = 0; i < size(); i++) {
-            if (get(i).equals(o)) {
-                return true;
-            }
+        @Override
+        public boolean hasNext() {
+            return position < list.size();
         }
-        return false;
-    }
 
-    public int size() {
-        return size;
+        @Override
+        public Object next() {
+            return list.get(position++);
+        }
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        for (int i = 0; i < size(); i++) {
-            sb.append(String.format("%s, ", get(i).toString()));
-        }
-        sb.append("]");
-        return sb.toString();
+    public MyIterator iterator() {
+        return new MyListIterator(this);
     }
 }

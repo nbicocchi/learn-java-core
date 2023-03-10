@@ -5,6 +5,8 @@ public interface MyCollection {
 
     void remove(Object o);
 
+    MyIterator iterator();
+
     boolean contains(Object o);
 
     int size();

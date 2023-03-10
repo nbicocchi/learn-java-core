@@ -14,15 +14,10 @@ public class MyArrayList extends MyAbstractList {
         elements = new Object[INITIAL_SIZE];
     }
 
-    @Override
-    public void add(Object o, int index) {
-        checkBoundaries(index, size);
-        add(o);
-        if (elements.length - 1 - index >= 0) {
-            System.arraycopy(elements, index, elements, index + 1, elements.length - 1 - index);
-        }
-        elements[index] = o;
-        elements[size] = null;
+    void enlarge() {
+        Object[] tmp = new Object[elements.length * 2];
+        System.arraycopy(elements, 0, tmp, 0, elements.length);
+        elements = tmp;
     }
 
     @Override
@@ -31,12 +26,6 @@ public class MyArrayList extends MyAbstractList {
             enlarge();
         }
         elements[size++] = o;
-    }
-
-    private void enlarge() {
-        Object[] tmp = new Object[elements.length * 2];
-        System.arraycopy(elements, 0, tmp, 0, elements.length);
-        elements = tmp;
     }
 
     @Override
@@ -50,10 +39,23 @@ public class MyArrayList extends MyAbstractList {
     }
 
     @Override
-    public void remove(int index) {
+    public void add(Object o, int index) {
+        checkBoundaries(index, size);
+        add(o);
+        if (elements.length - 1 - index >= 0) {
+            System.arraycopy(elements, index, elements, index + 1, elements.length - 1 - index);
+        }
+        elements[index] = o;
+        elements[size] = null;
+    }
+
+    @Override
+    public Object remove(int index) {
         checkBoundaries(index, size - 1);
+        Object removed = get(index);
         System.arraycopy(elements, index + 1, elements, index, size - index);
         elements[--size] = null;
+        return removed;
     }
 
     @Override
