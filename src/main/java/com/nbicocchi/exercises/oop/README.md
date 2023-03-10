@@ -40,8 +40,8 @@ The class provides the following methods:
 * public RationalNumber(int numerator, int denominator) creating the rational number. Before creating the object, numerator and denominator have to be simplified (i.e., divided by their greatest common divisor). 
 * public getNumerator() returning the numerator.
 * public getDenominator() returning the denominator.
-* public RationalNumber add(RationalNumber o) for adding another number to the current number. Before creating the new RationalNumber object, numerator and denominator have to be simplified (i.e., divided by their greatest common divisor).
-* public RationalNumber multiply(RationalNumber o) for multiplying another number with the current number. Before creating the new RationalNumber object, numerator and denominator have to be simplified (i.e., divided by their greatest common divisor).
+* public RationalNumber add(RationalNumber o) returning a RationalNumber object representing the sum of the current number and another number. 
+* public RationalNumber multiply(RationalNumber o) returning a RationalNumber object representing the multiplication of the current number and another number.
 * public String toString().
 
 You can use the following two methods for computing the least common multiple and the greatest common divisor of two integer numbers. These methods are not part of the public interface of the class.

@@ -42,10 +42,9 @@ public class RationalNumber {
      * @return a new rational representing the sum
      */
     public RationalNumber add(RationalNumber o) {
-        int den = leastCommonMultiple(denominator, o.getDenominator());
-        int num = numerator * (den / denominator) + o.getNumerator() * (den / o.getDenominator());
-        int gcm = greatestCommonDivisor(num, den);
-        return new RationalNumber(num / gcm, den / gcm);
+        int lcm = leastCommonMultiple(denominator, o.getDenominator());
+        int num = numerator * (lcm / denominator) + o.getNumerator() * (lcm / o.getDenominator());
+        return new RationalNumber(num, lcm);
     }
 
     /**
@@ -56,8 +55,7 @@ public class RationalNumber {
     public RationalNumber multiply(RationalNumber o) {
         int num = numerator * o.getNumerator();
         int den = denominator * o.getDenominator();
-        int gcm = greatestCommonDivisor(num, den);
-        return new RationalNumber(num / gcm, den / gcm);
+        return new RationalNumber(num, den);
     }
 
     /**
