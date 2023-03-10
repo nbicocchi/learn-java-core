@@ -8,9 +8,9 @@ public class RemoveFirstTwoCharsIfTest {
     @Test
     public void removeFirstTwoCharsIf() {
         assertEquals("Hello World!", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("Hello World!"));
-        assertEquals("He", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("He"));
+        assertEquals("od World!", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("Good World!"));
         assertEquals("H", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("Ho"));
-        assertEquals("", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("No"));
+        assertEquals("e", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("Ne"));
         assertEquals("", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("Y"));
     }
 }
