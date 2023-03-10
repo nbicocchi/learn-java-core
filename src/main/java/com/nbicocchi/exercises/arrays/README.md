@@ -29,20 +29,20 @@ Examples:
 
 * fillArray(3, 0, false) → [0, 0, 0]
 * fillArray(5, 1, false) → [1, 1, 1, 1, 1]
-* fillArray(5, 1, true) → [0.83, 1.12, 1.21, 0.96, 0.85]
-* fillArray(3, 3, true) → [3.13, 2.82, 2.91]
+* fillArray(5, 1, true) → [0.99, 1.02, 1.01, 0.97, 0.95]
+* fillArray(3, 100, true) → [102.45, 99.33, 96.34]
 
 The method has the following prototype:
 
 ```
-public static double[] fillArray(int size, double value, boolean randomize);
+public static double[] fillArray(int size, double value, boolean addNoise);
 ```
 
 where:
 
 * **size** is the size of the new array.
 * **value** is the value to be assigned to all the elements of the new array.
-* **randomize** if true, all the elements have to be randomized adding a random number between [-0.5, 0.5]
+* **addNoise** if true, all the elements have to be randomized between plus or minus 5 percent of **value**.
 
 ---
 
