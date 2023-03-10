@@ -4,3 +4,4 @@
 * Falco Giuseppe +
 * Leoni Matteo ++
 * Garagnani Filippo +
+* Ricci Wendy Ayewosa Maria +
