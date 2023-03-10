@@ -66,7 +66,7 @@ class RationalNumber {
 ---
 
 **[basic.Circle]** Write a class named Circle representing a Circle on a 2D plane.
-Internally, the class uses a Point object and a double value for representing the center and the radius of the Circle, respectively. 
+Internally, the class uses a Point object and an int value for representing the center and the radius of the Circle, respectively. 
 The class provides the following methods:
 * public Circle(Point center, int radius) creating the circle.
 * getters and setters.
