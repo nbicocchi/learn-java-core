@@ -70,10 +70,10 @@ class).
 
 Examples:
 
-* removeFirstTwoCharsIf("Hello World!") → "llo World!"
-* removeFirstTwoCharsIf("He") → "He"
+* removeFirstTwoCharsIf("Hello World!") → "Hello World!"
+* removeFirstTwoCharsIf("Good World!") → "od World!"
 * removeFirstTwoCharsIf("Ho") → "H"
-* removeFirstTwoCharsIf("No") → ""
+* removeFirstTwoCharsIf("Ne") → "e"
 * removeFirstTwoCharsIf("Y") → ""
 
 The method has the following prototype:
