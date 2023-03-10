@@ -115,6 +115,7 @@ Examples:
 
 * goodAroundTheBeginning("good Sweet") → true
 * goodAroundTheBeginning(" good Sweet") → true
+* goodAroundTheBeginning("  good Sweet") → false
 * goodAroundTheBeginning("goo") → false
 
 The method has the following prototype:
@@ -135,8 +136,8 @@ String.substring(), String.charAt() methods).
 
 Examples:
 
-* removeFirstLast("Google") → "Google"
-* removeFirstLast("eoogle") → "oogl"
+* removeFirstLast("google") → "google"
+* removeFirstLast("aenema") → "enem"
 * removeFirstLast("FF") → ""
 * removeFirstLast("F") → "F"
 
@@ -152,9 +153,7 @@ where:
 
 ---
 
-**[DuplicateChars.java]** Write a method accepting a string and returning all recurring characters contained into the
-string as a char[]. More specifically, recurring characters have to be returned in alphabetical order (see
-String.valueOf(), String.contains(), String.toCharArray()). For example: headmistressship -> [e,h,i,s].
+**[DuplicateChars.java]** Write a method accepting a string and returning all recurring characters contained into the string as a char[]. More specifically, recurring characters have to be returned in alphabetical order (see String.valueOf(), String.contains(), String.toCharArray()). For example: headmistressship -> [e,h,i,s].
 
 Examples:
 
@@ -175,8 +174,7 @@ where:
 
 ---
 
-**[Palindrome.java]** Write a method accepting a string and returning true if the string is a palindrome (see
-StringBuilder class).
+**[Palindrome.java]** Write a method accepting a string and returning true if the string is a palindrome (see StringBuilder class).
 
 Examples:
 
@@ -197,8 +195,7 @@ where:
 
 ---
 
-**[CountYZ.java]** Write a method accepting a string, and counting the number of words ending in 'y' or 'z' so the 'y'
-in "heavy" and the 'z' in "fez" count, but not the 'y' in "yellow" (not case sensitive) (see Scanner class).
+**[CountYZ.java]** Write a method accepting a string, and counting the number of words ending in 'y' or 'z' so the 'y' in "heavy" and the 'z' in "fez" count, but not the 'y' in "yellow" (not case sensitive) (see Scanner class).
 
 Examples:
 
@@ -218,9 +215,7 @@ where:
 
 ---
 
-**[EqualIsNot.java]** Write a method accepting a string, and returning true if the number of appearances of "is"
-anywhere in the string is equal to the number of appearances of "not" anywhere in the string (case sensitive) (See
-String.indexOf()).
+**[EqualIsNot.java]** Write a method accepting a string, and returning true if the number of appearances of "is" anywhere in the string is equal to the number of appearances of "not" anywhere in the string (case sensitive) (See String.indexOf()).
 
 Examples:
 
@@ -240,8 +235,7 @@ where:
 
 ---
 
-**[SumDigits.java]** Given a string, return the sum of the digits 0-9 that appear in the string, ignoring all other
-characters. Return 0 if there are no digits in the string. (see Character class)
+**[SumDigits.java]** Given a string, return the sum of the digits 0-9 that appear in the string, ignoring all other characters. Return 0 if there are no digits in the string. (see Character class)
 
 Examples:
 
