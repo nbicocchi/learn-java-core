@@ -184,14 +184,15 @@ class EnhancedArray {
 
 ---
 
-**[basic.EnhancedImmutableArray]** Write a class named EnhancedImmutableArray representing an immutable array.
-The class is immutable because it does not provide methods to modify the items of the array. 
-It internally keeps an int array but provides its key functionalities via a set of methods:
+**[basic.EnhancedResizableArray]** Write a class named EnhancedResizableArray representing a resizable array. It internally keeps an int array, enlarges it when needed, and provides its key functionalities via a set of methods:
 
-* public EnhancedImmutableArray(int[] array) creating a new immutable array with the specified elements. 
-* public int size() returning the capacity of the array.
+* public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity).
+* public void add(int value) adding an element to the array.
+* public void remove(int index) removing the element at the specified index.
 * public int get(int index) returning the element at the specified index.
+* public void set(int index, int value) setting the element at the specified index with value.
 * public boolean contains(int value) returning true if the specified value is contained within the array.
+* public int size() returning the capacity of the array.
 * public int[] toArray() returning a copy of the internal array.
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
@@ -199,12 +200,15 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
 direction BT
-class EnhancedImmutableArray {
+class EnhancedResizableArray {
   ~ int[] v
-  + EnhancedImmutableArray(int[]) 
-  + size() int
+  + EnhancedResizableArray() 
+  + add(int) void
+  + remove(int, int) void
   + get(int) int
+  + set(int, int) void
   + contains(int) boolean
+  + size() int
   + toArray() int[]
 }
 ```
