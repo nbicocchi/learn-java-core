@@ -4,10 +4,6 @@ import java.util.*;
 
 public class WordFrequencySorted {
 
-    public static Map<String, Integer> mostFrequent(Map<String, Integer> map, int limit) {
-        return sortAndCut(map, (e1, e2) -> e2.getValue() - e1.getValue(), limit);
-    }
-
     public static Map<String, Integer> sortAndCut(Map<String, Integer> map, Comparator<Map.Entry<String, Integer>> comparator, int limit) {
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(map.entrySet());
         entries.sort(comparator);
@@ -18,6 +14,10 @@ public class WordFrequencySorted {
             dst.put(entry.getKey(), entry.getValue());
         }
         return dst;
+    }
+
+    public static Map<String, Integer> mostFrequent(Map<String, Integer> map, int limit) {
+        return sortAndCut(map, (e1, e2) -> e2.getValue() - e1.getValue(), limit);
     }
 
     public static Map<String, Integer> lessFrequent(Map<String, Integer> map, int limit) {
