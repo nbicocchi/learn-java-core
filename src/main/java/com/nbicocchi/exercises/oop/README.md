@@ -208,7 +208,7 @@ class EnhancedArray {
 **[basic.EnhancedResizableArray]** Write a class named EnhancedResizableArray representing a resizable array. It internally keeps an int array, enlarges it when needed, and provides its key functionalities via a set of methods:
 
 * public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity).
-* public void add(int value) adding an element to the array.
+* public void add(int value) adding an element at the end of the array.
 * public void remove(int index) removing the element at the specified index.
 * public int get(int index) returning the element at the specified index.
 * public void set(int index, int value) setting the element at the specified index with value.
@@ -225,7 +225,7 @@ class EnhancedResizableArray {
   ~ int[] v
   + EnhancedResizableArray() 
   + add(int) void
-  + remove(int, int) void
+  + remove(int) void
   + get(int) int
   + set(int, int) void
   + contains(int) boolean

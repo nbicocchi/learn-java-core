@@ -226,7 +226,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public boolean equalIsNot(String string);
+public static boolean equalIsNot(String string);
 ```
 
 where:
@@ -246,7 +246,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public int sumDigits(String string);
+public static int sumDigits(String string);
 ```
 
 where:
