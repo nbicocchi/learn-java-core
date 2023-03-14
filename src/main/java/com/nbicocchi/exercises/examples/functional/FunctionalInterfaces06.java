@@ -11,7 +11,7 @@ public class FunctionalInterfaces06 {
         List<Student> students = StreamCreation.getStudentsAsList();
         students.stream()
                 .filter(s -> s.getAverage() >= 26 && s.getAverage() <= 30)
-                .peek(s -> String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage()))
+                .peek(s -> System.out.println(String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage())))
                 .collect(Collectors.toList());
     }
 }

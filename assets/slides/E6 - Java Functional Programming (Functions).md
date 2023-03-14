@@ -1,4 +1,4 @@
-# Functional Programming
+# Functions
 
 ### Why Java is changing?
 A typical problem in 1991: model a company employees, departments, salaries, etc.
