@@ -5,5 +5,5 @@
 * Leoni Matteo ++
 * Garagnani Filippo +
 * Ricci Wendy Ayewosa Maria +
-* Nicola Ricciardi +
+* Nicola Ricciardi ++
 * Saverio Napolitano +
