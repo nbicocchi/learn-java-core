@@ -114,8 +114,8 @@ where:
 Examples:
 
 * goodAroundTheBeginning("good Sweet") → true
-* goodAroundTheBeginning(" good Sweet") → true
-* goodAroundTheBeginning("  good Sweet") → false
+* goodAroundTheBeginning("_good Sweet") → true
+* goodAroundTheBeginning("__good Sweet") → false
 * goodAroundTheBeginning("goo") → false
 
 The method has the following prototype:
