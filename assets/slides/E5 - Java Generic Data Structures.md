@@ -1,70 +1,199 @@
 # Generic programming
 
-## Introduction to generic programming
+### Reuse of code
+There are situations when methods and classes do not depend on the data types on which they operate. For example, the algorithm to find a specific element in an array can process arrays of strings, integers or custom classes. It does not matter what the array stores: the algorithm is always the same. Yet we cannot write this algorithm as a single method, because it requires different arguments (`int[]`, `String[]`, etc).
 
-### Avoid cast and runtime errors
+Since version 5, Java has supported generic programming that introduces abstraction over types. Generic methods and classes can handle different types in the same general way. A concrete type is determined only when a developer creates an object of the class or invokes the method. 
 
-Let's imagine a scenario where we want to create a list to store *Integer*.
 
-We might try to write the following:
+### An int-only resizable array
+```
+public class EnhancedResizableArray {
+    int size;
+    int[] v;
+    
+    public EnhancedResizableArray() {
+        this.v = new int[8];
+        this.size = 0;
+    }
+
+    public void add(int value) {
+        if (size >= v.length) {
+            int[] tmp = new int[v.length * 2];
+            System.arraycopy(v, 0, tmp, 0, v.length);
+            v = tmp;
+        }
+        set(size++, value);
+    }
+
+    public void remove(int index) {
+        System.arraycopy(v, index + 1, v, index, v.length - index - 1);
+        size--;
+    }
+
+    public int get(int index) {
+        return v[index];
+    }
+
+    public void set(int index, int value) {
+        v[index] = value;
+    }
+    
+    public int size() {
+        return size;
+    }
+}
+```
+
+Writing a slightly different version of the EnhancedResizableArray class for each possible type it could manage (in this case, int) would represent a massive violation of the **DRY (Don't Repeat Yourself)** principle.
+
+### An Object resizable array
 
 ```
-List list = new LinkedList();
-list.add(new Integer(1));
-Integer i = list.iterator().next();
+public class EnhancedResizableArrayObject {
+    int size;
+    Object[] v;
+
+    public EnhancedResizableArrayObject() {
+        this.v = new Object[4];
+        this.size = 0;
+    }
+
+    public void add(Object value) {
+        if (size >= v.length) {
+            Object[] tmp = new Object[v.length * 2];
+            System.arraycopy(v, 0, tmp, 0, v.length);
+            v = tmp;
+        }
+        set(size++, value);
+    }
+
+    public void remove(int index) {
+        System.arraycopy(v, index + 1, v, index, v.length - index - 1);
+        size--;
+    }
+
+    public Object get(int index) {
+        return v[index];
+    }
+
+    public void set(int index, Object value) {
+        v[index] = value;
+    }
+
+    public boolean contains(Object value) {
+        for (Object i : v) {
+            if (i.equals(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int size() {
+        return size;
+    }
+}
+```
+
+Now we are talking! We can store every kind of Object within the same container!
+
+
+```
+public static void main(String[] args) {
+    EnhancedResizableArrayObject earray = new EnhancedResizableArrayObject();
+    earray.add(new String("Hello"));
+    earray.add(new String("World"));
+    String s = ea.get(0);
+}
 ```
 
 Surprisingly, the compiler will complain about the last line. It doesn't know what data type is returned. The compiler will require an explicit casting:
 
 ```
-Integer i = (Integer) list.iterator.next();
+String s = (String) earray.get(0);
 ```
 
-There is no contract that could guarantee that the return type of the list is an *Integer*. The defined list could hold any object. We only know that we are retrieving a list by inspecting the context. When looking at types, it can only guarantee that it is an *Object* and therefore requires an explicit cast to ensure that the type is safe.
+There is no contract that could guarantee that the return type of the list is a *String*. The array could hold any object. It can only guarantee that it is an *Object* and therefore requires an explicit cast to ensure that the type is safe.
 
-This cast can be annoying, is also clutters our code, and It can cause type-related runtime errors if a programmer makes a mistake with the explicit casting.
-
-```
-List list = new LinkedList();
-list.add(new Integer(1));
-list.add(new String("Hello world!"));
-Integer i = (Integer) list.iterator().next();
-Integer i = (Integer) list.iterator().next(); // run-time error!
-```
-
-It would be much easier if programmers could express their intention to use specific types and the compiler ensured the correctness of such types. This is the core idea behind generics. Let's modify the first line of the previous code snippet:
+This cast can be annoying, is also clutters our code, and It can cause type-related runtime errors if a programmer makes a mistake with the explicit casting (e.g., forget to use instanceof).
 
 ```
-List<Integer> list = new LinkedList<>();
+public static void main(String[] args) {
+    EnhancedResizableArrayObject ea = new EnhancedResizableArrayObject();
+    ea.add(new String("Hello"));
+    ea.add(new Point(2, 3));
+    String s = (String) ea.get(1); // run-time error!
+}
+```
+
+It would be much easier if programmers could express their intention to use specific types and the compiler ensured the correctness of such types. This is the core idea behind generics.
+
+```
+List<Integer> list = new ArrayList<>();
 ```
 
 By adding the diamond operator <> containing the type, we narrow the specialization of this list to only *Integer* type. In other words, we specify the type held inside the list. The compiler can enforce the type at compile time. In small programs, this might seem like a trivial addition. But in larger programs, this can add significant robustness and makes the program easier to read.
 
-### Reuse of code
-
-There are situations when methods and classes do not depend on the data types on which they operate. For example, the algorithm to find an element in an array can process arrays of strings, integers or custom classes. It does not matter what the array stores: the algorithm is always the same. Yet we cannot write this algorithm as a single method, because it requires different arguments (`int[]`, `String[]`, etc).
+### An generic resizable array
 
 ```
-public class BubbleSort {
-    public static void bubbleSort(int[] v) {
-        boolean changed = true;
-        while (changed) {
-            changed = false;
-            for (int i = 0; i < v.length - 1; i++) {
-                if (v[i] > v[i + 1]) {
-                    changed = true;
-                    int tmp = v[i];
-                    v[i] = v[i + 1];
-                    v[i + 1] = tmp;
-                }
+public class EnhancedResizableArrayGeneric<T> {
+    int size;
+    T[] v;
+
+    public EnhancedResizableArrayGeneric() {
+        this.v = (T[]) new Object[4];
+        this.size = 0;
+    }
+
+    public void add(T value) {
+        if (size >= v.length) {
+            T[] tmp = (T[]) new Object[v.length * 2];
+            System.arraycopy(v, 0, tmp, 0, v.length);
+            v = tmp;
+        }
+        set(size++, value);
+    }
+
+    public void remove(int index) {
+        System.arraycopy(v, index + 1, v, index, v.length - index - 1);
+        size--;
+    }
+
+    public T get(int index) {
+        return v[index];
+    }
+
+    public void set(int index, T value) {
+        v[index] = value;
+    }
+
+    public boolean contains(T value) {
+        for (T i : v) {
+            if (i.equals(value)) {
+                return true;
             }
         }
+        return false;
+    }
+
+    public int size() {
+        return size;
     }
 }
-
 ```
 
-Since version 5, Java has supported generic programming that introduces abstraction over types. Generic methods and classes can handle different types in the same general way. A concrete type is determined only when a developer creates an object of the class or invokes the method. This approach enables us to write more abstract code and develop reusable software libraries. Let us consider it step by step using examples written in Java.
+```
+public static void main(String[] args) {
+    EnhancedResizableArrayGeneric<String> ea = new EnhancedResizableArrayGeneric<>();
+    ea.add(new String("Hello"));
+    ea.add(new Point(2, 3)); // compile-time error!
+    String s = ea.get(0);
+}
+```
+
+
 
 ### Type parameters
 
