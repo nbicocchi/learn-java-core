@@ -7,3 +7,4 @@
 * Ricci Wendy Ayewosa Maria +
 * Nicola Ricciardi ++
 * Saverio Napolitano +
+* Samuele Montanari +
