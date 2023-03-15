@@ -17,6 +17,9 @@ public class CanBalance {
         int sumFromEnd = sum(v, 1, v.length);
 
         for (int i = 1; i < v.length; i++) {
+            if (sumFromEnd < sumFromBegin) {
+                break;
+            }
             if (sumFromBegin == sumFromEnd) {
                 return true;
             }
