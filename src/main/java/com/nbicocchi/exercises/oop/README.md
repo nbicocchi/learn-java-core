@@ -407,7 +407,7 @@ BankAccountPro  --|>  AbstractBankAccount
 
 **[shape package]** Define two classes, namely Circle and Rectangle representing a circle and rectangle on a 2D plane.
 * Circle internally uses a Point object and a double value for representing its center and radius.
-* Rectangle internally uses two Point objects for representing its upper-left and bottom-right vertices.
+* Rectangle internally uses two Point objects for representing its upper-left and bottom-right vertices. The edges of the rectangle have to be parallel to the x and y axes.
 
 Both shapes must also support:
 * an id (String) for identifying the shape
