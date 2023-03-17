@@ -10,23 +10,10 @@ class EnhancedResizableArrayTest {
     @BeforeEach
     void setUp() {
         resizableArray = new EnhancedResizableArray();
-        resizableArray.add(0);
-        resizableArray.add(1);
-        resizableArray.add(2);
-        resizableArray.add(3);
-        resizableArray.add(4);
-    }
-
-    @Test
-    void add() {
-        assertArrayEquals(new int[]{0, 1, 2, 3, 4}, resizableArray.toArray());
-    }
-
-    @Test
-    void remove() {
-        resizableArray.remove(4);
-        resizableArray.remove(0);
-        assertArrayEquals(new int[]{1, 2, 3}, resizableArray.toArray());
+        resizableArray.set(0, 0);
+        resizableArray.set(1, 1);
+        resizableArray.set(2, 2);
+        resizableArray.set(3, 3);
     }
 
     @Test
@@ -34,14 +21,19 @@ class EnhancedResizableArrayTest {
         assertEquals(0, resizableArray.get(0));
         assertEquals(1, resizableArray.get(1));
         assertEquals(2, resizableArray.get(2));
+        assertEquals(3, resizableArray.get(3));
     }
 
     @Test
     void set() {
-        resizableArray.set(0, 7);
-        resizableArray.set(1, 8);
-        resizableArray.set(2, 9);
-        assertArrayEquals(new int[]{7, 8, 9, 3, 4}, resizableArray.toArray());
+        resizableArray.set(0, 0);
+        resizableArray.set(1, 1);
+        resizableArray.set(2, 4);
+        resizableArray.set(3, 9);
+        assertArrayEquals(new int[]{0, 1, 4, 9}, resizableArray.toArray());
+        resizableArray.set(4, 16);
+        assertArrayEquals(new int[]{0, 1, 4, 9, 16, 0, 0, 0}, resizableArray.toArray());
+
     }
 
     @Test
@@ -54,11 +46,11 @@ class EnhancedResizableArrayTest {
 
     @Test
     void size() {
-        assertEquals(5, resizableArray.size());
+        assertEquals(4, resizableArray.length());
     }
 
     @Test
     void toArray() {
-        assertArrayEquals(new int[]{0, 1, 2, 3, 4}, resizableArray.toArray());
+        assertArrayEquals(new int[]{0, 1, 2, 3}, resizableArray.toArray());
     }
 }

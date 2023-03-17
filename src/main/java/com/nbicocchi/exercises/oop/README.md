@@ -176,13 +176,13 @@ class BankAccount {
 **[basic.EnhancedArray]** Write a class named EnhancedArray representing an enhanced array.
 Internally, the class keeps an int array but provides its key functionalities via a set of methods:
 
-* public EnhancedArray(int capacity) creating a new array of the specified capacity. 
-* public int size() returning the capacity of the array.
+* public EnhancedArray(int capacity) creating a new array of the specified capacity.
 * public int get(int index) returning the element at the specified index.
 * public void set(int index, int value) setting the element at the specified index with value.
 * public boolean contains(int value) returning true if the specified value is contained within the array.
 * public void resetZero() setting all the elements to 0.
 * public void resetRandom() setting all the elements to random values between [0, size()].
+* public int length() returning the capacity of the underlying array.
 * public int[] toArray() returning a copy of the internal array.
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
@@ -198,7 +198,7 @@ class EnhancedArray {
   + contains(int) boolean
   + resetZero() void
   + resetRandom() void
-  + size() int
+  + length() int
   + toArray() int[]
 }
 ```
@@ -208,12 +208,10 @@ class EnhancedArray {
 **[basic.EnhancedResizableArray]** Write a class named EnhancedResizableArray representing a resizable array. It internally keeps an int array, enlarges it when needed, and provides its key functionalities via a set of methods:
 
 * public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity).
-* public void add(int value) adding an element at the end of the array.
-* public void remove(int index) removing the element at the specified index.
 * public int get(int index) returning the element at the specified index.
-* public void set(int index, int value) setting the element at the specified index with value.
+* public void set(int index, int value) setting the element at the specified index with value. If the underlying int[] capacity is smaller than index, a new int[] with a length = index * 2, is allocated.  
 * public boolean contains(int value) returning true if the specified value is contained within the array.
-* public int size() returning the number of elements contained within the array (not the array capacity!).
+* public int length() returning the capacity of the underlying array.
 * public int[] toArray() returning a copy of the internal array.
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
@@ -223,14 +221,11 @@ classDiagram
 direction BT
 class EnhancedResizableArray {
   ~ int[] v
-  ~ int size
   + EnhancedResizableArray() 
-  + add(int) void
-  + remove(int) void
   + get(int) int
   + set(int, int) void
   + contains(int) boolean
-  + size() int
+  + length() int
   + toArray() int[]
 }
 ```

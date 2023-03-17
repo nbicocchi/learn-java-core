@@ -18,14 +18,6 @@ public class EnhancedArray {
     }
 
     /**
-     * Returns the size of the array
-     * @return the size of the array
-     */
-    public int size() {
-        return v.length;
-    }
-
-    /**
      * Returns the element stored at the specified array index
      * @param index the index to be retrieved
      * @return the element stored at the specified index
@@ -80,5 +72,13 @@ public class EnhancedArray {
      */
     public int[] toArray() {
         return Arrays.copyOf(v, v.length);
+    }
+
+    /**
+     * Returns the size of the array
+     * @return the size of the array
+     */
+    public int length() {
+        return v.length;
     }
 }

@@ -7,7 +7,6 @@ import java.util.Arrays;
  */
 public class EnhancedResizableArray {
     public static final int DEFAULT_CAPACITY = 4;
-    int size;
     int[] v;
 
     /**
@@ -15,29 +14,6 @@ public class EnhancedResizableArray {
      */
     public EnhancedResizableArray() {
         this.v = new int[DEFAULT_CAPACITY];
-        this.size = 0;
-    }
-
-    /**
-     * Adds a value to the resizable array.
-     * @param value the value to be added
-     */
-    public void add(int value) {
-        if (size >= v.length) {
-            int[] tmp = new int[v.length * 2];
-            System.arraycopy(v, 0, tmp, 0, v.length);
-            v = tmp;
-        }
-        set(size++, value);
-    }
-
-    /**
-     * Removes the value at the specified index
-     * @param index the index of the value to be removed
-     */
-    public void remove(int index) {
-        System.arraycopy(v, index + 1, v, index, v.length - index - 1);
-        size--;
     }
 
     /**
@@ -55,6 +31,11 @@ public class EnhancedResizableArray {
      * @param value the value to be set
      */
     public void set(int index, int value) {
+        if (index >= v.length) {
+            int[] tmp = new int[index * 2];
+            System.arraycopy(v, 0, tmp, 0, v.length);
+            v = tmp;
+        }
         v[index] = value;
     }
 
@@ -77,14 +58,14 @@ public class EnhancedResizableArray {
      * @return the array
      */
     public int[] toArray() {
-        return Arrays.copyOf(v, size);
+        return Arrays.copyOf(v, v.length);
     }
 
     /**
      * Returns the size of the array
      * @return the size of the array
      */
-    public int size() {
-        return size;
+    public int length() {
+        return v.length;
     }
 }
