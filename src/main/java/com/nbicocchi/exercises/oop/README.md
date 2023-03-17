@@ -171,47 +171,16 @@ class BankAccount {
 }
 ```
 
---- 
-
-**[basic.EnhancedArray]** Write a class named EnhancedArray representing an enhanced array.
-Internally, the class keeps an int array but provides its key functionalities via a set of methods:
-
-* public EnhancedArray(int capacity) creating a new array of the specified capacity.
-* public int get(int index) returning the element at the specified index.
-* public void set(int index, int value) setting the element at the specified index with value.
-* public boolean contains(int value) returning true if the specified value is contained within the array.
-* public void resetZero() setting all the elements to 0.
-* public void resetRandom() setting all the elements to random values between [0, size()].
-* public int length() returning the capacity of the underlying array.
-* public int[] toArray() returning a copy of the internal array.
-
-Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
-
-```mermaid
-classDiagram
-direction BT
-class EnhancedArray {
-  ~ int[] v
-  + EnhancedArray(int) 
-  + get(int) int
-  + set(int, int) void
-  + contains(int) boolean
-  + resetZero() void
-  + resetRandom() void
-  + length() int
-  + toArray() int[]
-}
-```
-
 ---
 
 **[basic.EnhancedResizableArray]** Write a class named EnhancedResizableArray representing a resizable array. It internally keeps an int array, enlarges it when needed, and provides its key functionalities via a set of methods:
 
-* public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity).
+* public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity of 4 items).
 * public int get(int index) returning the element at the specified index.
-* public void set(int index, int value) setting the element at the specified index with value. If the underlying int[] capacity is smaller than index, a new int[] with a length = index * 2, is allocated.  
-* public boolean contains(int value) returning true if the specified value is contained within the array.
-* public int length() returning the capacity of the underlying array.
+* public void set(int index, int value) setting the element at the specified index with value. If the underlying int[] capacity is smaller than index, a new int[] (with a capacity of index * 2 items) have to be allocated. All the newly allocated elements have to be set to 0.
+* public boolean contains(int value) returning true if the specified value is contained within the internal array.
+* public void fill(int) setting all the elements of the internal array to the specified value.
+* public int length() returning the capacity of the internal array.
 * public int[] toArray() returning a copy of the internal array.
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
@@ -225,6 +194,7 @@ class EnhancedResizableArray {
   + get(int) int
   + set(int, int) void
   + contains(int) boolean
+  + fill(int) void
   + length() int
   + toArray() int[]
 }
@@ -309,11 +279,12 @@ ReverserSlow  ..|>  Reverser
 
 ---
 
-**[phonebook package]** Define two classes, namely PhoneBookArray and PhoneBookList implementing the PhoneBook interface (reported below).
+**[phonebook package]** Define two classes, namely PhoneBookArray and PhoneBookList implementing the PhoneBook interface (reported below). The three methods searchByName, searchByLastname, searchByNumber of the interface have to designed for returning the first instance found.
+* 
 * PhoneBookArray internally models the phone book as a ```Person[]```.
 * PhoneBookList internally models the phone book as a ```ArrayList<Person>```.
 
-Both implementations limit the number of persons to 256.
+Both implementations limit the number of persons to 256. 
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 

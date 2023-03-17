@@ -54,6 +54,14 @@ public class EnhancedResizableArray {
     }
 
     /**
+     * Fills the array with the specified value
+     * @param value the specified value
+     */
+    public void fill(int value) {
+        Arrays.fill(v, value);
+    }
+
+    /**
      * Returns a copy of the array of the values
      * @return the array
      */
