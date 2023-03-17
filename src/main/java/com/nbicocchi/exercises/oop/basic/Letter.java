@@ -34,10 +34,6 @@ public class Letter {
      * @return the complete letter
      */
     public String getText() {
-        StringBuilder letter = new StringBuilder();
-        letter.append("Dear ").append(to).append(":\n\n");
-        letter.append(lines);
-        letter.append("\n").append("Sincerely,\n\n").append(from);
-        return letter.toString();
+        return "Dear " + to + ":\n\n" + lines + "\n" + "Sincerely,\n\n" + from;
     }
 }
