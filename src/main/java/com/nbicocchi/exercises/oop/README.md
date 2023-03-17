@@ -428,7 +428,7 @@ class BankAccountEasy {
   + withdraw(double) double
 }
 class BankAccountPro {
-  + BankAccountPro(String, double, double, double)
+  + BankAccountPro(String, double)
   + deposit(double) void
   + withdraw(double) double
 }
