@@ -279,12 +279,12 @@ ReverserSlow  ..|>  Reverser
 
 ---
 
-**[phonebook package]** Define two classes, namely PhoneBookArray and PhoneBookList implementing the PhoneBook interface (reported below). The three methods searchByName, searchByLastname, searchByNumber of the PhoneBook interface have to designed for returning the first instance found.
+**[phonebook package]** Define two classes, namely PhoneBookArray and PhoneBookList implementing the PhoneBook interface (reported below). 
 
 * PhoneBookArray internally models the phone book as a ```Person[]```.
 * PhoneBookList internally models the phone book as a ```ArrayList<Person>```.
 
-Both implementations limit the number of persons to 256. 
+The three methods searchByName, searchByLastname, searchByNumber of the PhoneBook interface have to designed for returning the first instance found. Both implementations limit the number of persons to 256. 
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
