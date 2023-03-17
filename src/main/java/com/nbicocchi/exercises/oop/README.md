@@ -244,7 +244,7 @@ direction BT
 class Letter {
   ~ String from
   ~ String to
-  ~ ArrayList~String~ lines
+  ~ StringBuilder lines
   + Letter(String, String)
   + addLine(String) void 
   + getText() String

@@ -1,7 +1,5 @@
 package com.nbicocchi.exercises.oop.basic;
 
-import java.util.ArrayList;
-
 /**
  * A letter written in a standard format.
  * Its methods allow for setting sender, recipient and the lines of the body of the letter.
@@ -10,7 +8,7 @@ import java.util.ArrayList;
 public class Letter {
     String from;
     String to;
-    ArrayList<String> lines;
+    StringBuilder lines;
 
     /**
      * Constructs and initializes a letter with a sender and a recipient
@@ -20,7 +18,7 @@ public class Letter {
     public Letter(String from, String to) {
         this.from = from;
         this.to = to;
-        this.lines = new ArrayList<>();
+        this.lines = new StringBuilder();
     }
 
     /**
@@ -28,7 +26,7 @@ public class Letter {
      * @param line the line to be added
      */
     public void addLine(String line) {
-        lines.add(line);
+        lines.append(line).append('\n');
     }
 
     /**
@@ -36,12 +34,10 @@ public class Letter {
      * @return the complete letter
      */
     public String getText() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Dear ").append(to).append(":\n\n");
-        for (String line : lines) {
-            sb.append(line).append("\n");
-        }
-        sb.append("\n").append("Sincerely,\n\n").append(from);
-        return sb.toString();
+        StringBuilder letter = new StringBuilder();
+        letter.append("Dear ").append(to).append(":\n\n");
+        letter.append(lines);
+        letter.append("\n").append("Sincerely,\n\n").append(from);
+        return letter.toString();
     }
 }
