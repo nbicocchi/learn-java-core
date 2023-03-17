@@ -223,6 +223,7 @@ classDiagram
 direction BT
 class EnhancedResizableArray {
   ~ int[] v
+  ~ int size
   + EnhancedResizableArray() 
   + add(int) void
   + remove(int) void
