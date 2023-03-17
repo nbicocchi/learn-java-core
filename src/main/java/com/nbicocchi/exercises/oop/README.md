@@ -213,7 +213,7 @@ class EnhancedArray {
 * public int get(int index) returning the element at the specified index.
 * public void set(int index, int value) setting the element at the specified index with value.
 * public boolean contains(int value) returning true if the specified value is contained within the array.
-* public int size() returning the capacity of the array.
+* public int size() returning the number of elements contained within the array (not the array capacity!).
 * public int[] toArray() returning a copy of the internal array.
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
