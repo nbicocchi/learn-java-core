@@ -126,9 +126,11 @@ Internally, the class uses a Point[] for representing the vertices of the polygo
 The class provides the following methods:
 * public Polygon(Point[] vertices) creating the polygon.
 * public int getVerticesCount() returning the number of vertices.
-* public double getPerimeter() returning the perimeter of the polygon.
-* public double getArea() returning the area of the polygon.
+* public double getPerimeter() returning the perimeter of the polygon. 
+* public double getArea() returning the area of the polygon. 
 * public String toString().
+
+Refer to [this guide](https://arachnoid.com/area_irregular_polygon/index.html) for computing perimeter and area.
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 

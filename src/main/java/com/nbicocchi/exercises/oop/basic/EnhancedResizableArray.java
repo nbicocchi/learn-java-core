@@ -3,7 +3,7 @@ package com.nbicocchi.exercises.oop.basic;
 import java.util.Arrays;
 
 /**
- * An enhanced int array providing methods for its manipulation instead of the [] notation.
+ * A resizable int array providing methods for its manipulation instead of the [] notation.
  */
 public class EnhancedResizableArray {
     public static final int DEFAULT_CAPACITY = 4;
@@ -26,7 +26,9 @@ public class EnhancedResizableArray {
     }
 
     /**
-     * Sets the element stored at the specified array index with a new value
+     * Sets the element stored at the specified array index with a new value.
+     * If the underlying int[] capacity is smaller than index, a new int[] (with a capacity of index * 2 items) have to be allocated.
+     * All the newly allocated elements have to be set to 0.
      * @param index the index to be set
      * @param value the value to be set
      */
