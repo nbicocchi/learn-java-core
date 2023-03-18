@@ -45,7 +45,13 @@ class EnhancedResizableArrayTest {
     }
 
     @Test
-    void size() {
+    void fill() {
+        resizableArray.fill(17);
+        assertArrayEquals(new int[]{17, 17, 17, 17}, resizableArray.toArray());
+    }
+
+    @Test
+    void length() {
         assertEquals(4, resizableArray.length());
     }
 
