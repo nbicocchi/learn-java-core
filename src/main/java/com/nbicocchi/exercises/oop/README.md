@@ -546,8 +546,9 @@ ListPoly  --|>  AbstractPoly
 * Dvds can be modelled with a title (String), a publication year (int), and a length in minutes (int).
 * People can be modelled with an id (String), a name (String), and a lastname (String).
 * Rents can be modelled with an item (a book or a dvd), a person, and two dates representing the beginning and the end of the rent.
+* The library itself can be modelled as a `List<Rent>` and provides methods for adding/removing rents a method *getExpired()* returning all the late rents.
 
-Provide and implementation of all the needed classes, and write a method *getExpired()* returning all the late rents.
+Provide and implementation of all the needed classes.
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
