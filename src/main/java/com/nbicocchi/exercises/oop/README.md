@@ -191,6 +191,7 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 classDiagram
 direction BT
 class EnhancedResizableArray {
+  + static final int DEFAULT_CAPACITY = 4;
   ~ int[] v
   + EnhancedResizableArray() 
   + get(int) int
