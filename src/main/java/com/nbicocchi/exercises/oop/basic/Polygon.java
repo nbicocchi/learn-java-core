@@ -28,6 +28,7 @@ public class Polygon {
     /**
      * Returns the perimeter of the polygon
      * @return the perimeter of the polygon
+     * @see "https://arachnoid.com/area_irregular_polygon/index.html"
      */
     public double getPerimeter() {
         double perimeter = 0.0;
