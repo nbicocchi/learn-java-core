@@ -267,11 +267,9 @@ class Reverser {
   + reverse(String) String
 }
 class ReverserFast {
-  + ReverserFast() 
   + reverse(String) String
 }
 class ReverserSlow {
-  + ReverserSlow() 
   + reverse(String) String
 }
 
