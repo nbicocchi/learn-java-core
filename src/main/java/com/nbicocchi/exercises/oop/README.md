@@ -424,16 +424,16 @@ classDiagram
 direction BT
 class AbstractShape {
   <<abstract>>
-  ~ Color color
+  ~ String color
   ~ String id
   + AbstractShape(String, Color) 
   + getArea() double
-  + getColor() Color
+  + getColor() String
   + getId() String
   + getPerimeter() double
   + move(Point) void
   + resize(double) void
-  + setColor(Color) void
+  + setColor(String) void
   + setId(String) void
 }
 class Circle {
