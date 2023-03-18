@@ -316,7 +316,7 @@ class PhoneBook {
   + searchByNumber(String) Person
 }
 class PhoneBookArray {
-  + int MAX_PERSONS
+  + static final int MAX_PERSONS = 256
   ~ Person[] phoneBook
   + PhoneBookArray() 
   + addPerson(Person) void
@@ -326,7 +326,7 @@ class PhoneBookArray {
   + searchByNumber(String) Person
 }
 class PhoneBookList {
-  + int MAX_PERSONS
+  + static final int MAX_PERSONS = 256
   ~ ArrayList~Person~ phoneBook
   + PhoneBookList() 
   + addPerson(Person) void
