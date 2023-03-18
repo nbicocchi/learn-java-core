@@ -6,57 +6,61 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EnhancedResizableArrayTest {
-    EnhancedResizableArray resizableArray;
+    EnhancedResizableArray enhancedArray;
     @BeforeEach
     void setUp() {
-        resizableArray = new EnhancedResizableArray();
-        resizableArray.set(0, 0);
-        resizableArray.set(1, 1);
-        resizableArray.set(2, 2);
-        resizableArray.set(3, 3);
+        enhancedArray = new EnhancedResizableArray();
+        enhancedArray.set(0, 0);
+        enhancedArray.set(1, 1);
+        enhancedArray.set(2, 2);
+        enhancedArray.set(3, 3);
     }
 
     @Test
     void get() {
-        assertEquals(0, resizableArray.get(0));
-        assertEquals(1, resizableArray.get(1));
-        assertEquals(2, resizableArray.get(2));
-        assertEquals(3, resizableArray.get(3));
+        assertEquals(0, enhancedArray.get(0));
+        assertEquals(1, enhancedArray.get(1));
+        assertEquals(2, enhancedArray.get(2));
+        assertEquals(3, enhancedArray.get(3));
     }
 
     @Test
     void set() {
-        resizableArray.set(0, 0);
-        resizableArray.set(1, 1);
-        resizableArray.set(2, 4);
-        resizableArray.set(3, 9);
-        assertArrayEquals(new int[]{0, 1, 4, 9}, resizableArray.toArray());
-        resizableArray.set(4, 16);
-        assertArrayEquals(new int[]{0, 1, 4, 9, 16, 0, 0, 0}, resizableArray.toArray());
+        enhancedArray.set(0, 0);
+        enhancedArray.set(1, 1);
+        enhancedArray.set(2, 4);
+        enhancedArray.set(3, 9);
+        assertArrayEquals(new int[]{0, 1, 4, 9}, enhancedArray.toArray());
+        enhancedArray.set(5, 25);
+        assertArrayEquals(new int[]{0, 1, 4, 9, 0, 25, 0, 0, 0, 0}, enhancedArray.toArray());
 
     }
 
     @Test
     void contains() {
-        assertTrue(resizableArray.contains(0));
-        assertTrue(resizableArray.contains(1));
-        assertTrue(resizableArray.contains(2));
-        assertFalse(resizableArray.contains(7));
+        enhancedArray.set(5, 25);
+        assertFalse(enhancedArray.contains(7));
+        assertTrue(enhancedArray.contains(0));
+        assertTrue(enhancedArray.contains(1));
+        assertTrue(enhancedArray.contains(25));
     }
 
     @Test
     void fill() {
-        resizableArray.fill(17);
-        assertArrayEquals(new int[]{17, 17, 17, 17}, resizableArray.toArray());
+        enhancedArray.fill(17);
+        assertArrayEquals(new int[]{17, 17, 17, 17}, enhancedArray.toArray());
     }
 
     @Test
     void length() {
-        assertEquals(4, resizableArray.length());
+        enhancedArray.set(5, 25);
+        assertEquals(10, enhancedArray.length());
+        enhancedArray.set(10, 100);
+        assertEquals(20, enhancedArray.length());
     }
 
     @Test
     void toArray() {
-        assertArrayEquals(new int[]{0, 1, 2, 3}, resizableArray.toArray());
+        assertArrayEquals(new int[]{0, 1, 2, 3}, enhancedArray.toArray());
     }
 }
