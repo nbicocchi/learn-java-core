@@ -13,7 +13,7 @@ public abstract class AbstractShape implements Computable, Movable, Resizable {
      */
     public AbstractShape(String id, String color) {
         this.id = id;
-        this.color = color;
+        setColor(color);
     }
 
     public String getId() {
@@ -29,6 +29,9 @@ public abstract class AbstractShape implements Computable, Movable, Resizable {
     }
 
     public void setColor(String color) {
+        if (!color.matches("^#[0-9a-fA-F]{6}")) {
+            throw new IllegalArgumentException("Invalid RGB Color (#RRGGBB)");
+        }
         this.color = color;
     }
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CircleTest {
     public static final double DELTA = 1e-06;
@@ -14,6 +14,16 @@ class CircleTest {
     @BeforeEach
     void setUp() {
         circle = new Circle("s01", "#104050", new Point(10, 10), 10);
+    }
+
+    @Test
+    void setColor() {
+        assertDoesNotThrow(() -> circle.setColor("#000000"));
+        assertDoesNotThrow(() -> circle.setColor("#123456"));
+        assertDoesNotThrow(() -> circle.setColor("#ABCDEF"));
+        assertThrows(IllegalArgumentException.class, () -> circle.setColor("#ABCDEFF"));
+        assertThrows(IllegalArgumentException.class, () -> circle.setColor("#ABCDEG"));
+        assertThrows(IllegalArgumentException.class, () -> circle.setColor("#ABCDE"));
     }
 
     @Test

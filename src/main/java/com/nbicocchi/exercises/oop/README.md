@@ -412,7 +412,7 @@ BankAccountPro  --|>  AbstractBankAccount
 
 Both shapes must also support:
 * an id (String) for identifying the shape
-* a color (String) for coloring the shape
+* a color (String) for coloring the shape (RGB Web Standard #RRGGBB, see https://en.wikipedia.org/wiki/Web_colors)
 * the capability of moving on the 2D plane (move() method)
 * the capability of resizing (resize() method)
 * the capability of computing area and perimeter (getArea(), getPerimeter() methods)

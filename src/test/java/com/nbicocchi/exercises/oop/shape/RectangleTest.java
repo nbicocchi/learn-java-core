@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RectangleTest {
     public static final double DELTA = 1e-06;
@@ -13,7 +14,17 @@ class RectangleTest {
 
     @BeforeEach
     void setUp() {
-        rectangle = new Rectangle("s01", "#104050", new Point(0, 10), new Point(10, 0));
+        rectangle = new Rectangle("s01", "#AA40FF", new Point(0, 10), new Point(10, 0));
+    }
+
+    @Test
+    void setColor() {
+        assertDoesNotThrow(() -> rectangle.setColor("#000000"));
+        assertDoesNotThrow(() -> rectangle.setColor("#123456"));
+        assertDoesNotThrow(() -> rectangle.setColor("#ABCDEF"));
+        assertThrows(IllegalArgumentException.class, () -> rectangle.setColor("#ABCDEFF"));
+        assertThrows(IllegalArgumentException.class, () -> rectangle.setColor("#ABCDEG"));
+        assertThrows(IllegalArgumentException.class, () -> rectangle.setColor("#ABCDE"));
     }
 
     @Test
