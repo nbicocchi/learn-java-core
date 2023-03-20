@@ -426,7 +426,7 @@ class AbstractShape {
   <<abstract>>
   ~ String color
   ~ String id
-  + AbstractShape(String, Color) 
+  + AbstractShape(String, String) 
   + getArea() double
   + getColor() String
   + getId() String
@@ -439,7 +439,7 @@ class AbstractShape {
 class Circle {
   ~ Point center
   ~ double radius
-  + Circle(String, Color, Point, double) 
+  + Circle(String, String, Point, double) 
   + getArea() double
   + getCenter() Point
   + getPerimeter() double
@@ -453,7 +453,7 @@ class Circle {
 class Rectangle {
   ~ Point bottomRight
   ~ Point upperLeft
-  + Rectangle(String, Color, Point, Point) 
+  + Rectangle(String, String, Point, Point) 
   + getArea() double
   + getBottomRight() Point
   + getPerimeter() double
