@@ -1,4 +1,4 @@
-# Generic programming
+# Generic Data Structures (Generics)
 
 ### Reuse of code
 There are situations when methods and classes do not depend on the data types on which they operate. For example, the algorithm to find a specific element in an array can process arrays of strings, integers or custom classes. It does not matter what the array stores: the algorithm is always the same. 
