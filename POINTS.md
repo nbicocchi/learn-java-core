@@ -3,6 +3,7 @@
 * Federico Lo Presti +
 * Falco Giuseppe ++
 * Leoni Matteo ++
+* Veroni Matteo +
 * Garagnani Filippo ++
 * Ricci Wendy Ayewosa Maria +
 * Nicola Ricciardi ++
