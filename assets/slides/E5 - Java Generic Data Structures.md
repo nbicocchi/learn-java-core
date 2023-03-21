@@ -1,34 +1,19 @@
 # Generic programming
 
 ### Reuse of code
-There are situations when methods and classes do not depend on the data types on which they operate. For example, the algorithm to find a specific element in an array can process arrays of strings, integers or custom classes. It does not matter what the array stores: the algorithm is always the same. Yet we cannot write this algorithm as a single method, because it requires different arguments (`int[]`, `String[]`, etc).
+There are situations when methods and classes do not depend on the data types on which they operate. For example, the algorithm to find a specific element in an array can process arrays of strings, integers or custom classes. It does not matter what the array stores: the algorithm is always the same. 
 
 Since version 5, Java has supported generic programming that introduces abstraction over types. Generic methods and classes can handle different types in the same general way. A concrete type is determined only when a developer creates an object of the class or invokes the method. 
 
 
-### An int-only resizable array
+### An int-based resizable array
 ```
 public class EnhancedResizableArray {
-    int size;
+    public static final int DEFAULT_CAPACITY = 4;
     int[] v;
-    
+
     public EnhancedResizableArray() {
-        this.v = new int[8];
-        this.size = 0;
-    }
-
-    public void add(int value) {
-        if (size >= v.length) {
-            int[] tmp = new int[v.length * 2];
-            System.arraycopy(v, 0, tmp, 0, v.length);
-            v = tmp;
-        }
-        set(size++, value);
-    }
-
-    public void remove(int index) {
-        System.arraycopy(v, index + 1, v, index, v.length - index - 1);
-        size--;
+        this.v = new int[DEFAULT_CAPACITY];
     }
 
     public int get(int index) {
@@ -36,41 +21,49 @@ public class EnhancedResizableArray {
     }
 
     public void set(int index, int value) {
+        if (index >= v.length) {
+            int[] tmp = new int[index * 2];
+            System.arraycopy(v, 0, tmp, 0, v.length);
+            v = tmp;
+        }
         v[index] = value;
     }
-    
-    public int size() {
-        return size;
+
+    public boolean contains(int value) {
+        for (int i : v) {
+            if (i == value) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void fill(int value) {
+        Arrays.fill(v, value);
+    }
+
+    public int[] toArray() {
+        return Arrays.copyOf(v, v.length);
+    }
+
+    public int length() {
+        return v.length;
     }
 }
 ```
 
 Writing a slightly different version of the EnhancedResizableArray class for each possible type it could manage (in this case, int) would represent a massive violation of the **DRY (Don't Repeat Yourself)** principle.
 
-### An Object resizable array
+### An Object-based resizable array
+To mitigate this issue we could use an Object[]!
 
 ```
 public class EnhancedResizableArrayObject {
-    int size;
+    public static final int DEFAULT_CAPACITY = 4;
     Object[] v;
 
     public EnhancedResizableArrayObject() {
-        this.v = new Object[4];
-        this.size = 0;
-    }
-
-    public void add(Object value) {
-        if (size >= v.length) {
-            Object[] tmp = new Object[v.length * 2];
-            System.arraycopy(v, 0, tmp, 0, v.length);
-            v = tmp;
-        }
-        set(size++, value);
-    }
-
-    public void remove(int index) {
-        System.arraycopy(v, index + 1, v, index, v.length - index - 1);
-        size--;
+        this.v = new Object[DEFAULT_CAPACITY];
     }
 
     public Object get(int index) {
@@ -78,6 +71,11 @@ public class EnhancedResizableArrayObject {
     }
 
     public void set(int index, Object value) {
+        if (index >= v.length) {
+            Object[] tmp = new Object[index * 2];
+            System.arraycopy(v, 0, tmp, 0, v.length);
+            v = tmp;
+        }
         v[index] = value;
     }
 
@@ -90,40 +88,48 @@ public class EnhancedResizableArrayObject {
         return false;
     }
 
-    public int size() {
-        return size;
+    public void fill(Object value) {
+        Arrays.fill(v, value);
+    }
+
+    public Object[] toArray() {
+        return Arrays.copyOf(v, v.length);
+    }
+
+    public int length() {
+        return v.length;
     }
 }
+
 ```
 
 Now we are talking! We can store every kind of Object within the same container!
 
-
 ```
 public static void main(String[] args) {
-    EnhancedResizableArrayObject earray = new EnhancedResizableArrayObject();
-    earray.add(new String("Hello"));
-    earray.add(new String("World"));
-    String s = ea.get(0);
+    EnhancedResizableArrayObject resizableArrayObject = new EnhancedResizableArrayObject();
+    resizableArrayObject.set(0, new String("Hello"));
+    resizableArrayObject.set(1, new String("World"));
+    String s = resizableArrayObject.get(0);
 }
 ```
 
-Surprisingly, the compiler will complain about the last line. It doesn't know what data type is returned. The compiler will require an explicit casting:
+Surprisingly, the compiler complains about the last line. It doesn't know what data type is returned. The compiler requires an explicit casting:
 
 ```
-String s = (String) earray.get(0);
+String s = (String) resizableArrayObject.get(0);
 ```
 
 There is no contract that could guarantee that the return type of the list is a *String*. The array could hold any object. It can only guarantee that it is an *Object* and therefore requires an explicit cast to ensure that the type is safe.
 
-This cast can be annoying, is also clutters our code, and It can cause type-related runtime errors if a programmer makes a mistake with the explicit casting (e.g., forget to use instanceof).
+This cast can be annoying, it also clutters our code, and it can cause type-related runtime errors if a programmer makes a mistake with the explicit casting (e.g., forget to use instanceof).
 
 ```
 public static void main(String[] args) {
-    EnhancedResizableArrayObject ea = new EnhancedResizableArrayObject();
-    ea.add(new String("Hello"));
-    ea.add(new Point(2, 3));
-    String s = (String) ea.get(1); // run-time error!
+    EnhancedResizableArrayObject resizableArrayObject = new EnhancedResizableArrayObject();
+    resizableArrayObject.set(0, new String("Hello"));
+    resizableArrayObject.set(1, new Point(2,3));
+    String s = (String)resizableArrayObject.get(1); // java.lang.ClassCastException
 }
 ```
 
@@ -135,30 +141,14 @@ List<Integer> list = new ArrayList<>();
 
 By adding the diamond operator <> containing the type, we narrow the specialization of this list to only *Integer* type. In other words, we specify the type held inside the list. The compiler can enforce the type at compile time. In small programs, this might seem like a trivial addition. But in larger programs, this can add significant robustness and makes the program easier to read.
 
-### An generic resizable array
-
+### A generic resizable array
 ```
 public class EnhancedResizableArrayGeneric<T> {
-    int size;
+    public static final int DEFAULT_CAPACITY = 4;
     T[] v;
 
     public EnhancedResizableArrayGeneric() {
-        this.v = (T[]) new Object[4];
-        this.size = 0;
-    }
-
-    public void add(T value) {
-        if (size >= v.length) {
-            T[] tmp = (T[]) new Object[v.length * 2];
-            System.arraycopy(v, 0, tmp, 0, v.length);
-            v = tmp;
-        }
-        set(size++, value);
-    }
-
-    public void remove(int index) {
-        System.arraycopy(v, index + 1, v, index, v.length - index - 1);
-        size--;
+        this.v = (T[])new Object[DEFAULT_CAPACITY];
     }
 
     public T get(int index) {
@@ -166,6 +156,11 @@ public class EnhancedResizableArrayGeneric<T> {
     }
 
     public void set(int index, T value) {
+        if (index >= v.length) {
+            T[] tmp = (T[])new Object[index * 2];
+            System.arraycopy(v, 0, tmp, 0, v.length);
+            v = tmp;
+        }
         v[index] = value;
     }
 
@@ -178,26 +173,41 @@ public class EnhancedResizableArrayGeneric<T> {
         return false;
     }
 
-    public int size() {
-        return size;
+    public void fill(T value) {
+        Arrays.fill(v, value);
+    }
+
+    public T[] toArray() {
+        return Arrays.copyOf(v, v.length);
+    }
+
+    public int length() {
+        return v.length;
     }
 }
 ```
 
 ```
 public static void main(String[] args) {
-    EnhancedResizableArrayGeneric<String> ea = new EnhancedResizableArrayGeneric<>();
-    ea.add(new String("Hello"));
-    ea.add(new Point(2, 3)); // compile-time error!
-    String s = ea.get(0);
+    EnhancedResizableArrayGeneric<String> resizableArrayGeneric = new EnhancedResizableArrayGeneric<>();
+    resizableArrayGeneric.set(0, new String("Hello"));
+    resizableArrayGeneric.set(1, new Point(2,3));   // Compile-time error!
+    String s = (String)resizableArrayGeneric.get(1);
 }
 ```
 
+We traded a run-time error for a compile-time error! A nice deal! 
+
+
+---
 
 
 ### Type parameters
-
 A generic type is a generic class (or interface) that is parameterized over types. To declare a generic class, we need to declare a class with the type parameter section delimited by angle brackets `<` `>` following the class name.
+
+A class can declare one or more type parameters and use them inside the class body as types for fields, method arguments, return values, and local variables. In this case, the class does not know the concrete type on which it operates. The concrete type must be specified when creating instances of the class. This approach allows you to write classes and methods that can process many different types in the same way.
+
+Remember that only a reference type (an array, a standard class, a custom class) can be used as a concrete type for generics. This means that instead of primitive types, we use wrapper classes such as `Integer`, `Double`, `Boolean`, and so on when creating an object of a generic class.
 
 In the following example, the class `GenericType` has a single type parameter named `T`. We assume that the type `T` is "some type" and write the class body regardless of the concrete type.
 
@@ -247,6 +257,8 @@ GenericType<Integer> obj1 = new GenericType<>(10);
 GenericType<String> obj2 = new GenericType<>("abc");
 ```
 
+### Multiple type parameters
+
 A class can have any number of type parameters. For example, the following class has two. Most generic classes have just one or two type parameters.
 
 ```
@@ -290,24 +302,44 @@ The most commonly used type parameter names are:
 -   `V` -- Value
 -   `N` -- Number
 
+```
+interface List<E> {
+    boolean add(E e);
+    ...
+}
+
+interface Map<K,V> {
+    Set<K> keySet();
+    Collection<V> values();
+    ...
+}
+
+interface Function<T,R> {
+    R apply(T t);
+}
+
+interface BiFunction<T,U,R> {
+    R apply(T t, U u);
+}
+
+interface ToIntBiFunction<T,U> {
+    int apply(T t, U u);
+}
+```
+
+
 ### Creating objects of generic classes
 
 To create an object of a generic class (standard or custom), we need to specify the type argument following the type name. Java 7 made it possible to replace the type arguments required to invoke the constructor of a generic class with an empty set of type arguments, as long as the compiler can *infer* the type arguments from the context.
 
-```
-GenericType<Integer> obj1 = new GenericType<>(10);
-
-GenericType<String> obj2 = new GenericType<>("abc");
-```
-
-The pair of angle brackets `<>` is informally called the diamond operator.
-
 After we have created an object with a specified type argument, we can invoke methods of the class that take or return the type parameter:
 
 ```
+GenericType<Integer> obj1 = new GenericType<>(10);
 Integer number = obj1.get(); // 10
 System.out.println(obj1.set(20));    // prints the number 20
 
+GenericType<String> obj2 = new GenericType<>("abc");
 String string = obj2.get();  // "abc"
 System.out.println(obj2.set("def")); // prints the string "def"
 ```
@@ -324,168 +356,15 @@ For example:
 Map<Integer, String> map = new HashMap<>();
 ```
 
-
-### Custom generic array
-
-As a more complicated example, let us consider the following class which represents a generic immutable array. It has one field to store items of type `T`, a constructor to set items, a method to get an item by its index, and another method to get the length of the internal array. The class is immutable because it does not provide methods to modify the items array.
-
-```
-public class ImmutableArray<T> {
-
-    private final T[] items;
-
-    public ImmutableArray(T[] items) {
-        this.items = items.clone();
-    }
-
-    public T get(int index) {
-        return items[index];
-    }
-
-    public int length() {
-        return items.length;
-    }
-}
-```
-
-This class shows that a generic class can have methods (like length) that do not use the parameter type at all.
-
-The following code creates an instance of `ImmutableArray` to store three strings and then output the items to the standard output.
-
-```
-ImmutableArray<String> stringArray = new ImmutableArray<>(new String[] {"item1", "item2", "item3"});
-
-for (int i = 0; i < stringArray.length(); i++) {
-    System.out.print(stringArray.get(i) + " ");
-}
-```
-
-It is possible to parameterize `ImmutableArray` with any reference type, including arrays, standard classes, or your own classes.
-
-```
-ImmutableArray<Double> doubleArray = new ImmutableArray<>(new Double[] {1.03, 2.04});
-```
-
-
-### Conclusion
-
-A class can declare one or more type parameters and use them inside the class body as types for fields, method arguments, return values, and local variables. In this case, the class does not know the concrete type on which it operates. The concrete type must be specified when creating instances of the class. This approach allows you to write classes and methods that can process many different types in the same way.
-
-Remember that only a reference type (an array, a standard class, a custom class) can be used as a concrete type for generics. This means that instead of primitive types, we use wrapper classes such as `Integer`, `Double`, `Boolean`, and so on when creating an object of a generic class.
-
-
 ---
 
+### Generic methods
 
-## Generics and Object
-
-As you know, **generics** enable us to parameterize types when defining classes (or interfaces) and methods. Parameterized types make it possible to reuse the same code while processing different concrete types.
-
-### Reusing code with generics
-
-Let's consider a generic class named `GenericType` that stores a value of "some type".
-
-```
-class GenericType<T> {
-
-    private T t;
-
-    public GenericType(T t) {
-        this.t = t;
-    }
-
-    public T get() {
-        return t;
-    }
-}
-```
-
-It is possible to create an object with a concrete type (e.g., `String`):
-
-```
-GenericType<String> instance1 = new GenericType<>("abc");
-String str = instance1.get();
-```
-
-We can also create instances with other types (`Integer`, `Character`) and then invoke the `get` method to access the internal field. In this manner, generics allow us to use the same class and methods for processing different types.
-
-### Reusing code with Object
-
-But there is another way to reuse code. If we declare a field of type `Object`, we can assign a value of any reference type to it. This approach was widely used before the introduction of generics inJava 5.
-
-The following class demonstrates this concept:
-
-```
-class NonGenericClass {
-
-    private Object val;
-
-    public NonGenericClass(Object val) {
-        this.val = val;
-    }
-
-    public Object get() {
-        return val;
-    }
-}
-```
-
-Now we can create an instance of this class with the same string as in the previous example (see `GenericType`).
-
-```
-NonGenericClass instance2 = new NonGenericClass("abc");
-```
-
-It is also possible to create an instance by passing in a value of type `Integer`, `Character`, or any other reference type.
-
-Using the `Object` class this way allows us to reuse the same class to store different data types.
-
-### The advantage of generics: from run-time to compile-time
-
-After an invocation of the `get()` method we obtain an `Object`, not a `String` or an `Integer`. We cannot get a string directly from the method.
-
-```
-NonGenericClass instance2 = new NonGenericClass("abc");
-String str = instance2.get(); // Compile-time error: Incompatible types
-```
-
-To get the string back, we must perform an explicit typecast to the `String` class.
-
-```
-String str = (String) instance2.get(); // "abc"
-```
-
-This works because a string was passed into `instance2`. But what if the instance does not store a string? If this is the case, the code throws an exception. Here is an example:
-
-```
-NonGenericClass instance3 = new NonGenericClass(123);
-String str = (String) instance3.get(); // throws java.lang.ClassCastException
-```
-
-Now we can see the main advantage of generics over the `Object` class. Because there is no need to perform an explicit typecast, we never get a runtime exception. If we do something wrong, we can see it at compile time.
-
-```
-GenericType<String> instance4 = new GenericType<>("abc");
-
-String str = instance4.get(); // There is no typecasting here
-Integer num = instance4.get(); // It does not compile
-```
-
-A compile-time error will be detected by the programmer, not a user of the program. Because generics let the compiler take care of typecasting, generics are both safer and more flexible compared to the `Object` class.
-
-
----
-
-
-## Generic methods
-
-In previous topics we have discussed generic classes and how one can use them. But Java also has generic methods that can be very useful. Generic methods allow type parameters to be passed to a method and used in its logic. They also allow a type parameter to be the return type.
+Generic methods allow type parameters to be passed to a method and used in its logic. They also allow a type parameter to be the return type.
 
 All methods can declare their own type parameters, regardless of the class they belong to. This means that a non-generic class can contain generic methods.
 
 Static methods cannot use type parameters of their class! Type parameters of the class these methods belong to can only be used in instance methods. If you want to use type parameters in a static method, declare this method's own type parameters.
-
-Let's take a look at examples of generic static and instance methods and find out how they are used.
 
 ### Generic static methods
 
@@ -598,21 +477,13 @@ class SimpleClass<T> {
 
 The method receives arguments of both the class's type (`T`) and the method's own type (`U`). Because `T` was already declared in the class header, the method only has to declare the generic type `U`. The method returns the variable of type `T`.
 
-### Conclusion
-
-Generic methods are a must-have for programmers since they allow us to restrict the scope of type parameters to a single function. Type parameters in generic methods can be used as return types or as types for arguments passed to the function. Both static and instance methods can be generic.
-
-
 ---
 
+### Type bounds
 
-## Type bounds
+Let's now consider an example that will reveal another aspect of generics. Imagine that we have a generic `Storage<T>` class that can contain objects of any class. But there are some situations in which we want to restrict these objects. We can say, for example, that the storage has to be able to contain only books. In these types of situations, we should use type bounds. 
 
-In previous articles, we have mentioned that generics can accept any type of parameter and make it possible to reuse some code. Let's now consider an example that will reveal another aspect of generics. Imagine that we have a generic `Storage<T>` class that can contain objects of any class. But there are some situations in which we want to restrict these objects. We can say, for example, that the storage has to be able to contain only books. In these types of situations, we should use type bounds.
-
-### Usage
-
-Let us take a closer look at type bounds. Consider this code:
+Consider this code:
 
 ```
 class Storage<T> {
@@ -650,9 +521,7 @@ The first two lines will compile without problems. The third one, however, will 
 
 Note that `extends` can mean not only an extension of a certain class but also an implementation of an interface. Generally speaking, this word is used as a replacement for an extension of normal classes, not generic classes. Trying to extend a generic class (for example, `Storage<Brochures> extends Storage<Books>`) will lead to an error.
 
-### Principles
-
-Type bounding involves two keywords, "extends" and "super", each with their own rules regulating their utilization. In this topic, however, we deal with the most common use of type bounds: setting an upper bound with the "extends" keyword. We will learn more about the principles underlying these keywords in the "Wildcards" topic.
+### Multiple bounds
 
 Note that under the hood, every type variable declared as a type parameter has a bound. If no bound is declared, `Object` is the bound. For this reason,
 
@@ -665,8 +534,6 @@ is equivalent to
 ```
 class SomeClass<T extends Object> {...}
 ```
-
-### Multiple bounds
 
 A type variable may have a single type bound:
 
@@ -688,6 +555,212 @@ Note: if `T` has a bound that is a class, this class must be specified first! Ot
 <T extends B & C & A & ...> //an error if A is a class
 ```
 
-### Conclusion
+```
+// an example from java.util.Collections
+static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
+```
 
-Type bounds are widely used to restrict type parameters. The most common use of type bounds is to set upper bounds with the `extends` keyword. Certain situations, however, require the use of wildcards, a topic closely related to type bounds. You will learn about wildcards in the next article.
+### Constraining Type Parameters (extends)
+It is often necessary to specify what types can be used in a generic class or method. Consider a generic method that finds the average of the values in an array list of objects. How can you compute averages when you know nothing about the element type? You need to have a mechanism for measuring the elements. 
+
+```
+public interface Measurable {
+    double getMeasure();
+}
+```
+
+We can constrain the type of the elements, requiring that the type implement the Measurable type. In Java, this is achieved by adding the clause extends Measurable after the type parameter:
+
+```
+public static <E extends Measurable> double average(ArrayList<E> objects)
+```
+
+This means, "E extends or implements Measurable”. In this situation, we say that E is a subtype of the Measurable type. Here is the complete average method:
+
+```
+public static <E extends Measurable> double average(ArrayList<E> objects) {
+    if (objects.size() == 0) { 
+        return 0; 
+    } 
+    double sum = 0;
+    for (E obj : objects) {
+        sum = sum + obj.getMeasure(); 
+    }
+    return sum / objects.size(); 
+}
+```
+
+Now consider the task of finding the minimum in an array list. We can return the element with the smallest measure. We will use the Comparable interface type.
+The Comparable interface is itself a generic type. The type parameter specifies the type of the parameter variable of the compareTo method:
+
+```
+public interface Comparable<T> {
+    int compareTo(T other);
+}
+```
+
+For example, String implements Comparable<String>. You can compare strings with other strings, but not with objects of different classes.
+If the array list has elements of type E, then we want to require that E implements Comparable<E>. Here is the method:
+
+```
+public static <E extends Comparable<E>> E min(ArrayList<E> objects) {
+    E smallest = objects.get(0);
+    for (int i = 1; i < objects.size(); i++) {
+        E obj = objects.get(i);
+        if (obj.compareTo(smallest) < 0) {
+            smallest = obj;
+        } 
+    }
+    return smallest; 
+}
+```
+
+### Constraining Type Parameters (super)
+
+```
+public static <E extends Comparable<E>> E min(ArrayList<E> objects) // compiles but too restrictive!
+```
+
+However, this bound is too restrictive. Suppose the BankAccount class implements Comparable<BankAccount>. Then the subclass SavingsAccount also implements Comparable<BankAccount> and not Comparable<SavingsAccount>. If you want to use the min method with a SavingsAccount array list, then the type parameter of the Comparable interface should be any supertype of the array list’s element type:
+
+```
+// from java.util.Collections
+static <T extends Object & Comparable<? super T>> T min(Collection<? extends T> coll)
+static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
+```
+
+### Josh Bloch’s Rule
+* Use <? extends T> when the generic instance need to read values
+* Use <? super T> when the generic instance need to write values
+
+```
+public interface Shop<T> {
+    void buy(T item);
+    T sell();
+    void buy(Collection<? extends T> cart);
+    void sell(Collection<? super T> cart, int n);
+}
+```
+
+### Wildcard Types (Summary)
+* Wildcard with upper bound *? extends B* -> Any subtype of B (B included)
+* Wildcard with lower bound *? super B* -> Any supertype of B (B included)
+* Unbounded wildcard *?* -> Any type
+
+### Two ways of writing
+Use wildcards whenever constraints among parameters and return values are absent
+
+```
+// from java.util.Collections
+public static void reverse(List<?> list) {}
+public static void shuffle(List<?> list, Random rnd) {}
+public static void swap(List<?> list, int i, int j) {}
+```
+
+Use <T> whenever constraints among parameters and return values are present
+
+```
+// from java.util.Collections
+public static <T> void sort(List<T> list, Comparator<? super T> c) {}
+public static <T> void fill(List<? super T> list, T obj) {}
+public static <T> void copy(List<? super T> dest, List<? extends T> src) {}
+```
+
+### Type Erasure
+Because generic types are a fairly recent addition to the Java language, the virtual machine that executes Java programs does not work with generic classes or methods. Instead, type parameters are “erased”, that is, they are replaced with ordinary Java types. Each type parameter is replaced with its bound, or with Object if it is not bounded.
+
+```
+public class Pair<K, V> {
+    K first;
+    V second;
+
+    public Pair(K first, V second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public K getFirst() {
+        return first;
+    }
+
+    public void setFirst(K first) {
+        this.first = first;
+    }
+
+    public V getSecond() {
+        return second;
+    }
+
+    public void setSecond(V second) {
+        this.second = second;
+    }
+}
+```
+
+```
+public class Pair {
+    Object first;
+    Object second;
+
+    public Pair(Object first, Object second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public Object getFirst() {
+        return first;
+    }
+
+    public void setFirst(Object first) {
+        this.first = first;
+    }
+
+    public Object getSecond() {
+        return second;
+    }
+
+    public void setSecond(Object second) {
+        this.second = second;
+    }
+}
+```
+
+As you can see, the type parameters T and S have been replaced by Object. The result is an ordinary class.
+The same process is applied to generic methods. Consider this method:
+
+```
+public static <E extends Measurable> E min(E[] objects) {
+    E smallest = objects[0];
+    for (int i = 1; i < objects.length; i++) {
+        E obj = objects[i];
+        if (obj.getMeasure() < smallest.getMeasure()) {
+            smallest = obj;
+        } 
+    }
+    return smallest; 
+}
+```
+
+```
+public static Measurable min(Measurable[] objects) {
+    Measurable smallest = objects[0];
+    for (int i = 1; i < objects.length; i++) {
+        Measurable obj = objects[i];
+        if (obj.getMeasure() < smallest.getMeasure()) {
+            smallest = obj;
+        } 
+    }
+    return smallest; 
+}
+```
+
+### Wisdom pills
+*If you ask the business managers, they’ll often say that it’s more important for the software system to work than being easy to be modified. Developers, in turn, often go along with this attitude. But it’s the wrong attitude. I can prove that it is wrong with the simple logical tool of examining the extremes.*
+
+*If you give me a program that works perfectly but is impossible to change, then it won’t work when the requirements change, and I won’t be able to make it work. Therefore the program will become useless.*
+
+*If you give me a program that does not work but is easy to change, then I can make it work, and keep it working as requirements change. Therefore the program will remain continually useful.*
+
+Clean Architecture, Robert C. Martin
+
+
