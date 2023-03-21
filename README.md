@@ -110,6 +110,8 @@
 
 > Read: Big Java (Chapter 18)
 
+> [Notes](https://github.com/nbicocchi/java-core/blob/main/assets/slides/E5%20-%20Java%20Generic%20Data%20Structures.md)
+
 > Lab: [com.nbicocchi.exercises.generics](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/generics)
 
 * Generic classes and type parameters
