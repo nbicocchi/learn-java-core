@@ -1,12 +1,17 @@
 # Generic Data Structures (Generics)
 
 ### Reuse of code
-There are situations when methods and classes do not depend on the data types on which they operate. For example, the algorithm to find a specific element in an array can process arrays of strings, integers or custom classes. It does not matter what the array stores: the algorithm is always the same. 
+There are situations when methods and classes do not depend on the data types on which they operate. For example, the algorithm to find a specific element in an array can process arrays of strings, integers or custom classes (java.util.Collections.sort()). **It does not matter what the array stores: the algorithm is always the same**. 
 
 Since version 5, Java has supported generic programming that introduces abstraction over types. Generic methods and classes can handle different types in the same general way. A concrete type is determined only when a developer creates an object of the class or invokes the method. 
 
 
 ### An int-based resizable array
+
+Let's start from an enhanced array for integers.
+
+Writing a slightly different version of the EnhancedResizableArray class for each possible type it could manage would represent a massive violation of the **DRY (Don't Repeat Yourself)** principle.
+
 ```
 public class EnhancedResizableArray {
     public static final int DEFAULT_CAPACITY = 4;
@@ -52,10 +57,8 @@ public class EnhancedResizableArray {
 }
 ```
 
-Writing a slightly different version of the EnhancedResizableArray class for each possible type it could manage (in this case, int) would represent a massive violation of the **DRY (Don't Repeat Yourself)** principle.
-
 ### An Object-based resizable array
-To mitigate this issue we could use an Object[]!
+To mitigate this issue we could use Object[] instead of int[]!
 
 ```
 public class EnhancedResizableArrayObject {
@@ -114,13 +117,13 @@ public static void main(String[] args) {
 }
 ```
 
-Surprisingly, the compiler complains about the last line. It doesn't know what data type is returned. The compiler requires an explicit casting:
+However, the compiler complains about the last line. It doesn't know what data type is returned. The compiler requires an explicit casting:
 
 ```
 String s = (String) resizableArrayObject.get(0);
 ```
 
-There is no contract that could guarantee that the return type of the list is a *String*. The array could hold any object. It can only guarantee that it is an *Object* and therefore requires an explicit cast to ensure that the type is safe.
+There is no contract that could guarantee that the return type of the list is a *String*. The array could hold any object. It can only guarantee that it is an *Object* and therefore requires an explicit cast.
 
 This cast can be annoying, it also clutters our code, and it can cause type-related runtime errors if a programmer makes a mistake with the explicit casting (e.g., forget to use instanceof).
 
@@ -139,7 +142,9 @@ It would be much easier if programmers could express their intention to use spec
 List<Integer> list = new ArrayList<>();
 ```
 
-By adding the diamond operator <> containing the type, we narrow the specialization of this list to only *Integer* type. In other words, we specify the type held inside the list. The compiler can enforce the type at compile time. In small programs, this might seem like a trivial addition. But in larger programs, this can add significant robustness and makes the program easier to read.
+By adding the diamond operator `<` `>` containing the type, we specify the type held inside the list. The compiler can enforce the type at compile time. 
+
+In small programs, this might seem like a trivial addition. But in larger programs, this can add significant robustness and makes the program easier to read.
 
 ### A generic resizable array
 ```
@@ -196,18 +201,16 @@ public static void main(String[] args) {
 }
 ```
 
-We traded a run-time error for a compile-time error! A nice deal! 
-
+We traded a run-time error for a compile-time error! Nice! 
 
 ---
-
 
 ### Type parameters
 A generic type is a generic class (or interface) that is parameterized over types. To declare a generic class, we need to declare a class with the type parameter section delimited by angle brackets `<` `>` following the class name.
 
-A class can declare one or more type parameters and use them inside the class body as types for fields, method arguments, return values, and local variables. In this case, the class does not know the concrete type on which it operates. The concrete type must be specified when creating instances of the class. This approach allows you to write classes and methods that can process many different types in the same way.
+A class can declare one or more type parameters and use them inside the class body as types for fields, method arguments, return values, and local variables. 
 
-Remember that only a reference type (an array, a standard class, a custom class) can be used as a concrete type for generics. This means that instead of primitive types, we use wrapper classes such as `Integer`, `Double`, `Boolean`, and so on when creating an object of a generic class.
+Remember that only a reference type (an array, a standard class, a custom class) can be used as a concrete type for generics. This means that instead of primitive types, we use wrapper classes such as `Integer`, `Double`, `Boolean`, and so on.
 
 In the following example, the class `GenericType` has a single type parameter named `T`. We assume that the type `T` is "some type" and write the class body regardless of the concrete type.
 
@@ -258,39 +261,37 @@ GenericType<String> obj2 = new GenericType<>("abc");
 ```
 
 ### Multiple type parameters
-
 A class can have any number of type parameters. For example, the following class has two. Most generic classes have just one or two type parameters.
 
 ```
 public class Pair<K, V> {
-    K first;
-    V second;
+    K key;
+    V value;
 
-    public Pair(K first, V second) {
-        this.first = first;
-        this.second = second;
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
     }
 
-    public K getFirst() {
-        return first;
+    public K getKey() {
+        return key;
     }
 
-    public void setFirst(K first) {
-        this.first = first;
+    public void setKey(K key) {
+        this.key = key;
     }
 
-    public V getSecond() {
-        return second;
+    public V getValue() {
+        return value;
     }
 
-    public void setSecond(V second) {
-        this.second = second;
+    public void setValue(V value) {
+        this.value = value;
     }
 }
 ```
 
 ### The naming convention for type parameters
-
 There is a naming convention that restricts type parameter name choices to single uppercase letters. Without this convention, it would be difficult to tell the difference between a type variable and an ordinary class name.
 
 The most commonly used type parameter names are:
@@ -301,6 +302,8 @@ The most commonly used type parameter names are:
 -   `K` -- Key
 -   `V` -- Value
 -   `N` -- Number
+
+Some examples from the Java API:
 
 ```
 interface List<E> {
@@ -329,10 +332,9 @@ interface ToIntBiFunction<T,U> {
 
 
 ### Creating objects of generic classes
+To create an object of a generic class, we need to specify the type argument following the type name. 
 
-To create an object of a generic class (standard or custom), we need to specify the type argument following the type name. Java 7 made it possible to replace the type arguments required to invoke the constructor of a generic class with an empty set of type arguments, as long as the compiler can *infer* the type arguments from the context.
-
-After we have created an object with a specified type argument, we can invoke methods of the class that take or return the type parameter:
+Java 7 made it possible to replace the type arguments required to invoke the constructor of a generic class with an empty set of type arguments, as long as the compiler can *infer* the type arguments from the context.
 
 ```
 GenericType<Integer> obj1 = new GenericType<>(10);
@@ -344,13 +346,7 @@ String string = obj2.get();  // "abc"
 System.out.println(obj2.set("def")); // prints the string "def"
 ```
 
-If a class has multiple type parameters, we need to specify all of them when creating instances:
-
-```
-GenericType<Type1, Type2, ..., TypeN> obj = new GenericType<>(...);
-```
-
-For example:
+If a class has multiple type parameters, we need to specify all of them when creating instances. For example:
 
 ```
 Map<Integer, String> map = new HashMap<>();
@@ -359,15 +355,13 @@ Map<Integer, String> map = new HashMap<>();
 ---
 
 ### Generic methods
-
 Generic methods allow type parameters to be passed to a method and used in its logic. They also allow a type parameter to be the return type.
 
 All methods can declare their own type parameters, regardless of the class they belong to. This means that a non-generic class can contain generic methods.
 
-Static methods cannot use type parameters of their class! Type parameters of the class these methods belong to can only be used in instance methods. If you want to use type parameters in a static method, declare this method's own type parameters.
+**Static methods cannot use type parameters of their class!** Type parameters of the class these methods belong to can only be used in instance methods. If you want to use type parameters in a static method, declare this method's own type parameters.
 
 ### Generic static methods
-
 The following static method is declared as generic. The declaration of the generic type `T` surrounded by angle brackets allows us to use this type in the method. We remind you that it can belong to a generic or a non-generic class because it does not matter for generic methods.
 
 ```
