@@ -27,4 +27,14 @@ abstract class PhoneBookTestBase {
         assertArrayEquals(new Person[]{}, pb.searchByLastname("Manzoni"));
     }
 
+    @Test
+    void searchByNameAndLastname() {
+        assertArrayEquals(new Person[]{new Person("Nicola", "Bicocchi", "34567")},
+                pb.searchByNameAndLastname("Nicola", "Bicocchi"));
+        pb.addPerson(new Person("Nicola", "Bicocchi", "12346"));
+        assertArrayEquals(new Person[]{new Person("Nicola", "Bicocchi", "34567"), new Person("Nicola", "Bicocchi", "12346")},
+                pb.searchByNameAndLastname("Nicola", "Bicocchi"));
+        assertArrayEquals(new Person[]{}, pb.searchByNameAndLastname("Alessandro", "Manzoni"));
+    }
+
 }
