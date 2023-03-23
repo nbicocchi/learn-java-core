@@ -285,7 +285,7 @@ ReverserSlow  ..|>  Reverser
 * PhoneBookArray internally models the phone book as a ```Person[]```.
 * PhoneBookList internally models the phone book as a ```ArrayList<Person>```.
 
-The three methods searchByName, searchByLastname, searchByNumber of the PhoneBook interface have to designed for returning the first instance found. Both implementations limit the number of persons to 256. 
+The methods searchByLastname, searchByNameAndLastname of the PhoneBook interface have to return all the instances matching the search criteria. Both implementations limit the number of persons to 256 and do not accept duplicate elements. 
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
@@ -297,43 +297,40 @@ class Person {
   ~ String name
   ~ String phone
   + Person(String, String, String) 
-  + equals(Object) boolean
   + getLastname() String
   + getName() String
   + getPhone() String
-  + hashCode() int
   + setLastname(String) void
   + setName(String) void
   + setPhone(String) void
+  + equals(Object) boolean
+  + hashCode() int
   + toString() String
 }
 class PhoneBook {
   <<Interface>>
-  + addPerson(Person) void
-  + removePerson(Person) void
-  + searchByLastname(String) Person
-  + searchByName(String) Person
-  + searchByNumber(String) Person
+  + addPerson(Person) boolean
+  + removePerson(Person) boolean
+  + searchByLastname(String) Person[]
+  + searchByNameAndLastname(String) Person[]
 }
 class PhoneBookArray {
   + static final int MAX_PERSONS = 256
   ~ Person[] phoneBook
   + PhoneBookArray() 
-  + addPerson(Person) void
-  + removePerson(Person) void
-  + searchByLastname(String) Person
-  + searchByName(String) Person
-  + searchByNumber(String) Person
+  + addPerson(Person) boolean
+  + removePerson(Person) boolean
+  + searchByLastname(String) Person[]
+  + searchByNameAndLastname(String) Person[]
 }
 class PhoneBookList {
   + static final int MAX_PERSONS = 256
   ~ ArrayList~Person~ phoneBook
   + PhoneBookList() 
-  + addPerson(Person) void
-  + removePerson(Person) void
-  + searchByLastname(String) Person
-  + searchByName(String) Person
-  + searchByNumber(String) Person
+  + addPerson(Person) boolean
+  + removePerson(Person) boolean
+  + searchByLastname(String) Person[]
+  + searchByNameAndLastname(String) Person[]
 }
 PhoneBookArray  ..|>  PhoneBook 
 PhoneBookList  ..|>  PhoneBook 

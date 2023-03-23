@@ -17,45 +17,40 @@ public class PhoneBookList implements PhoneBook {
     }
 
     @Override
-    public void addPerson(Person p) {
+    public boolean addPerson(Person p) {
+        if (phoneBook.contains(p)) {
+            return false;
+        }
         if (phoneBook.size() >= MAX_PERSONS) {
-            throw new IllegalArgumentException("Phonebook is full");
+            return false;
         }
-        phoneBook.add(p);
+        return phoneBook.add(p);
     }
 
     @Override
-    public void removePerson(Person person) {
-        phoneBook.remove(person);
+    public boolean removePerson(Person person) {
+        return phoneBook.remove(person);
     }
 
     @Override
-    public Person searchByName(String name) {
-        for (Person p : phoneBook) {
-            if (p.getName().equals(name)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public Person searchByLastname(String lastname) {
+    public Person[] searchByLastname(String lastname) {
+        ArrayList<Person> tmp = new ArrayList<>();
         for (Person p : phoneBook) {
             if (p.getLastname().equals(lastname)) {
-                return p;
+                tmp.add(p);
             }
         }
-        return null;
+        return tmp.toArray(new Person[]{});
     }
 
     @Override
-    public Person searchByNumber(String phone) {
+    public Person[] searchByNameAndLastname(String name, String lastname) {
+        ArrayList<Person> tmp = new ArrayList<>();
         for (Person p : phoneBook) {
-            if (p.getPhone().equals(phone)) {
-                return p;
+            if (p.getLastname().equals(lastname) && p.getName().equals(name)) {
+                tmp.add(p);
             }
         }
-        return null;
+        return tmp.toArray(new Person[]{});
     }
 }
