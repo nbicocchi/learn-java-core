@@ -204,7 +204,7 @@ public static List<String> lineToWords(String line) {
 ## Java Exercises (Maps)
 
 **[MorseCode]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation.
-You have to use a ```Map<Characher, String>>``` as a conversion table (dot='.', dash='_').
+You have to use a ```Map<Characher, String>``` as a conversion table (dot='.', dash='_').
 
 Examples:
 
