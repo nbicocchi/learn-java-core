@@ -321,7 +321,7 @@ class PhoneBookArray {
   + addPerson(Person) boolean
   + removePerson(Person) boolean
   + searchByLastname(String) Person[]
-  + searchByNameAndLastname(String) Person[]
+  + searchByNameAndLastname(String, String) Person[]
 }
 class PhoneBookList {
   + static final int MAX_PERSONS = 256
@@ -330,7 +330,7 @@ class PhoneBookList {
   + addPerson(Person) boolean
   + removePerson(Person) boolean
   + searchByLastname(String) Person[]
-  + searchByNameAndLastname(String) Person[]
+  + searchByNameAndLastname(String, String) Person[]
 }
 PhoneBookArray  ..|>  PhoneBook 
 PhoneBookList  ..|>  PhoneBook 
