@@ -90,8 +90,7 @@ where:
 
 ## Java Exercises (Sets)
 
-**[Intersection.java]** Write a method returning the intersection of two given sets of Integers (without using library
-functions).
+**[Intersection.java]** Write a method returning the intersection of two given sets of Integers (without using the Set.retainAll() method).
 
 Examples:
 
