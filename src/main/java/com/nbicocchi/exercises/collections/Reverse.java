@@ -4,14 +4,10 @@ import java.util.*;
 
 public class Reverse {
     public static List<String> reverse(List<String> sentence) {
-        List<String> dst = new ArrayList<>();
-        Deque<String> stack = new ArrayDeque<>();
+        Deque<String> stack = new LinkedList<>();
         for (String word : sentence) {
-            stack.addLast(word);
+            stack.addFisrt(word);
         }
-        while (stack.size() > 0) {
-            dst.add(stack.pollLast());
-        }
-        return dst;
+        return List.of(String.valueOf(stack));
     }
 }
