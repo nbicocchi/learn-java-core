@@ -25,7 +25,7 @@ where:
 public static class Account {
     double amount;
     double interestRate;
-    LocalDateTime duePayment;
+    LocalDate duePayment;
     ...
 }
 ```
