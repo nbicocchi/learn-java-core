@@ -6,6 +6,7 @@
 * Veroni Matteo +
 * Garagnani Filippo ++
 * Ricci Wendy Ayewosa Maria +
-* Nicola Ricciardi ++
+* Nicola Ricciardi +++
 * Saverio Napolitano +
 * Samuele Montanari +
+* Simone Serafini +

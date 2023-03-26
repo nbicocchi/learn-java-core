@@ -6,7 +6,7 @@ import java.util.Set;
 public class Eratosthenes {
     public static Set<Integer> eratosthenes(int n) {
         Set<Integer> primes = new HashSet<>();
-        for (int i = 1; i <= n; i++) {
+        for (int i = 2; i <= n; i++) {
             primes.add(i);
         }
 
