@@ -203,13 +203,15 @@ public static List<String> lineToWords(String line) {
 
 ## Java Exercises (Maps)
 
-**[MorseCode]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation.
-You have to use a ```Map<Characher, String>``` as a conversion table (dot='.', dash='_').
+**[MorseCode]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation. The 26 lowercase letters of the english alphabet have to be supported. 
+
+You have to use a ```Map<Characher, String>``` as a conversion table (dot='.', dash='_'). If the input String contains characters not supported by the conversion table, IllegalArgumentException have to be thrown.
 
 Examples:
 
 * morseCode("hello") -> `.... . ._.. ._.. ___`
 * morseCode("world") -> `.__ ___ ._. ._.. _..`
+* morseCode("w0rld") -> IllegalArgumentException
 
 The method has the following prototype:
 

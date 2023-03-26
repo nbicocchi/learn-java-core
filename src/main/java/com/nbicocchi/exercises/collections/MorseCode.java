@@ -1,6 +1,7 @@
 package com.nbicocchi.exercises.collections;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class MorseCode {
 
@@ -35,17 +36,23 @@ public class MorseCode {
         return conversionMap;
     }
 
-    public static String morseCode(String string) {
-        if (string == null || string.isEmpty()) {
-            return "";
+    public static void checkString(Set<Character> allowedChars, String string) {
+        for (char c : string.toLowerCase().toCharArray()) {
+            if (!allowedChars.contains(c)) {
+                throw new IllegalArgumentException("String contains unsupported char");
+            }
         }
+    }
 
+    public static String morseCode(String string) {
         HashMap<Character, String> conversionMap = conversionMap();
+        checkString(conversionMap.keySet(), string);
+
         StringBuilder builder = new StringBuilder();
         for (char c : string.toLowerCase().toCharArray()) {
             builder.append(conversionMap.get(c)).append(" ");
         }
-        // removes the last space before returning
-        return builder.substring(0, builder.length() - 1);
+        // trim() eventually removes the last space
+        return builder.toString().trim();
     }
 }
