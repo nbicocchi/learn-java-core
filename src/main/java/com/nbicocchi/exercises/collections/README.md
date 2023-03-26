@@ -208,8 +208,8 @@ You have to use a ```Map<Characher, String>``` as a conversion table (dot='.', d
 
 Examples:
 
-* morseCode("hello") -> `".... . ._.. ._.. ___"`
-* morseCode("world") -> `".__ ___ ._. ._.. _.."`
+* morseCode("hello") -> `.... . ._.. ._.. ___`
+* morseCode("world") -> `.__ ___ ._. ._.. _..`
 
 The method has the following prototype:
 
