@@ -493,7 +493,8 @@ As prescribed by the Poly interface, both implementations must provide:
 * a method *coefficients()* returning a double[] containing all the coefficients.
 * a method *degree()* returning the degree of the polynomial (the number of coefficients - 1).
 * a method *derivative()* returning the derivative polynomial.
-* a method *equals(Object o)* for being comparable with other Poly objects.
+
+Both implementations must also redefine *equals()* and *hashCode()* in order to be compared with other Poly objects.
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.
 
