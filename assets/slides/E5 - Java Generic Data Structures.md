@@ -125,7 +125,7 @@ String s = (String) resizableArrayObject.get(0);
 
 There is no contract that could guarantee that the return type of the list is a *String*. The array could hold any object. It can only guarantee that it is an *Object* and therefore requires an explicit cast.
 
-This cast can be annoying, it also clutters our code, and it can cause type-related runtime errors if a programmer makes a mistake with the explicit casting (e.g., forget to use instanceof).
+This cast can be annoying, it clutters our code, and can cause type-related runtime errors if a programmer makes a mistake with the explicit casting (e.g., forget to use instanceof).
 
 ```
 public static void main(String[] args) {
@@ -206,7 +206,7 @@ We traded a run-time error for a compile-time error! Nice!
 ---
 
 ### Type parameters
-A generic type is a generic class (or interface) that is parameterized over types. To declare a generic class, we need to declare a class with the type parameter section delimited by angle brackets `<` `>` following the class name.
+A generic type is a class (or interface) that is parameterized over types. To declare a generic class, we need to declare a class with the type parameter section delimited by angle brackets `<` `>` following the class name.
 
 A class can declare one or more type parameters and use them inside the class body as types for fields, method arguments, return values, and local variables. 
 
@@ -252,12 +252,14 @@ After being declared, a type parameter can be used inside the class body as an o
 -   a *constructor* argument type
 -   an *instance method* argument and return type
 
-The behavior of both instance methods does not depend on the concrete type of `T`; it can take/return a string or a number in the same way.
+Both *get()* and *set()* methods do not depend on the concrete type of `T`. They can take/return a string or a number in the same way.
 
 ```
 GenericType<Integer> obj1 = new GenericType<>(10);
+Integer i = obj1.get();
 
 GenericType<String> obj2 = new GenericType<>("abc");
+String s = obj2.get();
 ```
 
 ### Multiple type parameters
@@ -292,7 +294,7 @@ public class Pair<K, V> {
 ```
 
 ### The naming convention for type parameters
-There is a naming convention that restricts type parameter name choices to single uppercase letters. Without this convention, it would be difficult to tell the difference between a type variable and an ordinary class name.
+There is a naming convention that restricts type parameter names to **single uppercase letters**. Without this convention, it would be difficult to tell the difference between a type variable and an ordinary class name.
 
 The most commonly used type parameter names are:
 
@@ -308,6 +310,7 @@ Some examples from the Java API:
 ```
 interface List<E> {
     boolean add(E e);
+    E remove(int index);
     ...
 }
 
@@ -337,13 +340,7 @@ To create an object of a generic class, we need to specify the type argument fol
 Java 7 made it possible to replace the type arguments required to invoke the constructor of a generic class with an empty set of type arguments, as long as the compiler can *infer* the type arguments from the context.
 
 ```
-GenericType<Integer> obj1 = new GenericType<>(10);
-Integer number = obj1.get(); // 10
-System.out.println(obj1.set(20));    // prints the number 20
-
-GenericType<String> obj2 = new GenericType<>("abc");
-String string = obj2.get();  // "abc"
-System.out.println(obj2.set("def")); // prints the string "def"
+List<Person> persons = new ArrayList<>();
 ```
 
 If a class has multiple type parameters, we need to specify all of them when creating instances. For example:
@@ -354,15 +351,10 @@ Map<Integer, String> map = new HashMap<>();
 
 ---
 
-### Generic methods
-Generic methods allow type parameters to be passed to a method and used in its logic. They also allow a type parameter to be the return type.
-
-All methods can declare their own type parameters, regardless of the class they belong to. This means that a non-generic class can contain generic methods.
-
+### Generic static methods
 **Static methods cannot use type parameters of their class!** Type parameters of the class these methods belong to can only be used in instance methods. If you want to use type parameters in a static method, declare this method's own type parameters.
 
-### Generic static methods
-The following static method is declared as generic. The declaration of the generic type `T` surrounded by angle brackets allows us to use this type in the method. We remind you that it can belong to a generic or a non-generic class because it does not matter for generic methods.
+The declaration of the generic type `T` surrounded by angle brackets allows us to use this type in the method. We remind you that it can belong to a generic or a non-generic class because it does not matter for generic methods.
 
 ```
 public static <T> T doSomething(T t) {
@@ -378,8 +370,6 @@ public static <E> int length(E[] array) {
 }
 ```
 
-A generic method's body is declared like that of any other method.
-
 We can pass an array of integers to the method we defined earlier and find its length:
 
 ```
@@ -394,9 +384,7 @@ String[] stringArray = { "a", "b", "c", "d" };
 len = length(stringArray);
 ```
 
-Recall that type parameters can represent only reference types, not primitive types.
-
-As another example of a generic method, take a look at one that prints the elements of a generic array.
+As another example, take a look at one that prints the elements of a generic array.
 
 ```
 public static <E> void print(E[] array) {
@@ -406,21 +394,6 @@ public static <E> void print(E[] array) {
     System.out.println();
 }
 ```
-
-Let's create an array and print it using this method.
-
-```
-Character[] characters = { 'a', 'b', 'c' };
-print(characters);
-```
-
-The output will be:
-
-```
-a b c
-```
-
-In this example, we used the `void` keyword in the declaration of the method because the method does not return anything.
 
 Just like in generic classes, the type parameter section can contain multiple type parameters separated by commas.
 
@@ -469,7 +442,18 @@ class SimpleClass<T> {
 }
 ```
 
-The method receives arguments of both the class's type (`T`) and the method's own type (`U`). Because `T` was already declared in the class header, the method only has to declare the generic type `U`. The method returns the variable of type `T`.
+The method receives arguments of both the class's type (`T`) and the method's own type (`U`). Because `T` was already declared in the class header, the method only has to declare the generic type `U`. The method returns a variable of type `T`.
+
+As another example, consider to method *toArray()* defined within the java.util.List interface.
+
+```
+interface List<E> {
+    boolean add(E e);
+    E remove(int index);
+    <T> T[] toArray(T[] a);
+    ...
+}
+```
 
 ---
 
@@ -482,7 +466,7 @@ Consider this code:
 ```
 class Storage<T> {
     private T nameOfElements;
-    //other methods
+    // other methods
 }
 ```
 
@@ -511,7 +495,7 @@ Storage<Brochures> storage2 = new Storage<>(); //no problem
 Storage<Computers> storage3 = new Storage<>(); //a compile-time error
 ```
 
-The first two lines will compile without problems. The third one, however, will return an error: `Type parameter 'Computers' is not within its bound; should extend Books.` Since this is a compile-time error, we catch this problem before it can appear in a real application. For this reason, type bounds are safe to use.
+The third line returns an error: `Type parameter 'Computers' is not within its bound; should extend Books.` Since this is a compile-time error, we catch this problem before it can appear in a real application. For this reason, type bounds are safe to use.
 
 Note that `extends` can mean not only an extension of a certain class but also an implementation of an interface. Generally speaking, this word is used as a replacement for an extension of normal classes, not generic classes. Trying to extend a generic class (for example, `Storage<Brochures> extends Storage<Books>`) will lead to an error.
 
@@ -543,19 +527,9 @@ or have multiple bounds:
 
 The first type bound ("A") can be a class or an interface. The rest of the type bounds ("B" onwards) must be interfaces.
 
-Note: if `T` has a bound that is a class, this class must be specified first! Otherwise, a compile-time error arises:
-
-```
-<T extends B & C & A & ...> //an error if A is a class
-```
-
-```
-// an example from java.util.Collections
-static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
-```
 
 ### Constraining Type Parameters (extends)
-It is often necessary to specify what types can be used in a generic class or method. Consider a generic method that finds the average of the values in an array list of objects. How can you compute averages when you know nothing about the element type? You need to have a mechanism for measuring the elements. 
+It is often necessary to specify what types can be used in a generic class or method. Consider a generic method that finds the average of the values in an ArrayList of objects. How can you compute averages when you know nothing about the element type? You need to have a mechanism for measuring the elements. 
 
 ```
 public interface Measurable {
@@ -584,9 +558,10 @@ public static <E extends Measurable> double average(ArrayList<E> objects) {
 }
 ```
 
-Now consider the task of finding the minimum in an array list. We can return the element with the smallest measure. We will use the Comparable interface type.
-The Comparable interface is itself a generic type. The type parameter specifies the type of the parameter variable of the compareTo method:
+Now consider the task of finding the minimum in an ArrayList. We can return the element with the smallest measure. 
 
+We will use the Comparable interface type (instead of Measurable).
+The Comparable interface is another generic type:
 ```
 public interface Comparable<T> {
     int compareTo(T other);
@@ -594,7 +569,7 @@ public interface Comparable<T> {
 ```
 
 For example, String implements Comparable<String>. You can compare strings with other strings, but not with objects of different classes.
-If the array list has elements of type E, then we want to require that E implements Comparable<E>. Here is the method:
+If the ArrayList has elements of type E, then we want to require that E implements Comparable<E>:
 
 ```
 public static <E extends Comparable<E>> E min(ArrayList<E> objects) {
@@ -615,7 +590,7 @@ public static <E extends Comparable<E>> E min(ArrayList<E> objects) {
 public static <E extends Comparable<E>> E min(ArrayList<E> objects) // compiles but too restrictive!
 ```
 
-However, this bound is too restrictive. Suppose the BankAccount class implements Comparable<BankAccount>. Then the subclass SavingsAccount also implements Comparable<BankAccount> and not Comparable<SavingsAccount>. If you want to use the min method with a SavingsAccount array list, then the type parameter of the Comparable interface should be any supertype of the array list’s element type:
+However, this bound is too restrictive. Suppose the BankAccount class implements Comparable<BankAccount>. Then the subclass SavingsAccount also implements `Comparable<BankAccount>` and not `Comparable<SavingsAccount>`. If you want to use the min method with a SavingsAccount list, then the type parameter of the Comparable interface should be any supertype of the array list’s element type:
 
 ```
 // from java.util.Collections
