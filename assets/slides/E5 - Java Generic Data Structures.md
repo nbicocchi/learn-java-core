@@ -636,65 +636,67 @@ public static <T> void copy(List<? super T> dest, List<? extends T> src) {}
 ```
 
 ### Type Erasure
-Because generic types are a fairly recent addition to the Java language, the virtual machine that executes Java programs does not work with generic classes or methods. Instead, type parameters are “erased”, that is, they are replaced with ordinary Java types. Each type parameter is replaced with its bound, or with Object if it is not bounded.
+Because generic types are a fairly recent addition to the Java language, the virtual machine that executes Java programs does not work with generic classes or methods. Instead, type parameters are “erased”, that is, they are replaced with ordinary Java types. **Each type parameter is replaced with its bound, or with Object if it is not bounded.**
 
 ```
 public class Pair<K, V> {
-    K first;
-    V second;
+    K key;
+    V value;
 
-    public Pair(K first, V second) {
-        this.first = first;
-        this.second = second;
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
     }
 
-    public K getFirst() {
-        return first;
+    public K getKey() {
+        return key;
     }
 
-    public void setFirst(K first) {
-        this.first = first;
+    public void setKey(K key) {
+        this.key = key;
     }
 
-    public V getSecond() {
-        return second;
+    public V getValue() {
+        return value;
     }
 
-    public void setSecond(V second) {
-        this.second = second;
+    public void setValue(V value) {
+        this.value = value;
     }
 }
 ```
+After type erasure, it becomes:
 
 ```
 public class Pair {
-    Object first;
-    Object second;
+    Object key;
+    Object value;
 
-    public Pair(Object first, Object second) {
-        this.first = first;
-        this.second = second;
+    public Pair(Object key, Object value) {
+        this.key = key;
+        this.value = value;
     }
 
-    public Object getFirst() {
-        return first;
+    public Object getKey() {
+        return key;
     }
 
-    public void setFirst(Object first) {
-        this.first = first;
+    public void setKey(Object key) {
+        this.key = key;
     }
 
-    public Object getSecond() {
-        return second;
+    public Object getValue() {
+        return value;
     }
 
-    public void setSecond(Object second) {
-        this.second = second;
+    public void setValue(Object value) {
+        this.value = value;
     }
 }
 ```
 
-As you can see, the type parameters T and S have been replaced by Object. The result is an ordinary class.
+As you can see, the type parameters K and V have been replaced by Object. The result is an ordinary class.
+
 The same process is applied to generic methods. Consider this method:
 
 ```
