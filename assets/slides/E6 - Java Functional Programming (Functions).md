@@ -35,6 +35,8 @@ The imperative programming paradigm allows you to describe a program in terms of
   * Passing objects to functions (**value parametrization**)
   * Object-oriented programmers retort that in actual business environments object-oriented programming scales out well in terms of developers and, as an industry, we know how to do it.
 
+![](images/behaviour-parametrization.png)
+
 ### Lambda expressions
 By **lambda expression** (or just "a lambda"), we mean a **function** that isn't bound to its name (an anonymous function) but can be assigned to a variable.
 
@@ -260,9 +262,6 @@ result = filterStudents(students,
     s -> System.out.println(s));
 ```
 
-### Behaviour parametrization map
-![](images/behaviour-parametrization.png)
-
 ### java.util.function package
 The most simple and general case of a lambda is a functional interface with a method that receives one value and returns another. This function of a single argument is represented by the Function interface, which is parameterized by the types of its argument and a return value:
 
@@ -484,14 +483,14 @@ This function can take a `String` argument and return an `Integer` result. To te
 ```
 // it returns the length of a string
 Function<String, Integer> f = s -> s.length();
-printResultOfLambda(f, "Happy new year 3000!"); // it prints 20
+printResultOfLambda(f, "Happy new year 3000!"); // prints 20
 ```
 
 You can also pass a lambda expression to the method directly without an intermediate reference:
 
 ```
 // passing without a reference
-printResultOfLambda(s -> s.length()); // the result is the same: 20
+printResultOfLambda(s -> s.length(), "Happy new year 3000!"); // prints 20
 ```
 
 We can present our function as an object and pass it to a method as its argument, if the method takes an object of that type. Then, inside the method, the given function will be invoked.
@@ -683,23 +682,19 @@ Function<String, Person> personGenerator = name -> new Person(name);
 
 ### Summarizing: implementing functional interfaces
 
-There are several ways to implement a functional interface. As you know from the previous OOP theory, it is impossible to directly create an instance of an interface. Then what should we do?
-
-First of all, we should implement the interface to create a concrete class. Then, create an instance of this concrete class. The main requirement is to implement the `apply` method to get a concrete behavior.
-
-Let's consider three ways to do it.
+There are several ways to implement a functional interface. As you know from the previous OOP theory, it is impossible to directly create an instance of an interface. Let's consider three ways to do it.
 
 **1) Anonymous classes.**
 
-Of course, like any other interface, a functional interface can be implemented by using an anonymous class or regular inheritance.
+A functional interface can be implemented by using an anonymous class or regular inheritance.
 
 To implement a functional interface let's create an anonymous class and override the `apply` method. The overridden method calculates the square of a given value:
 
 ```
-Func<Long, Long> square = new Func<Long, Long>() {
+Function<Long, Long> square = new Function<Long, Long>() {
     @Override
-    public Long apply(Long val) {
-        return val * val;
+    public Long apply(Long value) {
+        return value * value;
     }
 };
 
@@ -714,15 +709,13 @@ We won't give you an example of a regular class because it has the same (and eve
 
 A functional interface can also be implemented and instantiated by using a lambda expression.
 
-Here is a lambda expression that has the same behavior as the anonymous class above:
-
 ```
-Func<Long, Long> square = val -> val * val; // the lambda expression
+Func<Long, Long> square = value -> value * value;
 
 long val = square.apply(10L); // the result is 100L
 ```
 
-The type of the functional interface (left) and the type of the lambda (right) are the same from a semantic perspective. Parameters and the result of a lambda expression correspond to the parameters and the result of **a single abstract method **of the functional interface.
+The type of the functional interface (left) and the type of the lambda (right) are the same from a semantic perspective. Parameters and the result of a lambda expression correspond to the parameters and the result of **a single abstract method of the functional interface**.
 
 The code that creates a lambda expression may look as if the object of an interface type is created. As you know, it is impossible. Actually, the Java compiler automatically creates a special intermediate class that implements the functional interface and then creates an object of this class rather than an object of an interface type. The name of such a class may look like `Functions$$Lambda$14/0x0000000100066840` or something similar.
 
@@ -735,26 +728,24 @@ Suppose, there is a method `square` that takes and returns a `long` value:
 ```
 class Functions {
 
-    public static long square(long val) {
-        return val * val;
+    public static long square(long value) {
+        return value * value;
     }
 }
 ```
 
-The argument and the return type of this method fits the `Func<Long, Long>` functional interface. This means we can create a method reference and assign it to an object of the `Func<Long, Long>` type:
+The argument and the return type of this method fits the `Func<Long, Long>` functional interface. This means we can create a method reference and assign it to an object of the `Function<Long, Long>` type:
 
 ```
-Func<Long, Long> square = Functions::square;
+Function<Long, Long> square = Functions::square;
 ```
 
-Keep in mind, that the compiler creates an intermediate hidden class that implements the `Func<Long, Long>` interface in a similar way to the case of lambda expressions.
+Keep in mind, that the compiler creates an intermediate hidden class that implements the `Function<Long, Long>` interface in a similar way to the case of lambda expressions.
 
-Usually, method references are more readable than the corresponding lambda expressions. Try to prefer this way of implementing and instantiating functional interfaces when possible.
-
-### null: a billion-dollar mistake
+### null: the billion-dollar mistake
 Like many programming languages, Java uses `null` to represent the absence of a value. Sometimes this approach leads to exceptions like **NPEs** since non-null checks make code less readable. 
 
-The British computer scientist Tony Hoare --- the inventor of the `null` concept --- even describes introducing `null` as a **"billion-dollar mistake"** since it has led to innumerable errors, vulnerabilities, and system crashes. 
+The British computer scientist [Tony Hoare](https://en.wikipedia.org/wiki/Tony_Hoare), the inventor of the `null` concept, even describes introducing `null` as a **"billion-dollar mistake"** since it has led to innumerable errors, vulnerabilities, and system crashes. 
 
 To avoid the issues associated with `null`, Java provides the `Optional` class that is a safer alternative for standard `null` references.
 
