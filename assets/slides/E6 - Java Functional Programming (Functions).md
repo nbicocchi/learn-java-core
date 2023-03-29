@@ -29,11 +29,11 @@ Because of changing needs, a number of languages (Java, Python, Scala) are intro
 
 The functional programming paradigm describes a program by applying and composing functions.
   * Passing functions to functions (**behaviour parametrization**)
-  * Functional programs can be very terse and elegant, packing a lot of behaviour into very few lines of code. Functional programmers will make the case that in a multicore world, you need to avoid mutable state in order to scale out your programs.
+  * Functional programs can be very terse and elegant, packing a lot of behaviour into very few lines of code. Functional programmers make the case that in a multicore world, you need to avoid mutable state in order to scale out your programs.
 
 The imperative programming paradigm allows you to describe a program in terms of a sequence of statements that mutate state.
   * Passing objects to functions (**value parametrization**)
-  * Object-oriented programmers will retort that in actual business environments object-oriented programming scales out well in terms of developers, and as an industry, we know how to do it.
+  * Object-oriented programmers retort that in actual business environments object-oriented programming scales out well in terms of developers and, as an industry, we know how to do it.
 
 ### Lambda expressions
 By **lambda expression** (or just "a lambda"), we mean a **function** that isn't bound to its name (an anonymous function) but can be assigned to a variable.
@@ -99,9 +99,9 @@ However, this approach breaks the **DRY (Don’t Repeat Yourself)** principle. T
 
 ### Strategy Pattern
 
-We can define a set of interfaces and implement the Strategy Pattern (https://refactoring.guru/design-patterns/strategy). Different classes can implement different strategies.
+We can define a set of interfaces and implement the [Strategy Pattern](https://refactoring.guru/design-patterns/strategy). Different classes can implement different strategies.
 
-Behaviour parameterization is great it separates the logic of iterating the collection from the behaviour to be applied on each element of that collection.
+Behaviour parameterization is great because it separates the logic of iterating the collection from the behaviour to be applied on each element of that collection.
 
 
 ```
@@ -267,7 +267,9 @@ result = filterStudents(students,
 The most simple and general case of a lambda is a functional interface with a method that receives one value and returns another. This function of a single argument is represented by the Function interface, which is parameterized by the types of its argument and a return value:
 
 ```
-public interface Function<T, R> { … }
+public interface Function<T, R> {
+    R apply(T t);
+}
 ```
 
 ```
@@ -354,7 +356,7 @@ public interface ToDoubleBiFunction<T,U> {
 }
 ```
 
-One of the typical examples of using this interface in the standard API is in the Map.replaceAll method, which allows replacing all values in a `Map<K,V>` with a BiFunction:
+One of the typical examples of using this interface in the standard API is in the Map.replaceAll method, which allows replacing all **values** in a `Map<K,V>` with a BiFunction:
 
 ```
 default void replaceAll(BiFunction<? super K,? super V,? extends V> function)
@@ -390,6 +392,13 @@ LocalDateTime time = supplier.get();
 ### Consumers
 As opposed to the Supplier, the Consumer accepts a generified argument and returns nothing. It is a function that is representing side effects.
 
+```
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+```
+
 For instance, let’s greet everybody in a list of names by printing the greeting in the console. The lambda passed to the List.forEach method implements the Consumer functional interface:
 
 ```
@@ -397,7 +406,14 @@ List<String> names = Arrays.asList("John", "Freddy", "Samuel");
 names.forEach(name -> System.out.println("Hello, " + name));
 ```
 
-One of its use cases is iterating through the entries of a map:
+One of its use cases is iterating through the entries of a map via the Biconsumer interface specialization:
+
+```
+@FunctionalInterface
+public interface BiConsumer<T,U> {
+    void accept(T t, U u);
+}
+```
 
 ```
 Map<String, Integer> ages = new HashMap<>();
@@ -432,12 +448,9 @@ As in all of the previous examples, there are IntPredicate, DoublePredicate and 
 ### Operators
 Operator interfaces are special cases of a function that receive and return the same value type. 
 
-The UnaryOperator interface receives a single argument. One of its use cases in the Collections API is to replace all values in a list with some computed values of the same type:
+The UnaryOperator interface receives a single argument.
 
-```
-List<String> names = Arrays.asList("bob", "josh", "megan");
-names.replaceAll(name -> name.toUpperCase());
-```
+One of its use cases in the Collections API is to replace all values in a list with some computed values of the same type:
 
 ```
 List<E> {
@@ -445,6 +458,11 @@ List<E> {
     default void replaceAll(UnaryOperator<E> operator);
     ...
 }
+```
+
+```
+List<String> names = Arrays.asList("bob", "josh", "megan");
+names.replaceAll(name -> name.toUpperCase());
 ```
 
 The List.replaceAll function returns void as it replaces the values in place. To fit the purpose, the lambda used to transform the values of a list has to return the same result type as it receives. This is why the UnaryOperator is useful here.
@@ -456,8 +474,8 @@ One of the most popular cases is to pass a lambda expression to a method and the
 Look at the method below. It takes an object of the standard generic `Function` type.
 
 ```
-private static void printResultOfLambda(Function<String, Integer> function) {
-    System.out.println(function.apply("HAPPY NEW YEAR 3000!"));
+static void printResultOfLambda(Function<String, Integer> function, String message) {
+    System.out.println(function.apply(message));
 }
 ```
 
@@ -466,7 +484,7 @@ This function can take a `String` argument and return an `Integer` result. To te
 ```
 // it returns the length of a string
 Function<String, Integer> f = s -> s.length();
-printResultOfLambda(f); // it prints 20
+printResultOfLambda(f, "Happy new year 3000!"); // it prints 20
 ```
 
 You can also pass a lambda expression to the method directly without an intermediate reference:
@@ -480,8 +498,22 @@ We can present our function as an object and pass it to a method as its argument
 
 We do not pass data to the `printResultOfLambda`, but rather some piece of code as data. So, we can parameterize the same method with a different behavior at runtime. This is what typical uses of lambda expressions look like. Many standard methods can accept lambda expressions.
 
-### Make code clearer with method references
+### Adding generics
+```
+static <T,U> void printResultOfLambda(Function<T, U> function, T message) {
+    System.out.println(function.apply(message));
+}
+```
 
+```
+Function<String, Integer> f1 = s -> s.length();
+printResultOfLambda(f1, "Happy new year 3000!"); // it prints 20
+
+Function<Integer, String> f2 = n -> String.valueOf(n).repeat(n);
+printResultOfLambda(f2, 4); // it prints 4444
+```
+
+### Make code clearer with method references
 By method reference, we mean a function that refers to a particular method via its name and can be invoked any time we need it. The base syntax of a method reference looks like this:
 
 ```
