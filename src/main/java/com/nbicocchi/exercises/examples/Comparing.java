@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Comparing {
 
-    public static class Car {
+    public static class Car implements Comparable<Car> {
         String brand;
 
         public Car(String brand) {
@@ -14,6 +14,11 @@ public class Comparing {
         @Override
         public String toString() {
             return "Car{" + "brand='" + brand + '\'' + '}';
+        }
+
+        @Override
+        public int compareTo(Car o) {
+            return brand.compareTo(o.brand);
         }
     }
 
@@ -41,15 +46,7 @@ public class Comparing {
                 new Car("BMW"),
                 new ECar("Tesla", "Tesla"),
                 new ECar("Mercedes", "Panasonic")));
-        cars.sort((o1, o2) -> o1.brand.compareTo(o2.brand));
-        eCars.sort((o1, o2) -> o1.batteryBrand.compareTo(o2.batteryBrand));
-        max(eCars, (o1, o2) -> o1.brand.compareTo(o2.brand));
-        max(eCars, new Comparator<Car>() {
-            @Override
-            public int compare(Car o1, Car o2) {
-                return o1.brand.compareTo(o2.brand);
-            }
-        });
+        Collections.sort(cars);
     }
 
     public static <T> T max(List<T> list, Comparator<? super T> cmp) {
