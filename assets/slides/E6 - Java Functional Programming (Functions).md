@@ -266,6 +266,7 @@ result = filterStudents(students,
 The most simple and general case of a lambda is a functional interface with a method that receives one value and returns another. This function of a single argument is represented by the Function interface, which is parameterized by the types of its argument and a return value:
 
 ```
+@FunctionalInterface
 public interface Function<T, R> {
     R apply(T t);
 }
