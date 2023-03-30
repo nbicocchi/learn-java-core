@@ -65,14 +65,13 @@ where:
 
 ---
 
-**[AppendBounded.java]** Modify the exercise Append.java so that the b list can contain elements of a subclass. For
+**[AppendBounded.java]** Modify the exercise Append.java so that *src* can contain elements of a subclass. For
 example, if people is a list of Person objects and students is a list of Student objects, then append(people, students)
-should compile but append(students, people) should not. The prototype of the method is not reported because it is the
-answer.
+should compile but append(students, people) should not. The prototype is not reported because it is the answer.
 
 ---
 
-**[Reverse]** Write a generic static method to reverse a list.
+**[Reverse]** Write a generic static method to reverse a list (see List.get() and List.set() methods).
 
 Examples:
 
@@ -114,9 +113,7 @@ where:
 
 ---
 
-**[Pair.java]** Define a generic class Pair<K,V> representing a generic pair of objects with different types. The class
-must have two internal attributes named *first* and *second* of type K and V, respectively. Constructor, getters, and
-setters are required.
+**[Pair.java]** Define a generic class Pair<K,V> representing a generic pair of objects with different types. The class must have two internal attributes named *first* and *second* of type K and V, respectively. Constructor, getters, and setters are also required.
 
 ```
 public class Pair<K, V> {
@@ -152,7 +149,7 @@ where:
 
 ---
 
-**[MapToPairs.java]** Write a generic static method that, given a Map<K, V>, returns a List<Pair<K, V>> of the key/value pairs in the map. The method has the following prototype:
+**[MapToPairs.java]** Write a generic static method that, given a Map<K, V>, returns a List<Pair<K, V>> of the key/value pairs in the map (see Map.entrySet()). The method has the following prototype:
 
 ```
 public static <K, V> List<Pair<K, V>> mapToPairs(Map<K, V> src);
