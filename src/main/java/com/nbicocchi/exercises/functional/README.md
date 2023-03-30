@@ -87,7 +87,7 @@ where:
 
 Examples:
 
-* squareFive([3, 1, 4]) → 2 ([19, 11, 26])
+* squareFive([3, 1, 4]) → 3 ([19, 11, 26])
 * squareFive([1]) → 1 ([11])
 * squareFive([5]) → 0 ([])
 
