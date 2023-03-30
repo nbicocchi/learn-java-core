@@ -83,8 +83,7 @@ where:
 
 ---
 
-**[SquareFive.java]** Given a list of integers, square those numbers, add 10, omit any of the resulting numbers that end
-in 5, and return their number.
+**[SquareFive.java]** Given a list of integers, square those numbers, add 10, omit any of the resulting numbers that end in 5, and return their number.
 
 Examples:
 
@@ -95,7 +94,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public static List<Integer> squareFive(List<Integer> nums);
+public static long squareFive(List<Integer> nums);
 ```
 
 where:

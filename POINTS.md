@@ -10,3 +10,5 @@
 * Saverio Napolitano +
 * Samuele Montanari +
 * Simone Serafini +
+* Gabriele D'Avena +
+
