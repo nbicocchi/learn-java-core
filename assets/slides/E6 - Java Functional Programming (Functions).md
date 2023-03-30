@@ -120,8 +120,6 @@ public interface StudentConsumer {
 }
 ```
 
-Our function becomes much more flexible than our first attempt, and at the same time it’s easy to read and to use!
-
 ```
 public static List<Student> filterStudents(List<Student> students, StudentPredicate sp, StudentFunction sf, StudentConsumer sc) {
     List<Student> result = new ArrayList<>();
