@@ -133,7 +133,7 @@ public static List<Student> filterStudents(List<Student> students, StudentPredic
     return result;
 }
 ```
-This code is much more flexible than our first attempt, and at the same time it’s easy to read and to use!
+This code is much more flexible than our first attempt and, at the same time, it’s easy to read and to use!
 
 However, when you want to pass new behaviour to your filterStudent method, you’re forced to one of the following two options:
 
@@ -224,16 +224,26 @@ result = filterStudents(students,
     s -> System.out.println(s));
 ```
 
+
+
 ### Strategy Pattern + Lambda expressions + Generics
+
+Instead of using custom interfaces designed only for students, we can use generic functional interfaces included within the API such as: Function, Predicate, Consumer. 
+
+By making use of generics we can also generalize the *filter()* static method to work with any class.
+
 ```
+@FunctionalInterface
 public interface Predicate<T> {
     boolean test(T s);
 }
 
+@FunctionalInterface
 public interface Function<T, R> {
     R apply(T s);
 }
 
+@FunctionalInterface
 public interface Consumer<T> {
     void accept(T s);
 }
@@ -259,211 +269,6 @@ result = filterStudents(students,
     s -> String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage()), 
     s -> System.out.println(s));
 ```
-
-### java.util.function package
-The most simple and general case of a lambda is a functional interface with a method that receives one value and returns another. This function of a single argument is represented by the Function interface, which is parameterized by the types of its argument and a return value:
-
-```
-@FunctionalInterface
-public interface Function<T, R> {
-    R apply(T t);
-}
-```
-
-```
-// if it has only one argument "()" are optional
-Function<Integer, Integer> adder1 = x -> x + 1;
-
-// with type inference
-Function<Integer, Integer> mult2 = (Integer x) -> x * 2;
-
-// with multiple statements
-Function<Integer, Integer> adder5 = (x) -> {
-    x += 2;
-    x += 3;
-    return x;
-};
-
-// with two different types
-Function<String, String> quote = s -> "'" + s + "'";
-```
-
-Let's consider a single-line lambda expression that just checks whether the first number is divisible by the second one.
-
-```
-BiFunction<Integer, Integer, Boolean> isDivisible = (x, y) -> x % y == 0;
-```
-
-The expression has the type `BiFunction<Integer, Integer, Boolean>` which means, that it takes two `Integer` values and returns a `Boolean` value.
-
-```
-@FunctionalInterface
-public interface BiFunction<T,U,R> {
-    R apply(T t, U u)
-}
-```
-
-
-### Primitive Function Specializations
-
-Since a primitive type can’t be a generic type argument, there are versions of the Function interface for the most used primitive types double, int, long, and their combinations in argument and return types:
-
-* IntFunction, LongFunction, DoubleFunction: arguments are of specified type, return type is parameterized
-
-```
-@FunctionalInterface
-public interface IntFunction<R> {
-    R apply(int value);
-}
-```
-
-* ToIntFunction, ToLongFunction, ToDoubleFunction: return type is of specified type, arguments are parameterized
-
-```
-@FunctionalInterface
-public interface ToIntFunction<T> {
-    int apply(T value);
-}
-```
-
-* DoubleToIntFunction, DoubleToLongFunction, IntToDoubleFunction, IntToLongFunction, LongToIntFunction, LongToDoubleFunction: having both argument and return type defined as primitive types, as specified by their names
-
-```
-@FunctionalInterface
-public interface DoubleToIntFunction {
-    int apply(double value);
-}
-```
-
-### Two-Arity Function Specializations
-To define lambdas with two arguments, we have to use additional interfaces that contain “Bi” keyword in their names: BiFunction, ToDoubleBiFunction, ToIntBiFunction, and ToLongBiFunction.
-
-BiFunction has both arguments and a return type generified, while ToDoubleBiFunction and others allow us to return a primitive value.
-
-```
-@FunctionalInterface
-public interface BiFunction<T,U,R> {
-    R apply(T t, U u);
-}
-```
-
-```
-@FunctionalInterface
-public interface ToDoubleBiFunction<T,U> {
-    double apply(T t, U u);
-}
-```
-
-One of the typical examples of using this interface in the standard API is in the Map.replaceAll method, which allows replacing all **values** in a `Map<K,V>` with a BiFunction:
-
-```
-default void replaceAll(BiFunction<? super K,? super V,? extends V> function)
-```
-
-```
-Map<String, Integer> salaries = new HashMap<>();
-salaries.put("John", 40000);
-salaries.put("Freddy", 30000);
-salaries.put("Samuel", 50000);
-
-salaries.replaceAll((name, oldValue) ->
-name.equals("Freddy") ? oldValue : oldValue + 10000);
-```
-
-### Suppliers
-The Supplier functional interface is yet another Function specialization that does not take any arguments. 
-
-```
-@FunctionalInterface
-public interface Supplier<T> {
-    T get();
-}
-```
-
-We typically use it for lazy generation of values. For instance, let's define a function that squares a double value. It will not receive a value itself, but a Supplier of this value:
-
-```
-Supplier<LocalDateTime> supplier = () -> LocalDateTime.now();
-LocalDateTime time = supplier.get();
-```
-
-### Consumers
-As opposed to the Supplier, the Consumer accepts a generified argument and returns nothing. It is a function that is representing side effects.
-
-```
-@FunctionalInterface
-public interface Consumer<T> {
-    void accept(T t);
-}
-```
-
-For instance, let’s greet everybody in a list of names by printing the greeting in the console. The lambda passed to the List.forEach method implements the Consumer functional interface:
-
-```
-List<String> names = Arrays.asList("John", "Freddy", "Samuel");
-names.forEach(name -> System.out.println("Hello, " + name));
-```
-
-One of its use cases is iterating through the entries of a map via the Biconsumer interface specialization:
-
-```
-@FunctionalInterface
-public interface BiConsumer<T,U> {
-    void accept(T t, U u);
-}
-```
-
-```
-Map<String, Integer> ages = new HashMap<>();
-ages.put("John", 25);
-ages.put("Freddy", 24);
-ages.put("Samuel", 30);
-
-ages.forEach((name, age) -> System.out.println(name + " is " + age + " years old"));
-```
-
-### Predicates
-In mathematical logic, a predicate is a function that receives a value and returns a boolean value.
-
-The Predicate functional interface is a specialization of a Function that receives a generified value and returns a boolean. A typical use case of the Predicate lambda is to filter a collection of values:
-
-```
-List<String> names = Arrays.asList("Angela", "Aaron", "Bob", "Claire", "David");
-names.removeIf(s -> s.startsWith("B"));
-```
-
-```
-List<E> {
-    ...
-    boolean removeIf(Predicate<? super E> filter);
-    ...
-}
-```
-In the code above, we remove from a list the names that start with the letter “B”. The Predicate implementation encapsulates the filtering logic.
-
-As in all of the previous examples, there are IntPredicate, DoublePredicate and LongPredicate versions of this function that receive primitive values.
-
-### Operators
-Operator interfaces are special cases of a function that receive and return the same value type. 
-
-The UnaryOperator interface receives a single argument.
-
-One of its use cases in the Collections API is to replace all values in a list with some computed values of the same type:
-
-```
-List<E> {
-    ...
-    default void replaceAll(UnaryOperator<E> operator);
-    ...
-}
-```
-
-```
-List<String> names = Arrays.asList("bob", "josh", "megan");
-names.replaceAll(name -> name.toUpperCase());
-```
-
-The List.replaceAll function returns void as it replaces the values in place. To fit the purpose, the lambda used to transform the values of a list has to return the same result type as it receives. This is why the UnaryOperator is useful here.
 
 ### Passing lambda expressions to methods
 
@@ -510,6 +315,190 @@ printResultOfLambda(f1, "Happy new year 3000!"); // it prints 20
 Function<Integer, String> f2 = n -> String.valueOf(n).repeat(n);
 printResultOfLambda(f2, 4); // it prints 4444
 ```
+
+
+### Functions
+As seen above, the most general case of a lambda is a functional interface with a method that receives one value and returns another. This function of a single argument is represented by the Function interface, which is parameterized by the types of its argument and a return value:
+
+```
+@FunctionalInterface
+public interface Function<T, R> {
+    R apply(T t);
+}
+```
+
+```
+// if it has only one argument "()" are optional
+Function<Integer, Integer> adder1 = x -> x + 1;
+
+// with type inference
+Function<Integer, Integer> mult2 = (Integer x) -> x * 2;
+
+// with multiple statements
+Function<Integer, Integer> adder5 = (x) -> {
+    x += 2;
+    x += 3;
+    return x;
+};
+
+// with two different types
+Function<String, String> quote = s -> "'" + s + "'";
+```
+
+### Predicates
+The Predicate functional interface is a specialization of a Function that receives a generified value and returns a boolean. A typical use case of the Predicate lambda is to filter a collection of values:
+
+```
+List<String> names = Arrays.asList("Angela", "Aaron", "Bob", "Claire", "David");
+names.removeIf(s -> s.startsWith("B"));
+```
+
+```
+List<E> {
+    ...
+    boolean removeIf(Predicate<? super E> filter);
+    ...
+}
+```
+In the code above, we remove from a list the names that start with the letter “B”. The Predicate implementation encapsulates the filtering logic.
+
+As in all of the previous examples, there are IntPredicate, DoublePredicate and LongPredicate versions of this function that receive primitive values.
+
+### Consumers
+The Consumer accepts a generified argument and returns nothing. It is a function that is representing side effects.
+
+```
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+```
+
+For instance, let’s greet everybody in a list of names by printing the greeting in the console. The lambda passed to the List.forEach method implements the Consumer functional interface:
+
+```
+List<String> names = Arrays.asList("John", "Freddy", "Samuel");
+names.forEach(name -> System.out.println("Hello, " + name));
+```
+
+
+### Primitive Function Specializations
+Since a primitive type can’t be a generic type argument, there are versions of the Function interface for the most used primitive types double, int, long, and their combinations in argument and return types:
+
+* IntFunction, LongFunction, DoubleFunction: arguments are of specified type, return type is parameterized
+
+```
+@FunctionalInterface
+public interface IntFunction<R> {
+    R apply(int value);
+}
+```
+
+* ToIntFunction, ToLongFunction, ToDoubleFunction: return type is of specified type, arguments are parameterized
+
+```
+@FunctionalInterface
+public interface ToIntFunction<T> {
+    int apply(T value);
+}
+```
+
+* DoubleToIntFunction, DoubleToLongFunction, IntToDoubleFunction, IntToLongFunction, LongToIntFunction, LongToDoubleFunction: having both argument and return type defined as primitive types, as specified by their names
+
+```
+@FunctionalInterface
+public interface DoubleToIntFunction {
+    int apply(double value);
+}
+```
+
+### Two-Arity Function Specializations
+To define lambdas with two arguments, we have to use additional interfaces that contain “Bi” keyword in their names: BiFunction, ToDoubleBiFunction, ToIntBiFunction, and ToLongBiFunction.
+
+BiFunction has both arguments and a return type generified, while ToDoubleBiFunction and others allow us to return a primitive value.
+
+```
+@FunctionalInterface
+public interface BiFunction<T,U,R> {
+    R apply(T t, U u);
+}
+```
+
+One of the typical examples of using this interface in the standard API is in the Map.replaceAll() method, which allows replacing all **values** in a `Map<K,V>` with a BiFunction:
+
+```
+Map<K,V> {
+    ...
+    default void replaceAll(BiFunction<? super K,? super V,? extends V> function)
+    ...
+}
+```
+
+```
+Map<String, Integer> salaries = new HashMap<>(Map.of(
+    "John", 40000, 
+    "Freddy", 30000, 
+    "Samuel", 50000
+));
+
+salaries.replaceAll((name, salary) ->
+        name.startsWith("F") ? salary * 2 : salary + 2);
+        
+// prints: {Samuel=50002, John=40002, Freddy=60000}
+```
+
+BiConsumer has both arguments generified and returns void. One of its use cases is iterating through the entries of a map.
+
+```
+@FunctionalInterface
+public interface BiConsumer<T,U> {
+    void accept(T t, U u);
+}
+```
+
+One of the typical examples of using this interface in the standard API is in the Map.forEach() method, which performs the given action for each entry.
+
+```
+Map<K,V> {
+    ...
+    default void forEach(BiConsumer<? super K,? super V> action)
+    ...
+}
+```
+```
+Map<String, Integer> salaries = new HashMap<>(Map.of(
+    "John", 40000, 
+    "Freddy", 30000, 
+    "Samuel", 50000
+));
+
+salaries.forEach((name, salary) -> System.out.println(name + " earns " + salary + " dollars/year!"));
+```
+
+
+
+### Operators
+Operator interfaces are special cases of a function that receive and return the same value type. 
+
+The UnaryOperator interface receives a single argument.
+
+One of its use cases in the Collections API is to replace all values in a list with some computed values of the same type:
+
+```
+List<E> {
+    ...
+    default void replaceAll(UnaryOperator<E> operator);
+    ...
+}
+```
+
+```
+List<String> names = Arrays.asList("bob", "josh", "megan");
+names.replaceAll(name -> name.toUpperCase());
+```
+
+The List.replaceAll function returns void as it replaces the values in place. To fit the purpose, the lambda used to transform the values of a list has to return the same result type as it receives. This is why the UnaryOperator is useful here.
+
 
 ### Make code clearer with method references
 By method reference, we mean a function that refers to a particular method via its name and can be invoked any time we need it. The base syntax of a method reference looks like this:
