@@ -11,5 +11,6 @@ class CountOccurrencesTest {
         assertEquals(1, CountOccurrences.countOccurrences(new Integer[]{1, 2, 3}, 3));
         assertEquals(3, CountOccurrences.countOccurrences(new Integer[]{1, 2, 3, 3, 3}, 3));
         assertEquals(2, CountOccurrences.countOccurrences(new Integer[]{null, 2, null}, null));
+        assertEquals(1, CountOccurrences.countOccurrences(new Integer[]{null, 2, null}, 2));
     }
 }

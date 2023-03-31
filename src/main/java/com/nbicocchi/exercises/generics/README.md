@@ -127,7 +127,7 @@ public class Pair<K, V> {
 
 
 ```
-public class Pair<K> {
+public class PairSameType<T> {
     ...
     public void swap();
     ...
