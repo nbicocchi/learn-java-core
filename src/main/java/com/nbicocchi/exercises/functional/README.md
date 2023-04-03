@@ -26,7 +26,7 @@ k:2, v:agata
 k:1, v:nicola
 ```
 
-The methods have the following prototype:
+The methods have the following prototypes:
 
 ```
 public static <T> void justPrintList(List<T> list);
