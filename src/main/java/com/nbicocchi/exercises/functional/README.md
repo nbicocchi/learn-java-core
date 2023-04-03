@@ -2,21 +2,79 @@
 
 ## Java Exercises (Functional)
 
-**[JustPrint.java]** Given a list of String, print all the elements using the Stream approach (see Stream.forEach()).
+**[JustPrint.java]** Write two static generic methods receiving, respectively, a generic List and a generic Map and printing to standard output their content following the template below. Both methods must be 1 line long (see List.forEach(), Map.forEach()).
 
 Examples:
 
-* justPrint(["hello", "world"]) → void (prints "hello", "world")
+* justPrintList(["Marco", "Matteo", "Luca", "Giovanni"]) → void
 
-The method has the following prototype:
+Prints:
+```
+Hello Marco!
+Hello Matteo!
+Hello Luca!
+Hello Giovanni!
+```
+
+* justPrintMap(1: "nicola", 2: "agata", 3: "darma", 4: "marzia") → void
+
+Prints:
+```
+k:4, v:marzia
+k:3, v:darma
+k:2, v:agata
+k:1, v:nicola
+```
+
+The methods have the following prototype:
 
 ```
-public static void justPrint(List<String> strings);
+public static <T> void justPrintList(List<T> list);
+public static <K,V> void justPrintMap(Map<K, V> map);
 ```
 
 where:
 
-* **strings** is the List of String to be processed.
+* **list** is the generic list to be processed.
+* **map** is the generic map to be processed.
+
+---
+
+**[JustPrintParametrized.java]** Write a more general version of the JustPrint exercise allowing the two methods (i.e., justPrintList, justPrintMap) not only to receive the collection of values to be printed but also the template for printing them (see Consumer and BiConsumer interfaces). The prototypes are not reported because they are the answer.
+
+---
+
+**[PayMore.java]** A large telecom operator keeps track of the monthly subscription fees associated with each phone number using a Map as the one showed below:
+
+```
+Map<String, Double> fees = {
+    "34745..." : 11.75,
+    "33367..." : 9.75,
+    "34833..." : 7.75,
+    "33188..." : 7.75,
+    "33112..." : 7.95,
+    ...
+}
+```
+
+Write a (one-line!) method for adding (or removing) a price delta to all numbers of a certain family (see Map.replaceAll()).
+
+Examples:
+
+* payMore(fees, "333", +0.5) -> adds 50 cents of monthly fee to all "333" numbers.
+* payMore(fees, "347", -1.0) -> removes 1 euro of monthly fee to all "347" numbers.
+
+The method has the following prototype:
+
+```
+public static void payMore(Map<String, Double> fees, String numberFamily, double costDelta);
+```
+
+where:
+
+* **fees** is the map associating each number to a monthly subscription fee.
+* **numberFamily** is the family of numbers (i.e., the first 3 digits of every number).
+* **costDelta** is the delta to be applied to all the specified monthly fees.
 
 ---
 
@@ -41,27 +99,6 @@ where:
 
 ---
 
-**[TwoTwo.java]** Given a list of non-negative integers, return a list of those numbers multiplied by 2, omitting any of
-the resulting numbers that end in 2 (see Stream.map(), Stream.filter(), Stream.collect()).
-
-Examples:
-
-* twoTwo([1, 2, 3]) → [4, 6]
-* twoTwo([2, 6, 11]) → [4]
-* twoTwo([0]) → [0]
-
-The method has the following prototype:
-
-```
-public static List<Integer> twoTwo(List<Integer> nums);
-```
-
-where:
-
-* **nums** is the List of Integers to be processed.
-
----
-
 **[OneTen.java]** Given a list of integers, return a list where each integer is added to 1 and the result is multiplied
 by 10.
 
@@ -75,6 +112,26 @@ The method has the following prototype:
 
 ```
 public static List<Integer> oneTen(List<Integer> nums);
+```
+
+where:
+
+* **nums** is the List of Integers to be processed.
+
+---
+
+**[TwoTwo.java]** Given a list of non-negative integers, return a list of those numbers multiplied by 2, omitting any of the resulting numbers that end in 2 (see Stream.map(), Stream.filter(), Stream.collect()).
+
+Examples:
+
+* twoTwo([1, 2, 3]) → [4, 6]
+* twoTwo([2, 6, 11]) → [4]
+* twoTwo([0]) → [0]
+
+The method has the following prototype:
+
+```
+public static List<Integer> twoTwo(List<Integer> nums);
 ```
 
 where:
@@ -245,3 +302,26 @@ where:
 * **accounts** is the list of Account to be processed.
 
 ---
+
+**[PhoneBook.java]** Write a class PhoneBook implementing a phone book as a `List<Person>`.
+
+```
+public class Person {
+    String name;
+    String lastname;
+    String phone;
+    ...
+}
+```
+
+The class has a single constructor accepting a `List<Person>` and provides two methods *searchByLastname*, *searchByNameAndLastname* returning the first Person instance matching the search criteria. The two methods have the following prototypes:
+
+```
+public Optional<Person> searchByLastname(String lastname);
+public Optional<Person> searchByNameAndLastname(String name, String lastname);
+```
+
+where:
+
+* **name** is the name to be found.
+* **lastname** is the lastname to be found.
