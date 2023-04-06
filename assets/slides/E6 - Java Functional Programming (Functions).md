@@ -1,29 +1,5 @@
 # Functions
 
-### Why Java is changing?
-A typical problem in 1991: model a company employees, departments, salaries, etc.
-
-```
-public class Employee {
-    String name;
-    String lastname;
-    double salary;
-    Department department;
-    ...
-}
-```
-The rise of **big-data**, and **affordable multicore architectures** made functional programming concepts popular.
-
-A typical problem in 2023: analyse a 100GB dataset for finding lazy employees :)
-
-```
-List<Employee> l = employees.stream()
-.filter(e -> e.getVacations() > 1)
-.collect(Collectors.toList());
-```
-
-Languages need to evolve to track changing hardware or programmers expectations. Otherwise, they die (COBOL, LISP, …)
-
 ### Functional vs imperative programming
 Because of changing needs, a number of languages (Java, Python, Scala) are introducing ways for supporting functional programming. Haskell is a recent purely functional language.
 
@@ -65,7 +41,7 @@ Multiply two ints: `(int a, int b) -> a * b`
 
 Compare two objects: `(Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight())`
 
-# A case study: filtering and printing students
+### A case study: filtering students
 We need to select all students with a given average, and also print a string representation of the selected students.
 
 ```
@@ -178,9 +154,7 @@ result = filterStudents(students, new StudentPredicate() {
 ```
 
 ### Functional interfaces
-Functional interfaces or **interfaces defining only one method** are ideal candidates for making use of lambda expressions.
-
-Instead of using anonymous classes (still verbose!), **lambda expressions can be used for providing the implementation of their single method**!
+Functional interfaces or **interfaces defining only one method** are ideal candidates for making use of lambda expressions. Instead of using anonymous classes (still verbose!), **lambda expressions can be used for providing the implementation of their single method**!
 
 ```
 public interface StudentPredicate {
@@ -224,23 +198,22 @@ result = filterStudents(students,
     s -> System.out.println(s));
 ```
 
-
-
 ### Strategy Pattern + Lambda expressions + Generics
 
-Instead of using custom interfaces designed only for students, we can use generic functional interfaces included within the API such as: Function, Predicate, Consumer. 
+Instead of using custom interfaces designed only for students, we can use generic functional interfaces included within the API such as: Function<T,R>, Predicate<T>, Consumer<T>. 
 
 By making use of generics we can also generalize the *filter()* static method to work with any class.
 
 ```
 @FunctionalInterface
-public interface Predicate<T> {
-    boolean test(T s);
-}
-
-@FunctionalInterface
 public interface Function<T, R> {
     R apply(T s);
+}
+
+
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T s);
 }
 
 @FunctionalInterface
@@ -271,7 +244,6 @@ result = filterStudents(students,
 ```
 
 ### Passing lambda expressions to methods
-
 One of the most popular cases is to pass a lambda expression to a method and then call it there.
 
 Look at the method below. It takes an object of the standard generic `Function` type.
