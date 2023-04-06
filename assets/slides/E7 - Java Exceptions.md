@@ -29,31 +29,27 @@ void loadFile()  {
   * Dependable
 
 ```
-open file;
-if (operationFailed) 
-  return -1;
-
-determine file size; 
-if (operationFailed) 
-  return -2;
-
-allocate memory; 
-if (operationFailed) {
-  close the file; 
-  return -3;
+void loadFile()  {
+  open file;
+  if (operationFailed) 
+    return -1;
+  
+  determine file size; 
+  if (operationFailed) 
+    return -2;
+  
+  allocate memory; 
+  if (operationFailed)
+    return -3;
+  
+  read file into memory; 
+  if (operationFailed)
+    return -4;
+  
+  close file;
+  if (operationFailed) 
+    return -5;
 }
-
-read file into memory; 
-if (operationFailed) {
-  close the file;
-  return -4;
-}
-
-close file;
-if (operationFailed) 
-  return  -5;
-
-return 0;
 ```
 
 * Third approach (using exceptions)
@@ -62,22 +58,24 @@ return 0;
   * Readable
 
 ```
-try {
-    open file;
-    determine file size;
-    allocate memory; 
-    read file into memory; 
-    close file;
-} catch (fileOpenFailed)    { 
-    doSomething; 
-} catch(determineSizeFailed) { 
-    doSomething; 
-} catch (memoryAllocationFailed) { 
-    doSomething; 
-} catch (readFailed)    { 
-    doSomething; 
-} catch (fileCloseFailed)    { 
-    doSomething; 
+void loadFile() {
+  try {
+      open file;
+      determine file size;
+      allocate memory; 
+      read file into memory; 
+      close file;
+  } catch (fileOpenFailed) { 
+      doSomething; 
+  } catch(determineSizeFailed) { 
+      doSomething; 
+  } catch (memoryAllocationFailed) { 
+      doSomething; 
+  } catch (readFailed) { 
+      doSomething; 
+  } catch (fileCloseFailed) { 
+      doSomething; 
+  }
 }
 ```
 
