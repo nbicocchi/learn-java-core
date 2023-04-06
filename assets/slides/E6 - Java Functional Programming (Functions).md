@@ -204,7 +204,7 @@ result = filterStudents(students,
 
 ### Strategy Pattern + Lambda expressions + Generics
 
-Instead of using custom interfaces designed only for students, we can use generic functional interfaces included within the API such as: `Function<T,R>`, `Predicate<T>`, `Consumer<T>`. 
+Instead of using custom interfaces designed only for students, we can use generic functional interfaces included within the API such as: `Function<T,R>`, `Predicate<T>`, `Consumer<T>` (see package java.util.function). 
 
 By making use of generics we can also generalize the *filter()* static method to work with any class.
 
