@@ -109,6 +109,8 @@ public static List<Student> filterStudents(List<Student> students, StudentPredic
     return result;
 }
 ```
+
+### Passing behaviour
 This code is much more flexible than our first attempt and, at the same time, it’s easy to read and to use!
 
 However, when you want to pass new behaviour to your filterStudent method, you’re forced to one of the following two options:
@@ -246,46 +248,45 @@ result = filterStudents(students,
 ### Passing lambda expressions to methods
 One of the most popular cases is to pass a lambda expression to a method and then call it there.
 
-Look at the method below. It takes an object of the standard generic `Function` type.
+The method below takes an object of the standard generic `Function` type.
 
 ```
-static void printResultOfLambda(Function<String, Integer> function, String message) {
-    System.out.println(function.apply(message));
+static Integer resultOfLambda(Function<String, Integer> function, String message) {
+    return function.apply(message);
 }
 ```
 
 This function can take a `String` argument and return an `Integer` result. To test the method, let's create an object and pass it into the method:
 
 ```
-// it returns the length of a string
 Function<String, Integer> f = s -> s.length();
-printResultOfLambda(f, "Happy new year 3000!"); // prints 20
-```
+resultOfLambda(f, "Happy new year 3000!"); // returns 20
 
-You can also pass a lambda expression to the method directly without an intermediate reference:
-
-```
 // passing without a reference
-printResultOfLambda(s -> s.length(), "Happy new year 3000!"); // prints 20
+resultOfLambda(s -> s.length(), "Happy new year 3000!"); // returns 20
 ```
 
 We can present our function as an object and pass it to a method as its argument, if the method takes an object of that type. Then, inside the method, the given function will be invoked.
 
-We do not pass data to the `printResultOfLambda`, but rather some piece of code as data. So, we can parameterize the same method with a different behavior at runtime. This is what typical uses of lambda expressions look like. Many standard methods can accept lambda expressions.
+We do not pass data to the `resultOfLambda`, but rather some piece of code as data. So, we can parameterize the same method with a different behavior at runtime. This is what typical uses of lambda expressions look like. Many standard methods can accept lambda expressions.
 
 ### Adding generics
+By making use of generics we can further generalize the `resultOfLambda` static method. Instead of expecting a Function<String, Integer> and a String, it can now receive a generic Function<T,R> and an object of type T. This allows a much flexible behaviour with the same amount of code.
+
 ```
-static <T,U> void printResultOfLambda(Function<T, U> function, T message) {
-    System.out.println(function.apply(message));
+static <T,U> U resultOfLambda(Function<T, U> function, T message) {
+    return function.apply(message);
 }
 ```
 
 ```
+// this invocation takes a string and returns its length
 Function<String, Integer> f1 = s -> s.length();
-printResultOfLambda(f1, "Happy new year 3000!"); // it prints 20
+resultOfLambda(f1, "Happy new year 3000!"); // returns 20
 
+// this invocation takes an integer (n) and returns a string representing n repeated n times
 Function<Integer, String> f2 = n -> String.valueOf(n).repeat(n);
-printResultOfLambda(f2, 4); // it prints 4444
+resultOfLambda(f2, 4); // returns "4444"
 ```
 
 
@@ -450,9 +451,7 @@ salaries.forEach((name, salary) -> System.out.println(name + " earns " + salary 
 
 
 ### Operators
-Operator interfaces are special cases of a function that receive and return the same value type. 
-
-The UnaryOperator interface receives a single argument.
+Operator interfaces are special cases of a function that receive and return the same value type. The UnaryOperator interface receives a single argument. 
 
 One of its use cases in the Collections API is to replace all values in a list with some computed values of the same type:
 
