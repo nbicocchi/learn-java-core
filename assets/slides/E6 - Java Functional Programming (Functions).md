@@ -49,7 +49,8 @@ public static List<Student> filterStudentsByGrade(List<Student> students, double
     List<Student> result = new ArrayList<>();
     for (Student s : students) {
         if (s.getAverage() == average) {
-            System.out.println(String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage()));
+            String str = String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage());
+            System.out.println(str);
             result.add(s);
         }
     }
@@ -65,7 +66,8 @@ public static List<Student> filterStudentsByGradeRange(List<Student> students, d
     List<Student> result = new ArrayList<>();
     for (Student s : students) {
         if (s.getAverage() >= low && s.getAverage() <= high) {
-            System.out.println(String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage()));
+            String str = String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage());
+            System.out.println(str);
             result.add(s);
         }
     }
@@ -202,7 +204,7 @@ result = filterStudents(students,
 
 ### Strategy Pattern + Lambda expressions + Generics
 
-Instead of using custom interfaces designed only for students, we can use generic functional interfaces included within the API such as: Function<T,R>, Predicate<T>, Consumer<T>. 
+Instead of using custom interfaces designed only for students, we can use generic functional interfaces included within the API such as: `Function<T,R>`, `Predicate<T>`, `Consumer<T>`. 
 
 By making use of generics we can also generalize the *filter()* static method to work with any class.
 
