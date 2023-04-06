@@ -6,30 +6,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class StreamCreation {
-    public static void main(String[] args) {
-        Stream<Student> s;
-
-        /* Builder and accept() */
-        s = getStreamBuilderAccept();
-        s.forEach(System.out::println);
-
-        /* Builder and add() */
-        s = getStreamBuilderAdd();
-        s.forEach(System.out::println);
-
-        /* Stream.of() */
-        s = getStreamOf();
-        s.forEach(System.out::println);
-
-        /* Stream from List */
-        s = getStreamFromList();
-        s.forEach(System.out::println);
-
-        /* Stream from Array */
-        s = getStreamFromArray();
-        s.forEach(System.out::println);
-    }
-
     public static List<Student> getStudentsAsList() {
         return new ArrayList<>(List.of(
                 new Student("John", "Doe", 24),

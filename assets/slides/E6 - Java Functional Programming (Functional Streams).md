@@ -1,9 +1,9 @@
 # Functional Streams
 
 ### The basic concept of streams (aka for killers)
-Java 8 gave us a new tool called **Stream API** that provides a functional approach to processing collections of objects. By using Stream API, a programmer doesn't need to write explicit loops, since each stream has an internal optimized loop. 
+Java 8 gave us a new tool called **Stream API** that provides a functional approach to processing collections of objects. By using Stream API, a programmer doesn't need to write explicit loops (i.e. use *for* explicitly), since each stream has an internal optimized loop. 
 
-Streams allow us to focus on the question "**what should the code do?"** instead of "**how should the code do it?"**. In addition, such an approach makes **parallelizing easy**.
+Streams allow us to focus on the question "**what should the code do?"** instead of "**how should the code do it?"**. In addition, such an approach makes **parallelizing easy** (this is important because multicore cpus are cheap).
 
 In a sense, a **stream** may remind us of a collection. But it does not actually store elements. Instead, it conveys elements from a **source** such as a collection, a generator function, a file, an I/O channel, another stream, and then processes the elements by using a sequence of predefined operations combined into a single pipeline.
 
@@ -14,8 +14,6 @@ There are three stages of working with a stream:
 1.  Obtaining the stream from a source.
 2.  Performing intermediate operations with the stream to process data.
 3.  Performing a terminal operation to produce a result.
-
-Now you got the basic concept of streams and it is time to take a look at some code!
 
 ### A loop vs. a stream example
 All classes associated with streams are located in the `java.util.stream` package. There are several common stream classes: `Stream<T>`, `IntStream`, `LongStream` and `DoubleStream`. 
@@ -127,7 +125,7 @@ Once a terminal operation has been evaluated, it is impossible to reuse the stre
 
 Some terminal operations return an `Optional` because the stream can be empty and you need to specify a default value or an action if it is empty.
 
-### An example: filtering students
+### A case study: filtering students
 We need to select all students with a given average, and also print a string representation of the selected students.
 
 ```
@@ -255,13 +253,10 @@ And we would like to get a list of `AccountInfo` objects from a list of `Account
 
 ```
 List<AccountInfo> infoList = accounts.stream()
-        .map(acc -> {
-                AccountInfo info = new AccountInfo();
-                info.setId(acc.getId());
-                String ownerFirstName = acc.getOwner().getFirstName();
-                String ownerLastName = acc.getOwner().getLastName();
-                info.setOwnerFullName(ownerFirstName + " " + ownerLastName);
-                return info;
+        .map(a -> {
+                String ownerFirstName = a.getOwner().getFirstName();
+                String ownerLastName = a.getOwner().getLastName();
+                return new AccountInfo(a.getId(), ownerFirstName + " " + ownerLastName);
         }).collect(Collectors.toList());
 ```
 
@@ -351,19 +346,17 @@ Now let's summarize balances on the accounts. We can use summingLong method for 
 
 ```
 long summary = accounts.stream()
-.collect(summingLong(Account::getBalance));
+.collect(Collectors.summingLong(Account::getBalance));
 ```
 
 Also, we can calculate the mean value:
 
 ```
 double average = accounts.stream()
-.collect(averagingLong(Account::getBalance));
+.collect(Collectors.averagingLong(Account::getBalance));
 ```
 
 Note that all averaging collectors (averagingLong, averagingInt, averagingDouble) return a double value.
-
-If you need to perform more specific calculations, you can use Collectors.reducing method. Similar to the reduce operation, Collectors.reducing method implementations can accept an accumulator function or the identity value together with an accumulator. 
 
 ### Partitioning
 Imagine that we want to divide a collection of accounts into two groups: accounts whose balance is greater than or equal to 10000, and accounts with a balance lower than 10000. In other words, we need to partition accounts into two groups based on a specified condition. It becomes possible by using  *a partitioning*  operation.

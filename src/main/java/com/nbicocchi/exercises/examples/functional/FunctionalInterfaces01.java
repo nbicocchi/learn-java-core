@@ -1,7 +1,7 @@
 package com.nbicocchi.exercises.examples.functional;
 
-import com.nbicocchi.exercises.examples.Student;
 import com.nbicocchi.exercises.examples.StreamCreation;
+import com.nbicocchi.exercises.examples.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,8 @@ public class FunctionalInterfaces01 {
         List<Student> result = new ArrayList<>();
         for (Student s : students) {
             if (s.getAverage() == average) {
-                System.out.println(String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage()));
+                String str = String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage());
+                System.out.println(str);
                 result.add(s);
             }
         }
@@ -33,7 +34,8 @@ public class FunctionalInterfaces01 {
         List<Student> result = new ArrayList<>();
         for (Student s : students) {
             if (s.getAverage() >= low && s.getAverage() <= high) {
-                System.out.println(String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage()));
+                String str = String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage());
+                System.out.println(str);
                 result.add(s);
             }
         }

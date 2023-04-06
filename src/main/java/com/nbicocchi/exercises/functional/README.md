@@ -325,3 +325,36 @@ where:
 
 * **name** is the name to be found.
 * **lastname** is the lastname to be found.
+
+---
+
+**[PayOnAverage.java]** A large telecom operator keeps track of the monthly subscription fees associated with each phone number using a Map as the one showed below:
+
+```
+Map<String, Double> fees = {
+    "34745..." : 11.75,
+    "33367..." : 9.75,
+    "34833..." : 7.75,
+    "33188..." : 7.75,
+    "33112..." : 7.95,
+    ...
+}
+```
+
+Write a method returning a Map<String, Double> having as keys the families of numbers (e.g., "347", "333", "348", etc) and as values the average subscription fee for that family (see [this guide](https://www.baeldung.com/java-maps-streams), and Collectors.groupingBy()).
+
+Examples:
+
+* payOnAverage(fees) -> {"347" : 11.75, "333" : 9.75, "348" : 7.75, "331" : 7.85}
+
+The method has the following prototype:
+
+```
+public static Map<String, Double> payOnAverage(Map<String, Double> fees);
+```
+
+where:
+
+* **fees** is the map associating each number to a monthly subscription fee.
+
+---

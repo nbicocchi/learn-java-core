@@ -1,7 +1,7 @@
 package com.nbicocchi.exercises.examples.functional;
 
-import com.nbicocchi.exercises.examples.Student;
 import com.nbicocchi.exercises.examples.StreamCreation;
+import com.nbicocchi.exercises.examples.Student;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,13 @@
 package com.nbicocchi.exercises.examples.functional;
 
-import com.nbicocchi.exercises.examples.Student;
 import com.nbicocchi.exercises.examples.StreamCreation;
+import com.nbicocchi.exercises.examples.Student;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class FunctionalInterfaces04 {
     public static void main(String[] args) {
@@ -25,17 +28,5 @@ public class FunctionalInterfaces04 {
             }
         }
         return result;
-    }
-
-    public interface Predicate<T> {
-        boolean test(T s);
-    }
-
-    public interface Function<T, R> {
-        R apply(T s);
-    }
-
-    public interface Consumer<T> {
-        void accept(T s);
     }
 }
