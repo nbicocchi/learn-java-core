@@ -14,8 +14,6 @@ The same is true for non-blocking writing. A thread can request that some data b
 
 What threads spend their idle time on when not blocked in IO calls, is usually performing IO on other channels in the meantime. That is, a single thread can now manage multiple channels of input and output.
 
----
-
 ### java.nio.file.Path
 A `Path` instance represents a *path* in the file system. A path can point to either a file or a directory. A path can be absolute or relative.
 
@@ -89,8 +87,6 @@ System.out.println("path2 = " + path2);
 // path1 = d:\data\projects\a-project\..\another-project
 // path2 = d:\data\projects\another-project
 ```
-
----
 
 ### java.nio.file.Files
 The `Files` class provides several methods for manipulating files in the file system. It contains many methods, so check the JavaDoc too, if you need a method that is not described here. 
