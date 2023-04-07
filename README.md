@@ -127,8 +127,8 @@
 
 * Lambda expressions
 * Functional interfaces
-* The Stream concept
-* Producing, transforming, and collecting streams
+* Producing, transforming, and collecting functional streams
+* The *Optional* type
 
 [E7] Exceptions
 
