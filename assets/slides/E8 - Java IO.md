@@ -228,7 +228,7 @@ After running the code, `others` will contain `['p', 'u', 't', ' ', 's', 't', 'r
 Let's explain the result. Since we've read the first two letters into other variables, the first 10 characters of `others` are filled starting from the third letter. When the stream reached the end of the file it stopped reading, so the last two characters are not updated.
 
 ### Character streams (output)
-Character output streams allow writing text data: `char` or `String`. You might have already used such streams as`FileWriter` and `PrintWriter` earlier for writing text data to files. Both of them, as well as other character output streams, have a common abstract ancestor `java.io.Writer`. Let's look at it closely.
+Character output streams allow writing text data: `char` or `String`. You might have already used such streams as`FileWriter` and `PrintWriter` earlier for writing text data to files. Both of them, as well as other character output streams, have a common abstract ancestor `java.io.Writer`. 
 
 The class contains a group of methods for writing. Some of them are listed here:
 
@@ -239,6 +239,19 @@ The class contains a group of methods for writing. Some of them are listed here:
 - `void write(String str, int off, int len)` writes a portion of a string
 
 `Writer` has several direct subclasses for different purposes in the standard library. For example, `FileWriter` is intended for writing to files. `StringWriter` is designed to construct a string. `CharArrayWriter` uses `char[]` as a destination.
+
+```
+// copy a text file line by line
+File src = new File("src/test/resources/copiedWithIo.txt");
+File dst = new File("src/test/resources/copiedWithIo.txt.bak");
+try (BufferedReader in = new BufferedReader(new FileReader(src));
+     BufferedWriter out = new BufferedWriter(new FileWriter(dst))) {
+    String line;
+    while ((line = in.readLine()) != null) {
+        out.write(line);
+    }
+}
+```
 
 ### Byte streams (input)
 The class name of a byte stream indicates what type of source it uses as input and usually ends with `InputStream`, since all such classes extend the `java.io.InputStream`class.
@@ -279,6 +292,7 @@ Just like character streams, byte streams have `void close()` that should be inv
 Let's look at some direct subclasses of `OutputStream` from the standard library.`FileOutputStream` is intended for writing data to a file as a destination. `ByteArrayOutputStream` as you may guess allows writing to `byte[]` destination. Such classes like `FilterOutputStream` or `PipedOutputStream` have no endpoint destination and write data to other output streams. These classes are supposed to be intermediate streams for data transformation or possibly providing additional functionality.
 
 ```
+// copy a binary file in chunks of 1K
 File src = new File("src/test/resources/copiedWithIo.txt");
 File dst = new File("src/test/resources/copiedWithIo.txt.bak");
 try (InputStream in = new BufferedInputStream(new FileInputStream(src));
