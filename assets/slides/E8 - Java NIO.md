@@ -14,6 +14,8 @@ The same is true for non-blocking writing. A thread can request that some data b
 
 What threads spend their idle time on when not blocked in IO calls, is usually performing IO on other channels in the meantime. That is, a single thread can now manage multiple channels of input and output.
 
+---
+
 ### java.nio.file.Path
 A Java `Path` instance represents a *path* in the file system. A path can point to either a file or a directory. A path can be absolute or relative.
 
@@ -34,7 +36,6 @@ public class PathExample {
 }
 ```
 
-### Creating paths
 Creating an absolute path is done by calling the `Paths.get()` factory method with the absolute file as parameter. Here is an example of creating a `Path` instance representing an absolute path:
 
 ```
@@ -50,7 +51,7 @@ Path p1 = Paths.get("d:\\data", "projects\\a-project\\myfile.txt");
 
 The first example creates a Java `Path` instance which points to the path (directory) `d:\data\projects`. The second example creates a `Path` instance which points to the path (file) `d:\data\projects\a-project\myfile.txt` .
 
-### relativize()
+### Path.relativize()
 The Java Path method `relativize()` can create a new Path which represents the second Path relative to the first Path. 
 
 For instance, with the path `/data` and `/data/subdata/subsubdata/myfile.txt"`, the second path can be expressed as `/subdata/subsubdata/myfile.txt` relative to the first path. 
@@ -70,7 +71,7 @@ System.out.println(pathToBasePath);
 // ../../..
 ```
 
-### normalize()
+### Path.normalize()
 The `normalize()` method of the `Path` interface can normalize a path. Normalizing means that it removes all the `.` and `..` codes in the middle of the path string, and resolves what path the path string refers to. 
 
 ```
@@ -87,6 +88,8 @@ System.out.println("path2 = " + path2);
 // path1 = d:\data\projects\a-project\..\another-project
 // path2 = d:\data\projects\another-project
 ```
+
+---
 
 ### java.nio.file.Files
 The Java NIO `Files` class provides several methods for manipulating files in the file system. 
