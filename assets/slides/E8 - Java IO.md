@@ -15,7 +15,7 @@ The code will work even if a file or a directory does not actually exist in your
 The Java platform uses a Properties object to maintain its own configuration. The System class maintains a Properties object that describes the configuration of the current working environment. [System properties](https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html) include information about the current user, the current version of the Java runtime, and the character used to separate components of a file path name.
 
 * "file.separator"	Character that separates components of a file path. This is "/" on UNIX and "\" on Windows.
-* "java.class.path"	Path used to find directories and JAR archives containing class files. Elements of the class path are separated by a platform-specific character specified in the path.separator property.
+* "java.class.path"	Path used to find directories and JAR archives containing class files. 
 * "java.home"	Installation directory for Java Runtime Environment (JRE)
 * "java.vendor"	JRE vendor name
 * "java.vendor.url"	JRE vendor URL
