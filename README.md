@@ -138,9 +138,8 @@
 
 * Throwing exceptions
 * Catching exceptions
-* Checked exceptions
+* Checked and unchecked exceptions
 * Closing resources
-* Designing your own Exception types
 
 [E8] IO/NIO Frameworks
 
