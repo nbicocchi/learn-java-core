@@ -62,5 +62,4 @@ public class LockingGranularity {
         b.setRunning(false);
         c.setRunning(false);
     }
-
 }

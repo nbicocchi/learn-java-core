@@ -7,23 +7,24 @@ public class StartStopThread extends Thread {
         super(name);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         StartStopThread a = new StartStopThread("Homer");
         StartStopThread b = new StartStopThread("Marge");
-        a.setPriority(Thread.MAX_PRIORITY);
-        b.setPriority(Thread.MIN_PRIORITY);
+
+        /* start children threads */
         a.start();
         b.start();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ignored) {
-        }
-        // Graceful shutdown!
+
+        /* wait 1/10 of second */
+        Thread.sleep(100L);
+
+        /* gracefully shut down children threads */
         a.running = false;
         b.running = false;
-        // Ungraceful shutdown!
-        // a.interrupt();
-        // b.interrupt();
+
+        /* wait for children before exit */
+        a.join();
+        b.join();
     }
 
     @Override
