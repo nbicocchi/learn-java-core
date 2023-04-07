@@ -320,8 +320,8 @@ Let's look at some direct subclasses of `OutputStream` from the standard library
 // copy a binary file in chunks of 1K
 File src = new File("src/test/resources/copiedWithIo.txt");
 File dst = new File("src/test/resources/copiedWithIo.txt.bak");
-try (InputStream in = new BufferedInputStream(new FileInputStream(src));
-     OutputStream out = new BufferedOutputStream(new FileOutputStream(dst))) {
+try (InputStream in = new FileInputStream(src));
+     OutputStream out = new FileOutputStream(dst))) {
 
     byte[] buffer = new byte[1024];
     int lengthRead;

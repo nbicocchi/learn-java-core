@@ -144,14 +144,14 @@
 
 [E8] IO/NIO Frameworks
 
-> Read: Big Java (Chapter 21.5)
+> Read: Big Java (Chapter 21)
 
 > Lab: [com.nbicocchi.exercises.nio](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/nio)
 
-* NIO vs IO
-* Manipulating paths (Path, Paths)
-* Reading, writing, manipulating files (Files)
-* Reading and writing large files (Buffer, Channel)
+* IO vs NIO frameworks
+* Manipulating paths
+* Manipulating filesystem (copy, move, etc)
+* Reading and writing files
 
 ---
 
