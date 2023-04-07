@@ -12,7 +12,34 @@ File fileOnWin = new File("D:\\Materials\\java-materials.pdf"); // a file on Win
 The code will work even if a file or a directory does not actually exist in your file system. It does not create a new file or directory. It just represents "a virtual" file or directory that exists already or may be created in the future.
 
 ### System properties
-https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html
+The Java platform uses a Properties object to maintain its own configuration. The System class maintains a Properties object that describes the configuration of the current working environment. [System properties](https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html) include information about the current user, the current version of the Java runtime, and the character used to separate components of a file path name.
+
+* "file.separator"	Character that separates components of a file path. This is "/" on UNIX and "\" on Windows.
+* "java.class.path"	Path used to find directories and JAR archives containing class files. Elements of the class path are separated by a platform-specific character specified in the path.separator property.
+* "java.home"	Installation directory for Java Runtime Environment (JRE)
+* "java.vendor"	JRE vendor name
+* "java.vendor.url"	JRE vendor URL
+* "java.version"	JRE version number
+* "line.separator"	Sequence used by operating system to separate lines in text files
+* "os.arch"	Operating system architecture
+* "os.name"	Operating system name
+* "os.version"	Operating system version
+* "path.separator"	Path separator character used in java.class.path
+* "user.dir"	User working directory
+* "user.home"	User home directory
+* "user.name"	User account name
+
+```
+System.getProperty("file.separator");
+```
+
+The `getProperty` method returns a string containing the value of the property. If the property does not exist, this version of getProperty returns null.
+
+The "file.separator" property is useful for writing portable paths as shown below.
+
+```
+String desktopDir = String.format("%s%s%s", System.getProperty("user.home"), System.getProperty("file.separator"), "Desktop");
+```
 
 ### Absolute and relative path
 A path is **absolute** if it starts with the root element of the file system. It has the complete information about the file location including the type of the operating system.
