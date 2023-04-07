@@ -17,13 +17,11 @@ What threads spend their idle time on when not blocked in IO calls, is usually p
 ---
 
 ### java.nio.file.Path
-A Java `Path` instance represents a *path* in the file system. A path can point to either a file or a directory. A path can be absolute or relative.
+A `Path` instance represents a *path* in the file system. A path can point to either a file or a directory. A path can be absolute or relative.
 
-The fully qualified name of the Java `Path` interface is `java.nio.file.Path`.
+In many ways the `java.nio.file.Path` interface is similar to the `java.io.File` class, but there are some minor differences. 
 
-In many ways the `java.nio.file.Path` interface is similar to the [`java.io.File`](https://jenkov.com/java-io/file.html) class, but there are some minor differences. 
-
-You create a `Path` instance using a static method in the `Paths` class named `Paths.get()`.
+You can create a `Path` instance using a static method in the `Paths` class named `Paths.get()`.
 
 ```
 import java.nio.file.Path;
@@ -42,14 +40,17 @@ Creating an absolute path is done by calling the `Paths.get()` factory method wi
 Path path = Paths.get("c:\\data\\myfile.txt");
 ```
 
-The Java NIO `Path` class can also be used to work with relative paths. You create a relative path using the `Paths.get(basePath, relativePath)` method. Here are two relative path examples in Java:
+The `Path` class can also be used to work with relative paths. You create a relative path using the `Paths.get(basePath, relativePath)` method. 
 
 ```
-Path p1 = Paths.get("d:\\data", "projects");
-Path p1 = Paths.get("d:\\data", "projects\\a-project\\myfile.txt");
+Path path = Paths.get("d:\\data", "projects");
+// Creates a Path instance pointing to `d:\data\projects`
 ```
 
-The first example creates a Java `Path` instance which points to the path (directory) `d:\data\projects`. The second example creates a `Path` instance which points to the path (file) `d:\data\projects\a-project\myfile.txt` .
+```
+Path path = Paths.get("d:\\data", "projects\\a-project\\myfile.txt");
+// Creates a Path instance pointing to `d:\data\projects\a-project\myfile.txt`
+```
 
 ### Path.relativize()
 The Java Path method `relativize()` can create a new Path which represents the second Path relative to the first Path. 
@@ -58,7 +59,7 @@ For instance, with the path `/data` and `/data/subdata/subsubdata/myfile.txt"`, 
 
 ```
 Path basePath = Paths.get("/data");
-Path path     = Paths.get("/data/subdata/subsubdata/myfile.txt");
+Path path = Paths.get("/data/subdata/subsubdata/myfile.txt");
 
 Path basePathToPath = basePath.relativize(path);
 Path pathToBasePath = path.relativize(basePath);
@@ -92,14 +93,12 @@ System.out.println("path2 = " + path2);
 ---
 
 ### java.nio.file.Files
-The Java NIO `Files` class provides several methods for manipulating files in the file system. 
-
-The `Files` class contains many methods, so check the JavaDoc too, if you need a method that is not described here. 
+The `Files` class provides several methods for manipulating files in the file system. It contains many methods, so check the JavaDoc too, if you need a method that is not described here. 
 
 The `java.nio.file.Files` class works with `java.nio.file.Path` instances, so you need to understand the `Path` class before you can work with the `Files` class.
 
 ### Files.exists()
-Since `Path` instances may or may not point to paths that exist in the file system, you can use the `Files.exists()` method to determine if they do (in case you need to check that).
+Since `Path` instances may point to paths that do not exist, you can use the `Files.exists()` method to determine if they do.
 
 ```
 Path path = Paths.get("data/logging.properties");
@@ -107,7 +106,7 @@ Path path = Paths.get("data/logging.properties");
 boolean pathExists = Files.exists(path, new LinkOption[]{ LinkOption.NOFOLLOW_LINKS});
 ```
 
-Notice the second parameter of the `Files.exists()` method. This parameter is an array of options that influence how the `Files.exists()` determines if the path exists or not. In this example above the array contains the `LinkOption.NOFOLLOW_LINKS` which means that the `Files.exists()` method should not follow symbolic links in the file system to determine if the path exists.
+The second parameter is an array of options that influence how the `Files.exists()` determines if the path exists or not. In this example above the array contains the `LinkOption.NOFOLLOW_LINKS` which means that the `Files.exists()` method should not follow symbolic links in the file system to determine if the path exists.
 
 ### Files.is*
 The `Files` class provides a set of methods for verifying files properties.
@@ -117,6 +116,11 @@ The `Files` class provides a set of methods for verifying files properties.
 * isReadable(Path path)
 * isWritable(Path path)
 * isExecutable(Path path)
+
+```
+System.out.println(Files.isDirectory(Paths.get(System.getProperty("user.home")))); // true
+System.out.println(Files.isRegularFile(Paths.get(System.getProperty("user.home")))); // false
+```
 
 ### Files.create*
 The `Files.createFile()` method creates a new file from a `Path` instance.
@@ -165,7 +169,7 @@ try {
 }
 ```
 
-First the example creates a source and destination `Path` instance. Then the example calls `Files.copy()`, passing the two `Path` instances as parameters. This will result in the file referenced by the source path to be copied to the file referenced by the destination path.
+The example calls `Files.copy()`, passing two `Path` instances as parameters. This will result in the file referenced by the source path to be copied to the file referenced by the destination path.
 
 ### Files.move()
 The `Files.move()` method moves a file from one path to another.
@@ -210,7 +214,7 @@ try (Stream<Path> stream = Files.list(srcPath)) {
 }
 ```
 
-First the `Path` pointing to the directory to be listed is created. Second the `Files.list()` returns a stream of `Path` objects.
+First the `Path` pointing to the directory to be listed is created. Second the `Files.list()` returns a stream of `Path` objects which is printed using a functional approach.
 
 ### Files.readAllBytes()
 Reads all the bytes from a file. The method ensures that the file is closed when all bytes have been read or an I/O error, or other runtime exception, is thrown.
@@ -232,4 +236,62 @@ Path src = Paths.get(filename);
 List<String> lines = Files.readAllLines(src);
 ```
 
+### Files.lines()
+Read all lines from a file as a Stream. Bytes from the file are decoded into characters using the UTF-8 charset. The returned stream contains a reference to an open file. The file is closed by closing the stream.
+
+The file contents should not be modified during the execution of the terminal stream operation. Otherwise, the result of the terminal stream operation is undefined.
+
+```
+try (Stream<String> lines = Files.lines(Paths.get(filename))) {
+    lines.forEach(System.out::println);
+}
+```
+
 ### Files.write()
+```
+public static Path write(Path path, byte[] bytes, OpenOption... options)
+```
+
+Writes bytes to a file. The options parameter specifies how the file is created or opened. If no options are present, it opens the file for writing, creating the file if it doesn't exist, or initially truncating an existing regular-file to a size of 0. All bytes in the byte array are written to the file. The method ensures that the file is closed when all bytes have been written (or an I/O error or other runtime exception is thrown). 
+
+```
+public static Path write(Path path, Iterable<? extends CharSequence> lines, OpenOption... options)
+```
+
+Write lines of text to a file. Characters are encoded into bytes using the UTF-8 charset.
+
+### Dealing with large files
+When dealing with large files, it is important to process them in chucks instead of fully loading them in memory before any processing.
+
+Text files can be lazily read using the Files.lines() method returning a `Stream<String>` and lazily written using the Writer interface.
+
+```
+try (BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(src));
+     BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(dst))) {
+    bufferedReader.lines().forEach(line -> {
+        try {
+            bufferedWriter.write(line);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    });
+}
+```
+
+Binary files, instead, can be processed in chucks using the [FileChannel](https://www.baeldung.com/java-filechannel) and [ByteBuffer](https://www.baeldung.com/java-bytebuffer) classes (which are part of the core classes of Java NIO).
+
+```
+try (FileChannel inChannel = FileChannel.open(Paths.get(src), StandardOpenOption.READ);
+     FileChannel outChannel = FileChannel.open(Paths.get(dst), StandardOpenOption.CREATE)) {
+    ByteBuffer buffer = ByteBuffer.allocate(1024);
+    while (inChannel.read(buffer) != -1) {
+        buffer.flip();
+        outChannel.write(buffer);
+        buffer.clear();
+    }
+} catch (IOException e) {
+    throw new RuntimeException(e);
+}
+```
+
+

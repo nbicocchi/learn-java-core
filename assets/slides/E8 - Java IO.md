@@ -44,8 +44,6 @@ String desktopDir = String.format("%s%s%s", System.getProperty("user.home"), Sys
 ### Absolute and relative path
 A path is **absolute** if it starts with the root element of the file system. It has the complete information about the file location including the type of the operating system.
 
-It is considered bad practice to locate a file using its absolute path inside your programs, since you will lose the ability to reuse your program on different platforms. 
-
 A **relative path** is a path that doesn't include the root element of the file system. This always starts from your **working directory**. This directory is represented by a `.` (dot). A relative path is not complete and needs to be combined with the current directory path in order to reach the requested file.
 
 Here is an example with a file inside the images directory which is in your working directory:
@@ -87,7 +85,7 @@ System.out.println("Exists: " + file.exists());
 System.out.println("Parent path: " + file.getParent());
 ```
 
-As we expect, the code prints the following:
+This code prints the following:
 
 ```
 File name: javamaterials.pdf
@@ -219,13 +217,9 @@ A computer understands only sequences of bytes. From this perspective, any data 
 
 On the contrary, as human beings, we are used to dealing with sequences of characters. Character input streams are aimed to read data which consists of characters. Under the hood, they still read bytes, but they immediately encode bytes to characters.
 
-If you need to read a text, use character input streams. Otherwise, for example, while reading audio, video, zip, etc., use byte input streams.
-
-### The four quadrants 
+### Reader and Writer interfaces
 ![sda](images/io-reader.png)
 ![sda](images/io-writer.png)
-![sda](images/io-outputstream.png)
-![sda](images/io-outputstream.png)
 
 ### Character streams (input)
 There are several classes for reading text. They are called character input streams and allow reading text data: `char` or `String`. For instance, there are `FileReader`, `CharArrayReader`, `StringReader`, etc. The class name indicates what type of source it uses as input and usually ends with `Reader`, since all such classes extend the `java.io.Reader` class.
@@ -279,6 +273,10 @@ try (BufferedReader in = new BufferedReader(new FileReader(src));
     }
 }
 ```
+
+### Inputstream and Outputstream interfaces
+![sda](images/io-inputstream.png)
+![sda](images/io-outputstream.png)
 
 ### Byte streams (input)
 The class name of a byte stream indicates what type of source it uses as input and usually ends with `InputStream`, since all such classes extend the `java.io.InputStream`class.
