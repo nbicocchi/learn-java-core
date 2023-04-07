@@ -96,7 +96,7 @@ The Java NIO `Files` class provides several methods for manipulating files in th
 
 The `Files` class contains many methods, so check the JavaDoc too, if you need a method that is not described here. 
 
-The `java.nio.file.Files` class works with [`java.nio.file.Path`](https://jenkov.com/tutorials/java-nio/path.html) instances, so you need to understand the `Path` class before you can work with the `Files` class.
+The `java.nio.file.Files` class works with `java.nio.file.Path` instances, so you need to understand the `Path` class before you can work with the `Files` class.
 
 ### Files.exists()
 Since `Path` instances may or may not point to paths that exist in the file system, you can use the `Files.exists()` method to determine if they do (in case you need to check that).
