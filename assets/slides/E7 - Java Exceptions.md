@@ -1,9 +1,9 @@
 # Exceptions
 
-Some errors in your code do not prevent the program from running. In this case, the program will only crash while trying to execute a "broken" line: a line with an error called an **exception**. Thus, exceptions are the errors detected during the program **execution** (at runtime), whereas syntax errors are those detected during **compiling** the program into byte-code. An exception interrupts the normal execution of a program.
+Exceptions are the errors detected during the program **execution** (at runtime), whereas syntax errors are those detected during **compiling** the program into byte-code. An exception interrupts the normal execution of a program.
 
 ### Why exceptions?
-Imagine we need to write a method for a loading a file in memory:
+Imagine we need to write a method for loading a file in memory:
 
 * First approach (ignore error checking)
   * Short 
@@ -22,7 +22,7 @@ void loadFile()  {
 
 ```
 
-* Second approach (error checking with magic numbers)
+* Second approach (error checking with [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)))
   * **Long**
   * **Obscure**
   * Reusable
@@ -52,7 +52,7 @@ void loadFile()  {
 }
 ```
 
-* Third approach (using exceptions)
+* Third approach (error checking with exceptions)
   * Reusable
   * Dependable
   * Readable
@@ -292,7 +292,7 @@ Here are several general rules on how to avoid an **NPE** in your programs:
 These simple rules will help to reduce the number of places in your code that could throw this exception.
 
 ### Hierarchy of exceptions
-Java is primarily an object-oriented language. In such a paradigm, all exceptions are considered objects of special classes organized into a class hierarchy. The following picture illustrates the simplified hierarchy of exceptions:
+Exceptions are considered objects of special classes organized into a class hierarchy. The following picture illustrates the simplified hierarchy of exceptions:
 
 ![Hierarchy of exceptions](images/exceptions.svg)
 
@@ -340,8 +340,6 @@ The `Error` class and its subclasses are also considered as unchecked exceptions
 
 ### The throw keyword
 Any object of the  `Throwable`  class and all its subclasses can be thrown using the **throw** statement. The general form of the statement consists of the `throw`  keyword and an object to be thrown.
-
-In the following example, we create and throw an object of the `RuntimeException` class that extends `Throwable`.
 
 ```
 public class Main {
@@ -392,7 +390,7 @@ public static void method() throws BaseExceptionType
 ```
 
 ### Throwing unchecked exceptions
-Let's see how unchecked exceptions are thrown in a more real-life example. The  `Account`  class contains the method called  `deposit`, that adds the specified amount to the current balance. If the amount is not positive or exceeds the limit, the method throws an `IllegalArgumentException`.
+The  `Account`  class contains the method called  `deposit`, that adds the specified amount to the current balance. If the amount is not positive or exceeds the limit, the method throws an `IllegalArgumentException`.
 
 ```
 class Account {
@@ -420,18 +418,16 @@ class Account {
 The  `deposit`  method is not declared as throwing an  `IllegalArgumentException`. The same is true for all other unchecked exceptions. If a method throws an unchecked exception, the keyword `throws` is not required in the method declaration (but you still have to use`throw`!)
 
 ### When to throw an exception?
-As you can see, technically, throwing an exception is a rather straightforward task. But the question is, when do you need to do this? The answer is that it is not always obvious.
+Technically, throwing an exception is a rather straightforward task. But the question is, when do you need to do this? The answer is not always obvious.
 
 The common practice is to throw an exception when and only when the method preconditions are broken, that is when it cannot be performed under the current conditions.
 
-There are different cases where you would want to throw an exception. Imagine a method that parses the input string in the dd-MM-yyyy format to get a month. Here, if the string is invalid, the method throws an  `InvalidArgumentException`. Another example is reading a non-existing file that will lead to a  `FileNotFoundException`.
+Imagine a method that parses the input string in the dd-MM-yyyy format to get a month. Here, if the string is invalid, the method throws an  `InvalidArgumentException`. Another example is reading a non-existing file that will lead to a  `FileNotFoundException`.
 
-After some time of practice, identifying situations where you need an exception will become an easier task for you. It is recommended to throw exceptions that are most relevant (specific) to the problem: it is better to throw an object of `InvalidArgumentException`  than the base `Exception`  class.
-
-Another question is how to choose between checked and unchecked exceptions? There is a short guideline. If a client can reasonably be expected to recover from an exception, make it a checked exception. If a client cannot do anything to recover, make it an unchecked exception.
+It is recommended to throw exceptions that are most relevant (specific) to the problem: it is better to throw an object of `InvalidArgumentException`  than the base `Exception`  class.
 
 ### How to handle an exception
-After a line of code throws an exception, the Java runtime system attempts to find a suitable handler for it. Such a handler can be located in the same method where the exception occurred or in the calling method. As soon as a suitable handler is found and executed, the exception is considered as handled and the program runs normally.
+After a line of code throws an exception, the Java runtime system attempts to find a suitable handler for it. Such a handler can be located in the same method where the exception occurred or in the calling methods (up to the main method). As soon as a suitable handler is found and executed, the exception is considered as handled and the program runs normally.
 
 Technically, an exception can be handled in the method where it occurs or in the calling method. The best approach to handle an exception is to do it in a method that has sufficient information to make the correct decision based on this exception.
 
@@ -449,8 +445,6 @@ try {
 The `try` block is used to wrap the code that may throw an exception. This block can include all lines of code, including method calls.
 
 The `catch` block is a handler for the specified type of exception and all of its subclasses. This block is executed when an exception of the corresponding type occurs in the `try` block. Note that the specified type in a `catch` block must extend the `Throwable` class. The `catch` block can handle exceptions of the `Exception` class and all classes derived from it.
-
-The following example demonstrates the execution flow with `try` and `catch`.
 
 ```
 System.out.println("before the try-catch block"); // it will be printed
@@ -633,44 +627,8 @@ try {
 
 In this and the following examples, we assume that `file.txt` exists and do not check the instance of `Reader` for `null` in the `finally` block. It is done to keep the code snippet as simple as possible, but it is not safe in the case of a real application.
 
-Unfortunately, this solution still has some problems. That is, the `close` method can potentially raise exceptions itself. Suppose, now there are two exceptions: the first was raised inside the `try`section, and the second was thrown by the `finally`section. It leads to the loss of the first exception. Let's see why this happens:
-
-```
-void readFile() throws IOException {
-    Reader reader = null;
-    try {
-        reader = new FileReader("file.txt");
-        throw new RuntimeException("Exception1");
-    } finally {
-        reader.close(); // throws new RuntimeException("Exception2")
-    }
-}
-```
-
-First, the `try` block throws an exception. As we know, the `finally` block is invoked anyway. In our example, now the `close` method throws an exception. When two exceptions occur, which one is thrown outside the method? It will be the last one: `Exception2` in our case. It means we will never know that the `try` block raised an exception at all.
-
-Let's try to reason and fix this. Ok, we don't want to lose the first exception, so we upgrade the code a little bit and handle `Exception2` right after it was thrown:
-
-```
-void readFile() throws IOException {
-    Reader reader = null;
-    try {
-        reader = new FileReader("file.txt");
-        throw new RuntimeException("Exception1");
-    } finally {
-        try {
-            reader.close(); // throws new RuntimeException("Exception2")
-        } catch (Exception e) {
-            // handle the Exception2
-        }
-    }
-}
-```
-
-Now, the piece of code throws `Exception1` outside. It may be correct, but we still do not save information on both exceptions, and sometimes we don't want to lose it. So now, let's see how we can handle this situation nicely.
-
-### Solution
-A simple and reliable way called **try-with-resources** was introduced in Java 7.
+### try-with-resources
+A more elegant way for avoiding [resource leaks](https://en.wikipedia.org/wiki/Resource_leak) is called **try-with-resources** and was introduced in Java 7.
 
 ```
 try (Reader reader = new FileReader("file.txt")) {

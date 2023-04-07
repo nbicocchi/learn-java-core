@@ -142,7 +142,7 @@
 * Closing resources
 * Designing your own Exception types
 
-[E8] NIO Framework
+[E8] IO/NIO Frameworks
 
 > Read: Big Java (Chapter 21.5)
 
