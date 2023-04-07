@@ -232,11 +232,11 @@ Character output streams allow writing text data: `char` or `String`. You might 
 
 The class contains a group of methods for writing. Some of them are listed here:
 
--   `void write(char[] cbuf)` writes a char array
--   `void write(char[] cbuf, int off, int len)` writes a portion of a char array
--   `void write(int c)` writes a single character
--   `void write(String str)` writes a string
--   `void write(String str, int off, int len)` writes a portion of a string
+- `void write(char[] cbuf)` writes a char array
+- `void write(char[] cbuf, int off, int len)` writes a portion of a char array
+- `void write(int c)` writes a single character
+- `void write(String str)` writes a string
+- `void write(String str, int off, int len)` writes a portion of a string
 
 `Writer` has several direct subclasses for different purposes in the standard library. For example, `FileWriter` is intended for writing to files. `StringWriter` is designed to construct a string. `CharArrayWriter` uses `char[]` as a destination.
 
@@ -277,3 +277,17 @@ Byte output stream classes from the standard library extend `java.io.OutputStrea
 Just like character streams, byte streams have `void close()` that should be invoked in a similar way.
 
 Let's look at some direct subclasses of `OutputStream` from the standard library.`FileOutputStream` is intended for writing data to a file as a destination. `ByteArrayOutputStream` as you may guess allows writing to `byte[]` destination. Such classes like `FilterOutputStream` or `PipedOutputStream` have no endpoint destination and write data to other output streams. These classes are supposed to be intermediate streams for data transformation or possibly providing additional functionality.
+
+```
+File src = new File("src/test/resources/copiedWithIo.txt");
+File dst = new File("src/test/resources/copiedWithIo.txt.bak");
+try (InputStream in = new BufferedInputStream(new FileInputStream(src));
+     OutputStream out = new BufferedOutputStream(new FileOutputStream(dst))) {
+
+    byte[] buffer = new byte[1024];
+    int lengthRead;
+    while ((lengthRead = in.read(buffer)) > 0) {
+        out.write(buffer, 0, lengthRead);
+    }
+}
+```

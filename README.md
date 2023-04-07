@@ -150,7 +150,6 @@
 
 * NIO vs IO
 * Manipulating paths (Path, Paths)
-* Java System Properties and portable paths
 * Reading, writing, manipulating files (Files)
 * Reading and writing large files (Buffer, Channel)
 
