@@ -1,7 +1,6 @@
 package com.nbicocchi.exercises.examples;
 
 import java.util.random.RandomGenerator;
-import java.util.random.RandomGeneratorFactory;
 
 public class BankExample {
 
@@ -27,27 +26,39 @@ public class BankExample {
 
     static class BankUser extends Thread {
         BankAccount account;
-        RandomGenerator rnd;
 
         public BankUser(String name, BankAccount account) {
             super(name);
             this.account = account;
-            this.rnd = RandomGenerator.getDefault();
+        }
+
+        private void log(String action, int amount) {
+            System.out.printf("[%s] [%14s] [balance=%d, amount=%d]\n",
+                    Thread.currentThread().getName(),
+                    action,
+                    account.getBalance(),
+                    amount);
         }
 
         public void run() {
-            while (true) {
+            RandomGenerator rnd = RandomGenerator.getDefault();
+            while (!interrupted()) {
                 synchronized (account) {
-                    int amount = rnd.nextInt(100);
-                    if (account.getBalance() < amount) {
-                        System.out.printf("%s quitting [balance=%d, amount=%d]\n", Thread.currentThread().getName(), account.getBalance(), amount);
+                    if (account.getBalance() <= 0) {
+                        log("ACCOUNT EMPTY", 0);
                         break;
                     }
-                    System.out.printf("%s is going to withdraw [balance=%d, amount=%d]\n", Thread.currentThread().getName(), account.getBalance(), amount);
+
+                    int amount = rnd.nextInt(account.getBalance() + 1);
+
+                    log("START WITHDRAW", amount);
+
                     account.withdraw(amount);
-                    System.out.printf("%s completed withdraw [balance=%d]\n", Thread.currentThread().getName(), account.getBalance());
+
+                    log("END WITHDRAW", amount);
+
                     if (account.getBalance() < 0) {
-                        System.out.printf("%s DOH!! [balance=%d, amount=%d]\n", Thread.currentThread().getName(), account.getBalance(), amount);
+                        log("DOH!", amount);
                         break;
                     }
                     Thread.yield();
@@ -56,11 +67,13 @@ public class BankExample {
         }
     }
 
-    public static void main(String[] args) {
-        BankAccount account = new BankAccount(150);
-        BankUser homer = new BankUser("Homer", account);
-        BankUser marge = new BankUser("Marge", account);
+    public static void main(String[] args) throws InterruptedException {
+        BankAccount account = new BankAccount(2000);
+        BankUser homer = new BankUser("HOMER", account);
+        BankUser marge = new BankUser("MARGE", account);
         homer.start();
         marge.start();
+        homer.join();
+        marge.join();
     }
 }

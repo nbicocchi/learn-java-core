@@ -1,10 +1,17 @@
 package com.nbicocchi.exercises.examples;
 
 public class StartStopThread extends Thread {
-    public boolean running = true;
-
     public StartStopThread(String name) {
         super(name);
+    }
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + " started");
+        while (!interrupted()) {
+            System.out.println(Thread.currentThread().getName());
+        }
+        System.out.println(Thread.currentThread().getName() + " terminated");
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -15,29 +22,15 @@ public class StartStopThread extends Thread {
         a.start();
         b.start();
 
-        /* wait 1/10 of second */
-        Thread.sleep(100L);
+        /* wait 10 millis */
+        Thread.sleep(10L);
 
-        /* gracefully shut down children threads */
-        a.running = false;
-        b.running = false;
+        /* gracefully terminate children threads */
+        a.interrupt();
+        b.interrupt();
 
         /* wait for children before exit */
         a.join();
         b.join();
-    }
-
-    @Override
-    public void run() {
-        System.out.println(Thread.currentThread().getName() + " started");
-        while (running) {
-            System.out.println(Thread.currentThread().getName());
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                break;
-            }
-        }
-        System.out.println(Thread.currentThread().getName() + " terminated");
     }
 }
