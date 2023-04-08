@@ -33,6 +33,7 @@ Main reasons for using threads:
 * perform asynchronous operations or background processing
 * take advantage of multiprocessor systems
 
+### Why Threads? A case study
 Imagine a stock-broker application with three key capabilities:
 * Download stock prices
 * Store stock prices into a database
@@ -53,8 +54,8 @@ In a multi-threaded process:
 **The good**
 * Enable parallelism
 * Lighter than processes for both
-* Creation(i.e., fork())
-* Communication (i.e., r/w pipes …)
+  * Creation(i.e., fork())
+  * Communication (i.e., r/w pipes …)
 
 **The bad**
 * Hard for most programmers
@@ -74,7 +75,6 @@ In Java it is not possible to explicitly call the syscall fork() as in C. Syscal
 Methods of the `java.lang.Process` class also allow developers to acquire standard input, output, error, and exit value.
 
 ```
-/* Process p = Runtime.getRuntime().exec("/bin/ls -al /"); */
 Process p = (new ProcessBuilder("/bin/ls", "-al", "/")).start();
 
 BufferedReader in = new BufferedReader(new
@@ -182,7 +182,6 @@ Thread t3 = new Thread(() -> {
 ```
 
 ### Starting threads
-
 The class `Thread` has a method called `start()` that is used to start a thread. At some point after you invoke this method, the method `run` will be invoked automatically, but it'll not happen immediately.
 
 Let's suppose that inside the **main** method you create a `HelloThread` object named `t` and start it.
@@ -309,7 +308,6 @@ public class StartStopThread extends Thread {
 ```
 
 ### Thread states
-
 ![](images/threads-states.png)
 
 **Running:** The thread has been selected (from the runnable pool) to be the currently executing thread.
@@ -406,6 +404,9 @@ public class JoiningExample {
 
 The main thread waits for `worker` and cannot print the message `The program stopped` until the worker terminates or the timeout is exceeded. We know exactly only that `Starting a task` precedes `The task is finished` and `Do something useful` precedes `The program stopped`. 
 
+### Yielding
+...
+
 ### Sharing data between threads
 Threads that belong to the same process share the common memory (that is called **Heap**). They may communicate by using shared data in memory. To be able to access the same data from multiple threads, each thread must have a reference to this data (by an object). The picture below demonstrates the idea.
 
@@ -442,17 +443,15 @@ Each person (i.e., thread) does these steps:
 public void run() {
     RandomGenerator rnd = RandomGenerator.getDefault();
     while (!interrupted()) {
-        synchronized (account) {
-            if (account.getBalance() <= 0) {
-                break;
-            }
-    
-            int amount = rnd.nextInt(account.getBalance() + 1);
-    
-            account.withdraw(amount);
-            
-            Thread.yield();
+        if (account.getBalance() <= 0) {
+            break;
         }
+
+        int amount = rnd.nextInt(account.getBalance() + 1);
+
+        account.withdraw(amount);
+        
+        Thread.yield();
     }
 ```
 
@@ -484,7 +483,7 @@ Developers can't guarantee that a single thread will stay running during a whole
 
 **Synchronized** is used to protect resources that are accessed concurrently. Only one thread at a time can access. The modifier **synchronized can be applied either to a method or an object**.
 
-Every object in Java has ONE built-in lock. Entering a synchronized non-static method means getting the lock of the object. If one thread gets the lock, all other threads have to wait to enter ALL the synchronized methods until the lock is released (the first thread exits the synchronized method).
+Every object in Java has ONE built-in lock. **Entering a synchronized non-static method means getting the lock of the object**. If one thread gets the lock, all other threads have to wait to enter ALL the synchronized methods until the lock is released (the first thread exits the synchronized method).
 
 ```
 public synchronized void doStuff() { 
@@ -502,11 +501,10 @@ public void doStuff() {
 
 **Whenever an object lock has been acquired by one thread, other threads can still access the class's non-synchronized methods**. Methods that don't access critical data don’t need to be synchronized.
 
-Details:
+**Details**:
 * Threads going to sleep don't release locks!
 * A thread can acquire more than one lock. For example, a thread can enter a synchronized method, then immediately invoke a synchronized method on another object (deadlock prone!)
 
-Entering a synchronized static method means getting the lock of the class instead of an object. Useful when the shared resource is defined static as well.
 
 ```
 public void run() {
