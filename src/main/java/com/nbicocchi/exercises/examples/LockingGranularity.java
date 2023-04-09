@@ -3,24 +3,15 @@ package com.nbicocchi.exercises.examples;
 public class LockingGranularity {
     static class Actor extends Thread {
         Runnable runnable;
-        boolean running = true;
 
         public Actor(Runnable runnable) {
             super();
             this.runnable = runnable;
         }
 
-        public boolean isRunning() {
-            return running;
-        }
-
-        public void setRunning(boolean running) {
-            this.running = running;
-        }
-
         @Override
         public void run() {
-            while (running) {
+            while (!isInterrupted()) {
                 runnable.run();
             }
         }
@@ -45,21 +36,24 @@ public class LockingGranularity {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SharedResource resource = new SharedResource();
         Actor a = new Actor(resource::A);
         Actor b = new Actor(resource::B);
         Actor c = new Actor(resource::C);
+
         a.start();
         b.start();
         c.start();
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        a.setRunning(false);
-        b.setRunning(false);
-        c.setRunning(false);
+
+        Thread.sleep(10);
+
+        a.interrupt();
+        b.interrupt();
+        c.interrupt();
+
+        a.join();
+        b.join();
+        c.join();
     }
 }

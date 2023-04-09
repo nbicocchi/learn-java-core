@@ -405,7 +405,11 @@ public class JoiningExample {
 The main thread waits for `worker` and cannot print the message `The program stopped` until the worker terminates or the timeout is exceeded. We know exactly only that `Starting a task` precedes `The task is finished` and `Do something useful` precedes `The program stopped`. 
 
 ### Yielding
-...
+The `yield()` method moves the running thread back to Runnable state.
+
+It allows other threads to get their turn (with no guarantees). It is used when computation is not possible (no work to do) is a given time slice.
+
+One of the benefits of this approach is making out code less dependent from the scheduler type, because threads release CPU when needed.
 
 ### Sharing data between threads
 Threads that belong to the same process share the common memory (that is called **Heap**). They may communicate by using shared data in memory. To be able to access the same data from multiple threads, each thread must have a reference to this data (by an object). The picture below demonstrates the idea.
@@ -499,6 +503,69 @@ public void doStuff() {
 }
 ```
 
+Another example: the first time the method `A()` is called, it sleeps and makes both `A()` and `B()` inaccessible for 100ms. All synchronized methods of an object share the same lock!
+
+```
+class Actor extends Thread {
+    Runnable runnable;
+
+    public Actor(Runnable runnable) {
+        super();
+        this.runnable = runnable;
+    }
+
+    @Override
+    public void run() {
+        while (!isInterrupted()) {
+            runnable.run();
+        }
+    }
+}
+```
+
+```
+class SharedResource {
+    public synchronized void A() {
+        System.out.println(Thread.currentThread().getName() + " A()");
+        try {
+            Thread.sleep(100L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized void B() {
+        System.out.println(Thread.currentThread().getName() + " B()");
+    }
+
+    public void C() {
+        System.out.println(Thread.currentThread().getName() + " C()");
+    }
+}
+```
+
+```
+public class LockingGranularity {
+    public static void main(String[] args) {
+        SharedResource resource = new SharedResource();
+        Actor a = new Actor(resource::A);
+        Actor b = new Actor(resource::B);
+        Actor c = new Actor(resource::C);
+        a.start();
+        b.start();
+        c.start();
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        a.interrupt();
+        b.interrupt();
+        c.interrupt();
+    }
+}
+```
+
 **Whenever an object lock has been acquired by one thread, other threads can still access the class's non-synchronized methods**. Methods that don't access critical data don’t need to be synchronized.
 
 **Details**:
@@ -523,3 +590,148 @@ public void run() {
         }
     }
 ```
+
+### Thread-safe shared objects
+
+There are two main ways to grant atomic access to a shared object:
+* Use the **synchronized** modifier within the run() method of each thread to lock the shared object.
+* Use the **synchronized** modifier within the methods of the shared object itself.
+
+A thread-safe class is class that is safe (works properly) when accessed by multiple threads. Critical sections (i.e., sections possibly generating race conditions) are encapsulated in synchronized methods.
+
+* Interface List: ArrayList (unsafe), Vector (safe)
+* Interface Queue: LinkedList (unsafe), ConcurrentLinkedQueue (safe), ArrayBlockingQueue (safe)
+
+```
+package com.nbicocchi.exercises.examples;
+
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
+import java.util.random.RandomGenerator;
+
+public class SharedObject {
+    static class ProducerSafe extends Thread {
+        final Deque<Integer> integerDeque;
+
+        public ProducerSafe(Deque<Integer> integerDeque) {
+            super();
+            this.integerDeque = integerDeque;
+        }
+
+        @Override
+        public void run() {
+            RandomGenerator rnd = RandomGenerator.getDefault();
+            while (!isInterrupted()) {
+                synchronized (integerDeque) {
+                    integerDeque.addFirst(rnd.nextInt());
+                }
+            }
+        }
+    }
+
+    static class ProducerUnsafe extends Thread {
+        final Deque<Integer> integerDeque;
+
+        public ProducerUnsafe(Deque<Integer> integerDeque) {
+            super();
+            this.integerDeque = integerDeque;
+        }
+
+        @Override
+        public void run() {
+            RandomGenerator rnd = RandomGenerator.getDefault();
+            while (!isInterrupted()) {
+                integerDeque.addFirst(rnd.nextInt());
+            }
+        }
+    }
+
+    static class ConsumerSafe extends Thread {
+        final Deque<Integer> integerDeque;
+
+        public ConsumerSafe(Deque<Integer> integerDeque) {
+            super();
+            this.integerDeque = integerDeque;
+        }
+
+        @Override
+        public void run() {
+            while (!isInterrupted()) {
+                try {
+                    synchronized (integerDeque) {
+                        integerDeque.removeLast();
+                    }
+                } catch (NoSuchElementException e) {
+                    Thread.yield();
+                }
+            }
+        }
+    }
+
+    static class ConsumerUnsafe extends Thread {
+        final Deque<Integer> integerDeque;
+
+        public ConsumerUnsafe(Deque<Integer> integerDeque) {
+            super();
+            this.integerDeque = integerDeque;
+        }
+
+        @Override
+        public void run() {
+            while (!isInterrupted()) {
+                try {
+                    integerDeque.removeLast();
+                } catch (NoSuchElementException e) {
+                    Thread.yield();
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        /* An unsafe shared object require safe threads and vice versa */
+        Deque<Integer> dq = new LinkedList<>();
+        ProducerSafe p = new ProducerSafe(dq);
+        ConsumerSafe c = new ConsumerSafe(dq);
+
+        p.start();
+        c.start();
+
+        Thread.sleep(100L);
+
+        p.interrupt();
+        c.interrupt();
+
+        p.join();
+        c.join();
+    }
+}
+```
+
+### Synchronization using Object
+Threads might be able to acquire exclusive access a shared resource but still be unable to progress. For example, a producer with a full queue, or a consumer with an empty queue. 
+
+To avoid waste of computational resources we can use the wait() and notify() methods (inherited from Object).
+
+wait() can only be called from a synchronized block. It releases the lock on the object so that another thread can jump in and acquire a lock. **wait() lets a thread say: “There's nothing for me to do now, so put me in the waiting pool and notify me when something happens that I care about.”**
+
+
+notify() send a signal to one of the threads that are waiting in the object's waiting pool. The notify() method CANNOT specify which waiting thread to notify. The method notifyAll() is similar but sends a signal to all the threads waiting on the object. **notify() lets a thread say: “Something has changed here. Feel free to continue what you were trying to do”.**
+
+[A more detailed example here.](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/producerconsumer)
+
+### Multi-thread patterns
+Despite threads can be used for solving a number of real-world problems, most of them can be conceptually assimilated to two main patterns:
+
+**The producer-consumer pattern**, where the producer thread pushes elements into a shared object and the consumer thread fetches (consumes) them
+
+![](images/threads-producer-consumer.svg)
+
+**The manager-worker pattern**, where a manager decomposes a complex task into subtask, and assigns them to worker threads. 
+
+![](images/threads-manager-workers.svg)
+
+### Executors
+
+### The Task<T> class
