@@ -551,17 +551,20 @@ public class LockingGranularity {
         Actor a = new Actor(resource::A);
         Actor b = new Actor(resource::B);
         Actor c = new Actor(resource::C);
+
         a.start();
         b.start();
         c.start();
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        Thread.sleep(10);
+
         a.interrupt();
         b.interrupt();
         c.interrupt();
+
+        a.join();
+        b.join();
+        c.join();
     }
 }
 ```
