@@ -728,7 +728,7 @@ Despite threads can be used for solving a number of real-world problems, most of
 
 ![](images/threads-producer-consumer.svg)
 
-**The manager-worker pattern**, where a manager decomposes a complex task into subtask, and assigns them to worker threads. 
+**The manager-worker pattern**, where a manager decomposes a complex task into subtasks, and assigns them to worker threads. 
 
 ![](images/threads-manager-workers.svg)
 
