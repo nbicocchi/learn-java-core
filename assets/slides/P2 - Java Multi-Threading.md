@@ -719,7 +719,6 @@ To avoid waste of computational resources we can use the wait() and notify() met
 
 wait() can only be called from a synchronized block. It releases the lock on the object so that another thread can jump in and acquire a lock. **wait() lets a thread say: “There's nothing for me to do now, so put me in the waiting pool and notify me when something happens that I care about.”**
 
-
 notify() send a signal to one of the threads that are waiting in the object's waiting pool. The notify() method CANNOT specify which waiting thread to notify. The method notifyAll() is similar but sends a signal to all the threads waiting on the object. **notify() lets a thread say: “Something has changed here. Feel free to continue what you were trying to do”.**
 
 [A more detailed example here.](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/producerconsumer)
