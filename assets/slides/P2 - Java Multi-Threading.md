@@ -1003,13 +1003,13 @@ The approach we are learning here allows us to do something useful between obtai
 ExecutorService executor = Executors.newFixedThreadPool(4);
 
 Future<Integer> future1 = executor.submit(() -> {
-TimeUnit.SECONDS.sleep(5);
-return 700000;
+    TimeUnit.SECONDS.sleep(5);
+    return 700000;
 });
 
 Future<Integer> future2 = executor.submit(() -> {
-TimeUnit.SECONDS.sleep(5);
-return 900000;
+    TimeUnit.SECONDS.sleep(5);
+    return 900000;
 });
 
 int result = future1.get() + future2.get(); // waiting for both results
@@ -1038,7 +1038,7 @@ List.of(() -> 1000, () -> 2000, () -> 1500); // three "difficult" tasks
 List<Future<Integer>> futures = executor.invokeAll(callables);
 int sum = 0;
 for (Future<Integer> future : futures) {
-sum += future.get(); // blocks on each future to get a result
+    sum += future.get(); // blocks on each future to get a result
 }
 System.out.println(sum);
 ```
