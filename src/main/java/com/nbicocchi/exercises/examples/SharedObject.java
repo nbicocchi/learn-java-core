@@ -85,6 +85,7 @@ public class SharedObject {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        /* An unsafe shared object require safe threads and vice versa */
         Deque<Integer> dq = new LinkedList<>();
         ProducerSafe p = new ProducerSafe(dq);
         ConsumerSafe c = new ConsumerSafe(dq);

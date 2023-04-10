@@ -1043,7 +1043,7 @@ for (Future<Integer> future : futures) {
 System.out.println(sum);
 ```
 
-### The Task<V> class
+### The Task class
 * [Official Documentation](https://docs.oracle.com/javafx/2/api/javafx/concurrent/Task.html)
 * [Producer - Consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/producerconsumer)
 * [Manager - Workers exaple](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/primes)
