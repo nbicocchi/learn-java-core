@@ -734,6 +734,316 @@ Despite threads can be used for solving a number of real-world problems, most of
 
 ![](images/threads-manager-workers.svg)
 
-### Executors
+### Tasks and executors
+To simplify the development of multi-threaded applications, Java provides an abstraction called `ExecutorService` (or simply **executor**). It encapsulates one or more threads into a single pool and puts submitted tasks in an internal queue to execute them by using the threads.
 
-### The Task<T> class
+![ExecutorService diagram](images/threads-executor.svg)
+
+This approach clearly isolates tasks from threads and allows you to focus on tasks. You do not need to worry about creating and managing threads because the executor does it for you.
+
+### Creating executors
+
+All types of executors are located in the `java.util.concurrent` package. You need to import it first. This package also contains a convenient utility class `Executors` for creating different types of `ExecutorService`'s.
+
+First of all, let's create an executor with exactly four threads in the pool:
+
+```
+ExecutorService executor = Executors.newFixedThreadPool(4);
+```
+
+It can execute multiple tasks concurrently and speed up your program by performing somewhat parallel computations. If one of the threads dies, the executor creates a new one. We will later consider how to determine the required number of threads.
+
+### Submitting tasks
+An executor has the `submit` method that accepts a `Runnable` task to be executed. Since `Runnable` is a functional interface, it is possible to use a lambda expression as a task.
+
+As an example, here we submit a task that prints **"Hello!"** to the standard output.
+
+```
+executor.submit(() -> System.out.println("Hello!"));
+```
+
+After invoking `submit`, the current thread does not wait for the task to complete. It just adds the task to the executor's internal queue to be executed asynchronously by one of the threads.
+
+
+### Stopping executors
+An executor continues to work after the completion of a task since threads in the pool are waiting for new coming tasks. Your program will never stop while at least one executor still works.
+
+There are two methods for stopping executors:
+
+-   `void shutdown()` waits until all running tasks are completed and prohibits submitting of new tasks;
+
+-   `List<Runnable> shutdownNow()` immediately stops all running tasks and returns a list of the tasks that were awaiting execution.
+
+**Note** that `shutdown()` does not block the current thread unlike `join()` of `Thread`. If you need to wait until the execution is complete, you can invoke `awaitTermination(...)` with the specified waiting time.
+
+```
+ExecutorService executor = Executors.newFixedThreadPool(4);
+
+// submitting tasks
+
+executor.shutdown();
+
+boolean terminated = executor.awaitTermination(60, TimeUnit.MILLISECONDS);
+
+if (terminated) {
+    System.out.println("The executor was successfully stopped");
+} else {
+    System.out.println("Timeout elapsed before termination");
+}
+```
+
+### An example: names of threads and tasks
+In the following example, we create one executor with a pool consisting of four threads. We submit ten tasks to it and then analyze the results. Each task prints the name of a thread that executes it, as well as the name of the task.
+
+```
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ExecutorDemo {
+    private final static int POOL_SIZE = 4;
+    private final static int NUMBER_OF_TASKS = 10;
+
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(POOL_SIZE);
+
+        for (int i = 0; i < NUMBER_OF_TASKS; i++) {
+            int taskNumber = i;
+            executor.submit(() -> {
+                String taskName = "task-" + taskNumber;
+                String threadName = Thread.currentThread().getName();
+                System.out.printf("%s executes %s\n", threadName, taskName);
+            });
+        }
+
+        executor.shutdown();
+    }
+}
+```
+
+If you launch this program many times, you will get a different output. Below is one of the possible outputs:
+
+```
+pool-1-thread-1 executes task-0
+pool-1-thread-2 executes task-1
+pool-1-thread-4 executes task-3
+pool-1-thread-3 executes task-2
+pool-1-thread-3 executes task-7
+pool-1-thread-3 executes task-8
+pool-1-thread-3 executes task-9
+pool-1-thread-1 executes task-6
+pool-1-thread-4 executes task-5
+pool-1-thread-2 executes task-4
+```
+
+It clearly demonstrates the executor uses all four threads to solve the tasks. The number of solved tasks by each thread can vary. There are no guarantees what we'll get.
+
+If you do not know how many threads are needed in your pool, you can take the number of available processors as the pool size.
+
+```
+int poolSize = Runtime.getRuntime().availableProcessors();
+ExecutorService executor = Executors.newFixedThreadPool(poolSize);
+```
+
+### Types of executors
+We have considered the most used executor with the fixed size of the pool. Here are a few more types:
+
+-   **An executor with a single thread**
+
+The simplest executor has only a single thread in the pool. It may be enough for async execution of rarely submitted and small tasks.
+
+```
+ExecutorService executor = Executors.newSingleThreadExecutor();
+```
+
+**Important:** one thread may not have time to process all incoming tasks, and the queue will grow significantly, consuming all the memory.
+
+-   **An executor with a growing pool**
+
+There is also an executor that automatically increases the number of threads as it needed and reuse previously constructed threads.
+
+```
+ExecutorService executor = Executors.newCachedThreadPool();
+```
+
+It can typically improve the performance of programs that perform many short-lived asynchronous tasks. But it can also lead to problems when the number of threads increases too much. It is preferable to choose the fixed thread-pool executor whenever possible.
+
+-   **An executor that schedules a task**
+
+If you need to perform the same task periodically or only once after the given delay, use the following executor:
+
+```
+ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+```
+
+The method `scheduleAtFixedRate` submits a periodic `Runnable` task that becomes enabled first after the given `initDelay`, and subsequently with the given `period`.
+
+Here is a quick example with scheduling:
+
+```
+ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+executor.scheduleAtFixedRate(() ->
+        System.out.println(LocalTime.now() + ": Hello!"), 1000, 1000, TimeUnit.MILLISECONDS);
+```
+
+Here is a fragment of the output:
+
+```
+02:30:06.375392: Hello!
+02:30:07.375356: Hello!
+02:30:08.375376: Hello!
+...and even more...
+```
+
+It can be stopped as we did before.
+
+This kind of executor also has a method named `schedule` that starts a task only once after the given delay and another method `scheduleWithFixedDelay` that starts the task with a fixed wait after the previous one is completed.
+
+### Exception handling
+
+In our examples, we often ignore error handling to simplify code. Here we demonstrate one feature related to the handling of exceptions in executors (namely, unchecked).
+
+What do you think the following code will print?
+
+```
+ExecutorService executor = Executors.newSingleThreadExecutor();
+executor.submit(() -> System.out.println(2 / 0));
+```
+
+It does not print anything at all, including the exception! This is why it is common practice to wrap a task in the `try-catch` block not to lose the exception.
+
+```
+ExecutorService executor = Executors.newSingleThreadExecutor();
+executor.submit(() -> {
+    try {
+        System.out.println(2 / 0);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+});
+```
+
+### The Callable interface
+Sometimes you need not only to execute a task in an executor but also to return a result of this task to the calling code. It is possible but an inconvenient thing to do with `Runnable`'s.
+
+In order to simplify it, an executor supports another class of tasks named `Callable` that returns the result and may throw an exception. This interface belongs to the` java.util.concurrent` package. Let's take a look at this.
+
+```
+@FunctionalInterface
+public interface Callable<V> {
+    V call() throws Exception;
+}
+```
+
+As you can see, it is a generic interface where the type parameter `V` determines the type of a result. Since it is a **functional interface**, we can use it together with lambda expressions and method references as well as implementing classes.
+
+Here is a `Callable` that emulates a long-running task and returns a number that was "calculated".
+
+```
+Callable<Integer> generator = () -> {
+    TimeUnit.SECONDS.sleep(5);
+    return 700000;
+};
+```
+
+### Submitting a Callable and obtaining a Future
+When we submit a `Callable` to an executor service, it cannot return a result directly since the `submit` method does not wait until the task completes. Instead, an executor returns a special object called `Future` that wraps the actual result that may not even exist yet. This object represents the result of an asynchronous computation (task).
+
+```
+ExecutorService executor = Executors.newSingleThreadExecutor();
+
+Future<Integer> future = executor.submit(() -> {
+    TimeUnit.SECONDS.sleep(5);
+    return 700000;
+});
+```
+
+Until the task completes, the actual result is not present in the `future` object. To check it, there is a method `isDone()`. Most likely, it will return `false` if you will call it immediately after obtaining a new `future`.
+
+```
+System.out.println(future.isDone()); // most likely it is false
+```
+
+### Getting the actual result of a task
+The result can only be retrieved from a *future* by using the `get` method.
+
+```
+int result = future.get();
+```
+
+It returns the result when the computation has completed, or blocks the current thread and waits for the result. This method may throw two checked exceptions: `ExecutionException` and `InterruptedException` which we omit here for brevity.
+
+If a submitted task executes an infinite loop or waits for an external resource for too long, a thread that invokes `get` will be blocked all this time. To prevent this, there is also an overloaded version of `get` with a waiting timeout.
+
+```
+int result = future.get(10, TimeUnit.SECONDS); // it blocks the current thread
+```
+
+In this case, the calling thread waits for 10 seconds most for the computation to complete. If the timeout ends, the method throws a `TimeoutException`.
+
+### Cancelling a task
+The `Future` class provides an instance method named `cancel` that attempts to cancel the execution of a task. This method is more complicated than it might seem at the first look.
+
+An attempt will fail if the task has already completed, has already been canceled or could not be canceled for some other reason. If successful, and if this task has not already started when the method is invoked, it will never run.
+
+The method takes a `boolean` parameter that determines whether the thread executing this task should be interrupted in an attempt to stop the task (in other words, whether to stop already running task or not).
+
+```
+future1.cancel(true);  // try to cancel even if the task is executing now
+future2.cancel(false); // try to cancel only if the task is not executing
+```
+
+Since passing `true` involves interruptions, the cancelation of an executing task is guaranteed only if it handles `InterruptedException` correctly and checks the flag `Thread.currentThread().isInterrupted()`.
+
+If someone invokes `future.get()` at a successfully canceled task, the method throws an unchecked `CancellationException`. If you do not want to deal with it, you may check whether a task was canceled by invoking `isCancelled()`.
+
+### The advantage of using Callable and Future
+The approach we are learning here allows us to do something useful between obtaining a `Future` and getting the actual result. In this time interval, we can submit several tasks to an executor, and only after that wait for all results to be aggregated.
+
+```
+ExecutorService executor = Executors.newFixedThreadPool(4);
+
+Future<Integer> future1 = executor.submit(() -> {
+TimeUnit.SECONDS.sleep(5);
+return 700000;
+});
+
+Future<Integer> future2 = executor.submit(() -> {
+TimeUnit.SECONDS.sleep(5);
+return 900000;
+});
+
+int result = future1.get() + future2.get(); // waiting for both results
+
+System.out.println(result); // 1600000
+```
+
+If you have a modern computer, these tasks may be executed in parallel.
+
+### Methods invokeAll and invokeAny
+In addition to all features described above, there are two useful methods for submitting batches of `Callable` to an executor.
+
+-   `invokeAll` accepts a prepared collection of callables and returns a collection of *futures*;
+
+-   `invokeAny` also accepts a collection of callables and returns the result (not a *future*!) of one that has completed successfully.
+
+Both methods also have overloaded versions that accept a timeout of execution that is often needed in real life.
+
+Suppose that we need to calculate several numbers in separated tasks and then sum up the numbers in the `main` thread. It is easy to do using `invokeAll` method.
+
+```
+ExecutorService executor = Executors.newFixedThreadPool(4);
+List<Callable<Integer>> callables =
+List.of(() -> 1000, () -> 2000, () -> 1500); // three "difficult" tasks
+
+List<Future<Integer>> futures = executor.invokeAll(callables);
+int sum = 0;
+for (Future<Integer> future : futures) {
+sum += future.get(); // blocks on each future to get a result
+}
+System.out.println(sum);
+```
+
+### The Task<V> class
+* [Official Documentation](https://docs.oracle.com/javafx/2/api/javafx/concurrent/Task.html)
+* [Producer - Consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/producerconsumer)
+* [Manager - Workers exaple](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/primes)
