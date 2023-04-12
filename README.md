@@ -152,6 +152,18 @@
 * Manipulating filesystem (copy, move, etc)
 * Reading and writing files
 
+[E9] Multi-threading
+
+> Read: Big Java (Chapter 22)
+
+> Lab: n/a 
+
+* Thread states
+* Thread interference
+* Thread synchronisation (synchronised/wait/notify)
+* ExecutorService
+* Callable/Future/Task
+
 ---
 
 ### Project Modules
@@ -169,16 +181,7 @@
 * Controls
 * Layouts
 
-[P2] Multi-threading
-
-> Read: Big Java (Chapter 22)
-
-* Thread states
-* Race conditions
-* Basic synchronisation (synchronised/sleep/yield/join)
-* Advanced synchronisation (wait/notify)
-
-[P3] Data Access (JDBC)
+[P2] Data Access (JDBC)
 
 > Read: Big Java (Chapter 24)
 
@@ -187,7 +190,7 @@
 * Connection Pools
 * ResultSet class
 
-[P4] Data Access (REST)
+[P3] Data Access (REST)
 
 > Read: [Connecting JavaFX to a REST API](https://edencoding.com/connect-javafx-to-a-rest-api/)
 

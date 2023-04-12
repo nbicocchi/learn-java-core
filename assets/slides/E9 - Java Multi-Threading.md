@@ -899,7 +899,6 @@ It can be stopped as we did before.
 This kind of executor also has a method named `schedule` that starts a task only once after the given delay and another method `scheduleWithFixedDelay` that starts the task with a fixed wait after the previous one is completed.
 
 ### Exception handling
-
 In our examples, we often ignore error handling to simplify code. Here we demonstrate one feature related to the handling of exceptions in executors (namely, unchecked).
 
 What do you think the following code will print?
