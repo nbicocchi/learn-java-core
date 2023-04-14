@@ -74,6 +74,8 @@ public class PhoneBook {
             }
         }
         return Optional.empty();
+        // functional version
+        // return people.stream().filter(p -> p.getLastname().equals(lastname)).findFirst();
     }
 
     public Optional<Person> searchByNameAndLastname(String name, String lastname) {
@@ -83,5 +85,7 @@ public class PhoneBook {
             }
         }
         return Optional.empty();
+        // functional version
+        // return people.stream().filter(p -> p.getLastname().equals(lastname) && p.getName().equals(name)).findFirst();
     }
 }
