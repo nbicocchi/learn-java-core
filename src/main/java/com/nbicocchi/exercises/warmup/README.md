@@ -53,7 +53,7 @@ Note that Math.abs(n) returns the absolute value of a number (see java.util.rand
 **[InterestRate]** Write a program that prints the balance of an account after the first, second, and third year. 
 The account has an initial balance of $1,000 and earns 5 percent interest per year.
 
-**[EstimatePI]** It is possible to get an estimate of the mathematical constant PI by using a random process. The idea is based on the fact that the area of a circle of radius 1 is equal to π, and the area of a quarter of that circle is π/4. 
+**[EstimatePI]** It is possible to get an estimate of the mathematical constant π by using a random process. The idea is based on the fact that the area of a circle of radius 1 is equal to π, and the area of a quarter of that circle is π/4. 
 
 ```
 <-- 1 -->
