@@ -52,3 +52,29 @@ Note that Math.abs(n) returns the absolute value of a number (see java.util.rand
 
 **[InterestRate]** Write a program that prints the balance of an account after the first, second, and third year. 
 The account has an initial balance of $1,000 and earns 5 percent interest per year.
+
+**[EstimatePI]** It is possible to get an estimate of the mathematical constant PI by using a random process. The idea is based on the fact that the area of a circle of radius 1 is equal to π, and the area of a quarter of that circle is π/4. 
+
+```
+<-- 1 -->
+---------
+x        |
+     x   |      
+       x |
+        x|  
+---------    
+ ```
+
+The area of the whole square is one, while the area of the part inside the circle is π/4. If we choose a point in the square at random, the probability that it is inside the circle is π/4. If we choose N points in the square at random (see java.util.random.RandomGenerator), and if C of them are inside the circle, we expect the fraction C/N of points that fall inside the circle to be about π/4. If N is large, we can expect 4*C/N to be a good estimate for π, and as N gets larger and larger, the estimate is likely to improve.
+
+Write a program producing increasingly accurate estimates of PI as reported below (see System.out.printf()):
+
+```
+[trial=250000] [error=-0.177001pc] [estimate=3.1360320000000000]
+[trial=500000] [error=-0.120215pc] [estimate=3.1378160000000000]
+[trial=750000] [error=-0.092458pc] [estimate=3.1386880000000000]
+[trial=1000000] [error=-0.073869pc] [estimate=3.1392720000000000]
+```
+
+
+
