@@ -65,7 +65,7 @@ The account has an initial balance of $1,000 and earns 5 percent interest per ye
  ---------    
  ```
 
-The area of the square is 1, while the area of the part inside the circle is π/4. If we choose a point in the square at random, the probability that it is inside the circle is π/4. If we choose N points in the square at random (see Math.random()), and if C of them are inside the circle, we expect the fraction C/N of points that fall inside the circle to be about π/4. If N is large, we can expect 4*C/N to be a good estimate for π, and as N gets larger and larger, the estimate is likely to improve.
+The area of the square is 1, while the area of the part inside the circle is π/4. If we choose a point in the square at random, the probability that it is inside the circle is π/4. If we choose N points in the square at random (see Math.random()), and if C of them are inside the circle, we expect the fraction C/N of points that fall inside the circle to be about π/4. If N is large, we can expect 4*C/N to be a good estimate for π.
 
 Write a program producing increasingly accurate estimates of PI as reported below (see System.out.printf()):
 
