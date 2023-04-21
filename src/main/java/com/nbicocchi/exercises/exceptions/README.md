@@ -19,8 +19,7 @@ where:
 
 **[DivisionSquared.java]** Write a method receiving two integers (a, b) and returning their integer division squared (
 i.e., (a / b) ^ 2). If b == 0, the method returns 0, instead of an exception. The implementation of this method must
-avoid the
-use of the *if* statement. The method has the following prototype:
+avoid the use of the *if* statement. The method has the following prototype:
 
 ```
 public static int divisionSquared(int a, int b);
@@ -93,9 +92,7 @@ where:
 ---
 
 **[FilterItems.java]** Using the checkString() method, write another method for filtering a List<String>. The method
-returns
-a different List<String> comprising only those strings which are an alternating sequence of letters and numbers (for
-example a0b3h4z1r4). The original list is not modified. The method has the following prototype:
+returns a different List<String> comprising only those strings which are an alternating sequence of letters and numbers (for example a0b3h4z1r4). The original list is not modified. The method has the following prototype:
 
 ```
 public static List<String> filterItems(List<String> strings);
@@ -108,8 +105,7 @@ where:
 ---
 
 **[FilterLists.java]** Using the checkString() method, write another method for filtering a List<List<String>> (a list
-of
-lists of strings). The method returns a List<List<String>> comprising only those List<String> containing ONLY
+of lists of strings). The method returns a List<List<String>> comprising only those List<String> containing ONLY
 alternating sequences of letters and numbers (for example a0b3h4z1r4). The original List should not be modified. The
 method has the following prototype:
 
@@ -124,9 +120,7 @@ where:
 ---
 
 **[ReadLineCompleteDelegation.java]** Write a method for reading the first line of a given file (see
-java.io.BufferedReader class). In case of errors (
-IOException), the method applies a complete delegation model. Use the syntax try-with-resources for guaranteeing the
-proper closing of the file under any circumstance. The method has the following prototype:
+java.io.BufferedReader class). In case of errors (IOException), the method applies a complete delegation model. Use the syntax try-with-resources for guaranteeing the proper closing of the file under any circumstance. The method has the following prototype:
 
 ```
 public static String readLineCompleteDelegation(String filename) throws IOException;
@@ -139,9 +133,7 @@ where:
 ---
 
 **[ReadLinePartialDelegation.java]** Write a method for reading the first line of a given file (see
-java.io.BufferedReader class). In case of errors (
-IOException), the method applies a partial delegation model throwing an unchecked exception (RunTimeException) instead
-of IOException. The method has the following prototype:
+java.io.BufferedReader class). In case of errors (IOException), the method applies a partial delegation model throwing an unchecked exception (RunTimeException) instead of IOException. The method has the following prototype:
 
 ```
 public static String readLinePartialDelegation(String filename);
@@ -154,8 +146,7 @@ where:
 ---
 
 **[ReadLineNoDelegation.java]** Write a method reading the first line of a given file (see java.io.BufferedReader
-class). In case of errors (
-IOException), the method applies a no-delegation model and returns null. The method has the following prototype:
+class). In case of errors (IOException), the method applies a no-delegation model and returns null. The method has the following prototype:
 
 ```
 public static String readLineNoDelegation(String filename);
@@ -165,3 +156,24 @@ where:
 
 * **filename** filename of the file to read from.
 
+**[RetryWrite.java]** The following RetryWrite class contains a *write()* method for writing a message over a network connection which might fail (in this example it always throws an IOException). Because network connections sometimes fail unexpectedly, we do not want to call it directly from the *main()* method. Instead, we use an intermediate *writeWithTries()* which, if *write()* fails, calls it again until the specified number of retries (maxTries) has been reached. Complete the *writeWithTries()* method to make the code below work.
+
+```
+public class RetryWrite {
+    public static void main(String[] args) {
+        try {
+            writeWithTries(3);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void writeWithTries(int maxTries) {
+        // to be completed
+    }
+
+    public static void write(String message) throws IOException {
+        throw new IOException("Unable to send: " + message);
+    }
+}
+```
