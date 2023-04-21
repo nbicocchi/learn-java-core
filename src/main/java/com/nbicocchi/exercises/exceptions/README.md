@@ -156,6 +156,8 @@ where:
 
 * **filename** filename of the file to read from.
 
+---
+
 **[RetryWrite.java]** The following RetryWrite class contains a *write()* method for writing a message over a network connection which might fail (in this example it always throws an IOException). Because network connections sometimes fail unexpectedly, we do not want to call it directly from the *main()* method. Instead, we use an intermediate *writeWithTries()* which, if *write()* fails, calls it again until the specified number of retries (maxTries) has been reached. Complete the *writeWithTries()* method to make the code below work.
 
 ```
