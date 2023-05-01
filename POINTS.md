@@ -7,7 +7,7 @@
 * Garagnani Filippo ++
 * Ricci Wendy Ayewosa Maria +
 * Nicola Ricciardi +++
-* Saverio Napolitano +
+* Saverio Napolitano ++
 * Samuele Montanari +
 * Simone Serafini +
 * Gabriele D'Avena +
