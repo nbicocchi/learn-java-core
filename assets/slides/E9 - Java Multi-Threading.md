@@ -1016,5 +1016,6 @@ System.out.println(sum);
 
 ### The Task class
 * [Official Documentation](https://docs.oracle.com/javafx/2/api/javafx/concurrent/Task.html)
+* [Sum of reciprocals - example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/sumreciprocals)
 * [Producer - Consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/producerconsumer)
 * [Manager - Workers example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/managerworkers)
