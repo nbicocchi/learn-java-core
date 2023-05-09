@@ -19,11 +19,9 @@ Sharing variables is a simple and fast way threads use for communicating but **f
 ### JVM and OS
 A multitasking  operating   system  assigns CPU time (slices) to processes/threads via a kernel component called scheduler. Small time-slices (5-20ms) provide the illusion of parallelism of different processes/threads (on multi-core machines it is a partial illusion)
 
-The JVM is a process and gets the CPU as assigned by the OS’s scheduler
+The JVM is a process and gets the CPU as assigned by the OS’s scheduler. However, **Java is a specification** with [many implementations](https://en.wikipedia.org/wiki/List_of_Java_virtual_machines). Some JVMs operate like a mini-OS and schedule their own threads. Most JVMs use the OS scheduler (a Java thread is actually mapped to a system thread)
 
-Some JVMs operate like a mini-OS and schedule their own threads. Most JVMs use the OS scheduler (a Java thread is actually mapped to a system thread)
 
-**Java is a specification** with [many implementations](https://en.wikipedia.org/wiki/List_of_Java_virtual_machines)
 
 ### Why Threads?
 There are many reasons to use threads in your Java programs. If you use Android, Swing, JavaFX, Servlets, RMI you may already be using threads without realizing it.
@@ -49,22 +47,21 @@ In a multi-threaded process:
 * the analysis, too, can execute in background (i.e. in another thread) and eventually use multiple CPU cores for saving time
 * the user can enjoy a responsive GUI while awaiting for eventual notifications (buy/sell signals)
 
-### Summary
 
-**The good**
+### The good
 * Enable parallelism
 * Lighter than processes for both
   * Creation(i.e., fork())
   * Communication (i.e., r/w pipes …)
 
-**The bad**
+### The bad
 * Hard for most programmers
 * Even for experts, development is often painful
 * Threads break abstraction: can't design modules independently.
 
 ![](images/threads-programmers.png)
 
-**The important**
+### The important
 ![](images/threads-amdahl.png)
 
 
@@ -278,11 +275,11 @@ public class StartStopThread extends Thread {
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName() + " started");
+        System.out.println(getName() + " started");
         while (!interrupted()) {
-            System.out.println(Thread.currentThread().getName());
+            System.out.println(getName());
         }
-        System.out.println(Thread.currentThread().getName() + " terminated");
+        System.out.println(getName() + " terminated");
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -329,8 +326,8 @@ There are 3 ways for leaving the running state under the control of the programm
 
 There are 2 additional ways for leaving the running state which are not under the control of the programmer:
 
-* end of run() method: go to dead state
-* being suspended by the OS scheduler: go to runnable state
+* **end of run() method** (go to dead state)
+* **being suspended by the OS scheduler** (go to runnable state)
 
 ### Sleeping
 The static method `Thread.sleep()` causes the currently executing thread to suspend execution for the specified number of milliseconds. This is an efficient means of making processor time available for the other threads of an application or other applications that might be running on a computer.

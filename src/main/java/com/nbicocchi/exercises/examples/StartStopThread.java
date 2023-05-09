@@ -7,11 +7,11 @@ public class StartStopThread extends Thread {
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName() + " started");
+        System.out.println(getName() + " started");
         while (!interrupted()) {
-            System.out.println(Thread.currentThread().getName());
+            System.out.println(getName());
         }
-        System.out.println(Thread.currentThread().getName() + " terminated");
+        System.out.println(getName() + " terminated");
     }
 
     public static void main(String[] args) throws InterruptedException {
