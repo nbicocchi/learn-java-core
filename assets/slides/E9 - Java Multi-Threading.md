@@ -9,6 +9,22 @@ Processes do not share memory (separate address spaces), thus they have to commu
 
 A process might contain one or more threads   running within the context of the process
 
+### Processes in Java
+In Java it is not possible to explicitly call the syscall fork() as in C. Syscalls fork() and exec() can be jointly called via the `java.lang.Process` class.
+
+Methods of the `java.lang.Process` class also allow developers to acquire standard input, output, error, and exit value.
+
+```
+Process process = new ProcessBuilder("/bin/ls", "-al", "/").start();
+try (BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+    String line;
+    while ((line = in.readLine()) != null) {
+        System.out.println(line);
+    }
+}
+System.out.println(process.exitValue());
+```
+
 ### Threads
 Threads are sometimes called lightweight processes. Like processes, each thread has its own stack, program counter, and local variables
 
@@ -21,14 +37,10 @@ A multitasking  operating   system  assigns CPU time (slices) to processes/threa
 
 The JVM is a process and gets the CPU as assigned by the OS’s scheduler. However, **Java is a specification** with [many implementations](https://en.wikipedia.org/wiki/List_of_Java_virtual_machines). Some JVMs operate like a mini-OS and schedule their own threads. Most JVMs use the OS scheduler (a Java thread is actually mapped to a system thread)
 
-
-
 ### Why Threads?
-There are many reasons to use threads in your Java programs. If you use Android, Swing, JavaFX, Servlets, RMI you may already be using threads without realizing it.
+There are many reasons to use threads in your Java programs. If you use Android, Swing, JavaFX, Servlets, RMI you may already be using threads without realizing it. Main reasons for using threads:
 
-Main reasons for using threads:
-* make the UI responsive
-* perform asynchronous operations or background processing
+* keep UIs responsive while performing background operations
 * take advantage of multiprocessor systems
 
 ### Why Threads? A case study
@@ -44,45 +56,26 @@ In a single-threaded process:
 
 In a multi-threaded process:
 * the download can execute in background (i.e. in another thread)
-* the analysis, too, can execute in background (i.e. in another thread) and eventually use multiple CPU cores for saving time
-* the user can enjoy a responsive GUI while awaiting for eventual notifications (buy/sell signals)
+* the analysis, too, can execute in background (i.e. possibly in multiple threads) 
+* the user can enjoy a responsive UI while waiting for notifications (buy/sell signals)
 
 
-### The good
+### The good of multi-threading
 * Enable parallelism
 * Lighter than processes for both
   * Creation(i.e., fork())
   * Communication (i.e., r/w pipes …)
 
-### The bad
+### The bad of multi-threading
 * Hard for most programmers
 * Even for experts, development is often painful
 * Threads break abstraction: can't design modules independently.
 
 ![](images/threads-programmers.png)
 
-### The important
+### The important of multi-threading
 ![](images/threads-amdahl.png)
 
-
-
-### Processes in Java
-In Java it is not possible to explicitly call the syscall fork() as in C. Syscalls fork() and exec() can be jointly called via the `java.lang.Process` class.
-
-Methods of the `java.lang.Process` class also allow developers to acquire standard input, output, error, and exit value.
-
-```
-Process p = (new ProcessBuilder("/bin/ls", "-al", "/")).start();
-
-BufferedReader in = new BufferedReader(new
-    InputStreamReader(p.getInputStream()));
-while ((line = in.readLine()) != null) {
-    System.out.println(line);
-}
-in.close();
-System.out.println(p.exitValue());
-
-```
 
 ### Threads in Java
 Every Java program has at least one thread, which is called **main,** created automatically by the JVM process to execute statements inside the `main` method. All Java programs have some other default threads as well (for example, a separate thread for the garbage collector).
@@ -329,7 +322,7 @@ There are 2 additional ways for leaving the running state which are not under th
 * **end of run() method** (go to dead state)
 * **being suspended by the OS scheduler** (go to runnable state)
 
-### Sleeping
+### Thread.sleep()
 The static method `Thread.sleep()` causes the currently executing thread to suspend execution for the specified number of milliseconds. This is an efficient means of making processor time available for the other threads of an application or other applications that might be running on a computer.
 
 ```
@@ -347,8 +340,8 @@ Another way to make the current thread sleep is to use the special class `TimeUn
 -   `TimeUnit.MILLISECONDS.sleep(2000)` performs `Thread.sleep` for 2000 milliseconds;
 -   `TimeUnit.SECONDS.sleep(2)` performs `Thread.sleep` for 2 seconds;
 
-### Joining
-The `join` method forces the current thread to wait for the completion of the thread for which the method `join` was called. In the following example, the string **"Do something else"** will not be printed until the thread terminates.
+### Thread.join()
+The `Thread.join()` method forces the current thread to wait for the completion of the thread for which the method `join` was called. In the following example, the string **"Do something else"** will not be printed until the thread terminates.
 
 ```
 Thread thread = ...
@@ -401,8 +394,8 @@ public class JoiningExample {
 
 The main thread waits for `worker` and cannot print the message `The program stopped` until the worker terminates or the timeout is exceeded. We know exactly only that `Starting a task` precedes `The task is finished` and `Do something useful` precedes `The program stopped`. 
 
-### Yielding
-The `yield()` method moves the running thread back to Runnable state.
+### Thread.yield()
+The `Thread.yield()` method moves the running thread back to Runnable state.
 
 It allows other threads to get their turn (with no guarantees). It is used when computation is not possible (no work to do) is a given time slice.
 
@@ -573,24 +566,6 @@ public class LockingGranularity {
 * A thread can acquire more than one lock. For example, a thread can enter a synchronized method, then immediately invoke a synchronized method on another object (deadlock prone!)
 
 
-```
-public void run() {
-    RandomGenerator rnd = RandomGenerator.getDefault();
-    while (!interrupted()) {
-        synchronized (account) {
-            if (account.getBalance() <= 0) {
-                break;
-            }
-
-            int amount = rnd.nextInt(account.getBalance() + 1);
-
-            account.withdraw(amount);
-
-            Thread.yield();
-        }
-    }
-```
-
 ### Thread-safe shared objects
 
 There are two main ways to grant atomic access to a shared object:
@@ -718,9 +693,9 @@ wait() can only be called from a synchronized block. It releases the lock on the
 
 notify() send a signal to one of the threads that are waiting in the object's waiting pool. The notify() method CANNOT specify which waiting thread to notify. The method notifyAll() is similar but sends a signal to all the threads waiting on the object. **notify() lets a thread say: “Something has changed here. Feel free to continue what you were trying to do”.**
 
-[A more detailed example here.](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/producerconsumer)
+[See here for a more detailed example.](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/producerconsumer)
 
-### Multi-thread patterns
+### Multi-thread design patterns
 Despite threads can be used for solving a number of real-world problems, most of them can be conceptually assimilated to two main patterns:
 
 **The producer-consumer pattern**, where the producer thread pushes elements into a shared object and the consumer thread fetches (consumes) them
@@ -1041,5 +1016,5 @@ System.out.println(sum);
 
 ### The Task class
 * [Official Documentation](https://docs.oracle.com/javafx/2/api/javafx/concurrent/Task.html)
-* [Producer - Consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/producerconsumer)
-* [Manager - Workers exaple](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/primes)
+* [Producer - Consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/producerconsumer)
+* [Manager - Workers example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/managerworkers)

@@ -3,7 +3,7 @@ package com.nbicocchi.exercises.warmup;
 public class EstimatePI {
     public static void main(String[] args) {
         final int BATCH_SIZE = 1000000;
-        final int LOG_SIZE = 250000;
+        final int LOG_SIZE = 25000;
         int trials = 0;
         int inCircleTrials = 0;
 
