@@ -493,6 +493,7 @@ public void doStuff() {
 }
 ```
 
+### Synchronized (locking granularity)
 Another example: the first time the method `A()` is called, it sleeps and makes both `A()` and `B()` inaccessible for 100ms. All synchronized methods of an object share the same lock!
 
 ```
@@ -574,113 +575,114 @@ There are two main ways to grant atomic access to a shared object:
 
 A thread-safe class is class that is safe (works properly) when accessed by multiple threads. Critical sections (i.e., sections possibly generating race conditions) are encapsulated in synchronized methods.
 
-* Interface List: ArrayList (unsafe), Vector (safe)
-* Interface Queue: LinkedList (unsafe), ConcurrentLinkedQueue (safe), ArrayBlockingQueue (safe)
+* Interface List: [Vector](https://www.baeldung.com/java-arraylist-vs-vector) (safe)
+* Interface Queue: [LinkedBlockingQueue](https://www.baeldung.com/java-queue-linkedblocking-concurrentlinked), ArrayBlockingQueue, ConcurrentLinkedQueue (safe)
+* Interface Map: [ConcurrentMap](https://www.baeldung.com/java-concurrent-map) (safe) 
+
 
 ```
-package com.nbicocchi.exercises.examples;
+static class ProducerUnsafe extends Thread {
+    final Deque<Integer> integerDeque;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-import java.util.random.RandomGenerator;
-
-public class SharedObject {
-    static class ProducerSafe extends Thread {
-        final Deque<Integer> integerDeque;
-
-        public ProducerSafe(Deque<Integer> integerDeque) {
-            super();
-            this.integerDeque = integerDeque;
-        }
-
-        @Override
-        public void run() {
-            RandomGenerator rnd = RandomGenerator.getDefault();
-            while (!isInterrupted()) {
-                synchronized (integerDeque) {
-                    integerDeque.addFirst(rnd.nextInt());
-                }
-            }
-        }
+    public ProducerUnsafe(Deque<Integer> integerDeque) {
+        super();
+        this.integerDeque = integerDeque;
     }
 
-    static class ProducerUnsafe extends Thread {
-        final Deque<Integer> integerDeque;
-
-        public ProducerUnsafe(Deque<Integer> integerDeque) {
-            super();
-            this.integerDeque = integerDeque;
+    @Override
+    public void run() {
+        RandomGenerator rnd = RandomGenerator.getDefault();
+        while (!isInterrupted()) {
+            integerDeque.addFirst(rnd.nextInt());
         }
+    }
+}
+```
 
-        @Override
-        public void run() {
-            RandomGenerator rnd = RandomGenerator.getDefault();
-            while (!isInterrupted()) {
+```
+static class ProducerSafe extends Thread {
+    final Deque<Integer> integerDeque;
+
+    public ProducerSafe(Deque<Integer> integerDeque) {
+        super();
+        this.integerDeque = integerDeque;
+    }
+
+    @Override
+    public void run() {
+        RandomGenerator rnd = RandomGenerator.getDefault();
+        while (!isInterrupted()) {
+            synchronized (integerDeque) {
                 integerDeque.addFirst(rnd.nextInt());
             }
         }
     }
+}
+```
 
-    static class ConsumerSafe extends Thread {
-        final Deque<Integer> integerDeque;
+```
+static class ConsumerUnsafe extends Thread {
+    final Deque<Integer> integerDeque;
 
-        public ConsumerSafe(Deque<Integer> integerDeque) {
-            super();
-            this.integerDeque = integerDeque;
-        }
+    public ConsumerUnsafe(Deque<Integer> integerDeque) {
+        super();
+        this.integerDeque = integerDeque;
+    }
 
-        @Override
-        public void run() {
-            while (!isInterrupted()) {
-                try {
-                    synchronized (integerDeque) {
-                        integerDeque.removeLast();
-                    }
-                } catch (NoSuchElementException e) {
-                    Thread.yield();
-                }
+    @Override
+    public void run() {
+        while (!isInterrupted()) {
+            try {
+                integerDeque.removeLast();
+            } catch (NoSuchElementException e) {
+                Thread.yield();
             }
         }
     }
+}
+```
 
-    static class ConsumerUnsafe extends Thread {
-        final Deque<Integer> integerDeque;
+```
+static class ConsumerSafe extends Thread {
+    final Deque<Integer> integerDeque;
 
-        public ConsumerUnsafe(Deque<Integer> integerDeque) {
-            super();
-            this.integerDeque = integerDeque;
-        }
+    public ConsumerSafe(Deque<Integer> integerDeque) {
+        super();
+        this.integerDeque = integerDeque;
+    }
 
-        @Override
-        public void run() {
-            while (!isInterrupted()) {
-                try {
+    @Override
+    public void run() {
+        while (!isInterrupted()) {
+            try {
+                synchronized (integerDeque) {
                     integerDeque.removeLast();
-                } catch (NoSuchElementException e) {
-                    Thread.yield();
                 }
+            } catch (NoSuchElementException e) {
+                Thread.yield();
             }
         }
     }
+}
+```
 
-    public static void main(String[] args) throws InterruptedException {
-        /* An unsafe shared object require safe threads and vice versa */
-        Deque<Integer> dq = new LinkedList<>();
-        ProducerSafe p = new ProducerSafe(dq);
-        ConsumerSafe c = new ConsumerSafe(dq);
+```
+public static void main(String[] args) throws InterruptedException {
+    /* An unsafe shared object require safe threads and vice versa */
+    Deque<Integer> dq = new LinkedList<>();
+    ProducerSafe p = new ProducerSafe(dq);
+    ConsumerSafe c = new ConsumerSafe(dq);
 
-        p.start();
-        c.start();
+    p.start();
+    c.start();
 
-        Thread.sleep(100L);
+    Thread.sleep(100L);
 
-        p.interrupt();
-        c.interrupt();
+    p.interrupt();
+    c.interrupt();
 
-        p.join();
-        c.join();
-    }
+    p.join();
+    c.join();
 }
 ```
 
@@ -967,29 +969,6 @@ Since passing `true` involves interruptions, the cancelation of an executing tas
 
 If someone invokes `future.get()` at a successfully canceled task, the method throws an unchecked `CancellationException`. If you do not want to deal with it, you may check whether a task was canceled by invoking `isCancelled()`.
 
-### The advantage of using Callable and Future
-The approach we are learning here allows us to do something useful between obtaining a `Future` and getting the actual result. In this time interval, we can submit several tasks to an executor, and only after that wait for all results to be aggregated.
-
-```
-ExecutorService executor = Executors.newFixedThreadPool(4);
-
-Future<Integer> future1 = executor.submit(() -> {
-    TimeUnit.SECONDS.sleep(5);
-    return 700000;
-});
-
-Future<Integer> future2 = executor.submit(() -> {
-    TimeUnit.SECONDS.sleep(5);
-    return 900000;
-});
-
-int result = future1.get() + future2.get(); // waiting for both results
-
-System.out.println(result); // 1600000
-```
-
-If you have a modern computer, these tasks may be executed in parallel.
-
 ### Methods invokeAll and invokeAny
 In addition to all features described above, there are two useful methods for submitting batches of `Callable` to an executor.
 
@@ -1014,7 +993,7 @@ for (Future<Integer> future : futures) {
 System.out.println(sum);
 ```
 
-### The Task class
+### javafx.concurrent.Task
 * [Official Documentation](https://docs.oracle.com/javafx/2/api/javafx/concurrent/Task.html)
 * [Sum of reciprocals - example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/sumreciprocals)
 * [Producer - Consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/producerconsumer)
