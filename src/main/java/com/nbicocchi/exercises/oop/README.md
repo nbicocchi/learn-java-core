@@ -312,7 +312,7 @@ class PhoneBook {
   + addPerson(Person) boolean
   + removePerson(Person) boolean
   + searchByLastname(String) Person[]
-  + searchByNameAndLastname(String) Person[]
+  + searchByNameAndLastname(String, String) Person[]
 }
 class PhoneBookArray {
   + static final int MAX_PERSONS = 256

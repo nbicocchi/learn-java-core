@@ -1,14 +1,16 @@
 ## Points! (Valid until Feb 2024)
-* Camilla Ballestrazzi +
-* Federico Lo Presti +
+* Nicola Ricciardi ++++
 * Falco Giuseppe ++
 * Leoni Matteo ++
-* Veroni Matteo +
 * Garagnani Filippo ++
-* Ricci Wendy Ayewosa Maria +
-* Nicola Ricciardi +++
 * Saverio Napolitano ++
+* Camilla Ballestrazzi +
+* Federico Lo Presti +
+* Veroni Matteo +
+* Ricci Wendy Ayewosa Maria +
 * Samuele Montanari +
 * Simone Serafini +
 * Gabriele D'Avena +
+* Davide Lasagni +
+* Giovanni Benedetti +
 
