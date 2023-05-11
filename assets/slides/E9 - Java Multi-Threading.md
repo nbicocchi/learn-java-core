@@ -591,9 +591,9 @@ static class ProducerUnsafe extends Thread {
 
     @Override
     public void run() {
-        RandomGenerator rnd = RandomGenerator.getDefault();
+        int i = 0;
         while (!isInterrupted()) {
-            integerDeque.addFirst(rnd.nextInt());
+            integerDeque.addFirst(i++);
         }
     }
 }
@@ -610,10 +610,10 @@ static class ProducerSafe extends Thread {
 
     @Override
     public void run() {
-        RandomGenerator rnd = RandomGenerator.getDefault();
+        int i = 0;
         while (!isInterrupted()) {
             synchronized (integerDeque) {
-                integerDeque.addFirst(rnd.nextInt());
+                integerDeque.addFirst(i++);
             }
         }
     }
@@ -667,22 +667,26 @@ static class ConsumerSafe extends Thread {
 ```
 
 ```
-public static void main(String[] args) throws InterruptedException {
-    /* An unsafe shared object require safe threads and vice versa */
-    Deque<Integer> dq = new LinkedList<>();
-    ProducerSafe p = new ProducerSafe(dq);
-    ConsumerSafe c = new ConsumerSafe(dq);
-
-    p.start();
-    c.start();
+public static void runExperiment(Thread producer, Thread consumer) throws InterruptedException {
+    producer.start();
+    consumer.start();
 
     Thread.sleep(100L);
 
-    p.interrupt();
-    c.interrupt();
+    producer.interrupt();
+    consumer.interrupt();
 
-    p.join();
-    c.join();
+    producer.join();
+    consumer.join();
+}
+
+public static void main(String[] args) throws InterruptedException {
+    /* A safe shared object do not require safe threads */
+    Deque<Integer> dq = new ConcurrentLinkedDeque<>();
+    Thread p = new ProducerUnsafe(dq);
+    Thread c = new ConsumerUnsafe(dq);
+
+    runExperiment(p, c);
 }
 ```
 
@@ -695,16 +699,74 @@ wait() can only be called from a synchronized block. It releases the lock on the
 
 notify() send a signal to one of the threads that are waiting in the object's waiting pool. The notify() method CANNOT specify which waiting thread to notify. The method notifyAll() is similar but sends a signal to all the threads waiting on the object. **notify() lets a thread say: “Something has changed here. Feel free to continue what you were trying to do”.**
 
-[See here for a more detailed example.](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/producerconsumer)
+```
+static class ProducerSafeWaitNotify extends Thread {
+    final Deque<Integer> integerDeque;
+    final int maxDequeSize = 10;
+
+    public ProducerSafeWaitNotify(Deque<Integer> integerDeque) {
+        super();
+        this.integerDeque = integerDeque;
+    }
+
+    @Override
+    public void run() {
+        int i = 0;
+        while (!isInterrupted()) {
+            synchronized (integerDeque) {
+                if (integerDeque.size() < maxDequeSize) {
+                    integerDeque.addFirst(i++);
+                    integerDeque.notifyAll();
+                } else {
+                    try {
+                        integerDeque.wait();
+                    } catch (InterruptedException e) {
+
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+```
+static class ConsumerSafeWaitNotify extends Thread {
+    final Deque<Integer> integerDeque;
+
+    public ConsumerSafeWaitNotify(Deque<Integer> integerDeque) {
+        super();
+        this.integerDeque = integerDeque;
+    }
+
+    @Override
+    public void run() {
+        while (!isInterrupted()) {
+            synchronized (integerDeque) {
+                if (integerDeque.size() > 0) {
+                    System.out.println(integerDeque.removeLast());
+                    integerDeque.notifyAll();
+                } else {
+                    try {
+                        integerDeque.wait();
+                    } catch (InterruptedException e) {
+
+                    }
+                }
+            }
+        }
+    }
+}
+```
 
 ### Multi-thread design patterns
 Despite threads can be used for solving a number of real-world problems, most of them can be conceptually assimilated to two main patterns:
 
-**The producer-consumer pattern**, where the producer thread pushes elements into a shared object and the consumer thread fetches (consumes) them
+**The producer/consumer pattern**, where the producer thread pushes elements into a shared object and the consumer thread fetches (consumes) them. See [this producer/consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/producerconsumer) for further details.
 
 ![](images/threads-producer-consumer.svg)
 
-**The manager-worker pattern**, where a manager decomposes a complex task into subtasks, and assigns them to worker threads. 
+**The manager/workers pattern**, where a manager decomposes a complex task into subtasks, and assigns them to worker threads. See [this manager/workers example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/managerworkers) for further details.
 
 ![](images/threads-manager-workers.svg)
 
@@ -996,5 +1058,3 @@ System.out.println(sum);
 ### javafx.concurrent.Task
 * [Official Documentation](https://docs.oracle.com/javafx/2/api/javafx/concurrent/Task.html)
 * [Sum of reciprocals - example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/sumreciprocals)
-* [Producer - Consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/producerconsumer)
-* [Manager - Workers example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/managerworkers)
