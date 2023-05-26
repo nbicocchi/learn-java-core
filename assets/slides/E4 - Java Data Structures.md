@@ -6,18 +6,16 @@ Java Collections Framework is one of the core parts of the Java programming lang
 
 ### Java Collection Framework
 - The Java Collection Framework (JCF) is a set of classes and interfaces implementing commonly reusable data structures.
-- The JCF (package **java.util**) provides
+- The JCF (package java.util) provides
   - **interfaces** defining functionalities
   - **abstract classes** for shared code aggregation
   - **concrete classes** implementing functionalities
-  - **algorithms** (**java.util.Collections**)
-  
-
-### Key Concepts
-- Resizable Array
-- Linked List
-- Balanced Tree
-- Hash Table
+  - **algorithms** (java.util.Collections)
+- Key technologies
+  - Resizable Array
+  - Linked List
+  - Balanced Tree
+  - Hash Table
 
 
 ### Resizable Array ~O(n)
@@ -31,7 +29,8 @@ Java Collections Framework is one of the core parts of the Java programming lang
 ### Balanced Tree ~O(log(n))
 ![](images/balanced-tree.png)
 
-_A binary tree is balanced if, for each node it holds that, the number of inner nodes in the left subtree and the number of inner nodes in the right subtree differ by at most 1. A binary tree is balanced if for any two leaves the difference of the depth is at most 1._
+* A binary tree is balanced if, for each node, the number of inner nodes in the left subtree and the number of inner nodes in the right subtree differ by at most 1. 
+* A binary tree is balanced if for any two leaves the difference of the depth is at most 1.
 
 
 ### Hash Table ~O(1)
@@ -46,10 +45,10 @@ _A binary tree is balanced if, for each node it holds that, the number of inner 
 ![](images/internals.png)
 
 
-### Iterable and Iterator Interfaces
+### Iterable Interface
+The **Iterable** interface (java.lang.Iterable) is the root interface of the Java collection framework. Iterable, literally, means that “can be iterated”.
 
-- The **Iterable** interface (java.lang.Iterable) is the root interface of the Java collection framework. Iterable, literally, means that “can be iterated”.
-- Technically, it means that an **Iterator** can be returned. **Iterable objects (objects implementing the iterable interface) can be used with the for-each loop**
+Technically, it means that an **Iterator** can be returned. **Iterable objects (objects implementing the iterable interface) can be used within for-each loops**
 
 ```
 public interface Iterable<T> {
@@ -62,9 +61,8 @@ for(Object o : l){
 }
 ```
 
-- **The Iterator interface extracts the traversal behaviour of a collection into a separate object called an iterator.**
-
-(see more: [Design Patterns: Iterator - Refactoring.guru](https://refactoring.guru/design-patterns/iterator))
+### Iterator Interface
+The **Iterator** interface extracts the traversal behaviour of a collection into a separate object called an iterator.
 
 ```
 public interface Iterator<T> {
@@ -82,10 +80,11 @@ for (Iterator<Object> i = l.iterator(); i.hasNext();) {
 
 ![](images/iterable-iterator-interface.png)
 
+(see more: [Design Patterns: Iterator - Refactoring.guru](https://refactoring.guru/design-patterns/iterator))
+
 
 
 ### Collection Interface
-
 - **Group of elements (references to objects)**
 - It is **not specified** whether they are
   - Ordered / not ordered
@@ -94,26 +93,22 @@ for (Iterator<Object> i = l.iterator(); i.hasNext();) {
   - Collection()
   - Collection(Collection c)
 
-![](images/collection-interface.png)
-
-- int **size**()
-- boolean **isEmpty**()
-- boolean **contains**(Object element)
-- boolean **containsAll**(Collection c)
-- boolean **add**(Object element)
-- boolean **addAll**(Collection c)
-- boolean **remove**(Object element)
-- boolean **removeAll**(Collection c)
-- void **clear**()
-- Object[] **toArray**()
-- Iterator **iterator**()
-
+### Collection main methods
+  - int **size**()
+  - boolean **isEmpty**()
+  - boolean **contains**(Object element)
+  - boolean **containsAll**(Collection c)
+  - boolean **add**(Object element)
+  - boolean **addAll**(Collection c)
+  - boolean **remove**(Object element)
+  - boolean **removeAll**(Collection c)
+  - void **clear**()
+  - Object[] **toArray**()
+  - Iterator **iterator**()
 
 ---
 
-
 ### List Interface
-
 - Can contain **duplicate elements**
 - **Insertion order is preserved**
 - User can select **arbitrary insertion points**
@@ -121,8 +116,7 @@ for (Iterator<Object> i = l.iterator(); i.hasNext();) {
 
 ![](images/list-interface.png)
 
-### List additional methods
-
+### List main methods
 - Object **get**(int index)
 - Object **set**(int index, Object o)
 - Object **remove**(int index)
@@ -133,7 +127,6 @@ for (Iterator<Object> i = l.iterator(); i.hasNext();) {
 - List **subList**(int fromIndex, int toIndex)
 
 ### List initialization
-
 ```
 /* plain, simple, long */
 List < Integer > l = new ArrayList < Integer > ();
@@ -150,8 +143,7 @@ List < Integer > l = List.of(14, 73, 18);
 ```
 
 ### List implementations
-
-- Decoupling references from actual objects allows us to change implementation (and related performance!) by changing a single line of code!
+Decoupling references from actual objects allows us to change implementation (and related performance!) by changing a single line of code!
 
 ```
 List<Car> garage;
@@ -168,13 +160,13 @@ for(Car c : garage) {
 }
 ```
 
-- **ArrayList** implements **List**
+**ArrayList** implements **List**
   - get(index) -> Constant time
   - add(index, obj) -> Linear time
 
 ![](images/list-implementation.svg)
 
-- **LinkedList** implements **List, Deque**
+**LinkedList** implements **List, Deque**
   - get(index) -> Linear time
   - add(index, obj) -> Linear time (but more lightweight)
 
@@ -201,6 +193,7 @@ for(Car c : garage) {
   - User definable internal ordering TreeSet(Comparator c)
   - Slow when compared to hash-based implementations
 
+### Set initialization
 ```
 List<String> l = List.of("Nicola", "Agata", "Marzia", "Agata");
 
@@ -218,8 +211,7 @@ System.out.println(ts);
 ```
 
 ### TreeSet Internal Ordering
-
-- Depending on the constructor used, SortedSet implementations can use different orderings
+Depending on the constructor used, SortedSet implementations can use different orderings:
 - **TreeSet()**
   - Natural ascending ordering
   - Elements must implement the **Comparable Interface**
@@ -227,18 +219,17 @@ System.out.println(ts);
   - Ordering is defined by the Comparator c
 
 ### HashSet vs TreeSet
-
 - HashSet stores the objects in random order, whereas TreeSet applies the natural order of the elements.
 - HashSet can store null objects, while TreeSet does not allow them.
 - HashSet provides constant-time performance for most operations like add(), remove() and contains(), versus the log(n) time offered by the TreeSet.
 - TreeSet is richer in functionalities, implementing additional methods like: first(), last(), ceiling(), lower(), …
 
 
-- Summary:
-  - If we want to keep our entries sorted, we need to go for the TreeSet
-  - If we value performance more than memory consumption, we should go for the HashSet
-  - If we are short on memory, we should go for the TreeSet
-  - If we want to access elements that are relatively close to each, we might want to consider TreeSet because it has greater locality
+Summary:
+- If we want to keep our entries sorted, we need to go for the TreeSet
+- If we value performance more than memory consumption, we should go for the HashSet
+- If we are short on memory, we should go for the TreeSet
+- If we want to access elements that are relatively close to each, we might want to consider TreeSet because it has greater locality
   
 
 ---
