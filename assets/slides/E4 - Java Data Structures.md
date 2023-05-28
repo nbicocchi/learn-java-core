@@ -11,29 +11,34 @@ Java Collections Framework is one of the core parts of the Java programming lang
   - **abstract classes** for shared code aggregation
   - **concrete classes** implementing functionalities
   - **algorithms** (java.util.Collections)
-- Key technologies
-  - Resizable Array
-  - Linked List
-  - Balanced Tree
-  - Hash Table
 
 
-### Resizable Array ~O(n)
+### Key technologies
+
+
+**Dynamic Array ~O(n)**
+
+The drawback of regular array is that we cannot adjust their size in the middle of the code execution. In other words, it will fail to add the (n + 1)th element if we allocate an array size equal to n. One idea would be to allocate a large array, which could waste a significant amount of memory. So what is an appropriate solution to this problem? We solve this problem using the idea of the [dynamic array](https://www.enjoyalgorithms.com/blog/dynamic-array) where we can *increase the array size dynamically* when we need.
+
 ![](images/resizable-array.png)
 
 
-### Linked List ~O(n)
+**Linked List ~O(n)**
+
+A [linked list](https://en.wikipedia.org/wiki/Linked_list) is a linear collection of data elements whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes which together represent a sequence. In its most basic form, each node contains data, and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions. A drawback of linked lists is that data access time is a linear function of the number of nodes for each linked list (I.e., the access time linearly increases as nodes are added to a linked list.) because nodes are serially linked so a node needs to be accessed first to access the next node (so difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
+
 ![](images/linked-list.png)
 
 
-### Balanced Tree ~O(log(n))
+**Balanced Tree ~O(log(n))**
+
+A balanced binary tree, also referred to as a height-balanced binary tree, is defined as a binary tree in which the height of the left and right subtree of any node differ by not more than 1.
+
 ![](images/balanced-tree.png)
 
-* A binary tree is balanced if, for each node, the number of inner nodes in the left subtree and the number of inner nodes in the right subtree differ by at most 1. 
-* A binary tree is balanced if for any two leaves the difference of the depth is at most 1.
 
+**Hash Table ~O(1)**
 
-### Hash Table ~O(1)
 ![](images/hash-table.png)
 
 
