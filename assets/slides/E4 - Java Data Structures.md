@@ -508,7 +508,7 @@ while (i.hasNext())
 
 - sort() - merge sort implementation, n log(n)
 - binarySearch() - requires ordered collection
-- shuffle() - unsort
+- shuffle() - shuffles the collection
 - reverse() - requires ordered collection
 - rotate() – rotate elements of a given distance
 - min(), max() - in a collection 

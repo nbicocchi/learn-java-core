@@ -521,7 +521,7 @@ try {
 
 In the code above `SQLException` and `IOException` (alternatives) are separated by the `|` character. They will be handled in the same way. Note that alternatives in a multi-catch statement cannot be each other's subclasses.
 
-### The finally block
+### The finally keyword
 There is another possible block called `finally`. All statements present in this block will always execute regardless of whether an exception occurs in the `try` block or not.
 
 ```

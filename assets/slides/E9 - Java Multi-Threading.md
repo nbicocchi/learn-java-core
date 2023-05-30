@@ -10,7 +10,7 @@ Processes do not share memory (separate address spaces), thus they have to commu
 A process might contain one or more threads   running within the context of the process
 
 ### Processes in Java
-In Java, it is not possible to explicitly call the syscall fork() as in C. Syscalls fork() and exec() can be jointly called via the `java.lang.Process` class.
+In Java, it is not possible to explicitly call the syscall fork() as in C. System calls fork() and exec() can be jointly called via the `java.lang.Process` class.
 
 Methods of the `java.lang.Process` class also allow developers to acquire standard input, output, error, and exit value.
 
@@ -71,7 +71,7 @@ In a multithreaded process:
 * Even for experts, development is often painful
 * Threads break abstraction: can't design modules independently.
 
-### The important of multi-threading
+### The Amdahl's law
 In computer architecture, [Amdahl's law](https://en.wikipedia.org/wiki/Amdahl%27s_law) is a formula which gives the theoretical speedup in latency of the execution of a task at fixed workload that can be expected of a system whose resources are improved. It states that "the overall performance improvement gained by optimizing a single part of a system is limited by the fraction of time that the improved part is actually used"
 
 ![](images/threads-amdahl.png)
@@ -314,7 +314,7 @@ There are 3 ways for leaving the running state under the control of the programm
 
 * **sleep()**:  the currently running thread stops executing for at least the specified sleep duration (go to sleeping state)
 * **join()**:  the currently running thread stop executing until the thread it joins completes (go to waiting state)
-* **yield()**: the currently running thread moves back to runnable to give room to other threads (go to runnable state)
+* **yield()**: the currently running thread moves back to the runnable state and gives room to other threads (go to runnable state)
 
 There are 2 additional ways for leaving the running state which are not under the control of the programmer:
 
@@ -968,7 +968,7 @@ public interface Callable<V> {
 }
 ```
 
-As you can see, it is a generic interface where the type parameter `V` determines the type of a result. Since it is a **functional interface**, we can use it together with lambda expressions and method references as well as implementing classes.
+As you can see, it is a generic interface where the type parameter `V` determines the type of the result. Since it is a **functional interface**, we can use it together with lambda expressions and method references as well as implementing classes.
 
 Here is a `Callable` that emulates a long-running task and returns a number that was "calculated".
 
@@ -1026,7 +1026,7 @@ future1.cancel(true);  // try to cancel even if the task is executing now
 future2.cancel(false); // try to cancel only if the task is not executing
 ```
 
-Since passing `true` involves interruptions, the cancelation of an executing task is guaranteed only if it handles `InterruptedException` correctly and checks the flag `Thread.currentThread().isInterrupted()`.
+Since passing `true` involves interruptions, the actual stop of an executing task is guaranteed only if it handles `InterruptedException` correctly and checks the flag `Thread.currentThread().isInterrupted()`.
 
 If someone invokes `future.get()` at a successfully canceled task, the method throws an unchecked `CancellationException`. If you do not want to deal with it, you may check whether a task was canceled by invoking `isCancelled()`.
 

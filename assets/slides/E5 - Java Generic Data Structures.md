@@ -405,7 +405,7 @@ public static <T, U> void method(T t, U u) {
 }
 ```
 
-Static generic methods are often used to write generic algorithms that do not depend on the type they operate on. This can be convenient when the method has to be used independently from the class it belongs to. We frequently use generic static methods for different operations with arrays and collections: sorting an array, searching for a value in a collection, reversing an array, and so on.
+Static generic methods are often used to write generic algorithms that do not depend on the type they operate on. This can be convenient when the method has to be used independently of the class it belongs to. We frequently use generic static methods for different operations with arrays and collections: sorting an array, searching for a value in a collection, reversing an array, and so on.
 
 ### Generic instance methods
 
@@ -543,7 +543,7 @@ We can constrain the type of the elements, requiring that the type implement the
 public static <E extends Measurable> double average(ArrayList<E> objects)
 ```
 
-This means, "E extends or implements Measurable”. In this situation, we say that E is a subtype of the Measurable type. Here is the complete average method:
+This means, "E extends or implements Measurable". In this situation, we say that E is a subtype of the Measurable type. Here is the complete average method:
 
 ```
 public static <E extends Measurable> double average(ArrayList<E> objects) {
@@ -728,9 +728,9 @@ public static Measurable min(Measurable[] objects) {
 ### Wisdom pills
 *If you ask the business managers, they’ll often say that it’s more important for the software system to work than being easy to be modified. Developers, in turn, often go along with this attitude. But it’s the wrong attitude. I can prove that it is wrong with the simple logical tool of examining the extremes.*
 
-*If you give me a program that works perfectly but is impossible to change, then it won’t work when the requirements change, and I won’t be able to make it work. Therefore the program will become useless.*
+*If you give me a program that works perfectly but is impossible to change, then it won’t work when the requirements change, and I won’t be able to make it work. Therefore, the program will become useless.*
 
-*If you give me a program that does not work but is easy to change, then I can make it work, and keep it working as requirements change. Therefore the program will remain continually useful.*
+*If you give me a program that does not work but is easy to change, then I can make it work, and keep it working as requirements change. Therefore, the program will remain continually useful.*
 
 Clean Architecture, Robert C. Martin
 

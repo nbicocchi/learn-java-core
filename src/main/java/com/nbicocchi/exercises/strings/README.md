@@ -88,7 +88,7 @@ where:
 
 ---
 
-**[GoodAtTheBeginning.java]** Write a method accepting a string and returning a boolean value. The funtion returns
+**[GoodAtTheBeginning.java]** Write a method accepting a string and returning a boolean value. The function returns
 true if "good" appears at the beginning of the string (see String.charAt() method).
 
 Examples:

@@ -51,7 +51,7 @@ _Lines of code per product_
 
 - OOP addresses this issue and **reduces development and maintenance** costs for large and complex software projects
 
-- OOP aims at secure, re-usable, flexible, documentable, extensible software. Instead of focusing on algorithms, optimization, and efficiency, **OOP focus on programming techniques**. 
+- OOP aims at secure, re-usable, flexible, extensible software. Instead of focusing on algorithms, optimization, and efficiency, **OOP focus on programming techniques**. 
 - OOP considers software as a set of well-defined entities containing both data and
   behaviour
 

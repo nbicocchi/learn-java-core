@@ -164,7 +164,7 @@ Classifying methods as Safe and Idempotent makes it easy to predict the results 
 
 - **Use plural nouns** for naming your resources.
 - **Avoid using spaces** as they create confusion. Use an _ (underscore) or – (hyphen) - instead.
-- A URI is **case insensitive**. I use camel case in my URIs for better clarity. You can use all lower-case URIs.
+- A URI is **case-insensitive**. I use camel case in my URIs for better clarity. You can use all lower-case URIs.
 - A **cool URI never changes**; so give some thought before deciding on the URIs for your service. If you need to change the location of a resource, do not discard the old URI and redirect the client to the new location.
 - **Avoid verbs** for your resource names. Verbs are more suitable for the names of operations.
 
