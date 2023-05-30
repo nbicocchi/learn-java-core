@@ -452,16 +452,16 @@ public void run() {
 **What happens if the scheduler suspends one thread between step 2 and step 3 and the other one gets executed?**
 
 1. **Homer enters the status RUNNING**
-1. Homer checks that the account is not empty and contains 125$!
-1. Homer chooses to withdraw 100$
-1. **Homer leaves the status RUNNING**
-1. **Marge enters the status RUNNING**
-1. Marge checks that the account is not empty and contains 125$!
-1. Marge chooses to withdraw 120$
-1. Marge withdraws 120$
-1. **Marge leaves the status RUNNING**
-1. **Homer enters the status RUNNING**
-1. Homer withdraws 100$ (he has already checked!) but the ATM gives him only 5$
+2. Homer checks that the account is not empty and contains 125$!
+3. Homer chooses to withdraw 100$
+4. **Homer leaves the status RUNNING**
+5. **Marge enters the status RUNNING**
+6. Marge checks that the account is not empty and contains 125$!
+7. Marge chooses to withdraw 120$
+8. Marge withdraws 120$
+9. **Marge leaves the status RUNNING**
+10. **Homer enters the status RUNNING**
+11. Homer withdraws 100$ (he has already checked!) but the ATM gives him only 5$
 
 ### Critical sections and race conditions
 ![](images/threads/threads-homer.png)

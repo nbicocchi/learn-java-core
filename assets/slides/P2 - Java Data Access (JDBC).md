@@ -2,7 +2,7 @@
 
 ### Software Design
 
-![](images/jdbc/software-design-jdbc.png)
+![](images/jdbc/jdbc-software-design.png)
 
 ### Networked DBMS
 The most of DBMS make use of the **TCP protocol** for communicating with applications. They accept incoming connections on a specific **TCP port**.
@@ -29,7 +29,7 @@ files.**
 
 We’ll focus on accessing relational databases. Nevertheless, the same principles can be applied to all data sources.
 
-![](images/jdbc/what-is-JDBC.jpg)
+![](images/jdbc/jdbc-what-is.jpg)
 
 ### Basic steps 
 
@@ -387,7 +387,7 @@ There are significant variations between the SQL types supported by different da
 - The one major place where programmers may **need to use SQL type names** is in the SQL CREATE TABLE statement when they are **creating a new database table**. In this case programmers must take care to use SQL type names that are supported by their target database.
 
 ### Mapping JDBC to Java types
-![](images/jdbc/mapping-types-jdbc.png/)
+![](images/jdbc/jdbc-mapping-types.png)
 
 # Advanced Result Set
 ResultSet are iterator-like objects

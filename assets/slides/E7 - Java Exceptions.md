@@ -294,7 +294,7 @@ These simple rules will help to reduce the number of places in your code that co
 ### Hierarchy of exceptions
 Exceptions are considered objects of special classes organized into a class hierarchy. The following picture illustrates the simplified hierarchy of exceptions:
 
-![Hierarchy of exceptions](images/exceptions/exceptions.svg)
+![Hierarchy of exceptions](images/exceptions/exceptions-hierarchy.svg)
 
 The base class for all exceptions is `java.lang.Throwable`. This class provides a set of common methods for all exceptions:
 

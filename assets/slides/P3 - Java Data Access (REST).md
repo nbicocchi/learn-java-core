@@ -2,7 +2,7 @@
 
 ### Software Design
 
-![](images/rest/software-design-jdbc.png)
+![](images/rest/rest-software-design.png)
 
 ### Why Learn REST?
 - REST is used to **build scalable Web services** (stateless is lightweight)
@@ -10,7 +10,7 @@
 - Widely **available libraries** for many languages (e.g., RESTLet for Java)
 - Examples: <https://github.com/toddmotto/public-apis>
 
-![](images/rest/why-learn-rest.png)
+![](images/rest/rest-why.png)
 
 ```
 (HTTP Request) 
@@ -70,10 +70,10 @@ Request and response contain both metadata and content.
 Response content is usually represented in XML or JSON.
 
 ### HTTP/1.1 Request
-![](images/rest/http-request.png)
+![](images/rest/rest-http-request.png)
 
 ### HTTP/1.1 Response
-![](images/rest/http-response.png)
+![](images/rest/rest-http-response.png)
 
 ### Resources
 - **Every system uses resources**. Resources can be pictures, videos, users data ecc...
@@ -152,7 +152,7 @@ An **Idempotent HTTP method** has same effect no matter how many times it is per
 Classifying methods as Safe and Idempotent makes it easy to predict the results in unreliable environments such as the Web (clients may fire the same request multiple times for example)
 
 ### PUT and POST
-![](images/rest/put-post.png)
+![](images/rest/rest-put-post.png)
 
 ### Addressing resources (URIs)
 
@@ -198,7 +198,7 @@ A **RESTful service is stateless** and does **not maintain the application state
 
 - You can use any format for structuring your document, but it should contain enough information about resources, URIs, Available Methods, and any other information required for accessing your service.
 
-![](images/rest/documentation.png)
+![](images/rest/rest-documentation.png)
 
 ### Criticism
 
@@ -217,4 +217,4 @@ A **RESTful service is stateless** and does **not maintain the application state
 - However, it is up to developers to implement and utilize these features correctly.
 - If we get the basics right, a RESTful service can be easily implemented using any of the existing technologies such as Python, .NET, or Java.
 
-![](images/rest/advantages.png)
+![](images/rest/rest-microservices.png)
