@@ -72,7 +72,7 @@ Response content is usually represented in XML or JSON.
 ### HTTP/1.1 Request
 ![](images/rest/http-request.png)
 
-### HTTP/1.1 Request
+### HTTP/1.1 Response
 ![](images/rest/http-response.png)
 
 ### Resources
@@ -103,7 +103,40 @@ For example, the toString() method represents resources using a plain String).
 
 You can use any format for representing the resources as REST does not put any restrictions. Nevertheless, **the most used representations are XML and JSON**.
 
-![](images/rest/json-xml-representation.png)
+*JSON*
+
+```
+{"guests":[
+
+  { "firstName":"John", "lastName":"Doe" },
+
+  { "firstName":"María", "lastName":"García" },
+
+  { "firstName":"Nikki", "lastName":"Wolf" }
+
+]}
+```
+
+*XML*
+
+```
+<guests>
+
+  <guest>
+    <firstName>John</firstName> <lastName>Doe</lastName>
+  </guest>
+
+  <guest>
+    <firstName>María</firstName> <lastName>García</lastName>
+  </guest>
+
+  <guest>
+    <firstName>Nikki</firstName> <lastName>Wolf</lastName>
+  </guest>
+
+</guests>
+```
+
 
 ### Operations
 

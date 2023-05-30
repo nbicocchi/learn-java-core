@@ -174,11 +174,10 @@ The **java.sql.ResultSet** interface represents the **result set of a database q
 
 ### Navigational methods 
 
-#### **absolute**
+#### absolute()
 
 ```
-boolean absolute(int row)
-          throws SQLException
+boolean absolute(int row) throws SQLException
 ```
 Moves the cursor to the given row number in this ResultSet object.
 
@@ -189,71 +188,65 @@ A value of zero indicates that the cursor will be positioned before the first ro
 Returns
 - true if the cursor is moved to a position in this ResultSet object; false if the cursor is before the first row or after the last row.
 
-#### **afterlast**
+#### afterlast()
 
 ```
-void afterLast()
-        throws SQLException
+void afterLast() throws SQLException
 ```
+
 Moves the cursor to the end of this ResultSet object, just after the last row. This method has no effect if the result set contains no rows.
 
-#### **beforeFirst**
+#### beforeFirst()
 
 ```
-void beforeFirst()
-          throws SQLException
+void beforeFirst() throws SQLException
 ```
 Moves the cursor to the front of this ResultSet object, just before the first row. This method has no effect if the result set contains no rows.
 
-#### **first**
+#### first()
 
 ```
-boolean first()
-       throws SQLException
+boolean first() throws SQLException
 ```
 Moves the cursor to the first row in this ResultSet object.
 
 Returns
 - true if the cursor is on a valid row; false if there are no rows in the result set
 
-#### **last**
+#### last()
 
 ```
-boolean last()
-      throws SQLException
+boolean last() throws SQLException
 ```
 Moves the cursor to the last row in this ResultSet object.
 
 Returns:
 - true if the cursor is on a valid row; false if there are no rows in the result set
 
-#### **next**
+#### next()
 
 ```
-boolean next()
-      throws SQLException
+boolean next() throws SQLException
 ```
 Moves the cursor forward one row from its current position. A ResultSet cursor is initially positioned before the first row; the first call to the method next makes the first row the current row; the second call makes the second row the current row, and so on.
 
 Returns
 - true if the new current row is valid; false if there are no more rows
 
-#### **previous**
+#### previous()
 
 ```
-boolean previous()
-          throws SQLException
+boolean previous() throws SQLException
 ```
 Moves the cursor to the previous row in this ResultSet object. When a call to the previous method returns false, the cursor is positioned before the first row. Any invocation of a ResultSet method which requires a current row will result in a SQLException being thrown.
 
 Returns:
 - true if the cursor is now positioned on a valid row; false if the cursor is positioned before the first row
 
-#### **relative**
+#### relative()
 
 ```
-boolean relative(int rows)
-          throws SQLException
+boolean relative(int rows) throws SQLException
 ```
 Moves the cursor a relative number of rows, either positive or negative.
 
@@ -263,54 +256,49 @@ Parameters:
 Returns:
 - true if the cursor is on a row; false otherwise
 
-#### **getRow**
+#### getRow()
 
 ```
-int getRow()
-    throws SQLException
+int getRow() throws SQLException
 ```
 Retrieves the current row number. The first row is number 1, the second number 2, and so on.
 
 Returns
 - the current row number; 0 if there is no current row
 
-#### **getType**
+#### getType()
 
 ```
-int getType()
-     throws SQLException
+int getType() throws SQLException
 ```
 Retrieves the type of this ResultSet object. The type is determined by the Statement object that created the result set.
 
 Returns:
 - ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE
 
-#### **isAfterLast**
+#### isAfterLast()
 
 ```
-boolean isAfterLast()
-             throws SQLException
+boolean isAfterLast() throws SQLException
 ```
 Retrieves whether the cursor is after the last row in this ResultSet object.
 
 Returns:
 - true if the cursor is after the last row; false if the cursor is at any other position or the result set contains no rows.
 
-#### **isBeforeFirst**
+#### isBeforeFirst()
 ```
-boolean isBeforeFirst()
-               throws SQLException
+boolean isBeforeFirst() throws SQLException
 ```
 Retrieves whether the cursor is before the first row in this ResultSet object.
 
 Returns:
 - true if the cursor is before the first row; false if the cursor is at any other position or the result set contains no rows
 
-#### **isFirst**
+#### isFirst()
 
 ```
-boolean isFirst()
-         throws SQLException
+boolean isFirst() throws SQLException
 ```
 Retrieves whether the cursor is on the first row of this ResultSet object.
 
@@ -318,6 +306,7 @@ Returns:
 - true if the cursor is on the first row; false otherwise
 
 *More: <https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html>*
+
 ### Get methods
 resultSet.get**XXX**(), where **XXX is a primitive data type**. Columns can be selected via either **name** or **id**.
 
@@ -510,8 +499,8 @@ The classic example of when transactions are necessary is the example of bank ac
 - Once auto-commit is off, no SQL statement will be committed until an explicit is invoked connection.commit(). At this point all changes done by the SQL statements will be made permanent in the database.
 
 ```
-Con`nection connection = ...
-try{
+Connection connection = ...
+try {
     connection.setAutoCommit(false);
 
     // create and execute statements etc.
