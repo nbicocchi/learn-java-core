@@ -71,11 +71,10 @@ In a multithreaded process:
 * Even for experts, development is often painful
 * Threads break abstraction: can't design modules independently.
 
-![](images/threads-programmers.png)
-
 ### The important of multi-threading
-![](images/threads-amdahl.png)
+In computer architecture, [Amdahl's law](https://en.wikipedia.org/wiki/Amdahl%27s_law) is a formula which gives the theoretical speedup in latency of the execution of a task at fixed workload that can be expected of a system whose resources are improved. It states that "the overall performance improvement gained by optimizing a single part of a system is limited by the fraction of time that the improved part is actually used"
 
+![](images/threads-amdahl.png)
 
 ### Threads in Java
 Every Java program has at least one thread, which is called **main,** created automatically by the JVM process to execute statements inside the `main` method. All Java programs have some other default threads as well (for example, a separate thread for the garbage collector).
