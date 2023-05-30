@@ -8,32 +8,32 @@ the elements that distinguish it from the procedural approach.
 # Why OOP?
 
 ### The present
-![](images/the-present.png)
+![](images/functionstoobjects/the-present.png)
 
 
 ### The past
-![](images/the-past.png)
+![](images/functionstoobjects/the-past.png)
 
 (see more: [Most Popular Programming Languages 1965-2020 - YouTube](https://www.youtube.com/watch?v=YqxeLodyyqA))
 
 
 ### The future?
-![](images/kotlin.png)
-![](images/dart.png)
+![](images/functionstoobjects/kotlin.png)
+![](images/functionstoobjects/dart.png)
 
 
 ### Lines of code
-![](images/code-lines-per-kernel.png)
+![](images/functionstoobjects/code-lines-per-kernel.png)
 
 _Lines of code per kernel version_
 
 
-![](images/code-lines-per-space-mission.png)
+![](images/functionstoobjects/code-lines-per-space-mission.png)
 
 _Lines of code per space mission_
 
 
-![](images/code-lines-per-product.png)
+![](images/functionstoobjects/code-lines-per-product.png)
 
 _Lines of code per product_
 
@@ -43,7 +43,7 @@ _Lines of code per product_
 ### Tools and artifacts
 | Tools                                  | Artifacts                           |
 |----------------------------------------|-------------------------------------|
-| ![](images/without-oop-structure.png) | ![](images/with-oop-structure.png) | 
+| ![](images/functionstoobjects/without-oop-structure.png) | ![](images/functionstoobjects/with-oop-structure.png) | 
 
 ### Object-Oriented Approach
 - Procedural programming languages (e.g., C) are **not suitable for building large
@@ -55,7 +55,7 @@ _Lines of code per product_
 - OOP considers software as a set of well-defined entities containing both data and
   behaviour
 
-![](images/software-costs.png)
+![](images/functionstoobjects/software-costs.png)
 
 
 ### Software Crisis
@@ -80,7 +80,7 @@ errors per thousand lines of code (_errors / 1K SLOC_).
 - **Corporate Applications, 5 errors / 1K SLOC** _(what we aim for)_
 - Cleanroom development technique, 0.5 errors / 1K SLOC
 
-![](images/code-quality-cartoon.png)
+![](images/functionstoobjects/code-quality-cartoon.png)
 
 Various processes and methodologies have been developed over the last few decades to improve
 software quality management such as procedural programming and object-oriented programming.
@@ -156,7 +156,7 @@ int main() {
   
 - **Initialization not guaranteed**
 
-![](images/issues-procedural-approach.png)
+![](images/functionstoobjects/issues-procedural-approach.png)
 
 - **Reuse of code limited**
   - Data and operations are separate. This makes it complex to reuse existing code in
@@ -184,7 +184,7 @@ values.
 > An **object** is an _instance_ of a class. Instantiation mean create the object through its
 constructor.
 
-![](images/object-oriented-approach.png)
+![](images/functionstoobjects/object-oriented-approach.png)
 
 
 
@@ -267,7 +267,7 @@ int main() {
  }
 ```
 
-![](images/procedural-versus-object-oriented.png)
+![](images/functionstoobjects/procedural-versus-object-oriented.png)
 
 ---
 
@@ -279,7 +279,7 @@ code and data (data is encapsulated inside a shield of code); that prevents the 
 from being accessed by code outside this shield. The rest of the program has access only 
 to a selected list of public methods (_public interface_).
 
-![](images/encapsulation.png)
+![](images/functionstoobjects/encapsulation.png)
 
 ```c
 // point.h 
@@ -315,7 +315,7 @@ Inheritance consists in the mechanism in which one class acquires all the proper
 * Inheritance introduces the **IS A** relationship (_child IS A parent_)
 * Enables **reuse of code**
 
-![](images/inheritance.png)
+![](images/functionstoobjects/inheritance.png)
 
 ```
 // namedPoint.h
@@ -375,7 +375,7 @@ decide for itself how to do that.
 > _Tell to the parent class to perform an action. The specific implementation
 within the child class will do it_
 
-![](images/polymorphism.png)
+![](images/functionstoobjects/polymorphism.png)
 
 
 
@@ -398,7 +398,7 @@ the module that contains the callee.
 > - **Flow of Control Dependency**, the runtime line of execution goes from one 
 module to another module.
 
-![](images/typical-calling-tree.png)
+![](images/functionstoobjects/typical-calling-tree.png)
 
 
 ### Dependency Inversion through interfaces
@@ -424,7 +424,7 @@ that changes the least (roles are decided based on the rate of changes).
 > - abstractions should not depend on details. Details (concrete implementations)
 should depend on abstractions.
 
-![](images/dependency-inversion.png)
+![](images/functionstoobjects/dependency-inversion.png)
 
 In the figure above, module <code>HL1</code> calls the <code>F()</code> function in 
 module <code>ML1</code>. The fact that it calls this function through an interface
@@ -438,12 +438,12 @@ compared to the flow of control. Thus, we obtained a **dependency inversion**.
 
 ### Monolithic Architecture vs Microservice Architecture
 
-![](images/monolithic-architecture.png)
+![](images/functionstoobjects/monolithic-architecture.png)
 _Monolithic Architecture_
 
 
 
-![](images/microservice-architecture.png)
+![](images/functionstoobjects/microservice-architecture.png)
 _Microservice Architecture_
 
 ### Wrapping up

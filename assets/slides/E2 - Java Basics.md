@@ -50,7 +50,7 @@ The first success of the team was represented by the introduction of the
 
 ### Building and Running
 
-![](images/building-and-running.png)
+![](images/basics/building-and-running.png)
 
 ```
 $ cd java-core/src/main/java/com/nbicocchi/exercises/examples
@@ -69,10 +69,10 @@ major version: 61
 (see more: [Java class file - Wikipedia](https://en.wikipedia.org/wiki/Java_class_file#General_layout))
 
 ### Compiled vs Interpreted
-![](images/compiled.png)
+![](images/basics/compiled.png)
 _Compiled_
 
-![](images/interpreted.png)
+![](images/basics/interpreted.png)
 _Interpreted_
 
 (see more: [List of Java virtual machines - Wikipedia](https://en.wikipedia.org/wiki/List_of_Java_virtual_machines))
@@ -87,7 +87,7 @@ _Interpreted_
 - A file contains one public class and, optionally, multiple private classes. The file
 name must be equal to the public class name.
 
-![](images/program-files-classes.png)
+![](images/basics/program-files-classes.png)
 
 ### The main method
 - In Java there are no traditional functions, but methods within classes
@@ -117,7 +117,7 @@ for (int i = 0; i < 10; i++) {
 
 ### Primitive Types
 
-![](images/primitive-types.png)
+![](images/basics/primitive-types.png)
 
 ```
 public class PrimitiveTypes {
@@ -221,7 +221,7 @@ class Demo4 {
 - The compiler automatically performs **implicit casting** when the target type is wider than the source type. The picture below illustrates the direction of this casting. Any value of a given type can be assigned to the one on the right implicitly or below in the case of char.
 - Normally, there is no loss of information when the target type is wider than the source type, for example, when we cast int to long. But it is not possible to automatically cast in the backward order (e.g. from long to int or from double to float).
 
-![](images/implicit-casting.png)
+![](images/basics/implicit-casting.png)
 
 ### Explicit casting
 - The considered **implicit casting** does not work when the target type is narrower than the source type.
@@ -289,7 +289,7 @@ s.length()
 
 ### Primitive vs Reference Types
 
-![](images/primitive-vs-reference-types.png)
+![](images/basics/primitive-vs-reference-types.png)
 
 ```
 // C
@@ -399,7 +399,7 @@ public class Parameters {
 }
 ```
 
-![](images/passing-parameters-primitive.png)
+![](images/basics/passing-parameters-primitive.png)
 
 ### Passing Parameters (Objects)
 
@@ -423,7 +423,7 @@ public class Parameters {
 }
 ```
 
-![](images/passing-parameters-objects.svg)
+![](images/basics/passing-parameters-objects.svg)
 
 ```
 import java.awt.*;
@@ -447,7 +447,7 @@ public class Parameters {
 }
 ```
 
-![](images/passing-parameters-objects2.svg)
+![](images/basics/passing-parameters-objects2.svg)
 
 
 ### Comments
@@ -469,7 +469,7 @@ public class Parameters {
   */
 ```
 
-![](images/dont-comment-rewrite.png)
+![](images/basics/dont-comment-rewrite.png)
 
 ### Coding Conventions
 
@@ -698,11 +698,11 @@ int[] v = {2,3,5,7,11,13};
 
 ### Example - Primitive Types
 
-![](images/array-example-primitive-types.png)
+![](images/basics/array-example-primitive-types.png)
 
 ### Example - Object Reference
 
-![](images/array-example-object-reference.png)
+![](images/basics/array-example-object-reference.png)
 
 ### Operations on Arrays
 
@@ -757,7 +757,7 @@ table[0] = table[1];
 table[1] = tmp;
 ```
 
-![](images/multidimensional-arrays.png)
+![](images/basics/multidimensional-arrays.png)
 
 ### java.util.Arrays
 

@@ -20,34 +20,34 @@ Java Collections Framework is one of the core parts of the Java programming lang
 
 The drawback of regular array is that we cannot adjust their size in the middle of the code execution. In other words, it will fail to add the (n + 1)th element if we allocate an array size equal to n. One idea would be to allocate a large array, which could waste a significant amount of memory. So what is an appropriate solution to this problem? We solve this problem using the idea of the [dynamic array](https://www.enjoyalgorithms.com/blog/dynamic-array) where we can *increase the array size dynamically* when we need.
 
-![](images/resizable-array.png)
+![](images/collections/resizable-array.png)
 
 
 **Linked List ~O(n)**
 
 A [linked list](https://en.wikipedia.org/wiki/Linked_list) is a linear collection of data elements whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes which together represent a sequence. In its most basic form, each node contains data, and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions. A drawback of linked lists is that data access time is a linear function of the number of nodes for each linked list (I.e., the access time linearly increases as nodes are added to a linked list.) because nodes are serially linked so a node needs to be accessed first to access the next node (so difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
 
-![](images/linked-list.png)
+![](images/collections/linked-list.png)
 
 
 **Balanced Tree ~O(log(n))**
 
 A balanced binary tree, also referred to as a height-balanced binary tree, is defined as a binary tree in which the height of the left and right subtree of any node differ by not more than 1.
 
-![](images/balanced-tree.png)
+![](images/collections/balanced-tree.png)
 
 
 **Hash Table ~O(1)**
 
-![](images/hash-table.png)
+![](images/collections/hash-table.png)
 
 
 ### Interfaces and implementations
-![](images/interfaces.png)
+![](images/collections/interfaces.png)
 
-![](images/implementations.png)
+![](images/collections/implementations.png)
 
-![](images/internals.png)
+![](images/collections/internals.png)
 
 
 ### Iterable Interface
@@ -83,7 +83,7 @@ for (Iterator<Object> i = l.iterator(); i.hasNext();) {
 }
 ```
 
-![](images/iterable-iterator-interface.png)
+![](images/collections/iterable-iterator-interface.png)
 
 (see more: [Design Patterns: Iterator - Refactoring.guru](https://refactoring.guru/design-patterns/iterator))
 
@@ -119,7 +119,7 @@ for (Iterator<Object> i = l.iterator(); i.hasNext();) {
 - User can select **arbitrary insertion points**
 - Elements can be accessed **by position**
 
-![](images/list-interface.png)
+![](images/collections/list-interface.png)
 
 ### List main methods
 - Object **get**(int index)
@@ -169,13 +169,13 @@ for(Car c : garage) {
   - get(index) -> Constant time
   - add(index, obj) -> Linear time
 
-![](images/list-implementation.svg)
+![](images/collections/list-implementation.svg)
 
 **LinkedList** implements **List, Deque**
   - get(index) -> Linear time
   - add(index, obj) -> Linear time (but more lightweight)
 
-![](images/list-implementation2.svg)
+![](images/collections/list-implementation2.svg)
 
 ---
 
@@ -184,7 +184,7 @@ for(Car c : garage) {
 - Contains no methods other than those inherited from Collection
 - **No duplicate elements are allowed**
 
-![](images/set-interface.png)
+![](images/collections/set-interface.png)
 
 ### Set Implementations
 
@@ -243,13 +243,13 @@ Summary:
 
 - **Queue**: a collection designed for holding elements prior to processing. Besides, basic Collection operations, queues provide additional insertion, extraction, and inspection operations. Each of these methods exists in two forms: one throws an exception if the operation fails, the other returns a special value (either null or false, depending on the operation).
 
-![](images/queue-interface2.png)
+![](images/collections/queue-interface2.png)
 
 
-![](images/queue-interface.png)
+![](images/collections/queue-interface.png)
 
 
-![](images/queue-methods.png)
+![](images/collections/queue-methods.png)
 
 
 ### Dequeue Interface
@@ -257,10 +257,10 @@ Summary:
 - **Deque (extends Queue)**: A linear collection that supports element insertion and removal at both ends. The name deque is short for "double ended queue" and is usually pronounced "deck". Most Deque implementations place no fixed limits on the number of elements they may contain, but this interface supports capacity-restricted dequeue as well as those with no fixed size limit.
 
 
-![](images/dequeue-interface.png)
+![](images/collections/dequeue-interface.png)
 
 
-![](images/dequeue-methods.png)
+![](images/collections/dequeue-methods.png)
 
 
 ### Queue Implementations
@@ -302,7 +302,7 @@ System.out.println(pqueue.peek());   // 1
   - Map()
   - Map(Map m)
 
-![](images/map-interface.png)
+![](images/collections/map-interface.png)
 
 - Object **put**(Object key, Object value)
 - Object **get**(Object key)

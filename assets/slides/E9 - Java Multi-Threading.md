@@ -71,10 +71,10 @@ In a multi-threaded process:
 * Even for experts, development is often painful
 * Threads break abstraction: can't design modules independently.
 
-![](images/threads-programmers.png)
+![](images/threads/threads-programmers.png)
 
 ### The important of multi-threading
-![](images/threads-amdahl.png)
+![](images/threads/threads-amdahl.png)
 
 
 ### Threads in Java
@@ -189,7 +189,7 @@ Hello, i'm Thread-0
 
 Here's a picture that explains how a thread actually starts and why it is not happening immediately.
 
-![start threads diagram](images/threads-start-end.png)
+![start threads diagram](images/threads/threads-start-end.png)
 
 As you may see, there is some delay between starting a thread and the moment when it really starts working (running).
 
@@ -298,7 +298,7 @@ public class StartStopThread extends Thread {
 ```
 
 ### Thread states
-![](images/threads-states.png)
+![](images/threads/threads-states.png)
 
 **Running:** The thread has been selected (from the runnable pool) to be the currently executing thread.
 
@@ -464,7 +464,7 @@ public void run() {
 1. Homer withdraws 100$ (he has already checked!) but the ATM gives him only 5$
 
 ### Critical sections and race conditions
-![](images/threads-homer.png)
+![](images/threads/threads-homer.png)
 
 A **race condition** is problem arising whenever two or more threads share the same resource and one thread **races in** too quickly before another thread has completed its operations (supposed to be atomic). 
 
@@ -764,16 +764,16 @@ Despite threads can be used for solving a number of real-world problems, most of
 
 **The producer/consumer pattern**, where the producer thread pushes elements into a shared object and the consumer thread fetches (consumes) them. See [this producer/consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/producerconsumer) for further details.
 
-![](images/threads-producer-consumer.svg)
+![](images/threads/threads-producer-consumer.svg)
 
 **The manager/workers pattern**, where a manager decomposes a complex task into subtasks, and assigns them to worker threads. See [this manager/workers example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/managerworkers) for further details.
 
-![](images/threads-manager-workers.svg)
+![](images/threads/threads-manager-workers.svg)
 
 ### Tasks and executors
 To simplify the development of multi-threaded applications, Java provides an abstraction called `ExecutorService` (or simply **executor**). It encapsulates one or more threads into a single pool and puts submitted tasks in an internal queue to execute them by using the threads.
 
-![ExecutorService diagram](images/threads-executor.svg)
+![ExecutorService diagram](images/threads/threads-executor.svg)
 
 This approach clearly isolates tasks from threads and allows you to focus on tasks. You do not need to worry about creating and managing threads because the executor does it for you.
 
