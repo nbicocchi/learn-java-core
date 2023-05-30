@@ -10,7 +10,7 @@ Processes do not share memory (separate address spaces), thus they have to commu
 A process might contain one or more threads   running within the context of the process
 
 ### Processes in Java
-In Java it is not possible to explicitly call the syscall fork() as in C. Syscalls fork() and exec() can be jointly called via the `java.lang.Process` class.
+In Java, it is not possible to explicitly call the syscall fork() as in C. Syscalls fork() and exec() can be jointly called via the `java.lang.Process` class.
 
 Methods of the `java.lang.Process` class also allow developers to acquire standard input, output, error, and exit value.
 
@@ -33,7 +33,7 @@ However, threads within the same process share the same address space and, conse
 Sharing variables is a simple and fast way threads use for communicating but **frequently causes bugs unseen in single-thread programs**
 
 ### JVM and OS
-A multitasking  operating   system  assigns CPU time (slices) to processes/threads via a kernel component called scheduler. Small time-slices (5-20ms) provide the illusion of parallelism of different processes/threads (on multi-core machines it is a partial illusion)
+A multitasking  operating   system  assigns CPU time (slices) to processes/threads via a kernel component called scheduler. Small time-slices (5-20ms) provide the illusion of parallelism of different processes/threads (on multicore machines it is a partial illusion)
 
 The JVM is a process and gets the CPU as assigned by the OS’s scheduler. However, **Java is a specification** with [many implementations](https://en.wikipedia.org/wiki/List_of_Java_virtual_machines). Some JVMs operate like a mini-OS and schedule their own threads. Most JVMs use the OS scheduler (a Java thread is actually mapped to a system thread)
 
@@ -44,7 +44,7 @@ There are many reasons to use threads in your Java programs. If you use Android,
 * take advantage of multiprocessor systems
 
 ### Why Threads? A case study
-Imagine a stock-broker application with three key capabilities:
+Imagine a stockbroker application with three key capabilities:
 * Download stock prices
 * Store stock prices into a database
 * Short-term analysis (1 hour) for buy/sell signals
@@ -54,7 +54,7 @@ In a single-threaded process:
 * If the download takes 10 minutes, should the user enjoy an unresponsive UI for 10 minute?
 * If short-term analysis takes additional 10 minute the result may come too late. Prices could already have changed significantly!
 
-In a multi-threaded process:
+In a multithreaded process:
 * the download can execute in background (i.e. in another thread)
 * the analysis, too, can execute in background (i.e. possibly in multiple threads) 
 * the user can enjoy a responsive UI while waiting for notifications (buy/sell signals)
@@ -71,10 +71,10 @@ In a multi-threaded process:
 * Even for experts, development is often painful
 * Threads break abstraction: can't design modules independently.
 
-![](images/threads/threads-programmers.png)
+![](images/threads-programmers.png)
 
 ### The important of multi-threading
-![](images/threads/threads-amdahl.png)
+![](images/threads-amdahl.png)
 
 
 ### Threads in Java
@@ -160,7 +160,7 @@ Thread t1 = new HelloThread(); // a subclass of Thread
 Thread t2 = new Thread(new HelloRunnable()); // passing runnable
 ```
 
-In both cases, you should override the `run` method, which is a regular Java method and contains code to perform a task. What approach to choose depends on the task and on your preferences. 
+In both cases, you should override the `run` method, which is a regular Java method and contains code to perform a task. Which approach to choose depends on the task and on your preferences. 
 
 
 If you are already familiar with lambda expressions, you may do the whole thing like this:
@@ -189,7 +189,7 @@ Hello, i'm Thread-0
 
 Here's a picture that explains how a thread actually starts and why it is not happening immediately.
 
-![start threads diagram](images/threads/threads-start-end.png)
+![start threads diagram](images/threads-start-end.png)
 
 As you may see, there is some delay between starting a thread and the moment when it really starts working (running).
 
@@ -298,13 +298,13 @@ public class StartStopThread extends Thread {
 ```
 
 ### Thread states
-![](images/threads/threads-states.png)
+![](images/threads-states.png)
 
 **Running:** The thread has been selected (from the runnable pool) to be the currently executing thread.
 
 **Runnable:** A thread which is eligible to run, but the scheduler has not selected it to be the running thread . A thread first enters the runnable state when the start() method is invoked. A thread can also return to the runnable state after either the running, blocked, waiting, or sleeping state.
 
-**Waiting:** A thread that can acquire a resource but there is no work to do; or a thread awaiting for its children (Thread.join()); or a thread which called object.wait() and waits for another thread to call object.notify().
+**Waiting:** A thread that can acquire a resource but there is no work to do; or a thread waiting for its children (Thread.join()); or a thread which called object.wait() and waits for another thread to call object.notify().
 
 **Blocking:** A thread waiting for a resource such waiting for the completion of I/O operations
 
@@ -464,7 +464,7 @@ public void run() {
 11. Homer withdraws 100$ (he has already checked!) but the ATM gives him only 5$
 
 ### Critical sections and race conditions
-![](images/threads/threads-homer.png)
+![](images/threads-homer.png)
 
 A **race condition** is problem arising whenever two or more threads share the same resource and one thread **races in** too quickly before another thread has completed its operations (supposed to be atomic). 
 
@@ -764,16 +764,16 @@ Despite threads can be used for solving a number of real-world problems, most of
 
 **The producer/consumer pattern**, where the producer thread pushes elements into a shared object and the consumer thread fetches (consumes) them. See [this producer/consumer example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/producerconsumer) for further details.
 
-![](images/threads/threads-producer-consumer.svg)
+![](images/threads-producer-consumer.svg)
 
 **The manager/workers pattern**, where a manager decomposes a complex task into subtasks, and assigns them to worker threads. See [this manager/workers example](https://github.com/nbicocchi/java-javafx/tree/main/src/main/java/com/nbicocchi/javafx/threads/managerworkers) for further details.
 
-![](images/threads/threads-manager-workers.svg)
+![](images/threads-manager-workers.svg)
 
 ### Tasks and executors
-To simplify the development of multi-threaded applications, Java provides an abstraction called `ExecutorService` (or simply **executor**). It encapsulates one or more threads into a single pool and puts submitted tasks in an internal queue to execute them by using the threads.
+To simplify the development of multithreaded applications, Java provides an abstraction called `ExecutorService` (or simply **executor**). It encapsulates one or more threads into a single pool and puts submitted tasks in an internal queue to execute them by using the threads.
 
-![ExecutorService diagram](images/threads/threads-executor.svg)
+![ExecutorService diagram](images/threads-executor.svg)
 
 This approach clearly isolates tasks from threads and allows you to focus on tasks. You do not need to worry about creating and managing threads because the executor does it for you.
 

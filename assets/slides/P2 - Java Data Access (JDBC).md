@@ -2,7 +2,7 @@
 
 ### Software Design
 
-![](images/jdbc/jdbc-software-design.png)
+![](images/jdbc-software-design.png)
 
 ### Networked DBMS
 The most of DBMS make use of the **TCP protocol** for communicating with applications. They accept incoming connections on a specific **TCP port**.
@@ -29,7 +29,7 @@ files.**
 
 We’ll focus on accessing relational databases. Nevertheless, the same principles can be applied to all data sources.
 
-![](images/jdbc/jdbc-what-is.jpg)
+![](images/jdbc-what-is.jpg)
 
 ### Basic steps 
 
@@ -387,7 +387,7 @@ There are significant variations between the SQL types supported by different da
 - The one major place where programmers may **need to use SQL type names** is in the SQL CREATE TABLE statement when they are **creating a new database table**. In this case programmers must take care to use SQL type names that are supported by their target database.
 
 ### Mapping JDBC to Java types
-![](images/jdbc/jdbc-mapping-types.png)
+![](images/jdbc-mapping-types.png)
 
 # Advanced Result Set
 ResultSet are iterator-like objects
@@ -486,7 +486,7 @@ public static void printRS(ResultSet rs) throws SQLException {
 # Transactions
 
 ### Definition
-A transaction is a **set of actions to be performed atomically**. **Either all of the actions are carried out, or none of them are.**
+A transaction is a **set of actions to be performed atomically**. **Either all the actions are carried out, or none of them are.**
 
 The classic example of when transactions are necessary is the example of bank accounts. You need to transfer $100 from one account to the other. You do so by subtracting $100 from the first account and adding $100 to the second account. If this process fails after you have subtracted the $100 from the first bank account, the $100 is never added to the second bank account. The money is lost in cyberspace.
 
