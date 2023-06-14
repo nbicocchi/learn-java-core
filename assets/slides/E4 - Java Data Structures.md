@@ -82,13 +82,9 @@ for (Iterator<Object> i = l.iterator(); i.hasNext();) {
 ---
 
 ### Collection Interface
-- **Group of elements (references to objects)**
-- It is **not specified** whether they are
-  - Ordered / not ordered
-  - Duplicated / not duplicated 
-- Common constructors
-  - Collection()
-  - Collection(Collection c)
+
+The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements. **Some collections allow duplicate elements and others do not. Some are ordered and others unordered**. The JDK does not provide any direct implementations of this interface: it provides implementations of more specific subinterfaces like Set and List. This interface is typically used to pass collections around and manipulate them where maximum generality is desired.
+
 
 ### Collection main methods
   - int **size**()
@@ -140,22 +136,10 @@ List <Integer > l = List.of(14, 73, 18);
 ```
 
 ### List implementations
-Decoupling references from actual objects allows us to change implementation (and related performance!) by changing a single line of code!
 
-```
-List<Car> cars;
-cars = new LinkedList<>();
-// cars = new ArrayList<>();
+There are two general-purpose List implementations — ArrayList and LinkedList. Most of the time, you'll probably use ArrayList, which offers constant-time positional access and is just plain fast. It does not have to allocate a node object for each element in the List, and it can take advantage of System.arraycopy when it has to move multiple elements at the same time. 
 
-cars.add(new SDCar());
-cars.add(new SDCar());
-cars.add(new Car());
-cars.add(new Car());
-
-for(Car car : cars) {
-    // do something
-}
-```
+If you frequently add elements to the beginning of the List or iterate over the List to delete elements from its interior, you should consider using LinkedList. These operations require constant-time in a LinkedList and linear-time in an ArrayList. But you pay a big price in performance. Positional access requires linear-time in a LinkedList and constant-time in an ArrayList. Furthermore, the constant factor for LinkedList is much worse. If you think you want to use a LinkedList, measure the performance of your application with both LinkedList and ArrayList before making your choice. ArrayList is usually faster.
 
 **ArrayList** implements **List**
   - get(index) -> Constant time
@@ -169,12 +153,26 @@ for(Car car : cars) {
 
 ![](images/collections-linkedlist-implementation.svg)
 
+Decoupling references from implementations allows developers to change implementation (and related performance!) with a single line of code!
+
+```
+List<Car> cars = new LinkedList<>();
+// List<Car> cars = new ArrayList<>();
+
+cars.add(new SDCar());
+cars.add(new SDCar());
+cars.add(new Car());
+cars.add(new Car());
+
+for(Car car : cars) {
+    // do something
+}
+```
 ---
 
 ### Set Interface
 
-- Contains no methods other than those inherited from Collection
-- **No duplicate elements are allowed**
+A collection that contains **no duplicate elements**. More formally, sets contain no pair of elements e1 and e2 such that e1.equals(e2), and at most one null element. As implied by its name, this interface models the mathematical set abstraction.
 
 ![](images/collections-set-interface.png)
 
@@ -207,13 +205,45 @@ System.out.println(ts);
 // [Agata, Marzia, Nicola]
 ```
 
+### Removing elements from a List
+```
+List<String> l = List.of("Nicola", "Agata", "Marzia", "Agata");
+
+List<String> noDuplicatesUnordered = new ArrayList<>(new HashSet<>(l));
+System.out.println(noDuplicatesUnordered);
+// [Marzia, Nicola, Agata]
+
+List<String> noDuplicatesOrdered = new ArrayList<>(new LinkedHashSet<>(l));
+System.out.println(noDuplicatesOrdered);
+// [Nicola, Agata, Marzia]
+```
+
+### Union and intersection between Sets
+
+```
+
+```
+
 ### TreeSet Internal Ordering
-Depending on the constructor used, SortedSet implementations can use different orderings:
+Depending on the constructor used, TreeSets can use different orderings:
 - **TreeSet()**
   - Natural ascending ordering
   - Elements must implement the **Comparable Interface**
 - **TreeSet(Comparator c)**
   - Ordering is defined by the Comparator c
+
+```
+List<String> l = List.of("Nicola", "Agata", "Marzia", "Agata");
+
+Set<String> naturalOrderSet = new TreeSet<>(l);
+System.out.println(naturalOrderSet);
+// [Agata, Marzia, Nicola]
+
+Set<String> customOrderSet = new TreeSet<>((o1, o2) -> Character.compare(o1.charAt(1), o2.charAt(1)));
+customOrderSet.addAll(l);
+System.out.println(customOrderSet);
+// [Marzia, Agata, Nicola]
+```
 
 ### HashSet vs TreeSet
 - HashSet stores the objects in random order, whereas TreeSet applies the natural order of the elements.
@@ -221,30 +251,22 @@ Depending on the constructor used, SortedSet implementations can use different o
 - HashSet provides constant-time performance for most operations like add(), remove() and contains(), versus the log(n) time offered by the TreeSet.
 - TreeSet is richer in functionalities, implementing additional methods like: first(), last(), ceiling(), lower(), …
 
-
-Summary:
-- If we want to keep our entries sorted, we need to go for the TreeSet
-- If we value performance more than memory consumption, we should go for the HashSet
-- If we are short on memory, we should go for the TreeSet
-- If we want to access elements that are relatively close to each, we might want to consider TreeSet because it has greater locality
-  
-
 ---
 
 ### Queue Interface
 
-- **Queue**: a collection designed for holding elements prior to processing. Besides, basic Collection operations, queues provide additional insertion, extraction, and inspection operations. Each of these methods exists in two forms: one throws an exception if the operation fails, the other returns a special value (either null or false, depending on the operation).
-
-![](images/collections-queue-example.png)
+A collection designed for holding elements prior to processing. Besides, basic Collection operations, queues provide additional insertion, extraction, and inspection operations. Each of these methods exists in two forms: one throws an exception if the operation fails, the other returns a special value (either null or false, depending on the operation).
 
 ![](images/collections-queue-interface.png)
+
+![](images/collections-queue-example.png)
 
 ![](images/collections-queue-methods.png)
 
 
 ### Dequeue Interface
 
-- **Deque (extends Queue)**: A linear collection that supports element insertion and removal at both ends. The name deque is short for "double ended queue" and is usually pronounced "deck". Most Deque implementations place no fixed limits on the number of elements they may contain, but this interface supports capacity-restricted dequeue as well as those with no fixed size limit.
+A collection that supports element insertion and removal at both ends. The name deque is short for "double ended queue" and is usually pronounced "deck". Most Deque implementations place no fixed limits on the number of elements they may contain, but this interface supports capacity-restricted dequeue as well as those with no fixed size limit.
 
 ![](images/collections-dequeue-interface.png)
 
@@ -269,29 +291,35 @@ Summary:
 ### Queue Example
 
 ```
-List<Integer> l = List.of(3, 1, 2);
-Queue<Integer> fifo = new LinkedList<Integer>(l);
-Queue<Integer> pqueue = new PriorityQueue<Integer>(l);
+Queue<Integer> fifo = new LinkedList<>();
+Queue<Integer> pqueue = new PriorityQueue<>();
+Queue<Integer> fifoArray = new ArrayDeque<>();
 
-System.out.println(fifo.peek());     // 3
-System.out.println(pqueue.peek());   // 1
+fifo.addAll(List.of(3, 1, 2));
+fifoArray.addAll(List.of(3, 1, 2));
+pqueue.addAll(List.of(3, 1, 2));
+
+System.out.println(fifo.peek());        // 3
+System.out.println(fifoArray.peek());   // 3
+System.out.println(pqueue.peek());      // 1
 ```
 
+### Deque Implementations
+
+...
+
+### Deque Example
+...
 
 ---
 
 ### Map Interface
 
-- An object storing pairs of (**key, value**
-(e.g., key: surname, value: phone number)
-  - **Keys and values must be objects**
-  - **Keys must be unique**
-- Common constructors:
-  - Map()
-  - Map(Map m)
+An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value. The Map interface provides three collection views, which allow a map's contents to be viewed as a set of keys, collection of values, or set of key-value mappings. The order of a map is defined as the order in which the iterators on the map's collection views return their elements. Some map implementations, like the TreeMap class, make specific guarantees as to their order; others, like the HashMap class, do not.
 
 ![](images/collections-map-interface.png)
 
+### Map main methods
 - Object **put**(Object key, Object value)
 - Object **get**(Object key)
 - Object **remove**(Object key)
@@ -306,6 +334,8 @@ System.out.println(pqueue.peek());   // 1
 
 ### Map Implementations
 
+_(Similar to Set implementations)_
+
 - **HashMap** implements **Map**
   - Hash tables as internal data structure (fast!)
   - Insertion order not preserved
@@ -315,8 +345,6 @@ System.out.println(pqueue.peek());   // 1
   - R-B trees as internal data structure 
   - User definable internal ordering
   - Slow when compared to hash-based implementations
-
-_(Similar to Set implementations)_
 
 ```
 Map<Integer, String> src;
@@ -342,30 +370,20 @@ System.out.println(src);
 // {17=Marzia, 22=Agata, 77=Nicola}
 ```
 
-### Map Example I
-
+### Map initialization (compact version)
 ```
-Map<String, Integer> m = new HashMap<>();
-m.put("Agata",  2);
-m.put("Marzia", 3);
-m.put("Darma",  4);
-m.put("Nicola", 1);
-
 /* more compact version (mutable) */
-Map<String, Integer> m = new HashMap<>(
-	Map.of("Agata", 2, "Marzia", 3, "Darma", 4, "Nicola", 1));
+Map<String, Integer> m = new HashMap<>(Map.of("Agata", 2, "Marzia", 3, "Darma", 4, "Nicola", 1));
 	
 /* note well: when using this kind of initialization, keys must be unique! 
-   The following code, in which "Agata" is dublicated, produces a runtime error. */
-Map<String, Integer> m = new HashMap<>(
-	Map.of("Agata", 2, "Agata", 3, "Darma", 4, "Nicola", 1));
+   The following code, in which "Agata" is duplicated, produces a runtime error. */
+Map<String, Integer> m = new HashMap<>(Map.of("Agata", 2, "Agata", 3, "Darma", 4, "Nicola", 1));
 
 /* more compact version (immutable) */
-Map<String, Integer> m =
-	Map.of("Agata", 2, "Marzia", 3, "Darma", 4, "Nicola", 1);
+Map<String, Integer> m = Map.of("Agata", 2, "Marzia", 3, "Darma", 4, "Nicola", 1);
 ```
 
-### Map Example II
+### Map Example
 
 ```
 Map<String, Integer> m = new HashMap<>(
