@@ -15,20 +15,20 @@ Java Collections Framework is one of the core parts of the Java programming lang
 
 ### Key technologies
 
-* [Dynamic array](https://en.wikipedia.org/wiki/Dynamic_array) **~O(n)**. The drawback of regular array is that we cannot adjust their size in the middle of the code execution. In other words, it will fail to add the (n + 1)th element if we allocate an array size equal to n. One idea would be to allocate a large array, which could waste a significant amount of memory. So what is an appropriate solution to this problem? We solve this problem using the idea of the dynamic array where we can *increase the array size dynamically* when we need.
+The drawback of regular array is that we cannot adjust their size in the middle of the code execution. In other words, it will fail to add the (n + 1)th element if we allocate an array size equal to n. One idea would be to allocate a large array, which could waste a significant amount of memory. So what is an appropriate solution to this problem? We solve this problem using the idea of the [dynamic array](https://en.wikipedia.org/wiki/Dynamic_array) **~O(n)** where we can *increase the array size dynamically* when we need.
 
 ![](images/collections-resizable-array.png)
 
-* A [linked list](https://en.wikipedia.org/wiki/Linked_list) **~O(n)**, is a linear collection of data elements whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes which together represent a sequence. In its most basic form, each node contains data, and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions. A drawback of linked lists is that data access time is a linear function of the number of nodes for each linked list (I.e., the access time linearly increases as nodes are added to a linked list.) because nodes are serially linked so a node needs to be accessed first to access the next node (so difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
+A [linked list](https://en.wikipedia.org/wiki/Linked_list) **~O(n)**, is a linear collection of data elements whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes which together represent a sequence. In its most basic form, each node contains data, and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions. A drawback of linked lists is that data access time is a linear function of the number of nodes for each linked list (I.e., the access time linearly increases as nodes are added to a linked list.) because nodes are serially linked so a node needs to be accessed first to access the next node (so difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
 
 ![](images/collections-linked-list.png)
 
-* A [self-balancing binary search tree](https://en.wikipedia.org/wiki/Self-balancing_binary_search_tree) **~O(log(n))**, is any node-based binary search tree that automatically keeps its height (maximal number of levels below the root) small in the face of arbitrary item insertions and deletions. These operations when designed for a self-balancing binary search tree, contain precautionary measures against boundlessly increasing tree height, so that these abstract data structures receive the attribute "self-balancing".
+A [self-balancing binary search tree](https://en.wikipedia.org/wiki/Self-balancing_binary_search_tree) **~O(log(n))**, is any node-based binary search tree that automatically keeps its height (maximal number of levels below the root) small in the face of arbitrary item insertions and deletions. These operations when designed for a self-balancing binary search tree, contain precautionary measures against boundlessly increasing tree height, so that these abstract data structures receive the attribute "self-balancing".
 
 ![](images/collections-balanced-tree.png)
 
 
-* A [hash table](https://en.wikipedia.org/wiki/Hash_table) **~O(1)**, also known as hash map, is a data structure that implements an associative array or dictionary. It is an abstract data type that maps keys to values. A hash table uses a hash function to compute an index, also called a hash code, into an array of buckets or slots, from which the desired value can be found. During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored.
+A [hash table](https://en.wikipedia.org/wiki/Hash_table) **~O(1)**, also known as hash map, is a data structure that implements an associative array or dictionary. It is an abstract data type that maps keys to values. A hash table uses a hash function to compute an index, also called a hash code, into an array of buckets or slots, from which the desired value can be found. During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored.
 
 ![](images/collections-hash-table.png)
 
@@ -42,10 +42,8 @@ Java Collections Framework is one of the core parts of the Java programming lang
 
 ---
 
-### Iterable Interface
-The **Iterable** interface (java.lang.Iterable) is the root interface of the Java collection framework. Iterable, literally, means that "can be iterated".
-
-Technically, it means that an **Iterator** can be returned. **Iterable objects (objects implementing the iterable interface) can be used within for-each loops**
+### Iterable and Iterator Interfaces
+The **Iterable** interface (java.lang.Iterable) is the root interface of the Java collection framework. Iterable, literally, means that "can be iterated". Technically, it means that an **Iterator** can be returned. **Iterable objects (objects implementing the iterable interface) can be used within for-each loops**
 
 ```
 public interface Iterable<T> {
@@ -58,7 +56,6 @@ for(Object o : l){
 }
 ```
 
-### Iterator Interface
 The **Iterator** interface extracts the traversal behaviour of a collection into a separate object called an iterator.
 
 ```
@@ -416,11 +413,9 @@ for (Map.Entry<String, Integer> entry : m.entrySet()) {
 
 ---
 
-### Modifying Collections: Iterators
+### Modifying Collections using Iterators
 
-### Collections and Iterators
-
-- It is **unsafe** to modify (adding or removing elements) a Collection while iterating over it!
+It is **unsafe** to modify (adding or removing elements) a Collection while iterating over it!
 
 ```
 List<Double> l = new LinkedList<Double>(
@@ -433,9 +428,6 @@ for (double i : l) {
   count++;
 } // Run-time error! We modify the list while iterating
 ```
-
-
-### Iterator and ListIterator Interfaces
 
 > Interface **Iterator** provides a transparent means for cycling through all elements of a Collection (**forward only**) and **removing elements**
 
