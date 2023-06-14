@@ -51,6 +51,8 @@
 ### Introduction
 [E1] From Functions to Objects
 
+> Lecture notes: [E1 - Java From Functions to Objects](assets/slides/E1 - Java From Functions to Objects.md)
+
 * Evolution of programming languages
 * Limits of procedural programming
 * Modularization, reuse of code, and object-oriented programming
