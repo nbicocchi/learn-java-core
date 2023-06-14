@@ -13,4 +13,5 @@
 * Gabriele D'Avena +
 * Davide Lasagni +
 * Giovanni Benedetti +
+* Lorenzo Pioli +
 
