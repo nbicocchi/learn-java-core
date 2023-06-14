@@ -476,34 +476,6 @@ for (ListIterator<Double> i = l.listIterator(); i.hasNext();) {
   count++;
 }
 ```
-
-
-### Iterations and Iterators
-
-```
-List<Person> pl = new ArrayList<Person>();
-
-/* C style */
-for (int i = 0; i < pl.size(); i++)
-    System.out.println(pl.get(i))
-
-/* for-each style */
-for (Person p : pl)
-    System.out.println(p);
-
-/* iterator style */
-for(Iterator<Person> i = pl.iterator(); i.hasNext();) {
-  Person p = i.next();
-  System.out.println(p);
-}
-
-/* while style */
-Iterator i = pl.iterator();
-while (i.hasNext())
-    System.out.println((Person)i.next());
-```
-
-
 ---
 
 ### Manipulating Arrays: java.util.Collections
