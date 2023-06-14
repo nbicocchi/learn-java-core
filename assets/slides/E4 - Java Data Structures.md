@@ -15,29 +15,20 @@ Java Collections Framework is one of the core parts of the Java programming lang
 
 ### Key technologies
 
-
-**Dynamic Array ~O(n)**
-
-The drawback of regular array is that we cannot adjust their size in the middle of the code execution. In other words, it will fail to add the (n + 1)th element if we allocate an array size equal to n. One idea would be to allocate a large array, which could waste a significant amount of memory. So what is an appropriate solution to this problem? We solve this problem using the idea of the [dynamic array](https://www.enjoyalgorithms.com/blog/dynamic-array) where we can *increase the array size dynamically* when we need.
+* [Dynamic array](https://en.wikipedia.org/wiki/Dynamic_array) **~O(n)**. The drawback of regular array is that we cannot adjust their size in the middle of the code execution. In other words, it will fail to add the (n + 1)th element if we allocate an array size equal to n. One idea would be to allocate a large array, which could waste a significant amount of memory. So what is an appropriate solution to this problem? We solve this problem using the idea of the dynamic array where we can *increase the array size dynamically* when we need.
 
 ![](images/collections-resizable-array.png)
 
-
-**Linked List ~O(n)**
-
-A [linked list](https://en.wikipedia.org/wiki/Linked_list) is a linear collection of data elements whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes which together represent a sequence. In its most basic form, each node contains data, and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions. A drawback of linked lists is that data access time is a linear function of the number of nodes for each linked list (I.e., the access time linearly increases as nodes are added to a linked list.) because nodes are serially linked so a node needs to be accessed first to access the next node (so difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
+* A [linked list](https://en.wikipedia.org/wiki/Linked_list) **~O(n)**, is a linear collection of data elements whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes which together represent a sequence. In its most basic form, each node contains data, and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions. A drawback of linked lists is that data access time is a linear function of the number of nodes for each linked list (I.e., the access time linearly increases as nodes are added to a linked list.) because nodes are serially linked so a node needs to be accessed first to access the next node (so difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
 
 ![](images/collections-linked-list.png)
 
-
-**Balanced Tree ~O(log(n))**
-
-A balanced binary tree, also referred to as a height-balanced binary tree, is defined as a binary tree in which the height of the left and right subtree of any node differ by not more than 1.
+* A [self-balancing binary search tree](https://en.wikipedia.org/wiki/Self-balancing_binary_search_tree) **~O(log(n))**, is any node-based binary search tree that automatically keeps its height (maximal number of levels below the root) small in the face of arbitrary item insertions and deletions. These operations when designed for a self-balancing binary search tree, contain precautionary measures against boundlessly increasing tree height, so that these abstract data structures receive the attribute "self-balancing".
 
 ![](images/collections-balanced-tree.png)
 
 
-**Hash Table ~O(1)**
+* A [hash table](https://en.wikipedia.org/wiki/Hash_table) **~O(1)**, also known as hash map, is a data structure that implements an associative array or dictionary. It is an abstract data type that maps keys to values. A hash table uses a hash function to compute an index, also called a hash code, into an array of buckets or slots, from which the desired value can be found. During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored.
 
 ![](images/collections-hash-table.png)
 
@@ -49,9 +40,10 @@ A balanced binary tree, also referred to as a height-balanced binary tree, is de
 
 ![](images/collections-internals.png)
 
+---
 
 ### Iterable Interface
-The **Iterable** interface (java.lang.Iterable) is the root interface of the Java collection framework. Iterable, literally, means that “can be iterated”.
+The **Iterable** interface (java.lang.Iterable) is the root interface of the Java collection framework. Iterable, literally, means that "can be iterated".
 
 Technically, it means that an **Iterator** can be returned. **Iterable objects (objects implementing the iterable interface) can be used within for-each loops**
 
@@ -62,7 +54,7 @@ public interface Iterable<T> {
 
 List<Object> l = new ArrayList<Object>();
 for(Object o : l){
-    //do something;    
+    // do something 
 }
 ```
 
@@ -87,7 +79,7 @@ for (Iterator<Object> i = l.iterator(); i.hasNext();) {
 
 (see more: [Design Patterns: Iterator - Refactoring.guru](https://refactoring.guru/design-patterns/iterator))
 
-
+---
 
 ### Collection Interface
 - **Group of elements (references to objects)**
@@ -134,34 +126,34 @@ for (Iterator<Object> i = l.iterator(); i.hasNext();) {
 ### List initialization
 ```
 /* plain, simple, long */
-List < Integer > l = new ArrayList < Integer > ();
+List<Integer> l = new ArrayList<>();
 l.add(14);
 l.add(73);
-l.add(18); // ...
+l.add(18);
 
-/* more compact version (mutable)*/
-List < Integer > l = new ArrayList < > (Arrays.asList(14, 73, 18));
-List < Integer > l = new ArrayList < > (List.of(14, 73, 18));
+/* more compact version (mutable) */
+List <Integer> l = new ArrayList<>(Arrays.asList(14, 73, 18));
+List <Integer> l = new ArrayList<>(List.of(14, 73, 18));
 
-/* more compact version (immutable)*/
-List < Integer > l = List.of(14, 73, 18);
+/* more compact version (immutable) */
+List <Integer > l = List.of(14, 73, 18);
 ```
 
 ### List implementations
 Decoupling references from actual objects allows us to change implementation (and related performance!) by changing a single line of code!
 
 ```
-List<Car> garage;
-garage = new LinkedList<Car>();
-garage = new ArrayList<Car>();
+List<Car> cars;
+cars = new LinkedList<>();
+// cars = new ArrayList<>();
 
-garage.add(new Car());
-garage.add(new SDCar());
-garage.add(new SDCar());
-garage.add(new Car());
+cars.add(new SDCar());
+cars.add(new SDCar());
+cars.add(new Car());
+cars.add(new Car());
 
-for(Car c : garage) {
-    c.turnOn();
+for(Car car : cars) {
+    // do something
 }
 ```
 
@@ -254,9 +246,7 @@ Summary:
 
 - **Deque (extends Queue)**: A linear collection that supports element insertion and removal at both ends. The name deque is short for "double ended queue" and is usually pronounced "deck". Most Deque implementations place no fixed limits on the number of elements they may contain, but this interface supports capacity-restricted dequeue as well as those with no fixed size limit.
 
-
 ![](images/collections-dequeue-interface.png)
-
 
 ![](images/collections-dequeue-methods.png)
 
@@ -329,8 +319,8 @@ System.out.println(pqueue.peek());   // 1
 _(Similar to Set implementations)_
 
 ```
-Map <Integer, String> src;
-src = new HashMap <> ();
+Map<Integer, String> src;
+src = new HashMap<>();
 src.put(77, "Nicola");
 src.put(17, "Marzia");
 src.put(22, "Agata");
@@ -356,28 +346,34 @@ System.out.println(src);
 
 ```
 Map<String, Integer> m = new HashMap<>();
-m.put(“Agata”,  2);
-m.put(“Marzia”, 3);
-m.put(“Agata”,  4);
-m.put(“Nicola”, 1);
+m.put("Agata",  2);
+m.put("Marzia", 3);
+m.put("Darma",  4);
+m.put("Nicola", 1);
 
-/* more compact version */
+/* more compact version (mutable) */
 Map<String, Integer> m = new HashMap<>(
-	Map.of(“Agata”, 2, “Marzia”, 3, “Agata”, 4, “Nicola”, 1));
+	Map.of("Agata", 2, "Marzia", 3, "Darma", 4, "Nicola", 1));
+	
+/* note well: when using this kind of initialization, keys must be unique! 
+   The following code, in which "Agata" is dublicated, produces a runtime error. */
+Map<String, Integer> m = new HashMap<>(
+	Map.of("Agata", 2, "Agata", 3, "Darma", 4, "Nicola", 1));
 
-/* immutable version */
+/* more compact version (immutable) */
 Map<String, Integer> m =
-	Map.of(“Agata”, 2, “Marzia”, 3, “Agata”, 4, “Nicola”, 1);
+	Map.of("Agata", 2, "Marzia", 3, "Darma", 4, "Nicola", 1);
 ```
 
 ### Map Example II
 
 ```
-Map<String, Integer> m = new HashMap<String, Integer>();
-
+Map<String, Integer> m = new HashMap<>(
+	Map.of("Agata", 2, "Marzia", 3, "Darma", 4, "Nicola", 1));
+	
 // contains key
-if (m.containsKey(key)) {
-    System.out.println(m.get(key));
+if (m.containsKey("Darma")) {
+    System.out.println(m.get("Darma"));
 }
 
 // looping keys and accessing values
@@ -387,7 +383,7 @@ for(String key : keys) {
 }
 
 // looping values
-List<Integer> values = m.values();
+Collection<Integer> values = m.values();
 for(int value : values) {
     System.out.println(value);
 }
