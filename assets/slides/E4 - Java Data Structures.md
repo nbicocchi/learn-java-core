@@ -451,30 +451,28 @@ for (double i : l) {
 - int **previousIndex**()
 
 ```
-// with Iterator
-List<Double> l = new LinkedList<Double>(
-	List.of(10.8, 11.1, 13.2, 30.2));
+// with Iterator remove all elements with a value of 11.1
+List<Double> l = new LinkedList<>(List.of(10.8, 11.1, 13.2, 30.2));
 
-int count = 0;
 for (Iterator<Double> i = l.iterator(); i.hasNext();) {
-	double d = i.next();
-	if (count == 1) i.remove();
-	count++;
+    double value = i.next();
+    if (value == 11.1) i.remove();
 }
+System.out.println(l); // [10.8, 13.2, 30.2]
 ```
 
 ```
-// with ListIterator
-List<Double> l = new LinkedList<Double>(
-List.of(10.8, 11.1, 13.2, 30.2));
+// with ListIterator replace all elements with value 11.1 with their double
+List<Double> l = new LinkedList<>(List.of(10.8, 11.1, 13.2, 30.2));
 
-int count = 0;
 for (ListIterator<Double> i = l.listIterator(); i.hasNext();) {
-  double d = i.next();
-  if (count == 1) i.remove();
-  if (count == 2) i.add(22.3);
-  count++;
+    double value = i.next();
+    if (value == 11.1) {
+        i.remove();
+        i.add(value * 2);
+    }
 }
+System.out.println(l); // [10.8, 22.2, 13.2, 30.2]
 ```
 ---
 
