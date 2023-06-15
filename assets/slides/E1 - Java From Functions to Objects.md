@@ -41,26 +41,9 @@ _Lines of code per product_
 
 
 ### Tools and artifacts
-| Tools                                       | Artifacts                                |
-|---------------------------------------------|------------------------------------------|
-| ![](images/intro-without-oop-structure.png) | ![](images/intro-with-oop-structure.png) | 
 
-### Object-Oriented Approach
-- Procedural programming languages (e.g., C) are **not suitable for building large
-  software infrastructures**
-
-- OOP addresses this issue and **reduces development and maintenance** costs for large and complex software projects
-
-- OOP aims at secure, re-usable, flexible, extensible software. Instead of focusing on algorithms, optimization, and efficiency, **OOP focus on programming techniques**. 
-- OOP considers software as a set of well-defined entities containing both data and
-  behaviour
-
-![](images/intro-software-costs.png)
-
-
-### Software Crisis
 In the early days of computing science it appeared increasingly evident that with
-**increasing complexity** the lines of code contained in a software became more and more 
+**increasing complexity** the lines of code contained in a software became more and more
 numerous, making its **maintenance more and more complex**.
 
 Several causes can be associated with that historical period, known as the _software crisis_:
@@ -70,6 +53,10 @@ Several causes can be associated with that historical period, known as the _soft
 - Software was difficult to maintain
 
 (see more: [Software crisis - Wikipedia](https://en.wikipedia.org/wiki/Software_crisis))
+
+| Tools                                       | Artifacts                                |
+|---------------------------------------------|------------------------------------------|
+| ![](images/intro-without-oop-structure.png) | ![](images/intro-with-oop-structure.png) | 
 
 
 ### Errors / 1K SLOC
@@ -84,6 +71,18 @@ errors per thousand lines of code (_errors / 1K SLOC_).
 
 Various processes and methodologies have been developed over the last few decades to improve
 software quality management such as procedural programming and object-oriented programming.
+
+### Object-Oriented Approach
+- Procedural programming languages (e.g., C) are **not suitable for building large
+  software infrastructures**
+
+- OOP addresses this issue and **reduces development and maintenance** costs for large and complex software projects
+
+- OOP aims at secure, re-usable, flexible, extensible software. Instead of focusing on algorithms, optimization, and efficiency, **OOP focus on programming techniques**.
+- OOP considers software as a set of well-defined entities containing both data and
+  behaviour
+
+![](images/intro-software-costs.png)
 
 ---
 
@@ -281,7 +280,9 @@ to a selected list of public methods (_public interface_).
 
 ![](images/intro-encapsulation.png)
 
-```c
+Was it possible before? Data in C language is public by default. Although “Struct” variables can be declared private by defining them separately from the main class. This can be achieved by having a separate header and source C files. A header file is followed by the “.h” extension while C files are followed by the “.C” extension.
+
+```
 // point.h 
 struct Point {
   double x,y;
@@ -289,7 +290,9 @@ struct Point {
 
 struct Point* makePoint(double x, double y); 
 double distance (struct Point *p1, struct Point *p2); 
+```
 
+```
 // point.c
 #include "point.h"
 
@@ -317,6 +320,10 @@ Inheritance consists in the mechanism in which one class acquires all the proper
 
 ![](images/intro-inheritance.png)
 
+Was it possible before? Single inheritance in C can be achieved by embedding the inherited class attribute structure as the first member of the derived class attribute structure.
+
+For example, instead of creating a NamedPoint class from scratch, you can inherit most what’s common from the already existing Point class and add only what’s different for NamedPoint (i.e., a name). Here’s how you declare the NamedPoint “class”.
+
 ```
 // namedPoint.h
 struct NamedPoint {
@@ -327,7 +334,9 @@ struct NamedPoint {
 struct NamedPoint *makeNamedPoint(double x, double y, char *name);
 void setName(struct NamedPoint *np, char *name);
 char *getName(struct NamedPoint *np);
+```
 
+```
 // namedPoint.c
 #include "namedPoint.h"
 
@@ -346,7 +355,9 @@ void setName(struct NamedPoint *np, char *name) {
 char *getName(struct NamedPoint *np) {
   return np->name;
 }
+```
 
+```
 // main.c
 #include "point.h"
 #include "namedPoint.h"
@@ -437,6 +448,8 @@ Note: the source code dependency (the inheritance relationship) between
 compared to the flow of control. Thus, we obtained a **dependency inversion**.
 
 ### Monolithic Architecture vs Microservice Architecture
+
+In recent years, microservices architecture has emerged as a popular approach to designing and building complex software systems. This architecture style breaks down large, monolithic applications into smaller, independent services that can be developed, deployed, and scaled independently. This approach has several benefits, including increased agility, scalability, and fault tolerance, among others.
 
 ![](images/intro-monolithic-architecture.png)
 _Monolithic Architecture_
