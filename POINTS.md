@@ -4,6 +4,7 @@
 * Leoni Matteo ++
 * Garagnani Filippo ++
 * Saverio Napolitano ++
+* Lorenzo Pioli ++
 * Camilla Ballestrazzi +
 * Federico Lo Presti +
 * Veroni Matteo +
@@ -13,5 +14,5 @@
 * Gabriele D'Avena +
 * Davide Lasagni +
 * Giovanni Benedetti +
-* Lorenzo Pioli +
+
 
