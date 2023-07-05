@@ -6,15 +6,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.random.RandomGenerator;
 
 public class ThreadPoolExecutor {
-    public static final int SIZE = 8;
+    public static final int MAX_TASKS = 8;
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(4);
         RandomGenerator rnd = RandomGenerator.getDefault();
 
         // creating child threads
-        for (int i = 0; i < SIZE; i++) {
-            int taskNumber = i;
+        for (int task = 0; task < MAX_TASKS; task++) {
+            int taskNumber = task;
             executor.submit(() -> {
                 long start = System.nanoTime();
                 System.out.printf("START thread=%s task=%d\n",
