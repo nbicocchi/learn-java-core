@@ -83,7 +83,7 @@ Total number of consumed elements: 90065
 **[ParallelPrimes.java]** The following class implements the `Callable<V>` interface which is frequently used to collect the return values of methods running on separate threads. Using the code provided, write a program searching prime numbers on a fixed number of parallel threads (see java.util.concurrent.ExecutorService). Each thread, receiving a range to be searched e.g. [0, 1000], [1000, 2000]..., returns a List<Integer> containing the prime numbers found. The main thread starts the parallel child threads using ExecutorService.invokeAll() and receives a `List<Future<List<Integer>>>` for fetching the results (see `java.util.concurrent.Future<V>`). 
 
 ```
-public static class PrimeEngine implements Callable<List<Integer>> {
+public class PrimeEngine implements Callable<List<Integer>> {
     int start;
     int end;
 
