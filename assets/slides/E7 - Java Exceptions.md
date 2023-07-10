@@ -203,7 +203,7 @@ array[-1]; // Exception
 
 Since a string can be considered as a sequence of characters, a similar exception may occur when accessing a non-existing element of a string. It is called `StringIndexOutOfBoundsException`.
 
-To avoid the `ArrayIndexOutOfBoundsException`, we may check if the given index belongs to the interval **[0, length -- 1].**
+To avoid the `ArrayIndexOutOfBoundsException`, we may check if the given index belongs to the interval **[0, length - 1].**
 
 For example, let's take a look at a program, displaying an element of the array by the index, provided in the input. If the index is out of bounds, the program prints a message instead of throwing an exception.
 
