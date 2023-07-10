@@ -37,7 +37,7 @@ returning true if the first date is before the second date (see java.time.LocalD
 Eventual exceptions must be delegated to the caller (Remember: not all exceptions are checked). The method has the following prototype:
 
 ```
-public static boolean checkIntervalBetweenDates(String begin, String end) throws ParseException;
+public static boolean checkIntervalBetweenDates(String begin, String end);
 ```
 
 where:
