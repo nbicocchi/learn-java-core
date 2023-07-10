@@ -156,7 +156,7 @@
 
 > Read: Big Java (Chapter 22)
 
-> Lab: n/a 
+> Lab: [com.nbicocchi.exercises.nio](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/threads)
 
 * Thread states
 * Thread interference
