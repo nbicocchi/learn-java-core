@@ -16,7 +16,7 @@ T1 running since 100 ms
 T1 terminated
 ```
 
-**[DayChangeCheck.java]** Write a program in which the main thread starts a child thread which, every 15 minutes, checks if the day of the month has changed and eventually prints a message (Thread.sleep(), java.time.LocalDate). The main thread do not wait, but terminates immediately after starting the child thread (bad practice! the main thread should always wait for its children).
+**[DayChangeCheck.java]** Write a program in which the main thread starts a child thread which, every 15 minutes, checks if the day of the month has changed and eventually prints a message (see Thread.sleep(), java.time.LocalDate). The main thread do not wait, but terminates immediately after starting the child thread (bad practice! the main thread should always wait for its children).
 
 **[ThreadPool.java]** Write a program using a Thread[] (an array of Thread objects) for running a fixed number of tasks using the same number of parallel threads. Each thread, prints a message when it starts, sleeps for a random time (< 1 sec) and print another message when it terminates showing the total amount of time it run. For example, with 8 tasks (implying 8 threads), an output similar to the one shown below is expected.
 
