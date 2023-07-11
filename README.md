@@ -203,7 +203,7 @@
 
 ### FAQ
 Developing a project at home is the goal of the course?
-> **No! The goal is not developing a home project! The goal of the course is learning how to code in Java and Python**. Developing a project is only a (hopefully fun) way to learn the language.
+> **No! The goal is not developing a home project! The goal of the course is learning how to code in Java**. Developing a project is only a (hopefully fun) way to learn the language.
 
 Can we develop the project in groups of 3 people?
 > No, you can develop a project alone or with 1 colleague. Groups should be composed of teammates with comparable coding skills. Exceptions to this rule are negatively evaluated.
