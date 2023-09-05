@@ -14,7 +14,6 @@ Java Collections Framework is one of the core parts of the Java programming lang
 
 
 ### Key technologies
-
 The drawback of regular array is that we cannot adjust their size in the middle of the code execution. In other words, it will fail to add the (n + 1)th element if we allocate an array size equal to n. One idea would be to allocate a large array, which could waste a significant amount of memory. So what is an appropriate solution to this problem? We solve this problem using the idea of the [dynamic array](https://en.wikipedia.org/wiki/Dynamic_array) **~O(n)** where we can *increase the array size dynamically* when we need.
 
 ![](images/collections-resizable-array.png)
@@ -168,13 +167,11 @@ for(Car car : cars) {
 ---
 
 ### Set Interface
-
 A collection that contains **no duplicate elements**. More formally, sets contain no pair of elements e1 and e2 such that e1.equals(e2), and at most one null element. As implied by its name, this interface models the mathematical set abstraction.
 
 ![](images/collections-set-interface.png)
 
 ### Set Implementations
-
 - **HashSet** implements **Set**
   - Hash tables as internal data structure (fast!)
   - Insertion order not preserved 
