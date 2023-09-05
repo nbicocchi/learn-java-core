@@ -3,12 +3,7 @@
 In this chapter we will explain the basics of the Java language, from its 
 history to the basic syntax of the language.
 
----
-
-# Building and Running
-
-### History, Development and Features of Java
-
+### History
 - **1991**: a group led by James Gasling and Patrick Naughton at Sun 
 Microsystems designed a programming languages, code-named _Green_, for
 use in consumer devices, such as intelligent television.
@@ -28,25 +23,6 @@ The first success of the team was represented by the introduction of the
 - **2021**: Java 16, **Java 17 LTS (support until 2026)**
 
 (see more: [Java version history - Wikipedia](https://en.wikipedia.org/wiki/Java_version_history))
-
-### JDK Enhancement Proposal
-
-- The **JDK Enhancement Proposal** (or **JEP**) is a process drafted by Oracle Corporation for collecting proposals for enhancements to the Java Development Kit and OpenJDK.
-- JEPs serve as the long-term Roadmap for JDK Release Projects and related efforts.
-- The JEP process is not intended to replace the **Java Community Process**, which is still required to approve changes in the Java API or language but rather to allow for OpenJDK committers to work more informally before becoming a formal Java Specification Request.
-
-(see more: [JEP Index - OpenJDK](https://openjdk.java.net/jeps))
-
-### Features
-
-- Portable (Translated to bytecode)
-- Pure object-oriented
-- Statically typed
-- Garbage collected
-- Exceptions as a pervasive mechanism
-- Shares syntax elements w/ C++ (reduced learning curve)
-
----
 
 ### Building and Running
 
@@ -76,11 +52,6 @@ _Compiled_
 _Interpreted_
 
 (see more: [List of Java virtual machines - Wikipedia](https://en.wikipedia.org/wiki/List_of_Java_virtual_machines))
-
----
-
-
-# Attributes, methods, conventions
 
 ### Program, files and classes
 - A program is made of one or more packages, containing one or more files
@@ -128,15 +99,12 @@ public class PrimitiveTypes {
     short c = 34;
     int d = 332;
     long e = 122;
-    float f = 7.6F; // note: F
+    float f = 7.6F; 
     double g = 12.3;
     boolean h = true;
   }
 }
 ```
-
-- No native support for unsigned integer types
-
 
 ### Literals
 ```
@@ -147,7 +115,7 @@ public static void main(String args[]) {
   int octalVal = 067;
   long longVal = 123L;
   float floatVal = 4534.99F;
-  double cost = 19765.567d; // note: d
+  double cost = 19765.567; 
   char alpha = 'p';
   char ch1 = '\u0021';
   char ch2 = 65;
@@ -157,13 +125,10 @@ public static void main(String args[]) {
 
 ### The var keyword
 
-- The **var** keyword was introduced
-in Java 10.
-- **Type inference is used with var
-keyword. It allows the compiler
-to detect automatically the
-datatype of a variable based on
-the surrounding context.**
+- The **var** keyword was introduced in Java 10
+- **var** allows the compiler to detect automatically the datatype of a variable based on its context
+- **var** can not be used to declare instance and global variables
+- **var** can not be used as a Generic type
 
 ```
 // Java program to explain that var 
@@ -175,7 +140,7 @@ class Demo1 {
     var y = 1.90;    // double
     var z = 'a';     // char
     var p = "tanu";  // string
-    var q = false;   // string
+    var q = false;   // boolean
   }
 }
 ```
@@ -196,8 +161,8 @@ class Demo3 {
 ```
 
 ```
-// Java program to demonstrate that
-// var cannot be used as a Generic type
+// Java program to demonstrate that var
+// cannot be used as a Generic type
 
 import java.util.*;
 
@@ -224,8 +189,9 @@ class Demo4 {
 ![](images/basics-implicit-casting.png)
 
 ### Explicit casting
-- The considered **implicit casting** does not work when the target type is narrower than the source type.
-- Programmers can apply **explicit casting** to a source type to get the type they want. It may lose information and precision.
+- **Implicit casting does not work when the target type is narrower than the source type**.
+- Programmers can apply **explicit casting** to a source type to get the type they want. 
+- Explicit casting might cause information loss.
 
 ```
 double d = 2.00003;
@@ -255,8 +221,6 @@ final float PI = 3.1415F;
 PI = 3.18;   // ERROR, no changes allowed
 ```
 
----
-
 ### Operators
 
 - Operators follow C syntax:
@@ -269,8 +233,7 @@ PI = 3.18;   // ERROR, no changes allowed
 
 
 - Chars can be treated as integers (e.g. switch)
-- **Logical operators work ONLY on Booleans**
-  - int is NOT considered a boolean value like in C
+- **Logical operators work ONLY on Booleans** (int is NOT considered a boolean value like in C)
 
 
 ### Reference Types
@@ -423,8 +386,6 @@ public class Parameters {
 }
 ```
 
-![](images/basics-passing-parameters-objects.svg)
-
 ```
 import java.awt.*;
 
@@ -446,8 +407,6 @@ public class Parameters {
   }
 }
 ```
-
-![](images/basics-passing-parameters-objects2.svg)
 
 
 ### Comments
@@ -494,7 +453,7 @@ _In IntelliJ: Code -> Reformat File... -> Import ->**Java-Coding-Standard.xml**_
 
 ---
 
-# Decision statements
+# Flow-control statements
 
 ### if statement
 ```
@@ -570,20 +529,6 @@ switch (grade) {
   default -> System.out.println("Invalid grade");
 }
 ```
-
----
-
-# Loops
-
-### Loop statements
-- loop statements
-  - do-while loop
-  - while loop
-  - for-each loop
-- jump statements
-  - break statement
-  - continue statement
-
 
 ### do-while statement
 

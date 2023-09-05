@@ -49,7 +49,7 @@
 ---
 
 ### Introduction
-[E1] From Functions to Objects
+[E1] From Functions to Classes
 
 * Evolution of programming languages
 * Limits of procedural programming

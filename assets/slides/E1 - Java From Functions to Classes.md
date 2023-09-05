@@ -1,11 +1,7 @@
-# Java From Functions to Objects
+# Java From Functions to Classes
 
 In this chapter we will introduce **object-oriented programming**, emphasizing
 the elements that distinguish it from the procedural approach.
-
----
-
-# Why OOP?
 
 ### The present
 ![](images/intro-the-present.png)
@@ -75,18 +71,13 @@ software quality management such as procedural programming and object-oriented p
 ### Object-Oriented Approach
 - Procedural programming languages (e.g., C) are **not suitable for building large
   software infrastructures**
-
 - OOP addresses this issue and **reduces development and maintenance** costs for large and complex software projects
-
 - OOP aims at secure, re-usable, flexible, extensible software. Instead of focusing on algorithms, optimization, and efficiency, **OOP focus on programming techniques**.
-- OOP considers software as a set of well-defined entities containing both data and
-  behaviour
+
 
 ![](images/intro-software-costs.png)
 
 ---
-
-# Functions vs Objects
 
 ### Procedural Approach
 ```C
@@ -265,8 +256,6 @@ int main() {
      v.search(10);
  }
 ```
-
-![](images/intro-procedural-versus-object-oriented.png)
 
 ---
 
