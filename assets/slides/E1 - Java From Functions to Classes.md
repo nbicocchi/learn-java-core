@@ -228,7 +228,7 @@ int main() {
  }
 ```
 
-# OOP Key Features
+# OOP Features
 
 ### Encapsulation
 Encapsulation is defined as the mechanism wrapping together, inside a protective shield, 
