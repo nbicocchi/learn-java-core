@@ -4,7 +4,10 @@
 
 ![](images/jdbc-software-design.png)
 
-### Networked DBMS
+### Database breeds
+
+**Networked DBMS**
+
 The most of DBMS make use of the **TCP protocol** for communicating with applications. They accept incoming connections on a specific **TCP port**.
 This allows both **local and remote connections**.
 - MS SQL Server (TCP:1433)
@@ -13,14 +16,17 @@ This allows both **local and remote connections**.
 - Oracle (TCP:1521)
 - SQLite (local DB)
 
-### Local DB
-There is also a family of libraries **capable of simulating a DBMS connection while providing access to a local file using the SQL metaphor**.
+**Local Database**
 
-The most prominent example of this category is **SQLite** widely used on the Android platform
+There is also a family of libraries **capable of simulating a DBMS connection while providing access to a local file (or memory) using the SQL metaphor**.
 
-More: <https://developer.android.com/reference/android/database/sqlite/SQLiteDatabase>
+- SQLite
+- HSQLDB
+- H2
+- Apache Derby
 
-### What is JDBC?
+
+### The JDBC API
 
 *“An **API** that lets you access virtually **any tabular data source** from the Java programming language”*
 - What’s an API? *Application Programming Interface*
@@ -31,16 +37,7 @@ We’ll focus on accessing relational databases. Nevertheless, the same principl
 
 ![](images/jdbc-what-is.jpg)
 
-### Basic steps 
-
-1. Load vendor specific **Driver**
-2. Establish a **Connection**
-3. Create a **Statement**
-4. Execute **SQL Statements**
-5. Get **ResultSet**
-6. Close the Connection
-
-### Vendor Specific Drivers
+### Vendor specific drivers
 JDBC drivers **provide the connection to the database** and **implement the protocol for transferring queries and results** between the client and the database.
 
 There are 4 type of drivers. We refer to **Type 4: Pure Java** (see Appendix II).
@@ -78,8 +75,8 @@ dependencies {
 }
 ```
 
-### 1.Load vendor specific driver
-
+JDBC is an abstract API mostly composed of interfaces and abstract classes. Concrete implementations are mostly provided within drivers.
+**Class.forname()** dynamically loads the driver’s classes.
 ```
 import java.sql.*;
 
@@ -90,34 +87,34 @@ Class.forName(“com.mysql.jdbc.Driver”);
 Class.forName(“org.sqlite.jdbc”);
 ```
 
-JDBC is an abstract API mostly composed of interfaces and abstract classes. Concrete implementations are mostly provided within drivers.
-**Class.forname() dynamically loads the driver’s classes.**
-*throws *ClassNotFoundException*!
 
-### 2.Establish a Connection (with URL)
+
+### Establish Connections
 
 - DriverManager.getConnection(String url);
 - DriverManager.getConnection(String url,String user,String password);
 - DriverManager.getConnection(String url,Properties prop);
 
 ```
-/* this is for MySQL*/
-Connection c = DriverManager.getConnection(“jdbc:mysql://localhost/dbname?user=user&password=pass”); 
+/* MySQL*/
+Connection connection = DriverManager.getConnection(“jdbc:mysql://localhost/dbname?user=user&password=pass”); 
 
-/* this is for SQLite */
-Connection c = DriverManager.getConnection(“jdbc:sqlite:filename.db”);
+/* SQLite */
+Connection connection = DriverManager.getConnection(“jdbc:sqlite:filename.db”);
 ```
-Establishes a connection to a database mediated by the **Connection interface**. The driver implements the Connection interface defined within JDBC.
 
-### 3. Create JDBC Statement(s)
+- Establishes a connection to a database using the **Connection** interface. 
+- The driver implements the specific connection details.
+
+### Create Statements
 
 ```
-Statement statement = c.createStatement(); 
+Statement statement = connection.createStatement(); 
 ```
 - The JDBC **Statement**, CallableStatement, and PreparedStatement interfaces define the methods and properties enabling developers to **send SQL or PL/SQL commands and receive data** from your database.
 - They also define methods helping **bridge data type differences between Java and SQL data types** used in a database.
 
-### 4. Execute SQL Statements
+### Execute Statements
 
 Once you've created a Statement object, you can then use it to execute an SQL statement with one of its methods.
 
@@ -166,13 +163,11 @@ for (Person person: persons) {
 }
 ```
 
-### 5. Get ResultSet
+### Receive ResultSets
 The **java.sql.ResultSet** interface represents the **result set of a database query**. Objects implementing the ResultSet interface maintain a **cursor pointing to the current row** in the result set.
 - **Navigational methods**: Used to move the cursor around the ResultSet
 - **Get methods**: Used to view the data in the columns of the current row being pointed by the cursor.
 - **Update methods**: Used to update the data in the columns of the current row. Updates are transparently written within the underlying database (if supported)
-
-### Navigational methods 
 
 #### absolute()
 
@@ -307,8 +302,8 @@ Returns:
 
 *More: <https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html>*
 
-### Get methods
-resultSet.get**XXX**(), where **XXX is a primitive data type**. Columns can be selected via either **name** or **id**.
+#### get methods
+resultSet.get**Type**(), where **Type** is a primitive data type. Columns can be selected via either **name** or **id**.
 
 ```
 rs.getString(“columnName”)
@@ -361,7 +356,7 @@ while(rs.next()) {
 ```
 *If you need to access by column id but know only the column names*
 
-### 6. Close Connection
+### Close Connections
 Programs should recover from errors and **always** leave the database in a consistent state. **Runtime errors must be minimized in industrial applications!**
 If a statement throws an exception, it must be caught within a catch statement.
 The **finally {…}** clause can be used to leave the database in a consistent state.
@@ -381,22 +376,19 @@ try {
  }
 }
 ```
-### Types
+### Mapping JDBC to Java types
 There are significant variations between the SQL types supported by different database products. For example, most of the major databases support an SQL data type for large binary values, but Oracle calls this type LONG RAW, Sybase calls it IMAGE and Informix calls it BYTE.
 - JDBC programmers mostly program with existing database tables, and they need not concern themselves with the exact SQL type names that were used.
 - The one major place where programmers may **need to use SQL type names** is in the SQL CREATE TABLE statement when they are **creating a new database table**. In this case programmers must take care to use SQL type names that are supported by their target database.
 
-### Mapping JDBC to Java types
 ![](images/jdbc-mapping-types.png)
 
-# Advanced Result Set
+### Advanced Result Set
 ResultSet are iterator-like objects
 With default ResultSets (TYPE_FORWARD_ONLY):
 - It is **not possible to move back and forth** with a default. 
 Only **next()** can be called. 
-- It is **not possible to modify the data with dedicated methods** and, transparently, the database. Data have to be manipulated in memory and stored back with another operation (**statement.executeUpdate()**). 
-
-#### **createStatement**
+- It is **not possible to modify the data with dedicated methods** and, transparently, the database. Data have to be manipulated in memory and stored back with another operation (**statement.executeUpdate()**).
 
 ```
 Statement createStatement(int resultSetType,
@@ -413,7 +405,7 @@ Parameters:
 Returns:
 - a *new Statement* object that will generate ResultSet objects with the given type and concurrency.
 
-### JDBC – Scrollable ResultSet
+#### Scrollable ResultSet
 
 ```
 Statement s = c.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE | ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -426,7 +418,7 @@ rs.relative(7);    // go 7 records forward
 rs.absolute(100);  // go to 100th record
 ```
 
-### JDBC – Updateable ResultSet
+#### Updateable ResultSet
 
 ```
 Statement s = c.createStatement(
@@ -440,14 +432,14 @@ while (rs.next()) {
  rs.updateRow();
 }
 ```
-### Connection MetaData
+### MetaData
+
+#### Connection MetaData
 A **Connection** object provides a **DatabaseMetaData** object which is able to provide **schema** information describing:
 - tables
 - supported SQL grammar
-- *supported capabilities of the connection*
-- stored procedures
-
-**What is a stored procedure? A group of SQL statements forming a logical unit aimed at performing a specific task*
+- supported capabilities of the connection
+- stored procedures *(A group of SQL statements forming a logical unit aimed at performing a specific task)*
 
 ```
 // Establish Connection
@@ -469,7 +461,7 @@ System.out.println("Supports TYPE_SCROLL_SENSITIVE: ”
  + md.supportsResultSetType(ResultSet.TYPE_SCROLL_SENSITIVE));
 ```
 
-### ResultSet MetaData
+#### ResultSet MetaData
 A **ResultSet** object provides a **ResultSetMetaData** object providing **schema information**.
 - Useful for writing code running on different tables. For example, converting in JSON or XML the output of different queries.
 
@@ -483,14 +475,11 @@ public static void printRS(ResultSet rs) throws SQLException {
   System.out.print(md.getColumnName(i) + ",");
 ```
 
-# Transactions
+### Transactions
 
-### Definition
 A transaction is a **set of actions to be performed atomically**. **Either all the actions are carried out, or none of them are.**
 
 The classic example of when transactions are necessary is the example of bank accounts. You need to transfer $100 from one account to the other. You do so by subtracting $100 from the first account and adding $100 to the second account. If this process fails after you have subtracted the $100 from the first bank account, the $100 is never added to the second bank account. The money is lost in cyberspace.
-
-### JDBC Transactions
 
 - JDBC allows SQL statements to be grouped together into a single transaction
 - Transaction control is performed by the Connection object, default mode is auto-commit, i.e., each sql statement is treated as a transaction

@@ -470,7 +470,7 @@ _Microservice Architecture_
   * Programs > 10K lines, spaghetti code is almost inevitable
 
 
-### Wisdom Pills
+# Wisdom Pills
 *"Learning to write clean code is hard work. It requires more than just the knowledge of principles and patterns. You must sweat over it. You must practice it yourself, and watch yourself fail. You must watch others practice it and fail. You must see them stumble and retrace their steps. You must see them agonize over decisions and see the price they pay for making those decisions the wrong way."*
 
 Robert C. Martin - Clean Code

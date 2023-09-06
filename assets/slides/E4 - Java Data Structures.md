@@ -621,10 +621,8 @@ public static void main(String[] args) {
 ```
 
 
-### Wisdom Pills
+# Wisdom Pills
 
-*Making messes is always slower than staying clean*
-
-*The only way to go fast, is to go well.*
+*Making messes is always slower than staying clean. The only way to go fast, is to go well.*
 
 Robert C. Martin - Clean Architecture
