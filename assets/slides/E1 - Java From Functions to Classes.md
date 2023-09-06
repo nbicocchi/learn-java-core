@@ -76,8 +76,6 @@ software quality management such as procedural programming and object-oriented p
 
 ![](images/intro-software-costs.png)
 
----
-
 ### Procedural approach
 ```C
 #include <stdio.h>
@@ -232,8 +230,6 @@ int main() {
      v.search(10);
  }
 ```
-
----
 
 # OOP Key Features
 
