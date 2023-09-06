@@ -60,7 +60,7 @@ A simple and informal rule to understand the quality of a software is to measure
 errors per thousand lines of code (_errors / 1K SLOC_).
 
 - Industry Average, 25 errors / 1K SLOC
-- **Corporate Applications, 5 errors / 1K SLOC** _(what we aim for)_
+- Corporate Applications, 5 errors / 1K SLOC
 - Cleanroom development technique, 0.5 errors / 1K SLOC
 
 ![](images/intro-code-quality-cartoon.png)
@@ -68,10 +68,9 @@ errors per thousand lines of code (_errors / 1K SLOC_).
 Various processes and methodologies have been developed over the last few decades to improve
 software quality management such as procedural programming and object-oriented programming.
 
-### Object-Oriented Approach
+### Software maintenance costs
 - Procedural programming languages (e.g., C) are **not suitable for building large
-  software infrastructures**
-- OOP addresses this issue and **reduces development and maintenance** costs for large and complex software projects
+  software infrastructures** because code reuse is limited. Limited reuse increases both development costs (code written from scratch) and maintenance costs (code written from scratch is less tested than older code).
 - OOP aims at secure, re-usable, flexible, extensible software. Instead of focusing on algorithms, optimization, and efficiency, **OOP focus on programming techniques**.
 
 
@@ -79,7 +78,7 @@ software quality management such as procedural programming and object-oriented p
 
 ---
 
-### Procedural Approach
+### Procedural approach
 ```C
 #include <stdio.h>
 #include <stdlib.h>
@@ -134,45 +133,26 @@ int main() {
 }
 ```
 
-
-
-### Issues of procedural approach
-- **No clear relationship between**
-  - The actual array (int v[20])
-  - Operations on the array (search(), sort(), init())
-  
-- **Need of a dedicated variable for storing the array size**
-  - int v[100]; int n = sizeof(v) / sizeof(v[0]);
-  
-- **Initialization not guaranteed**
+**Issues**
 
 ![](images/intro-issues-procedural-approach.png)
 
-- **Reuse of code limited**
-  - Data and operations are separate. This makes it complex to reuse existing code in
+- No clear relationship between the actual array (int v[20]) and operations on the array (search(), sort(), init())
+- Need of a dedicated variable for storing the array size (int n = sizeof(v) / sizeof(v[0]))
+- Initialization of the array is not guaranteed
+
+
+- **Reuse of code limited**: data and operations are separate. This makes it complex to reuse existing code in
   other projects
-  
-- **Data protection limited**
-  - Unprotected data accessible from vast portions of the source code. After a certain
+- **Data protection limited**: unprotected data accessible from vast portions of the source code. After a certain
   stage, debug becomes a nightmare!
-  
-- **Decomposition limited**
-  - Large scale projects require a large scale working force (many teams). Unprotected
+- **Decomposition limited**: large scale projects require a large scale working force (many teams). Unprotected
   data, separate from operations, makes it hard to decompose
   
     
-### The solution
+### Object-oriented approach
 So how does object-oriented programming manage to ensure these differences from the
-procedural approach?
-
-Defining a new type (a **_class_** of special vectors) consisting in an additional layer
-in which data and operations are modularized together!
-
-> A **class** is a collection of fields that hold values and methods that operate on those
-values.
-> 
-> An **object** is an _instance_ of a class. Instantiation mean create the object through its
-constructor.
+procedural approach? Defining a new type (a **_class_** of special vectors) consisting in an additional abstraction layer coupling data with operations acting on data.
 
 ![](images/intro-object-oriented-approach.png)
 
@@ -202,6 +182,7 @@ public class Vector {
             if (!changed) break;
         }
     }
+    
     void init() {
       Random rnd = new Random();
       for (int i = 0; i < v.length; i++) {
@@ -227,7 +208,7 @@ public class Vector {
   ```
 
 ### Wrapping up
-**Procedural Programming**
+**Procedural approach**
 * Data and functions are separate     
 * Functions process data: _operation(object, params)_
 
@@ -242,9 +223,9 @@ int main() {
 }
 ```
 
-**Object-Oriented Programming**
+**Object-Oriented approach**
 
-* Data and functions are modularized together
+* Data and functions are coupled together within classes
 * Objects deliver services using internal data: _object.operation(params)_
 
 ```
@@ -377,10 +358,6 @@ within the child class will do it_
 
 ![](images/intro-polymorphism.png)
 
-
-
-### Types of polymorphism
-
 |                        |       feature       |                                  what                                  |                               where                               |     when     |
 |:----------------------:|:-------------------:|:----------------------------------------------------------------------:|:-----------------------------------------------------------------:|:------------:|
 | **method overriding**  |   same signature    | depending on the _actual_ object the method produces different results | using a collection of objects belonging to a hierarchy of classes |   runtime    |
@@ -441,36 +418,14 @@ compared to the flow of control. Thus, we obtained a **dependency inversion**.
 In recent years, microservices architecture has emerged as a popular approach to designing and building complex software systems. This architecture style breaks down large, monolithic applications into smaller, independent services that can be developed, deployed, and scaled independently. This approach has several benefits, including increased agility, scalability, and fault tolerance, among others.
 
 ![](images/intro-monolithic-architecture.png)
-_Monolithic Architecture_
 
-
+*Monolithic Architecture*
 
 ![](images/intro-microservice-architecture.png)
-_Microservice Architecture_
 
-### Wrapping up
-
-**Pros:**
-
-* **Cooperative development**
-  * Different people working on different classes
-* **Incremental design and development**
-  * Define new classes by extending the existing ones
-* **Code management**
-  * Bugs on object data are easier to spot (errors mostly occurs in the object handling the data)  
-  * Changes on a specific class do not impact other classes (unless external interface is modified)
-
-**Cons:**
-
-* **Needs an Object-Oriented way of thinking**
-* **Complex design** 
-  * (e.g., Which classes?, How many classes?)
-* **Benefits only occur in large programs**
-  * Programs < 1K lines, spaghetti code is still understandable and fast to write  
-  * Programs > 10K lines, spaghetti code is almost inevitable
-
+*Microservice Architecture*
 
 # Wisdom Pills
-*"Learning to write clean code is hard work. It requires more than just the knowledge of principles and patterns. You must sweat over it. You must practice it yourself, and watch yourself fail. You must watch others practice it and fail. You must see them stumble and retrace their steps. You must see them agonize over decisions and see the price they pay for making those decisions the wrong way."*
+*Learning to write clean code is hard work. It requires more than just the knowledge of principles and patterns. You must sweat over it. You must practice it yourself, and watch yourself fail. You must watch others practice it and fail. You must see them stumble and retrace their steps. You must see them agonize over decisions and see the price they pay for making those decisions the wrong way.*
 
 Robert C. Martin - Clean Code
