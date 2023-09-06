@@ -1,8 +1,5 @@
 # Java From Functions to Classes
 
-In this chapter we will introduce **object-oriented programming**, emphasizing
-the elements that distinguish it from the procedural approach.
-
 ### The present
 ![](images/intro-the-present.png)
 
