@@ -137,11 +137,6 @@ int main() {
 
 ![](images/intro-issues-procedural-approach.png)
 
-- No clear relationship between the actual array (int v[20]) and operations on the array (search(), sort(), init())
-- Need of a dedicated variable for storing the array size (int n = sizeof(v) / sizeof(v[0]))
-- Initialization of the array is not guaranteed
-
-
 - **Reuse of code limited**: data and operations are separate. This makes it complex to reuse existing code in
   other projects
 - **Data protection limited**: unprotected data accessible from vast portions of the source code. After a certain
