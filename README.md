@@ -1,4 +1,4 @@
-# Introduction to Java
+# Java Core
 
 ### Software
 
