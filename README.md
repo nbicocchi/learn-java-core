@@ -54,7 +54,7 @@
 * Modularization, reuse of code, and object-oriented programming
 * Object-oriented programming key features
 
-### Exercises Modules
+### Modules
 [E2] Basics
 
 > Read: Big Java (Chapter 2-4-5-6-7)
@@ -164,7 +164,7 @@
 
 ---
 
-### Project Modules
+### Modules
 
 > Code: [https://github.com/nbicocchi/java-javafx](https://github.com/nbicocchi/java-javafx)
 
