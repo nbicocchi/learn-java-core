@@ -27,8 +27,6 @@
 * https://codingbat.com/
 * https://www.programiz.com/
 * https://exercism.io/
-
-### GitHub
 * https://github.com/TheAlgorithms/Java/
 
 ---
