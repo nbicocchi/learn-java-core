@@ -8,7 +8,7 @@
 * [Mermaid](https://mermaid.js.org/)
 
 ### Books
-* Big Java - Early Objects 7th Edition; Horstmann; Wiley Press (intermediate) [Book resources](https://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=11274&itemId=1119499097&resourceId=44689)
+* **Big Java - Early Objects 7th Edition; Horstmann; Wiley Press (intermediate)** [Book resources](https://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=11274&itemId=1119499097&resourceId=44689)
 * Effective Java; Bloch; O'Reilly (advanced)
 
 ### Videos
@@ -31,22 +31,7 @@
 
 ---
 
-### Exam
-* solve exercises (including unit tests) from com.nbicocchi.exercises (1 or 2) **(60% weight)**
-* answer general questions about the key topics of the course (1 or 2) **(20% weight)**
-* discuss the structure and engineering choices of a home project **(20% weight)**
-
----
-
-### Project
-* Stored on a GitHub repository (complete with README.md and LICENCE files)
-* 500+ lines of logic code per person, 1000+ per couple, excluding GUI/XML files
-* Respect [Java Coding Standard](https://github.com/nbicocchi/java-core/blob/main/books/Java-Coding-Standard.pdf)
-* Refer to [this project](https://github.com/logesh0304/RegexAssist) as a well-made example
-
----
-
-### Introduction
+### Modules
 [E1] From Functions to Classes
 
 * Evolution of programming languages
@@ -54,7 +39,6 @@
 * Modularization, reuse of code, and object-oriented programming
 * Object-oriented programming key features
 
-### Modules
 [E2] Basics
 
 > Read: Big Java (Chapter 2-4-5-6-7)
@@ -163,28 +147,3 @@
 * Callable/Future/Task
 
 ---
-
-### FAQ
-Developing a project at home is the goal of the course?
-> **No! The goal is not developing a home project! The goal of the course is learning how to code in Java**. Developing a project is only a (hopefully fun) way to learn the language.
-
-Can we develop the project in groups of 3 people?
-> No, you can develop a project alone or with 1 colleague. Groups should be composed of teammates with comparable coding skills. Exceptions to this rule are negatively evaluated.
-
-Can we use JavaScript, TypeScript, Kotlin, Dart, Swift, C++, C#?
-> No! Only Java and Python are allowed. If you learn properly Java and Python, you will be able to quickly learn any modern object-oriented language. 
-
-Which kind of project can we do?
-> You can code a video game, a managing software, an Android app.
-
-Can we use external libraries?
-> Sure! The object-oriented paradigm has been initially proposed for promoting the reuse of code and building larger projects! For example, for developing games [LibGDX](https://libgdx.com/), [Slick2D](https://slick.ninjacave.com/), or [Tiled](https://www.mapeditor.org/) are useful. 
-
-Which IDE should I use for developing an Android app?
-> Android Studio is a version of IntelliJ specifically tuned for Android development.
-
-What is the best moment for starting the project?
-> The first half of the course concerns basic topics that must be assimilated before starting. My personal suggestion is to start the project around midterm and use the second part of the course to sketch out the main design.
-
-While developing I get strange errors. What should I do?
-> The first thing to do is copy and paste the error string on Google and check for eventual answers on StackOverflow. The vast majority of common errors has a dedicated page.
