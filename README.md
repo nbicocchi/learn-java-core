@@ -29,8 +29,6 @@
 * https://exercism.io/
 * https://github.com/TheAlgorithms/Java/
 
----
-
 ### Modules
 [E1] From Functions to Classes
 
@@ -145,5 +143,3 @@
 * Thread synchronisation (synchronised/wait/notify)
 * ExecutorService
 * Callable/Future/Task
-
----
