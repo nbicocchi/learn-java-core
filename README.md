@@ -41,7 +41,7 @@
 ### Project
 * Stored on a GitHub repository (complete with README.md and LICENCE files)
 * 500+ lines of logic code per person, 1000+ per couple, excluding GUI/XML files
-* Respect [Java Coding Standard](https://github.com/nbicocchi/java-core/blob/main/assets/books/Java-Coding-Standard.pdf)
+* Respect [Java Coding Standard](https://github.com/nbicocchi/java-core/blob/main/books/Java-Coding-Standard.pdf)
 * Refer to [this project](https://github.com/logesh0304/RegexAssist) as a well-made example
 
 ---
@@ -59,10 +59,10 @@
 
 > Read: Big Java (Chapter 2-4-5-6-7)
 
-> Lab: 
-> [com.nbicocchi.exercises.warmup](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/warmup),
-> [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/arrays),
-> [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/strings) 
+> Lab:
+> [com.nbicocchi.exercises.warmup](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/warmup),
+> [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/arrays),
+> [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/strings) 
 
 * Variables, methods and parameter passing
 * Fundamental data types
@@ -79,7 +79,7 @@
 > Read: Big Java (Chapter 3-8-9-10-12)
 > Read: UML Distilled (Chapter 3)
 
-> Lab: [com.nbicocchi.exercises.oop](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/oop)
+> Lab: [com.nbicocchi.exercises.oop](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/oop)
 
 * Instance variables and encapsulation
 * Specifying the public interface of a class (and its implementation)
@@ -95,7 +95,7 @@
 
 > Read: Big Java (Chapter 14-15)
 
-> Lab: package [com.nbicocchi.exercises.collections](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/collections)
+> Lab: package [com.nbicocchi.exercises.collections](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/collections)
 
 * Iterable and Iterator interfaces
 * List interface and its implementations (ArrayList, LinkedList)
@@ -108,7 +108,7 @@
 
 > Read: Big Java (Chapter 18)
 
-> Lab: [com.nbicocchi.exercises.generics](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/generics)
+> Lab: [com.nbicocchi.exercises.generics](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/generics)
 
 * Generic classes and type parameters
 * Implementing generic types
@@ -121,7 +121,7 @@
 > Read: Big Java (Chapter 19), 
 > Object Oriented vs Functional Programming (Chapter 1)
 
-> Lab: [com.nbicocchi.exercises.functional](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/functional)
+> Lab: [com.nbicocchi.exercises.functional](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/functional)
 
 * Lambda expressions
 * Functional interfaces
@@ -132,7 +132,7 @@
 
 > Read: Big Java (Chapter 11)
 
-> Lab: [com.nbicocchi.exercises.exceptions](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/exceptions)
+> Lab: [com.nbicocchi.exercises.exceptions](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/exceptions)
 
 * Throwing exceptions
 * Catching exceptions
@@ -143,7 +143,7 @@
 
 > Read: Big Java (Chapter 21)
 
-> Lab: [com.nbicocchi.exercises.nio](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/nio)
+> Lab: [com.nbicocchi.exercises.nio](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/nio)
 
 * IO vs NIO frameworks
 * Manipulating paths
@@ -154,7 +154,7 @@
 
 > Read: Big Java (Chapter 22)
 
-> Lab: [com.nbicocchi.exercises.threads](https://github.com/nbicocchi/java-core/tree/main/src/main/java/com/nbicocchi/exercises/threads)
+> Lab: [com.nbicocchi.exercises.threads](https://github.com/nbicocchi/java-core/tree/main/code/src/main/java/com/nbicocchi/exercises/threads)
 
 * Thread states
 * Thread interference
