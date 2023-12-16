@@ -164,41 +164,6 @@
 
 ---
 
-### Modules
-
-> Code: [https://github.com/nbicocchi/java-javafx](https://github.com/nbicocchi/java-javafx)
-
-[P1] JavaFX Framework
-
-> Read: Introduction to Programming Using Java (Chapter 6-13),
-> Watch: [JavaFX GUI Full Course](https://www.youtube.com/watch?v=9XJicRt_FaI)
-
-* Structure of a JavaFX application 
-* Introduction to Scene Builder
-* Events
-* Controls
-* Layouts
-
-[P2] Data Access (JDBC)
-
-> Read: Big Java (Chapter 24)
-
-* Database connection architecture
-* Connection and Statement classes
-* Connection Pools
-* ResultSet class
-
-[P3] Data Access (REST)
-
-> Read: [Connecting JavaFX to a REST API](https://edencoding.com/connect-javafx-to-a-rest-api/)
-
-* Motivations and basic concepts
-* Resources, Operations, Representations (JSON, XML)
-* GET/POST/PUT/DELETE requests
-* Design of a client/server staleless application
-
----
-
 ### FAQ
 Developing a project at home is the goal of the course?
 > **No! The goal is not developing a home project! The goal of the course is learning how to code in Java**. Developing a project is only a (hopefully fun) way to learn the language.
