@@ -1,4 +1,4 @@
-package com.nbicocchi.tutorials.examples.nio;
+package com.nbicocchi.tutorials.nio;
 
 public class SystemProperties {
 

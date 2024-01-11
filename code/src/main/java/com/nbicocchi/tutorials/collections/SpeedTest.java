@@ -1,4 +1,4 @@
-package com.nbicocchi.tutorials.examples.collections;
+package com.nbicocchi.tutorials.collections;
 
 import java.util.*;
 import java.util.random.RandomGenerator;

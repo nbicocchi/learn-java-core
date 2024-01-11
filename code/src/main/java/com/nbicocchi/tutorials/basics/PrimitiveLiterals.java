@@ -1,4 +1,4 @@
-package com.nbicocchi.tutorials.examples.basics;
+package com.nbicocchi.tutorials.basics;
 
 public class PrimitiveLiterals {
     public static void main(String[] args) {

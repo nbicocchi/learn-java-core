@@ -1,4 +1,4 @@
-package com.nbicocchi.tutorials.examples.oop;
+package com.nbicocchi.tutorials.oop;
 
 import java.util.ArrayList;
 

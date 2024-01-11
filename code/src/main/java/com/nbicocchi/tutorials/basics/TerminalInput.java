@@ -1,4 +1,4 @@
-package com.nbicocchi.tutorials.examples.basics;
+package com.nbicocchi.tutorials.basics;
 
 import java.util.Scanner;
 

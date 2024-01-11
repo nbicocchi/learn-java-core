@@ -1,4 +1,4 @@
-package com.nbicocchi.tutorials.examples.generics;
+package com.nbicocchi.tutorials.generics;
 
 public class CovariantArray {
     public static void main(String[] args) {

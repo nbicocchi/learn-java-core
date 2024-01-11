@@ -1,4 +1,4 @@
-package com.nbicocchi.tutorials.examples.functional;
+package com.nbicocchi.tutorials.functional;
 
 import java.io.Serializable;
 import java.util.Objects;

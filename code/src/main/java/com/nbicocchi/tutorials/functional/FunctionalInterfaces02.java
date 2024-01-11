@@ -1,13 +1,34 @@
-package com.nbicocchi.tutorials.examples.functional;
+package com.nbicocchi.tutorials.functional;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FunctionalInterfaces03 {
+public class FunctionalInterfaces02 {
     public static void main(String[] args) {
         List<Student> students = StreamCreation.getStudentsAsList();
         List<Student> result;
-        result = filterStudents(students, s -> s.getAverage() >= 26 && s.getAverage() <= 30, s -> String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage()), s -> System.out.println(s));
+        StudentPredicate sp = new StudentPredicate() {
+
+            @Override
+            public boolean test(Student s) {
+                return s.getAverage() >= 26 && s.getAverage() <= 30;
+            }
+        };
+        StudentFunction sf = new StudentFunction() {
+
+            @Override
+            public String apply(Student s) {
+                return String.format("%s_%s_%f", s.getLastname(), s.getName(), s.getAverage());
+            }
+        };
+        StudentConsumer sc = new StudentConsumer() {
+
+            @Override
+            public void accept(String s) {
+                System.out.println(s);
+            }
+        };
+        result = filterStudents(students, sp, sf, sc);
         System.out.println("filterStudents()...");
         System.out.println(result);
     }
