@@ -226,7 +226,6 @@ public class ReflectionUnitTest {
         final List<String> methodNames = getMethodNames(methods);
 
         assertTrue(methodNames.containsAll(Arrays.asList("equals", "notifyAll", "hashCode", "walks", "eats", "toString")));
-
     }
 
     @Test
@@ -239,7 +238,6 @@ public class ReflectionUnitTest {
         assertEquals(expectedMethodNames.size(), actualMethodNames.size());
         assertTrue(expectedMethodNames.containsAll(actualMethodNames));
         assertTrue(actualMethodNames.containsAll(expectedMethodNames));
-
     }
 
     @Test
@@ -268,7 +266,6 @@ public class ReflectionUnitTest {
 
         assertTrue(walks2);
         assertTrue(bird.walks());
-
     }
 
     private static List<String> getFieldNames(Field[] fields) {
