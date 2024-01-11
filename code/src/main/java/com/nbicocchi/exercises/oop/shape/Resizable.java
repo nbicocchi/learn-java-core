@@ -1,7 +1,5 @@
 package com.nbicocchi.exercises.oop.shape;
 
-import java.awt.*;
-
 public interface Resizable {
 
     /**

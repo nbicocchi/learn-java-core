@@ -18,8 +18,9 @@ class BankAccountTest {
                 new BankAccount.Account(3000, 0.03, LocalDateTime.of(2024, 01, 01, 0, 0))
         ));
         List<BankAccount.Account> withInterest = BankAccount.applyInterest(accounts);
-        assertEquals(2, withInterest.size());
-        assertEquals(2040, withInterest.get(0).getAmount());
-        assertEquals(1010, withInterest.get(1).getAmount());
+        assertEquals(3, withInterest.size());
+        assertEquals(3090, withInterest.get(0).getAmount());
+        assertEquals(2040, withInterest.get(1).getAmount());
+        assertEquals(1010, withInterest.get(2).getAmount());
     }
 }
