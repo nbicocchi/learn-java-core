@@ -21,8 +21,9 @@
 * [Java SE API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
 
 ### Other Tutorials/Exercises
-* https://jenkov.com/
+* https://java-programming.mooc.fi/
 * https://www.baeldung.com/
+* https://jenkov.com/
 * https://www.w3resource.com/
 * https://codingbat.com/
 * https://www.programiz.com/
