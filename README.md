@@ -2,7 +2,7 @@
 
 ### Software
 
-* [Java SE Development Kit](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+* [JDK Development Kit 21](https://www.oracle.com/it/java/technologies/downloads/)
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 * [Scene Builder](https://gluonhq.com/products/scene-builder/)
 * [Mermaid](https://mermaid.js.org/)
@@ -18,7 +18,7 @@
 ### Official Tutorials
 * [IntelliJ Tutorial](https://www.jetbrains.com/idea/resources/)
 * [Java SE Tutorial](https://docs.oracle.com/javase/tutorial/)
-* [Java SE API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
+* [Java SE API](https://docs.oracle.com/en/java/javase/21/docs/api/index.html)
 
 ### Other Tutorials/Exercises
 * https://java-programming.mooc.fi/
