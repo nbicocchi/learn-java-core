@@ -7,7 +7,8 @@ public class TerminalInput {
         // System.in represents the standard input
         // System.out represents the standard output
         // System.err represents the standard error
-        // Scanner scans the standard input for types
+
+        // Scanner scans the standard input looking for primitive types
         Scanner scanner = new Scanner(System.in);
         System.out.print("Insert an int: ");
         scanner.nextInt();
