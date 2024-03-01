@@ -2,7 +2,7 @@ package com.nbicocchi.tutorials.strings;
 
 import java.time.Duration;
 
-public class ConcatenateBenchmark {
+public class ConcatenatingBenchmark {
     public static String concatenateSlow(int iterations) {
         // slow version
         String s = "";
