@@ -5,7 +5,7 @@
 * [JDK Development Kit 21](https://www.oracle.com/it/java/technologies/downloads/)
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 * [Scene Builder](https://gluonhq.com/products/scene-builder/)
-* [Docker](https://www.docker.com/products/docker-desktop/)
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 * [Mermaid](https://mermaid.js.org/)
 
 ### Books
