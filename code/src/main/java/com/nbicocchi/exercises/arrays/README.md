@@ -135,7 +135,7 @@ where:
 
 ---
 
-**[MoveZeroEnd.java]** Write a method accepting an int[] eventually containing zeros and returning an int[] in which all the zeros are at the end of the array. Maintain the relative order of the other (non-zero) elements.
+**[MoveZerosEnd.java]** Write a method accepting an int[] eventually containing zeros and returning an int[] in which all the zeros are at the end of the array. Maintain the relative order of the other (non-zero) elements.
 
 Examples:
 
@@ -174,7 +174,7 @@ where:
 
 ---
 
-**[IsEverywhere.java]** We'll say that a value is "everywhere" in an array if for every pair of adjacent elements in the
+**[IsEveryWhere.java]** We'll say that a value is "everywhere" in an array if for every pair of adjacent elements in the
 array, at least one of the pair is that value. Return true if the given value is everywhere in the array.
 
 Examples:
