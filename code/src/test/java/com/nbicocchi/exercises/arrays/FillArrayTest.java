@@ -10,5 +10,6 @@ class FillArrayTest {
     void fillArray() {
         assertArrayEquals(new double[]{1, 1, 1}, FillArray.fillArray(3, 1.0, false));
         assertArrayEquals(new double[]{5, 5, 5, 5}, FillArray.fillArray(4, 5.0, false));
+        assertArrayEquals(new double[]{7, 7, 7, 7}, FillArray.fillArray(4, 7.0, true), (double)7*5/100);
     }
 }
