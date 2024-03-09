@@ -1,4 +1,4 @@
-# Object Oriented Programming - DIEF/UNIMORE
+# Object-Oriented Programming - DIEF/UNIMORE
 
 ## Java Exercises (Generics)
 
@@ -23,7 +23,7 @@ where:
 ---
 
 **[Divide.java]** Write a generic static method returning the floating point division of any two numbers regardless of
-their specific type e.g. int, double, etc.. (see java.lang.Number class).
+their specific type e.g. int, double, etc. (see java.lang.Number class).
 
 Examples:
 

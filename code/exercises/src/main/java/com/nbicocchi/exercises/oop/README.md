@@ -1,4 +1,4 @@
-# Object Oriented Programming - DIEF/UNIMORE
+# Object-Oriented Programming - DIEF/UNIMORE
 
 ## Java Exercises (OOP Design)
 

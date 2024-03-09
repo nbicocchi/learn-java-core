@@ -6,8 +6,8 @@ import java.util.concurrent.*;
 
 public class ParallelPrimes {
     public static class PrimeEngine implements Callable<List<Integer>> {
-        int start;
-        int end;
+        final int start;
+        final int end;
 
         public PrimeEngine(int start, int end) {
             this.start = start;

@@ -1,4 +1,4 @@
-# Object Oriented Programming - DIEF/UNIMORE
+# Object-Oriented Programming - DIEF/UNIMORE
 
 ## Java Exercises (Functional)
 
@@ -341,7 +341,7 @@ Map<String, Double> fees = {
 }
 ```
 
-Write a method returning a Map<String, Double> having as keys the families of numbers (e.g., "347", "333", "348", etc) and as values the average subscription fee for that family (see [this guide](https://www.baeldung.com/java-maps-streams), and Collectors.groupingBy()).
+Write a method returning a Map<String, Double> having as keys the families of numbers (e.g., "347", "333", "348", etc.) and as values the average subscription fee for that family (see [this guide](https://www.baeldung.com/java-maps-streams), and Collectors.groupingBy()).
 
 Examples:
 

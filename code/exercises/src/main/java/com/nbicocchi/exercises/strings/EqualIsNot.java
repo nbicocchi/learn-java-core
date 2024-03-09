@@ -36,6 +36,6 @@ public class EqualIsNot {
      * @return true if the string is null or empty
      */
     public static boolean isEmpty(String s) {
-        return s == null || s.length() == 0;
+        return s == null || s.isEmpty();
     }
 }

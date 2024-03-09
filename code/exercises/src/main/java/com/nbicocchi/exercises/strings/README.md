@@ -1,4 +1,4 @@
-# Object Oriented Programming - DIEF/UNIMORE
+# Object-Oriented Programming - DIEF/UNIMORE
 
 ## Java Exercises (Strings)
 
@@ -195,7 +195,7 @@ where:
 
 ---
 
-**[CountYZ.java]** Write a method accepting a string, and counting the number of words ending in 'y' or 'z' so the 'y' in "heavy" and the 'z' in "fez" count, but not the 'y' in "yellow" (not case sensitive) (see Scanner class).
+**[CountYZ.java]** Write a method accepting a string, and counting the number of words ending in 'y' or 'z' so the 'y' in "heavy" and the 'z' in "fez" count, but not the 'y' in "yellow" (not case-sensitive) (see Scanner class).
 
 Examples:
 
@@ -215,7 +215,7 @@ where:
 
 ---
 
-**[EqualIsNot.java]** Write a method accepting a string, and returning true if the number of appearances of "is" anywhere in the string is equal to the number of appearances of "not" anywhere in the string (case sensitive) (See String.indexOf()).
+**[EqualIsNot.java]** Write a method accepting a string, and returning true if the number of appearances of "is" anywhere in the string is equal to the number of appearances of "not" anywhere in the string (case-sensitive) (See String.indexOf()).
 
 Examples:
 

@@ -13,9 +13,9 @@ class SortAccountTest {
     @Test
     void applyInterest() {
         List<SortAccount.Account> accounts = new ArrayList<>(List.of(
-                new SortAccount.Account(1000, 0.03, LocalDate.of(2023, 01, 01)),
-                new SortAccount.Account(2000, 0.02, LocalDate.of(2022, 01, 01)),
-                new SortAccount.Account(3000, 0.01, LocalDate.of(2024, 01, 01))
+                new SortAccount.Account(1000, 0.03, LocalDate.of(2023, 1, 1)),
+                new SortAccount.Account(2000, 0.02, LocalDate.of(2022, 1, 1)),
+                new SortAccount.Account(3000, 0.01, LocalDate.of(2024, 1, 1))
         ));
         SortAccount.sortByAmount(accounts);
         assertEquals(1000, accounts.get(0).getAmount());

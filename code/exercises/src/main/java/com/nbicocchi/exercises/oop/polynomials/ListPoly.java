@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Nicola Bicocchi
  */
 public class ListPoly extends AbstractPoly {
-    ArrayList<Double> coefficients;
+    final ArrayList<Double> coefficients;
 
     public ListPoly(double[] coefficients) {
         this.coefficients = new ArrayList<>();

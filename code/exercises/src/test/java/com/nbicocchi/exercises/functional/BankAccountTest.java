@@ -13,9 +13,9 @@ class BankAccountTest {
     @Test
     void applyInterest() {
         List<BankAccount.Account> accounts = new ArrayList<>(List.of(
-                new BankAccount.Account(1000, 0.01, LocalDateTime.of(2022, 01, 01, 0, 0)),
-                new BankAccount.Account(2000, 0.02, LocalDateTime.of(2023, 01, 01, 0, 0)),
-                new BankAccount.Account(3000, 0.03, LocalDateTime.of(2024, 01, 01, 0, 0))
+                new BankAccount.Account(1000, 0.01, LocalDateTime.of(2022, 1, 1, 0, 0)),
+                new BankAccount.Account(2000, 0.02, LocalDateTime.of(2023, 1, 1, 0, 0)),
+                new BankAccount.Account(3000, 0.03, LocalDateTime.of(2024, 1, 1, 0, 0))
         ));
         List<BankAccount.Account> withInterest = BankAccount.applyInterest(accounts);
         assertEquals(3, withInterest.size());

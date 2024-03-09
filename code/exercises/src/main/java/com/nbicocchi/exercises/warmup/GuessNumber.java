@@ -15,11 +15,13 @@ public class GuessNumber {
             int answer = scanner.nextInt();
             if (number != answer) {
                 System.out.println("[Wrong answer!]");
-            } else if (number == answer && number != 0) {
-                System.out.println("[Correct answer!]");
             } else {
-                System.out.println("[I knew we were tightly connected! Bye!]");
-                break;
+                if (number != 0) {
+                    System.out.println("[Correct answer! Let's continue!]");
+                } else {
+                    System.out.println("[Correct answer! I knew we were tightly connected! Bye!]");
+                    break;
+                }
             }
         }
     }

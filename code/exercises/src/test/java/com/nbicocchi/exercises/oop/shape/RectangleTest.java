@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RectangleTest {
     public static final double DELTA = 1e-06;

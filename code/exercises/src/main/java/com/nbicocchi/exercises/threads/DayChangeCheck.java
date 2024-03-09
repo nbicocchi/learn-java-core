@@ -25,7 +25,7 @@ public class DayChangeCheck extends Thread {
         System.out.println(getName() + " terminated");
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         DayChangeCheck t1 = new DayChangeCheck();
         t1.start();
     }

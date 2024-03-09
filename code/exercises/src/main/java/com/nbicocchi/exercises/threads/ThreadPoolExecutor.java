@@ -8,7 +8,7 @@ import java.util.random.RandomGenerator;
 public class ThreadPoolExecutor {
     public static final int MAX_TASKS = 8;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(4);
         RandomGenerator rnd = RandomGenerator.getDefault();
 
