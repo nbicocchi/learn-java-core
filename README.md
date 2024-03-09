@@ -31,6 +31,9 @@
 * https://exercism.io/
 * https://github.com/TheAlgorithms/Java/
 
+### Contributing
+All the material is free for everyone. To contribute please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide.
+
 ### Modules
 [E1] From Functions to Classes
 
