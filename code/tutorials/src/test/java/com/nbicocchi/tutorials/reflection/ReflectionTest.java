@@ -6,14 +6,13 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ReflectionUnitTest {
+public class ReflectionTest {
 
     @Test
     public void givenObject_whenGetsFieldNamesAtRuntime_thenCorrect() {

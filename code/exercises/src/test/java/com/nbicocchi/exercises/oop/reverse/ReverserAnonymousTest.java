@@ -1,13 +1,18 @@
 package com.nbicocchi.exercises.oop.reverse;
 
-public class TestApp {
-    public static void main(String[] args) {
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class ReverserAnonymousTest {
+    @Test
+    void reverse() {
         Reverser r = new Reverser() {
             @Override
             public String reverse(String s) {
                 return new StringBuilder(s).reverse().toString();
             }
         };
-        System.out.println(r.reverse("Hello World!"));
+        assertEquals("!dlroW olleH", r.reverse("Hello World!"));
     }
 }
