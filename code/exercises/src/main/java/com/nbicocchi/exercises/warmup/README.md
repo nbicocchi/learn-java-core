@@ -70,10 +70,16 @@ The area of the square is 1, while the area of the part inside the circle is π/
 Write a program producing increasingly accurate estimates of PI as reported below (see System.out.printf()):
 
 ```
-[trial=250000] [error=-0.177001pc] [estimate=3.1360320000000000]
-[trial=500000] [error=-0.120215pc] [estimate=3.1378160000000000]
-[trial=750000] [error=-0.092458pc] [estimate=3.1386880000000000]
-[trial=1000000] [error=-0.073869pc] [estimate=3.1392720000000000]
+[trials=2^3] [error=27.32395447pc] [estimate=4.0000000000000000]
+[trials=2^4] [error=11.40846016pc] [estimate=3.5000000000000000]
+[trials=2^5] [error=3.45071301pc] [estimate=3.2500000000000000]
+[trials=2^6] [error=1.46127622pc] [estimate=3.1875000000000000]
+[trials=2^7] [error=-0.52816057pc] [estimate=3.1250000000000000]
+[trials=2^8] [error=1.46127622pc] [estimate=3.1875000000000000]
+[trials=2^9] [error=6.18618859pc] [estimate=3.3359375000000000]
+[trials=2^10] [error=0.09353843pc] [estimate=3.1445312500000000]
+[trials=2^11] [error=0.77740732pc] [estimate=3.1660156250000000]
+[trials=2^12] [error=-0.12405622pc] [estimate=3.1376953125000000]
 ```
 
 
