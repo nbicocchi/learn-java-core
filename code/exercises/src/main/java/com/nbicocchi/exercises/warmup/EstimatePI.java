@@ -1,27 +1,33 @@
 package com.nbicocchi.exercises.warmup;
 
+import java.util.random.RandomGenerator;
+
 public class EstimatePI {
-    public static void main(String[] args) {
-        final int BATCH_SIZE = 1000000;
-        final int LOG_SIZE = 25000;
-        int trials = 0;
-        int inCircleTrials = 0;
 
-        for (int i = 0; i < BATCH_SIZE; i++) {
-            double x = Math.random();
-            double y = Math.random();
+    public static long areInside(long trials) {
+        final RandomGenerator RND = RandomGenerator.getDefault();
+        long areInside = 0;
 
-            trials++;
+        for (int i = 0; i < trials; i++) {
+            double x = RND.nextDouble();
+            double y = RND.nextDouble();
 
             if (x * x + y * y < 1) {
-                inCircleTrials++;
+                areInside++;
             }
+        }
 
-            if (trials % LOG_SIZE == 0) {
-                double estimate = 4 * inCircleTrials/(double)trials;
-                double error = 100 * (estimate - Math.PI) / Math.PI;
-                System.out.printf("[trial=%d] [error=%fpc] [estimate=%.16f]\n", trials, error, estimate);
-            }
+        return areInside;
+    }
+
+    public static void main(String[] args) {
+        for (int i = 3; i <= 24; i++) {
+            long trials = (long)Math.pow(2, i);
+            long areInside = areInside(trials);
+
+            double estimate = 4.0 * areInside / (double)trials;
+            double error = 100.0 * (estimate - Math.PI) / Math.PI;
+            System.out.printf("[trials=2^%d] [error=%.8fpc] [estimate=%.16f]\n", i, error, estimate);
         }
     }
 }
