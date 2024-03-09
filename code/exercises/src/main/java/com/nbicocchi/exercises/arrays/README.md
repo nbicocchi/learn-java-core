@@ -186,7 +186,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public static boolean isEverywhere(int[] v, int value);
+public static boolean isEveryWhere(int[] v, int value);
 ```
 
 where:
