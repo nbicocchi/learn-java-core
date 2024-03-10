@@ -48,7 +48,7 @@ under the LICENSE file in the root directory of this source tree.
 > Read: Big Java (Chapter 2-4-5-6-7)
 
 > Lab:
-> [com.nbicocchi.exercises.warmup](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/warmup),
+> [com.nbicocchi.exercises.warmup](code/exercises/src/main/java/com/nbicocchi/exercises/warmup/README.md),
 > [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/arrays),
 > [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/strings) 
 
