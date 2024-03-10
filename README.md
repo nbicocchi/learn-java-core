@@ -49,8 +49,8 @@ under the LICENSE file in the root directory of this source tree.
 
 > Lab:
 > [com.nbicocchi.exercises.warmup](code/exercises/src/main/java/com/nbicocchi/exercises/warmup/),
-> [com.nbicocchi.exercises.arrays](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/arrays),
-> [com.nbicocchi.exercises.strings](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/strings) 
+> [com.nbicocchi.exercises.arrays](code/exercises/src/main/java/com/nbicocchi/exercises/arrays),
+> [com.nbicocchi.exercises.strings](code/exercises/src/main/java/com/nbicocchi/exercises/strings) 
 
 * Variables, methods and parameter passing
 * Fundamental data types
@@ -60,14 +60,14 @@ under the LICENSE file in the root directory of this source tree.
 * Strings
 * Input and output
 * Random numbers
-* [Coding Standard](https://github.com/nbicocchi/java-core/blob/main/assets/books/Java-Coding-Standard.pdf)
+* [Coding Standard](books/Java-Coding-Standard.pdf)
 
 [E3] Object Oriented Design
 
 > Read: Big Java (Chapter 3-8-9-10-12)
 > Read: UML Distilled (Chapter 3)
 
-> Lab: [com.nbicocchi.exercises.oop](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/oop)
+> Lab: [com.nbicocchi.exercises.oop](code/exercises/src/main/java/com/nbicocchi/exercises/oop)
 
 * Instance variables and encapsulation
 * Specifying the public interface of a class (and its implementation)
@@ -83,7 +83,7 @@ under the LICENSE file in the root directory of this source tree.
 
 > Read: Big Java (Chapter 14-15)
 
-> Lab: package [com.nbicocchi.exercises.collections](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/collections)
+> Lab: package [com.nbicocchi.exercises.collections](code/exercises/src/main/java/com/nbicocchi/exercises/collections)
 
 * Iterable and Iterator interfaces
 * List interface and its implementations (ArrayList, LinkedList)
@@ -96,7 +96,7 @@ under the LICENSE file in the root directory of this source tree.
 
 > Read: Big Java (Chapter 18)
 
-> Lab: [com.nbicocchi.exercises.generics](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/generics)
+> Lab: [com.nbicocchi.exercises.generics](code/exercises/src/main/java/com/nbicocchi/exercises/generics)
 
 * Generic classes and type parameters
 * Implementing generic types
@@ -109,7 +109,7 @@ under the LICENSE file in the root directory of this source tree.
 > Read: Big Java (Chapter 19), 
 > Object Oriented vs Functional Programming (Chapter 1)
 
-> Lab: [com.nbicocchi.exercises.functional](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/functional)
+> Lab: [com.nbicocchi.exercises.functional](code/exercises/src/main/java/com/nbicocchi/exercises/functional)
 
 * Lambda expressions
 * Functional interfaces
@@ -120,7 +120,7 @@ under the LICENSE file in the root directory of this source tree.
 
 > Read: Big Java (Chapter 11)
 
-> Lab: [com.nbicocchi.exercises.exceptions](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/exceptions)
+> Lab: [com.nbicocchi.exercises.exceptions](code/exercises/src/main/java/com/nbicocchi/exercises/exceptions)
 
 * Throwing exceptions
 * Catching exceptions
@@ -131,7 +131,7 @@ under the LICENSE file in the root directory of this source tree.
 
 > Read: Big Java (Chapter 21)
 
-> Lab: [com.nbicocchi.exercises.nio](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/nio)
+> Lab: [com.nbicocchi.exercises.nio](code/exercises/src/main/java/com/nbicocchi/exercises/nio)
 
 * IO vs NIO frameworks
 * Manipulating paths
@@ -142,7 +142,7 @@ under the LICENSE file in the root directory of this source tree.
 
 > Read: Big Java (Chapter 22)
 
-> Lab: [com.nbicocchi.exercises.threads](https://github.com/nbicocchi/learn-java-core/tree/main/code/exercises/src/main/java/com/nbicocchi/exercises/threads)
+> Lab: [com.nbicocchi.exercises.threads](code/exercises/src/main/java/com/nbicocchi/exercises/threads)
 
 * Thread states
 * Thread interference
