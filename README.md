@@ -32,7 +32,8 @@
 * https://github.com/TheAlgorithms/Java/
 
 ### Contributing
-All the material is free for everyone. To contribute please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide.
+Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. By contributing to examples, you agree that your contributions will be licensed
+under the LICENSE file in the root directory of this source tree.
 
 ### Modules
 [E1] From Functions to Classes
