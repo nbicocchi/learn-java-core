@@ -32,7 +32,7 @@
 * https://github.com/TheAlgorithms/Java/
 
 ### Contributing
-Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. By contributing this repository, you agree that your contributions will be licensed
+Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. By contributing to this repository, you agree that your contributions will be licensed
 under the LICENSE file in the root directory of this source tree.
 
 ### Modules
