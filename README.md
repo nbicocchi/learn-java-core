@@ -30,6 +30,7 @@
 * https://www.programiz.com/
 * https://exercism.io/
 * https://github.com/TheAlgorithms/Java/
+* https://github.com/charlax/professional-programming
 
 ### Contributing
 Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. By contributing to this repository, you agree that your contributions will be licensed
