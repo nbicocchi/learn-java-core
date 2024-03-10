@@ -171,7 +171,13 @@ public static char[] duplicateChars(String string);
 where:
 
 * **string** is the string to be processed
-
+**Constrains:**
+  `0 <= string.lenght <= x` ?
+  `string` consists of English letters, digits, symbols and spaces.?
+  `string` consist of only English letters. ?
+  `string` consist of only digits. ?
+  `string` consist of only digits and English letters. ?
+  
 ---
 
 **[Palindrome.java]** Write a method accepting a string and returning true if the string is a palindrome (see StringBuilder class).
