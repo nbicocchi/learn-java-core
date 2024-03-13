@@ -12,5 +12,7 @@ public class RemoveFirstTwoCharsIfTest {
         assertEquals("H", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("Ho"));
         assertEquals("e", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("Ne"));
         assertEquals("", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("Y"));
+        assertEquals("H", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf("H"));
+        assertEquals("", RemoveFirstTwoCharsIf.removeFirstTwoCharsIf(""));
     }
 }

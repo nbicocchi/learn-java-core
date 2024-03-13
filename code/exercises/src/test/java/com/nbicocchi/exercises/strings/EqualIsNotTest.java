@@ -11,5 +11,6 @@ class EqualIsNotTest {
         assertFalse(EqualIsNot.equalIsNot("This is not"));
         assertTrue(EqualIsNot.equalIsNot("This is notnot"));
         assertTrue(EqualIsNot.equalIsNot("noisxxnotyynotxisi"));
+        assertTrue(EqualIsNot.equalIsNot(""));
     }
 }
