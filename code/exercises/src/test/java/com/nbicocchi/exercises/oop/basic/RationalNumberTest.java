@@ -7,6 +7,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class RationalNumberTest {
 
     @Test
+    void getNumerator() {
+        RationalNumber rn = new RationalNumber(9, 3);
+        assertEquals(3, rn.getNumerator());
+    }
+    @Test
+    void getDenominator() {
+        RationalNumber rn = new RationalNumber(9, 3);
+        assertEquals(1, rn.getDenominator());
+    }
+
+    @Test
     void add() {
         RationalNumber r1 = new RationalNumber(2, 3);
         RationalNumber r2 = new RationalNumber(2, 3);
@@ -21,18 +32,6 @@ class RationalNumberTest {
         RationalNumber r1 = new RationalNumber(6, 3);
         RationalNumber r2 = new RationalNumber(6, 3);
         assertEquals(new RationalNumber(4, 1), r1.multiply(r2));
-    }
-
-    @Test
-    void getNumerator() {
-        RationalNumber rn = new RationalNumber(9, 3);
-        assertEquals(3, rn.getNumerator());
-    }
-
-    @Test
-    void getDenominator() {
-        RationalNumber rn = new RationalNumber(9, 3);
-        assertEquals(1, rn.getDenominator());
     }
 
     @Test
