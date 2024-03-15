@@ -22,9 +22,9 @@ public interface BankAccount {
 
     void deposit(double amount);
 
-    double withdraw(double amount);
+    void withdraw(double amount);
 
-    double transfer(BankAccount other, double amount);
+    void transfer(BankAccount other, double amount);
 
     void addInterest();
 }
