@@ -27,11 +27,10 @@ public class BankAccountPro extends AbstractBankAccount {
     /**
      * Withdraw an amount from the account. Fees are applied.
      * @param amount the amount to be withdrawn
-     * @return the amount withdrawn
      */
     @Override
-    public double withdraw(double amount) {
+    public void withdraw(double amount) {
         applyFee();
-        return super.withdraw(amount);
+        super.withdraw(amount);
     }
 }
