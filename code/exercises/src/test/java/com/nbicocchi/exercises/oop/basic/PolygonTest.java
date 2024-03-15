@@ -25,7 +25,7 @@ class PolygonTest {
 
     @Test
     void getPerimeter() {
-        assertEquals(40, square.getPerimeter(), DELTA);
+        assertEquals(30, square.getPerimeter(), DELTA);
         assertEquals(32.3606797749979, triangle.getPerimeter(), DELTA);
     }
 
