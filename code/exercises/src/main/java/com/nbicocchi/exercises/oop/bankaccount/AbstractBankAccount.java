@@ -50,7 +50,7 @@ public abstract class AbstractBankAccount implements BankAccount {
      */
     @Override
     public void setIBAN(String IBAN) {
-        checkIBAN(IBAN);
+        BankAccount.checkIBAN(IBAN);
         this.IBAN = IBAN;
     }
 
@@ -136,21 +136,8 @@ public abstract class AbstractBankAccount implements BankAccount {
     /**
      * Applies a fee to the account
      */
-    protected void applyFee() {
+    @Override
+    public void applyFee() {
         balance -= operationFee;
-    }
-
-    /**
-     * Verifies the integrity of an IBAN
-     * @param IBAN the IBAN to be verified
-     */
-    protected void checkIBAN(String IBAN) {
-        if (IBAN.length() < 8 || IBAN.length() > 34) {
-            throw new IllegalArgumentException("Invalid length");
-        }
-        String countryCode = IBAN.substring(0, 2);
-        if (!(Character.isUpperCase(countryCode.charAt(0)) && Character.isUpperCase(countryCode.charAt(1)))) {
-            throw new IllegalArgumentException("Invalid country code");
-        }
     }
 }

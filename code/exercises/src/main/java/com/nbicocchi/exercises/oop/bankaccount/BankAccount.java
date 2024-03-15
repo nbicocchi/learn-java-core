@@ -27,4 +27,23 @@ public interface BankAccount {
     double transfer(BankAccount other, double amount);
 
     void addInterest();
+
+    void applyFee();
+
+    /**
+     * Verifies the integrity of an IBAN
+     * @param IBAN the IBAN to be verified
+     */
+    static void checkIBAN(String IBAN) {
+        if (IBAN.length() < 8 || IBAN.length() > 34) {
+            throw new IllegalArgumentException("Invalid length");
+        }
+        String countryCode = IBAN.substring(0, 2);
+        if (!(Character.isLetter(countryCode.charAt(0)) && Character.isLetter(countryCode.charAt(1)))) {
+            throw new IllegalArgumentException("Invalid country code");
+        }
+        if (!(Character.isUpperCase(countryCode.charAt(0)) && Character.isUpperCase(countryCode.charAt(1)))) {
+            throw new IllegalArgumentException("Invalid country code");
+        }
+    }
 }

@@ -64,7 +64,7 @@ public class RationalNumber {
      * @param b the second integer number
      * @return the greatest common divisor
      */
-    static int greatestCommonDivisor(int a, int b) {
+    public static int greatestCommonDivisor(int a, int b) {
         int max = Math.max(a, b);
         int min = Math.min(a, b);
 
@@ -82,7 +82,7 @@ public class RationalNumber {
      * @param b the second integer number
      * @return the least common multiple
      */
-    static int leastCommonMultiple(int a, int b) {
+    public static int leastCommonMultiple(int a, int b) {
         return Math.abs(a * b) / greatestCommonDivisor(a, b);
     }
 
@@ -103,6 +103,6 @@ public class RationalNumber {
 
     @Override
     public String toString() {
-        return "Rational{" + "numerator=" + numerator + ", denominator=" + denominator + '}';
+        return "RationalNumber{" + "numerator=" + numerator + ", denominator=" + denominator + '}';
     }
 }
