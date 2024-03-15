@@ -22,4 +22,32 @@ class RationalNumberTest {
         RationalNumber r2 = new RationalNumber(6, 3);
         assertEquals(new RationalNumber(4, 1), r1.multiply(r2));
     }
+
+    @Test
+    void getNumerator() {
+        RationalNumber rn = new RationalNumber(9, 3);
+        assertEquals(3, rn.getNumerator());
+    }
+
+    @Test
+    void getDenominator() {
+        RationalNumber rn = new RationalNumber(9, 3);
+        assertEquals(1, rn.getDenominator());
+    }
+
+    @Test
+    void testEquals() {
+        RationalNumber r1 = new RationalNumber(6, 3);
+        RationalNumber r2 = new RationalNumber(6, 3);
+        RationalNumber r3 = new RationalNumber(1, 10);
+
+        assertTrue(r1.equals(r2));
+        assertFalse(r1.equals(r3));
+    }
+
+    @Test
+    void testToString() {
+        RationalNumber r1 = new RationalNumber(1, 3);
+        assertEquals("RationalNumber{numerator=1, denominator=3}", r1.toString());
+    }
 }
