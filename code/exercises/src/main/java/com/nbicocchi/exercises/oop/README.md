@@ -67,8 +67,8 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
     class RationalNumber {
-        -int numerator
-        -int denominator
+        -final int numerator
+        -final int denominator
         +RationalNumber(int numerator, int denominator)
         +int getNumerator()
         +int getDenominator()
@@ -133,7 +133,7 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
     class Polygon {
-        -Point[] vertices
+        -final Point[] vertices
         +Polygon(Point[] vertices)
         +int getVerticesCount()
         +double getPerimeter()
@@ -184,7 +184,7 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
     class EnhancedResizableArray {
-        -static final int DEFAULT_CAPACITY
+        +static final int DEFAULT_CAPACITY
         -int[] v
         +EnhancedResizableArray()
         +int get(int index)
@@ -237,9 +237,9 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
     class Letter {
-        -String from
-        -String to
-        -StringBuilder lines
+        -final String from
+        -final String to
+        -final StringBuilder lines
         +Letter(String from, String to)
         +void addLine(String line)
         +String getText()

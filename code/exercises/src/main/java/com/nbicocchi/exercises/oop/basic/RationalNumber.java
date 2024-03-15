@@ -6,8 +6,8 @@ import java.util.Objects;
  * A rational number supporting addition and multiplication with other rational numbers.
  */
 public class RationalNumber {
-    final int numerator;
-    final int denominator;
+    private final int numerator;
+    private final int denominator;
 
     /**
      * Constructs and initializes a new rational number with the specified numerator and denominator

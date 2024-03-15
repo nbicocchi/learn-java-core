@@ -4,7 +4,7 @@ package com.nbicocchi.exercises.oop.basic;
  * A bank account storing a balance and supporting deposit and withdraw operations.
  */
 public class BankAccount {
-    double balance;
+    private double balance;
 
     /**
      * Constructs and initializes a BankAccount with zero balance

@@ -7,7 +7,7 @@ import java.util.Arrays;
  * An irregular polygon on a 2D plane capable of calculating its perimeter and area.
  */
 public class Polygon {
-    final Point[] vertices;
+    private final Point[] vertices;
 
     /**
      * Constructs a new polygon from an array of points representing its vertices
