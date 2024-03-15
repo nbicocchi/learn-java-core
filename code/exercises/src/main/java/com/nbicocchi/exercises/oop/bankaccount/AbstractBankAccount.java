@@ -103,12 +103,10 @@ public abstract class AbstractBankAccount implements BankAccount {
     /**
      * Withdraw an amount from the account. No fees are applied.
      * @param amount the amount to be withdrawn
-     * @return the amount withdrawn
      */
     @Override
-    public double withdraw(double amount) {
+    public void withdraw(double amount) {
         balance -= amount;
-        return amount;
     }
 
     /**
@@ -116,13 +114,11 @@ public abstract class AbstractBankAccount implements BankAccount {
      * Fees are applied according to the specific rules of each account.
      * @param other the other bank account
      * @param amount the amount to be transferred
-     * @return the amount transferred
      */
     @Override
-    public double transfer(BankAccount other, double amount) {
+    public void transfer(BankAccount other, double amount) {
         withdraw(amount);
         other.deposit(amount);
-        return amount;
     }
 
     /**
