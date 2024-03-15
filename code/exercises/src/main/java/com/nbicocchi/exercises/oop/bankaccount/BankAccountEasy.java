@@ -18,29 +18,27 @@ public class BankAccountEasy extends AbstractBankAccount {
      * Withdraws from the account a specified amount.
      * Amount are limited to the available balance.
      * @param amount the amount to be withdrawn
-     * @return the amount actually withdrawn
      */
     @Override
-    public double withdraw(double amount) {
-        double allowedAmount = Math.min(amount, balance);
-        return super.withdraw(allowedAmount);
+    public void withdraw(double amount) {
+        double allowedAmount = Math.min(amount, getBalance());
+        super.withdraw(allowedAmount);
     }
 
     /**
      * Transfers and amount on a different account. Only same-country transfers are allowed.
      * @param other the other bank account
      * @param amount the amount to be transferred
-     * @return the amount transferred
      */
     @Override
-    public double transfer(BankAccount other, double amount) {
+    public void transfer(BankAccount other, double amount) {
         String CountryCodeSrc = IBAN.substring(0, 2);
         String CountryCodeDst = other.getIBAN().substring(0, 2);
         if (!CountryCodeSrc.equals(CountryCodeDst)) {
             throw new IllegalArgumentException("International transfers invalid");
         }
-        double allowedAmount = withdraw(amount);
+        double allowedAmount = Math.min(amount, getBalance());
+        super.withdraw(allowedAmount);
         other.deposit(allowedAmount);
-        return allowedAmount;
     }
 }
