@@ -349,62 +349,61 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 
 ```mermaid
 classDiagram
-    
-class AbstractBankAccount {
-    <<abstract>>
-#String IBAN
-#double balance
-#double operationFee
-#double interestRate
-+AbstractBankAccount(String IBAN, double balance, double operationFee, double interestRate)
-+getIBAN(): String
-+setIBAN(String IBAN): void
-+getBalance(): double
-+setBalance(double balance): void
-+getOperationFee(): double
-+setOperationFee(double operationFee): void
-+getInterestRate(): double
-+setInterestRate(double interestRate): void
-+deposit(double amount): void
-+withdraw(double amount): double
-+transfer(BankAccount other, double amount): double
-+addInterest(): void
-+applyFee(): void
+class BankAccount {
+<<interface>>
++String getIBAN()
++void setIBAN(String IBAN)
++double getBalance()
++void setBalance(double balance)
++double getOperationFee()
++void setOperationFee(double operationFee)
++double getInterestRate()
++void setInterestRate(double interestRate)
++void deposit(double amount)
++double withdraw(double amount)
++double transfer(BankAccount other, double amount)
++void addInterest()
++void applyFee()
++static void checkIBAN(String IBAN)
 }
 
-class BankAccount {
-    <<interface>>
-+getIBAN(): String
-+setIBAN(String IBAN): void
-+getBalance(): double
-+setBalance(double balance): void
-+getOperationFee(): double
-+setOperationFee(double operationFee): void
-+getInterestRate(): double
-+setInterestRate(double interestRate): void
-+deposit(double amount): void
-+withdraw(double amount): double
-+transfer(BankAccount other, double amount): double
-+addInterest(): void
-+applyFee(): void
-+static checkIBAN(String IBAN) : void
+class AbstractBankAccount {
+    <<abstract>>
+-String IBAN
+-double balance
+-double operationFee
+-double interestRate
++AbstractBankAccount(String IBAN, double balance, double operationFee, double interestRate)
++String getIBAN()
++void setIBAN(String IBAN)
++double getBalance()
++void setBalance(double balance)
++double getOperationFee()
++void setOperationFee(double operationFee)
++double getInterestRate()
++void setInterestRate(double interestRate)
++void deposit(double amount)
++double withdraw(double amount)
++double transfer(BankAccount other, double amount)
++void addInterest()
++void applyFee()
 }
 
 class BankAccountEasy {
 +BankAccountEasy(String IBAN, double balance)
-+withdraw(double amount): double
-+transfer(BankAccount other, double amount): double
++double withdraw(double amount)
++double transfer(BankAccount other, double amount)
 }
 
 class BankAccountPro {
 +BankAccountPro(String IBAN, double balance)
-+deposit(double amount): void
-+withdraw(double amount): double
++void deposit(double amount)
++double withdraw(double amount)
 }
 
-AbstractBankAccount  ..>  BankAccount
-BankAccountEasy  --|>  AbstractBankAccount
-BankAccountPro  --|>  AbstractBankAccount
+BankAccountEasy --|> AbstractBankAccount
+BankAccountPro --|> AbstractBankAccount
+AbstractBankAccount ..|> BankAccount
 ```
 ---
 
