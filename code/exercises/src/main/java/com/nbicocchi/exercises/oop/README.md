@@ -171,7 +171,7 @@ classDiagram
 
 **[basic.EnhancedResizableArray]** Write a class named EnhancedResizableArray representing a resizable array. It internally keeps an int array, enlarges it when needed, and provides its key functionalities via a set of methods:
 
-* public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity of 4 items).
+* public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity of DEFAULT_CAPACITY items).
 * public int get(int index) returning the element at the specified index.
 * public void set(int index, int value) setting the element at the specified index with value. If the underlying int[] capacity is smaller than index, a new int[] (with a capacity of index * 2 items) have to be allocated. All the newly allocated elements have to be set to 0.
 * public boolean contains(int value) returning true if the specified value is contained within the internal array.
