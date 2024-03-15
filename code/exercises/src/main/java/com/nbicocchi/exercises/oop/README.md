@@ -181,7 +181,7 @@ class BankAccount {
 * public int get(int index) returning the element at the specified index.
 * public void set(int index, int value) setting the element at the specified index with value. If the underlying int[] capacity is smaller than index, a new int[] (with a capacity of index * 2 items) have to be allocated. All the newly allocated elements have to be set to 0.
 * public boolean contains(int value) returning true if the specified value is contained within the internal array.
-* public void fill(int) setting all the elements of the internal array to the specified value.
+* public void fill(int value) setting all the elements of the internal array to the specified value.
 * public int length() returning the capacity of the internal array.
 * public int[] toArray() returning a copy of the internal array.
 
@@ -368,8 +368,8 @@ class AbstractBankAccount {
   + setIBAN(String) void
   + setInterestRate(double) void
   + setOperationFee(double) void
-  + transfer(BankAccount, double) double
-  + withdraw(double) double
+  + transfer(BankAccount, double) void
+  + withdraw(double) void
 }
 class BankAccount {
   <<Interface>>
@@ -383,18 +383,18 @@ class BankAccount {
   + setIBAN(String) void
   + setInterestRate(double) void
   + setOperationFee(double) void
-  + transfer(BankAccount, double) double
-  + withdraw(double) double
+  + transfer(BankAccount, double) void
+  + withdraw(double) void
 }
 class BankAccountEasy {
   + BankAccountEasy(String, double)
-  + transfer(BankAccount, double) double
-  + withdraw(double) double
+  + transfer(BankAccount, double) void
+  + withdraw(double) void
 }
 class BankAccountPro {
   + BankAccountPro(String, double)
   + deposit(double) void
-  + withdraw(double) double
+  + withdraw(double) void
 }
 
 AbstractBankAccount  ..>  BankAccount
