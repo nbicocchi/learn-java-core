@@ -49,4 +49,12 @@ class RationalNumberTest {
         RationalNumber r1 = new RationalNumber(1, 3);
         assertEquals("RationalNumber{numerator=1, denominator=3}", r1.toString());
     }
+
+    @Test
+    void testHashCode() {
+        RationalNumber r1 = new RationalNumber(3, 4);
+        RationalNumber r2 = new RationalNumber(3, 4);
+
+        assertEquals(r2.hashCode(), r1.hashCode());
+    }
 }
