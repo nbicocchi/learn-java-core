@@ -31,6 +31,8 @@ public class Polygon {
      * @see "https://arachnoid.com/area_irregular_polygon/index.html"
      */
     public double getPerimeter() {
+        if(vertices.length <= 2) return 0;
+
         double perimeter = 0.0;
         for (int i = 0; i < vertices.length; i++) {
             int next = (i + 1) % vertices.length;
@@ -45,6 +47,8 @@ public class Polygon {
      * @see "https://arachnoid.com/area_irregular_polygon/index.html"
      */
     public double getArea() {
+        if(vertices.length <= 2) return 0;
+
         double area = 0.0;
         for (int i = 0; i < vertices.length; i++) {
             int next = (i + 1) % vertices.length;
