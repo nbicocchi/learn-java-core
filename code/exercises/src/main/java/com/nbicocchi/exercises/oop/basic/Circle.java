@@ -28,7 +28,13 @@ public class Circle {
     }
 
     public int getRadius() {
-        return radius;
+        if(radius > 0) {
+            return radius;
+        }
+        else {
+            System.out.println("The past radius is 0 or less, the circumference is degenerate");
+        }
+        
     }
 
     public void setRadius(int radius) {
