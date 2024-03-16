@@ -17,6 +17,28 @@ class CircleTest {
     }
 
     @Test
+    void getCenter() {
+        assertEquals(new Point(0, 0), circle.getCenter());
+    }
+
+    @Test
+    void getRadius() {
+        assertEquals(10, circle.getRadius());
+    }
+
+    @Test
+    void setCenter() {
+        circle.setCenter(new Point(1,2));
+        assertEquals(new Point(1, 2), circle.getCenter());
+    }
+
+    @Test
+    void setRadius() {
+        circle.setRadius(4);
+        assertEquals(4, circle.getRadius());
+    }
+
+    @Test
     void getArea() {
         assertEquals(314.1592653589793, circle.getArea(), DELTA);
     }
@@ -30,6 +52,7 @@ class CircleTest {
     void contains() {
         assertTrue(circle.contains(new Point(0, 0)));
         assertFalse(circle.contains(new Point(10, 10)));
+        assertTrue(circle.contains(new Point(0, 10)));
     }
 
     @Test
@@ -37,5 +60,9 @@ class CircleTest {
         circle.translate(10, 10);
         assertEquals(10, circle.getCenter().getX());
         assertEquals(10, circle.getCenter().getY());
+    }
+    @Test
+    void testToString() {
+        assertEquals("Circle{center=java.awt.Point[x=0,y=0], radius=10}", circle.toString());
     }
 }
