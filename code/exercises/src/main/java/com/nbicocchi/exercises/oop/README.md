@@ -126,6 +126,17 @@ The class provides the following methods:
 * public double getArea() returning the area of the polygon. 
 * public String toString().
 
+Polygons must have at least three vertices. We can throw an *exception* within the constructor to avoid the creation of invalid objects, as shown below:
+
+```
+public Polygon(Point[] vertices) {
+    if (vertices.length < 3) {
+        throw new IllegalArgumentException("Al least three vertices are required");
+    }
+    this.vertices = vertices;
+}
+```
+
 Refer to [this guide](https://arachnoid.com/area_irregular_polygon/index.html) for computing perimeter and area.
 
 Refer to the UML diagram, JavaDoc documentation, and unit tests for further inspiration.

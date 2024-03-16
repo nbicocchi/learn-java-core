@@ -13,7 +13,7 @@ class CircleTest {
 
     @BeforeEach
     void setUp() {
-        circle = new Circle(new Point(0, 0), 10);
+        circle = new Circle(new Point(5, 5), 10);
     }
 
     @Test
@@ -29,13 +29,15 @@ class CircleTest {
     @Test
     void contains() {
         assertTrue(circle.contains(new Point(0, 0)));
-        assertFalse(circle.contains(new Point(10, 10)));
+        assertTrue(circle.contains(new Point(10, 10)));
+        assertFalse(circle.contains(new Point(15, 15)));
+        assertFalse(circle.contains(new Point(-5, -5)));
     }
 
     @Test
     void translate() {
-        circle.translate(10, 10);
-        assertEquals(10, circle.getCenter().getX());
-        assertEquals(10, circle.getCenter().getY());
+        circle.translate(-10, -10);
+        assertEquals(-5, circle.getCenter().getX());
+        assertEquals(-5, circle.getCenter().getY());
     }
 }

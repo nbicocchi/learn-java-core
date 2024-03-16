@@ -14,6 +14,9 @@ public class Polygon {
      * @param vertices the Point array representing the vertices
      */
     public Polygon(Point[] vertices) {
+        if (vertices.length < 3) {
+            throw new IllegalArgumentException("Al least three vertices are required");
+        }
         this.vertices = vertices;
     }
 

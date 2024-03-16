@@ -57,7 +57,7 @@ public class Circle {
      * @return true if the point is inside the circle
      */
     public boolean contains(Point point) {
-        return Math.hypot(point.x - center.x, point.y - center.y) < radius;
+        return center.distance(point) < radius;
     }
 
     /**

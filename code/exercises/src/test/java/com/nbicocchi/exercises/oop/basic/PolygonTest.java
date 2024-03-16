@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PolygonTest {
     public static final double DELTA = 1e-06;
@@ -16,6 +17,12 @@ class PolygonTest {
     void setUp() {
         square = new Polygon(new Point[]{new Point(0,0), new Point(0, 10), new Point(10,10), new Point(10, 0)});
         triangle = new Polygon(new Point[]{new Point(0,0), new Point(10, 0), new Point(5,10)});
+    }
+
+    @Test
+    void testFalsePolygon() {
+        assertThrows(IllegalArgumentException.class, () -> new Polygon(new Point[]{new Point(0,0), new Point(10, 0)}));
+        assertThrows(IllegalArgumentException.class, () -> new Polygon(new Point[]{new Point(0,0)}));
     }
 
     @Test
