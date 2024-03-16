@@ -6,7 +6,7 @@ import java.util.Objects;
  * A rational number supporting addition and multiplication with other rational numbers.
  */
 public class RationalNumber {
-    int numerator, denominator;
+    final int numerator, denominator;
 
     /**
      * Constructs and initializes a new rational number with the specified numerator and denominator different form 0
