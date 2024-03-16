@@ -32,7 +32,7 @@ public class Circle {
             return radius;
         }
         else {
-            System.out.println("The past radius is 0 or less, the circumference is degenerate");
+            System.out.println("The radius is 0 or less, the circumference is degenerate");
         }
         
     }
