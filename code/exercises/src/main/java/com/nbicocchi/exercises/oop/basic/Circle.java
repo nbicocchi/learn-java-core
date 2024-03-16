@@ -6,8 +6,8 @@ import java.awt.*;
  * A class representing a circle on a 2D plane.
  */
 public class Circle {
-    Point center;
-    int radius;
+    private Point center;
+    private int radius;
 
     /**
      * Constructs and initializes a new circle with a specified center and radius

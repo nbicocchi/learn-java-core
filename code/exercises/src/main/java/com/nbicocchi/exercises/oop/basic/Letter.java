@@ -6,9 +6,9 @@ package com.nbicocchi.exercises.oop.basic;
  * Once all the components have been set, the getText() methods returns the letter in a standard format.
  */
 public class Letter {
-    String from;
-    String to;
-    StringBuilder lines;
+    private final String from;
+    private final String to;
+    private final StringBuilder lines;
 
     /**
      * Constructs and initializes a letter with a sender and a recipient

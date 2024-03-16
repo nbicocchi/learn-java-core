@@ -67,8 +67,8 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
     class RationalNumber {
-        -int numerator
-        -int denominator
+        -final int numerator
+        -final int denominator
         +RationalNumber(int numerator, int denominator)
         +int getNumerator()
         +int getDenominator()
@@ -144,7 +144,7 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
     class Polygon {
-        -Point[] vertices
+        -final Point[] vertices
         +Polygon(Point[] vertices)
         +int getVerticesCount()
         +double getPerimeter()
@@ -182,7 +182,7 @@ classDiagram
 
 **[basic.EnhancedResizableArray]** Write a class named EnhancedResizableArray representing a resizable array. It internally keeps an int array, enlarges it when needed, and provides its key functionalities via a set of methods:
 
-* public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity of 4 items).
+* public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity of DEFAULT_CAPACITY items).
 * public int get(int index) returning the element at the specified index.
 * public void set(int index, int value) setting the element at the specified index with value. If the underlying int[] capacity is smaller than index, a new int[] (with a capacity of index * 2 items) have to be allocated. All the newly allocated elements have to be set to 0.
 * public boolean contains(int value) returning true if the specified value is contained within the internal array.
@@ -195,7 +195,7 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
     class EnhancedResizableArray {
-        -static final int DEFAULT_CAPACITY
+        +static final int DEFAULT_CAPACITY
         -int[] v
         +EnhancedResizableArray()
         +int get(int index)
@@ -248,9 +248,9 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
     class Letter {
-        -String from
-        -String to
-        -StringBuilder lines
+        -final String from
+        -final String to
+        -final StringBuilder lines
         +Letter(String from, String to)
         +void addLine(String line)
         +String getText()
