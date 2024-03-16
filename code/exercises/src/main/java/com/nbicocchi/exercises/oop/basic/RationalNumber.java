@@ -6,20 +6,24 @@ import java.util.Objects;
  * A rational number supporting addition and multiplication with other rational numbers.
  */
 public class RationalNumber {
-    private final int numerator;
-    private final int denominator;
+    int numerator, denominator;
 
     /**
-     * Constructs and initializes a new rational number with the specified numerator and denominator
+     * Constructs and initializes a new rational number with the specified numerator and denominator different form 0
      * @param numerator the numerator ot the rational
      * @param denominator the denominator ot the rational
      */
-    public RationalNumber(int numerator, int denominator) {
-        int gcm = greatestCommonDivisor(numerator, denominator);
-        this.numerator = numerator / gcm;
-        this.denominator = denominator / gcm;
-    }
+    public RationalNumber(int  numerator, int denominator) {
+        if(denominator != 0) {
+            int commonDivisor = greatestCommonDivisor(numerator,denominator);
+            setNumerator(numerator/commonDivisor);
+            setDenominator(denominator/commonDivisor);
+        }
+        else {
+            System.out.println("You cannot have a rational number with denominator 0");
+        }
 
+    }
     /**
      * Returns the numerator of the rational
      * @return the numerator
@@ -29,6 +33,13 @@ public class RationalNumber {
     }
 
     /**
+     * Initialize the numerator of the rational number
+     * @param numerator
+     */
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
+    }
+    /**
      * Returns the denominator of the rational
      * @return the denominator
      */
@@ -37,25 +48,29 @@ public class RationalNumber {
     }
 
     /**
+     * check if the denominator is different from 0 then initialize the denominator of the rational number
+     * @param denominator
+     */
+    public void setDenominator(int denominator) {
+            this.denominator = denominator;
+    }
+    /**
      * Adds one rational to the current rational
-     * @param o the rational to be added
+     * @param rationalNumber the rational to be added
      * @return a new rational representing the sum
      */
-    public RationalNumber add(RationalNumber o) {
-        int lcm = leastCommonMultiple(denominator, o.getDenominator());
-        int num = numerator * (lcm / denominator) + o.getNumerator() * (lcm / o.getDenominator());
-        return new RationalNumber(num, lcm);
+    public RationalNumber add(RationalNumber rationalNumber) {
+        int resDenominator = leastCommonMultiple(this.denominator, rationalNumber.getDenominator());
+        int resNumerator = (resDenominator/this.denominator*this.numerator) + (resDenominator/rationalNumber.denominator*rationalNumber.numerator);
+        return (new RationalNumber(resNumerator, resDenominator) );
     }
-
     /**
      * Multiples one rational to the current rational
-     * @param o the rational to be multiplied
+     * @param rationalNumber the rational to be multiplied
      * @return a new rational representing the product
      */
-    public RationalNumber multiply(RationalNumber o) {
-        int num = numerator * o.getNumerator();
-        int den = denominator * o.getDenominator();
-        return new RationalNumber(num, den);
+    public RationalNumber multiply(RationalNumber rationalNumber) {
+        return new RationalNumber(this.numerator*rationalNumber.getNumerator(), this.denominator*rationalNumber.getDenominator());
     }
 
     /**
@@ -67,11 +82,11 @@ public class RationalNumber {
     public static int greatestCommonDivisor(int a, int b) {
         int max = Math.max(a, b);
         int min = Math.min(a, b);
-
         int rest = max % min;
         if (max % min == 0) {
             return min;
-        } else {
+        }
+        else {
             return greatestCommonDivisor(min, rest);
         }
     }
@@ -87,22 +102,26 @@ public class RationalNumber {
     }
 
     @Override
+    public String toString() {
+        return "RationalNumber{" +
+                "numerator=" + numerator +
+                ", denominator=" + denominator +
+                '}';
+    }
+    @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o) {
             return true;
-        if (o == null || getClass() != o.getClass())
+        }
+        if (!(o instanceof RationalNumber that)) {
             return false;
-        RationalNumber that = (RationalNumber) o;
-        return numerator == that.numerator && denominator == that.denominator;
+        }
+        return getNumerator() == that.getNumerator() && getDenominator() == that.getDenominator();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numerator, denominator);
+        return Objects.hash(getNumerator(), getDenominator());
     }
 
-    @Override
-    public String toString() {
-        return "RationalNumber{" + "numerator=" + numerator + ", denominator=" + denominator + '}';
-    }
 }
