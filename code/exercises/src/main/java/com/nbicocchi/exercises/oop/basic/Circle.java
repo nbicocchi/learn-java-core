@@ -16,7 +16,7 @@ public class Circle {
      */
     public Circle(Point center, int radius) {
         this.center = center;
-        this.radius = radius;
+        setRadius(radius);
     }
 
     public Point getCenter() {
@@ -32,9 +32,13 @@ public class Circle {
     }
 
     public void setRadius(int radius) {
-        this.radius = radius;
+        if(radius > 0) {
+            this.radius = radius;
+        }
+        else {
+            System.out.println("The radius is 0 or less, so the circumference is degenerate");
+        }
     }
-
     /**
      * Returns the area of the circle
      * @return the area of the circle
@@ -42,7 +46,6 @@ public class Circle {
     public double getArea() {
         return Math.PI * radius * radius;
     }
-
     /**
      * Returns the perimeter of the circle
      * @return the perimeter of the circle
@@ -50,23 +53,24 @@ public class Circle {
     public double getPerimeter() {
         return 2 * Math.PI * radius;
     }
-
     /**
      * Verifies if a point is inside the circle
      * @param point the point to be verified
      * @return true if the point is inside the circle
      */
     public boolean contains(Point point) {
-        return Math.hypot(point.x - center.x, point.y - center.y) < radius;
+        if(point.distance(center) <= this.radius) {
+            return true;
+        }
+        return false;
     }
-
     /**
      * Moves the circle of a 2D plane
      * @param dx the X movement
      * @param dy the Y movement
      */
     public void translate(int dx, int dy) {
-        center.translate(dx, dy);
+        center.setLocation(dx,dy);
     }
 
     @Override
