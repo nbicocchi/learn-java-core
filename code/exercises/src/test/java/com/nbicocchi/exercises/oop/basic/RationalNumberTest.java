@@ -39,9 +39,11 @@ class RationalNumberTest {
         RationalNumber r1 = new RationalNumber(6, 3);
         RationalNumber r2 = new RationalNumber(6, 3);
         RationalNumber r3 = new RationalNumber(1, 10);
-
+        RationalNumber r1reference = r1;
         assertTrue(r1.equals(r2));
         assertFalse(r1.equals(r3));
+        assertEquals(r1, r1reference);
+        assertFalse(r1.equals(null));
     }
 
     @Test
