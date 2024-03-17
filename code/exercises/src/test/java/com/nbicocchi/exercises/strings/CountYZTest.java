@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CountOccurrencesYZTest {
+class CountYZTest {
     @Test
     void countYZ() {
         assertEquals(2, CountYZ.countYZ("fez day"));
