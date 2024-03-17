@@ -34,9 +34,7 @@ public class EnhancedResizableArray {
      */
     public void set(int index, int value) {
         if (index >= v.length) {
-            int[] tmp = new int[index * 2];
-            System.arraycopy(v, 0, tmp, 0, v.length);
-            v = tmp;
+            v = Arrays.copyOf(v, index*2);
         }
         v[index] = value;
     }
