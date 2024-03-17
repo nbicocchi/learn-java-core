@@ -25,7 +25,6 @@ class CircleTest {
     void setCenter(){
         circle.setCenter(new Point(6,6));
         assertEquals(circle.getCenter(), new Point(6,6));
-        circle.setCenter(new Point(5,5));
     }
     @Test
     void getPerimeter() {
@@ -41,7 +40,6 @@ class CircleTest {
     void setRadius(){
         circle.setRadius(20);
         assertEquals(circle.getRadius(), 20);
-        circle.setRadius(10);
     }
     @Test
     void contains() {

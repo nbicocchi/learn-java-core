@@ -8,23 +8,23 @@ class BankAccountTest {
 
     @Test
     void getBalance() {
-        BankAccount ba = new BankAccount(1000);
-        assertEquals(1000, ba.getBalance());
+        BankAccount bankAccount = new BankAccount(1000);
+        assertEquals(1000, bankAccount.getBalance());
         BankAccount emptyBankAccount = new BankAccount();
         assertEquals(0, emptyBankAccount.getBalance());
     }
 
     @Test
     void deposit() {
-        BankAccount ba = new BankAccount(1000);
-        ba.deposit(1000);
-        assertEquals(2000, ba.getBalance());
+        BankAccount bankAccount = new BankAccount(1000);
+        bankAccount.deposit(1000);
+        assertEquals(2000, bankAccount.getBalance());
     }
 
     @Test
     void withdraw() {
-        BankAccount ba = new BankAccount(1000);
-        ba.withdraw(1000);
-        assertEquals(0, ba.getBalance());
+        BankAccount bankAccount = new BankAccount(1000);
+        bankAccount.withdraw(1000);
+        assertEquals(0, bankAccount.getBalance());
     }
 }
