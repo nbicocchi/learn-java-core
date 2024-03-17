@@ -10,6 +10,8 @@ class BankAccountTest {
     void getBalance() {
         BankAccount ba = new BankAccount(1000);
         assertEquals(1000, ba.getBalance());
+        BankAccount emptyBankAccount = new BankAccount();
+        assertEquals(0, emptyBankAccount.getBalance());
     }
 
     @Test

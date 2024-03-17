@@ -42,4 +42,10 @@ class PolygonTest {
         assertEquals(100, square.getArea(), DELTA);
         assertEquals(50, triangle.getArea(), DELTA);
     }
+
+    @Test
+    void testToString(){
+        assertEquals("Polygon{vertices=[java.awt.Point[x=0,y=0], java.awt.Point[x=0,y=10], java.awt.Point[x=10,y=10], java.awt.Point[x=10,y=0]]}", square.toString());
+        assertEquals("Polygon{vertices=[java.awt.Point[x=0,y=0], java.awt.Point[x=10,y=0], java.awt.Point[x=5,y=10]]}", triangle.toString());
+    }
 }
