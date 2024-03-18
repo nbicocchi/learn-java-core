@@ -10,11 +10,17 @@ public class CanBalance {
     }
 
     public static boolean canBalance(int[] v) {
-        if(v.length < 2)
+        if (v.length < 2) {
             return false;
-        for(int splitIndex = 1; splitIndex < v.length; splitIndex++){
-            if(sum(v, 0, splitIndex) == sum(v, splitIndex, v.length))
+        }
+        int sumBegin = sum(v, 0, 1);
+        int sumEnd = sum(v, 1, v.length);
+        for (int i = 1; i < v.length; i++) {
+            if (sumBegin == sumEnd) {
                 return true;
+            }
+            sumBegin += v[i];
+            sumEnd -= v[i];
         }
         return false;
     }
