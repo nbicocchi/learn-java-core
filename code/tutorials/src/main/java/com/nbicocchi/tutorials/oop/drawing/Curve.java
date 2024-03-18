@@ -1,4 +1,4 @@
-package com.nbicocchi.tutorials.oop;
+package com.nbicocchi.tutorials.oop.drawing;
 
 public class Curve {
     public String draw() {
