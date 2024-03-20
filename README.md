@@ -150,3 +150,5 @@ under the LICENSE file in the root directory of this source tree.
 * Thread synchronisation (synchronised/wait/notify)
 * ExecutorService
 * Callable/Future/Task
+
+*"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." --- Martin Fowler*
