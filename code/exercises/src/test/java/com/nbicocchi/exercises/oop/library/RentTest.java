@@ -12,12 +12,12 @@ class RentTest {
     void isExpired() {
         Rent r1 = new Rent(
                 new Book("Effective Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi", "ID1456"),
                 LocalDate.of(2022, 3, 1),
                 LocalDate.of(2022, 7, 1));
         Rent r2 = new Rent(
                 new Book("Big Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi", "ID1456"),
                 LocalDate.of(2023, 3, 1),
                 LocalDate.of(2023, 7, 1));
         assertTrue(r1.isExpired(LocalDate.of(2023, 4, 1)));
@@ -28,17 +28,17 @@ class RentTest {
     void equalsHashCode() {
         Rent r1 = new Rent(
                 new Book("Big Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi","ID1456"),
                 LocalDate.of(2023, 3, 1),
                 LocalDate.of(2023, 7, 1));
         Rent r2 = new Rent(
                 new Book("Big Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi","ID1456"),
                 LocalDate.of(2023, 3, 1),
                 LocalDate.of(2023, 7, 1));
         Rent r3 = new Rent(
                 new Book("Big Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi","ID1456"),
                 LocalDate.of(2022, 3, 1),
                 LocalDate.of(2022, 7, 1));
         assertEquals(r1, r2);

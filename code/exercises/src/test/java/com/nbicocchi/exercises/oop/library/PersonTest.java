@@ -8,9 +8,9 @@ class PersonTest {
 
     @Test
     void equalsHashCode() {
-        Person p1 = new Person("ID123", "Hello", "World");
-        Person p2 = new Person("ID123", "Hello", "World");
-        Person p3 = new Person("ID123", "Hi", "World");
+        Person p1 = new Person("Hello", "World", "ID123");
+        Person p2 = new Person("Hello", "World", "ID123");
+        Person p3 = new Person("Hi", "World", "ID123");
 
         assertEquals(p1, p2);
         assertNotEquals(p1, p3);
