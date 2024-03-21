@@ -13,7 +13,7 @@ class LibraryTest {
         Library library = new Library();
         Rent r1 = new Rent(
                 new Book("Effective Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi", "ID1456"),
                 LocalDate.of(2022, 3, 1),
                 LocalDate.of(2022, 7, 1));
         assertTrue(library.addRent(r1));
@@ -24,12 +24,12 @@ class LibraryTest {
         Library library = new Library();
         Rent r1 = new Rent(
                 new Book("Effective Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi", "ID1456"),
                 LocalDate.of(2022, 3, 1),
                 LocalDate.of(2022, 7, 1));
         Rent r2 = new Rent(
                 new Book("Effective Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi", "ID1456"),
                 LocalDate.of(2022, 3, 1),
                 LocalDate.of(2022, 7, 1));
         library.addRent(r1);
@@ -42,17 +42,17 @@ class LibraryTest {
         Library library = new Library();
         Rent r1 = new Rent(
                 new Book("Effective Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi","ID1456"),
                 LocalDate.of(2022, 3, 1),
                 LocalDate.of(2022, 7, 1));
         Rent r2 = new Rent(
                 new Book("Effective Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi","ID1456"),
                 LocalDate.of(2024, 3, 1),
                 LocalDate.of(2024, 7, 1));
         Rent r3 = new Rent(
                 new Book("Effective Java", 2019, 1350),
-                new Person("ID1456", "Nicola", "Bicocchi"),
+                new Person("Nicola", "Bicocchi","ID1456"),
                 LocalDate.of(2024, 3, 1),
                 LocalDate.of(2024, 9, 1));
         library.addRent(r1);
