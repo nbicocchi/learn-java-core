@@ -17,7 +17,7 @@ public interface PhoneBook {
      *
      * @param person The person to be added to the phone book
      *
-     * @return true is the phone book has been modified
+     * @return true if the phone book has been modified
      */
     boolean addPerson(Person person);
 
