@@ -17,6 +17,7 @@ abstract class PolyTestBase {
         assertEquals(p, pc);
         assertNotEquals(p, pb);
         assertNotEquals(p, pd);
+        assertNotEquals(p, null);
     }
 
     @Test

@@ -24,9 +24,10 @@ public abstract class AbstractPoly implements Poly {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) {
-            return false;
-        }
+        if(this == o) return true;
+
+        // This check will still fail if
+        // the object o is null
         if (!(o instanceof Poly p)) {
             return false;
         }
