@@ -8,6 +8,11 @@ package com.nbicocchi.exercises.oop.phonebook;
  */
 public interface PhoneBook {
     /**
+     * The maximum number of people that the phone book can store
+     */
+    public static final int MAX_PERSONS = 256;
+
+    /**
      * Adds a person to the phone book
      *
      * @param person The person to be added to the phone book

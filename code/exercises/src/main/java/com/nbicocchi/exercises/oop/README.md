@@ -312,14 +312,14 @@ class Person {
 }
 class PhoneBook {
   <<Interface>>
+  + static final int MAX_PERSONS = 256
   + addPerson(Person) boolean
   + removePerson(Person) boolean
   + searchByLastname(String) Person[]
   + searchByNameAndLastname(String, String) Person[]
 }
 class PhoneBookArray {
-  + static final int MAX_PERSONS = 256
-  ~ Person[] phoneBook
+  ~ final Person[] phoneBook
   + PhoneBookArray() 
   + addPerson(Person) boolean
   + removePerson(Person) boolean
@@ -327,8 +327,7 @@ class PhoneBookArray {
   + searchByNameAndLastname(String, String) Person[]
 }
 class PhoneBookList {
-  + static final int MAX_PERSONS = 256
-  ~ ArrayList~Person~ phoneBook
+  ~ final ArrayList~Person~ phoneBook
   + PhoneBookList() 
   + addPerson(Person) boolean
   + removePerson(Person) boolean

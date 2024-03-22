@@ -9,7 +9,6 @@ import java.util.ArrayList;
  * @see PhoneBook Interface
  */
 public class PhoneBookList implements PhoneBook {
-    public static final int MAX_PERSONS = 256;
     final ArrayList<Person> phoneBook;
 
     public PhoneBookList() {

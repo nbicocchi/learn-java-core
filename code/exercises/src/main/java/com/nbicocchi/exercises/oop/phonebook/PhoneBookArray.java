@@ -9,7 +9,6 @@ import java.util.Arrays;
  * @see PhoneBook Interface
  */
 public class PhoneBookArray implements PhoneBook {
-    public static final int MAX_PERSONS = 256;
     final Person[] phoneBook;
 
     public PhoneBookArray() {
