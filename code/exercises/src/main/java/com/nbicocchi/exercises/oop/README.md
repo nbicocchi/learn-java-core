@@ -296,8 +296,8 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 classDiagram
 direction BT
 class Person {
-  ~ String lastname
   ~ String name
+  ~ String lastname
   ~ String phone
   + Person(String, String, String) 
   + getLastname() String
