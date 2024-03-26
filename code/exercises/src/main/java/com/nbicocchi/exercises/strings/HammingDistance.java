@@ -3,14 +3,14 @@ package com.nbicocchi.exercises.strings;
 public class HammingDistance {
 
     /**
-     * calculate the hamming distance between two strings of equal length
+     * Calculate the hamming distance between two strings of equal length
      *
      * @param s1 the first string
      * @param s2 the second string
      * @return {@code int} hamming distance
-     * @throws Exception
+     * @throws IllegalArgumentException
      */
-    public static int hammingDistance(String s1, String s2) throws Exception {
+    public static int hammingDistance(String s1, String s2) {
         if (s1.length() != s2.length()) {
             throw new IllegalArgumentException("String lengths must be equal");
         }

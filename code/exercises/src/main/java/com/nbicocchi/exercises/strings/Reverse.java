@@ -7,7 +7,5 @@ public class Reverse {
             sb.append(s.charAt(i));
         }
         return sb.toString();
-        // more compact version
-        // return new StringBuilder(s).reverse().toString();
     }
 }
