@@ -252,3 +252,26 @@ public static int sumDigits(String string);
 where:
 
 * **string** is the string to be processed
+
+---
+
+**[HammingDistance.java]** In information theory, the Hamming distance between two strings **of equal length** is the number of positions at which the corresponding symbols are different.
+https://en.wikipedia.org/wiki/Hamming_distance
+
+
+Examples:
+
+* hammingDistance("nicola", "n1cola") → 1
+* hammingDistance("nicola", "nicola") → 0
+* hammingDistance("nicola", "zzzzzz") → 6
+
+The method has the following prototype:
+
+```
+public static int hammingDistance(String s1, String s2);
+```
+
+where:
+
+* **s1** is the first string
+* **s2** is the second string
