@@ -217,8 +217,8 @@ where:
 
 ---
 
-**[FizzBuzz.java]** Consider the series of numbers beginning at **start** and running up to but not including **end**.
-For example start=1 and end=5 gives the series 1, 2, 3, 4. Return a new String[] array (see Integer.toString()) containing:
+**[FizzBuzz.java]** Consider the series of numbers beginning at **start** and running up to but not including **end**. For example start=1 and end=5 gives the series 1, 2, 3, 4. Return a new String[] array (see Integer.toString()) containing:
+
 * *Fizz* for multiples of 3;
 * *Buzz* for multiples of 5;
 * *FizzBuzz* for multiple of both 3 and 5;
@@ -231,6 +231,7 @@ Examples:
 * fizzBuzz(1, 6) → ["1", "2", "Fizz", "4", "Buzz"]
 * fizzBuzz(1, 8) → ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7"]
 * fizzBuzz(12, 17) → ["Fizz", "13", "14", "FizzBuzz", "16"]
+* fizzBuzz(8, 1) → []
 
 The method has the following prototype:
 
