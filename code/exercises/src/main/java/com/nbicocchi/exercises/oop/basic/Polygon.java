@@ -1,19 +1,19 @@
 package com.nbicocchi.exercises.oop.basic;
 
-import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.Arrays;
 
 /**
  * An irregular polygon on a 2D plane capable of calculating its perimeter and area.
  */
 public class Polygon {
-    private final Point[] vertices;
+    private final Point2D.Double[] vertices;
 
     /**
      * Constructs a new polygon from an array of points representing its vertices
      * @param vertices the Point array representing the vertices
      */
-    public Polygon(Point[] vertices) {
+    public Polygon(Point2D.Double[] vertices) {
         if (vertices.length < 3) {
             throw new IllegalArgumentException("Al least three vertices are required");
         }

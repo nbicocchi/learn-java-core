@@ -360,55 +360,55 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
 class BankAccount {
-<<interface>>
-+String getIBAN()
-+void setIBAN(String IBAN)
-+double getBalance()
-+void setBalance(double balance)
-+double getOperationFee()
-+void setOperationFee(double operationFee)
-+double getInterestRate()
-+void setInterestRate(double interestRate)
-+void deposit(double amount)
-+double withdraw(double amount)
-+double transfer(BankAccount other, double amount)
-+void addInterest()
-+void applyFee()
-+static void checkIBAN(String IBAN)
+    <<interface>>
+    +String getIBAN()
+    +void setIBAN(String IBAN)
+    +double getBalance()
+    +void setBalance(double balance)
+    +double getOperationFee()
+    +void setOperationFee(double operationFee)
+    +double getInterestRate()
+    +void setInterestRate(double interestRate)
+    +void deposit(double amount)
+    +double withdraw(double amount)
+    +double transfer(BankAccount other, double amount)
+    +void addInterest()
+    +void applyFee()
+    +static void checkIBAN(String IBAN)
 }
 
 class AbstractBankAccount {
     <<abstract>>
--String IBAN
--double balance
--double operationFee
--double interestRate
-+AbstractBankAccount(String IBAN, double balance, double operationFee, double interestRate)
-+String getIBAN()
-+void setIBAN(String IBAN)
-+double getBalance()
-+void setBalance(double balance)
-+double getOperationFee()
-+void setOperationFee(double operationFee)
-+double getInterestRate()
-+void setInterestRate(double interestRate)
-+void deposit(double amount)
-+double withdraw(double amount)
-+double transfer(BankAccount other, double amount)
-+void addInterest()
-+void applyFee()
+    # String IBAN
+    # double balance
+    # double operationFee
+    # double interestRate
+    # AbstractBankAccount(String IBAN, double balance, double operationFee, double interestRate)
+    +String getIBAN()
+    +void setIBAN(String IBAN)
+    +double getBalance()
+    +void setBalance(double balance)
+    +double getOperationFee()
+    +void setOperationFee(double operationFee)
+    +double getInterestRate()
+    +void setInterestRate(double interestRate)
+    +void deposit(double amount)
+    +double withdraw(double amount)
+    +double transfer(BankAccount other, double amount)
+    +void addInterest()
+    +void applyFee()
 }
 
 class BankAccountEasy {
-+BankAccountEasy(String IBAN, double balance)
-+double withdraw(double amount)
-+double transfer(BankAccount other, double amount)
+    +BankAccountEasy(String IBAN, double balance)
+    +double withdraw(double amount)
+    +double transfer(BankAccount other, double amount)
 }
 
 class BankAccountPro {
-+BankAccountPro(String IBAN, double balance)
-+void deposit(double amount)
-+double withdraw(double amount)
+    +BankAccountPro(String IBAN, double balance)
+    +void deposit(double amount)
+    +double withdraw(double amount)
 }
 
 BankAccountEasy --|> AbstractBankAccount
@@ -433,11 +433,24 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
 direction BT
+class Computable {
+    <<Interface>>
+    + getArea() double
+    + getPerimeter() double
+}
+class Movable {
+    <<Interface>>
+    + move(Point) void
+}
+class Resizable {
+    <<Interface>>
+    + resize(double) void
+}
 class AbstractShape {
   <<abstract>>
-  ~ String color
-  ~ String id
-  + AbstractShape(String, String) 
+  # String color
+  # String id
+  # AbstractShape(String, String) 
   + getArea() double
   + getColor() String
   + getId() String
@@ -475,19 +488,6 @@ class Rectangle {
   + setUpperLeft(Point) void
   + toString() String
 }
-class Computable {
-  <<Interface>>
-  + getArea() double
-  + getPerimeter() double
-}
-class Movable {
-  <<Interface>>
-  + move(Point) void
-}
-class Resizable {
-  <<Interface>>
-  + resize(double) void
-}
 
 AbstractShape  ..>  Computable 
 AbstractShape  ..>  Movable 
@@ -515,10 +515,16 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
 direction BT
+class Poly {
+    <<Interface>>
+    + coefficient(int) double
+    + coefficients() double[]
+    + degree() int
+    + derivative() Poly
+}
 class AbstractPoly {
   <<abstract>>
-  + AbstractPoly() 
-  ~ derive() double[]
+  # derive() double[]
   + equals(Object) boolean
   + hashCode() int
   + toString() String
@@ -534,13 +540,6 @@ class ArrayPoly {
 class ListPoly {
   ~ ArrayList~Double~ coefficients
   + ListPoly(double[]) 
-  + coefficient(int) double
-  + coefficients() double[]
-  + degree() int
-  + derivative() Poly
-}
-class Poly {
-  <<Interface>>
   + coefficient(int) double
   + coefficients() double[]
   + degree() int
@@ -570,21 +569,21 @@ classDiagram
 direction BT
 class Item {
     <<Abstract>>
-    ~ String title
-    ~ int year
-    + Item(String, int)
+    # String title
+    # int year
+    # Item(String, int)
     + getTitle() String
     + getYear() int
     + setTitle(String) void
     + setYear(int) void
-    + equals(Object) boolean
-    + hashCode() int
 }
 class Book {
     ~ int pages
     + Book(String, int, int)
     + getPages() int
     + setPages(int) void
+    + equals(Object) boolean
+    + hashCode() int
     + toString() String
 }
 class Dvd {
@@ -592,6 +591,8 @@ class Dvd {
     + Dvd(String, int, int)
     + getLength() int
     + setLength(int) void
+    + equals(Object) boolean
+    + hashCode() int
     + toString() String
 }
 class Person {

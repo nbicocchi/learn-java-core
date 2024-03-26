@@ -30,12 +30,12 @@ public class Rectangle extends AbstractShape {
 
     @Override
     public double getPerimeter() {
-        return ((bottomRight.x - upperLeft.x) + (upperLeft.y - bottomRight.y)) * 2;
+        return ((bottomRight.x - upperLeft.x) + (upperLeft.y - bottomRight.y)) * 2.0;
     }
 
     @Override
     public double getArea() {
-        return (bottomRight.x - upperLeft.x) * (upperLeft.y - bottomRight.y);
+        return (bottomRight.x - upperLeft.x) * (double)(upperLeft.y - bottomRight.y);
     }
 
     @Override

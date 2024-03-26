@@ -5,7 +5,7 @@ import java.util.Objects;
 public abstract class MyAbstractCollection implements MyCollection {
     int size;
 
-    public MyAbstractCollection() {
+    protected MyAbstractCollection() {
         this.size = 0;
     }
 

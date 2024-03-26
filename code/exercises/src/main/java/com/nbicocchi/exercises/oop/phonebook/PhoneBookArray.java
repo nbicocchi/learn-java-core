@@ -36,11 +36,9 @@ public class PhoneBookArray implements PhoneBook {
     @Override
     public boolean removePerson(Person person) {
         for (int i = 0; i < MAX_PERSONS; i++) {
-            if (phoneBook[i] != null) {
-                if (phoneBook[i].equals(person)) {
-                    phoneBook[i] = null;
-                    return true;
-                }
+            if (phoneBook[i] != null && phoneBook[i].equals(person)) {
+                phoneBook[i] = null;
+                return true;
             }
         }
         return false;
@@ -51,10 +49,8 @@ public class PhoneBookArray implements PhoneBook {
         int k = 0;
         Person[] tmp = new Person[MAX_PERSONS];
         for (int i = 0; i < MAX_PERSONS; i++) {
-            if (phoneBook[i] != null) {
-                if (phoneBook[i].getLastname().equals(lastname)) {
-                    tmp[k++] = phoneBook[i];
-                }
+            if (phoneBook[i] != null && phoneBook[i].getLastname().equals(lastname)) {
+                tmp[k++] = phoneBook[i];
             }
         }
         return Arrays.copyOf(tmp, k);
@@ -65,10 +61,8 @@ public class PhoneBookArray implements PhoneBook {
         int k = 0;
         Person[] tmp = new Person[MAX_PERSONS];
         for (int i = 0; i < MAX_PERSONS; i++) {
-            if (phoneBook[i] != null) {
-                if (phoneBook[i].getName().equals(name) && phoneBook[i].getLastname().equals(lastname)) {
-                    tmp[k++] = phoneBook[i];
-                }
+            if (phoneBook[i] != null && phoneBook[i].getName().equals(name) && phoneBook[i].getLastname().equals(lastname)) {
+                tmp[k++] = phoneBook[i];
             }
         }
         return Arrays.copyOf(tmp, k);

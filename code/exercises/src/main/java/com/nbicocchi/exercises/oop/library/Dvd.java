@@ -1,5 +1,7 @@
 package com.nbicocchi.exercises.oop.library;
 
+import java.util.Objects;
+
 public class Dvd extends Item {
     int length;
 
@@ -14,6 +16,21 @@ public class Dvd extends Item {
 
     public void setLength(int length) {
         this.length = length;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Dvd dvd = (Dvd) o;
+        return year == dvd.year && length == dvd.length && Objects.equals(title, dvd.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, year, length);
     }
 
     @Override

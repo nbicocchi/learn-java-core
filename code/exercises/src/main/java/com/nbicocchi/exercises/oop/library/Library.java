@@ -2,6 +2,7 @@ package com.nbicocchi.exercises.oop.library;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A library, intended as collection of Rents
@@ -39,7 +40,7 @@ public class Library {
      * @param now the specified date
      * @return a list of expired rents
      */
-    public ArrayList<Rent> getExpired(LocalDate now) {
+    public List<Rent> getExpired(LocalDate now) {
         ArrayList<Rent> expired = new ArrayList<>();
         for (Rent rent : rents) {
             if (rent.isExpired(now)) {

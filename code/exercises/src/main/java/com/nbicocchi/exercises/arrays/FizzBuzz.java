@@ -6,8 +6,9 @@ public class FizzBuzz {
             return new String[]{};
         }
 
+        int j = 0;
         String[] dst = new String[end - start];
-        for (int j = 0, i = start; i < end; i++) {
+        for (int i = start; i < end; i++) {
             String s;
             if (i % 3 == 0 && i % 5 == 0) {
                 s = "FizzBuzz";

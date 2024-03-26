@@ -1,6 +1,7 @@
 package com.nbicocchi.exercises.exceptions;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 
 public class RetryWrite {
     public static void main(String[] args) {
@@ -19,7 +20,7 @@ public class RetryWrite {
                 break;
             } catch (IOException e) {
                 if (++count == maxTries) {
-                    throw new RuntimeException(String.format("[retry=%d] %s", maxTries, e.getMessage()));
+                    throw new UncheckedIOException(e);
                 }
             }
         }

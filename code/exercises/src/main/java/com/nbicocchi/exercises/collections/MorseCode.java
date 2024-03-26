@@ -1,11 +1,12 @@
 package com.nbicocchi.exercises.collections;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class MorseCode {
 
-    public static HashMap<Character, String> conversionMap() {
+    public static Map<Character, String> conversionMap() {
         HashMap<Character, String> conversionMap = new HashMap<>();
         conversionMap.put('a', "._");
         conversionMap.put('b', "_...");
@@ -45,7 +46,7 @@ public class MorseCode {
     }
 
     public static String morseCode(String string) {
-        HashMap<Character, String> conversionMap = conversionMap();
+        Map<Character, String> conversionMap = conversionMap();
         checkString(conversionMap.keySet(), string);
 
         StringBuilder builder = new StringBuilder();

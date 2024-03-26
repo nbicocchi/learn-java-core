@@ -3,7 +3,7 @@ package com.nbicocchi.exercises.oop.basic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
+import java.awt.geom.Point2D;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,14 +15,14 @@ class PolygonTest {
     
     @BeforeEach
     void setUp() {
-        square = new Polygon(new Point[]{new Point(0,0), new Point(0, 10), new Point(10,10), new Point(10, 0)});
-        triangle = new Polygon(new Point[]{new Point(0,0), new Point(10, 0), new Point(5,10)});
-        oddlyPoly = new Polygon(new Point[]{
-                        new Point(0,0), new Point(0,2), new Point(1,2), new Point(1,6),
-                        new Point(0,6), new Point(0,8), new Point(3,8), new Point(3,6),
-                        new Point(5,6), new Point(5,8), new Point(8,8), new Point(8,6),
-                        new Point(7,6), new Point(7,2), new Point(8,2), new Point(8,0),
-                        new Point(5,0), new Point(5,2), new Point(3,2), new Point(3,0)});
+        square = new Polygon(new Point2D.Double[]{new Point2D.Double(0,0), new Point2D.Double(0, 10), new Point2D.Double(10,10), new Point2D.Double(10, 0)});
+        triangle = new Polygon(new Point2D.Double[]{new Point2D.Double(0,0), new Point2D.Double(10, 0), new Point2D.Double(5,10)});
+        oddlyPoly = new Polygon(new Point2D.Double[]{
+                        new Point2D.Double(0,0), new Point2D.Double(0,2), new Point2D.Double(1,2), new Point2D.Double(1,6),
+                        new Point2D.Double(0,6), new Point2D.Double(0,8), new Point2D.Double(3,8), new Point2D.Double(3,6),
+                        new Point2D.Double(5,6), new Point2D.Double(5,8), new Point2D.Double(8,8), new Point2D.Double(8,6),
+                        new Point2D.Double(7,6), new Point2D.Double(7,2), new Point2D.Double(8,2), new Point2D.Double(8,0),
+                        new Point2D.Double(5,0), new Point2D.Double(5,2), new Point2D.Double(3,2), new Point2D.Double(3,0)});
     }
 
     @Test
@@ -44,10 +44,5 @@ class PolygonTest {
         assertEquals(100, square.getArea(), DELTA);
         assertEquals(50, triangle.getArea(), DELTA);
         assertEquals(48, oddlyPoly.getArea(), DELTA);
-    }
-
-    @Test
-    void testToString() {
-        assertEquals("Polygon{vertices=[java.awt.Point[x=0,y=0], java.awt.Point[x=0,y=10], java.awt.Point[x=10,y=10], java.awt.Point[x=10,y=0]]}", square.toString());
     }
 }

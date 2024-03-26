@@ -31,7 +31,7 @@ public abstract class AbstractBankAccount implements BankAccount {
      * @param operationFee the fee to be applied to deposit and withdraw operations
      * @param interestRate the interest rate to be applied
      */
-    public AbstractBankAccount(String IBAN, double balance, double operationFee, double interestRate) {
+    protected AbstractBankAccount(String IBAN, double balance, double operationFee, double interestRate) {
         this.balance = balance;
         this.interestRate = interestRate;
         setIBAN(IBAN);

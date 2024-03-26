@@ -18,11 +18,6 @@ public abstract class AbstractPoly implements Poly {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(coefficients());
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o == null) {
             return false;
@@ -39,6 +34,11 @@ public abstract class AbstractPoly implements Poly {
             }
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(coefficients());
     }
 
     @Override
