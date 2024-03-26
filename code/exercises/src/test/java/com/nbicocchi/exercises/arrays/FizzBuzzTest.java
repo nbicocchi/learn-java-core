@@ -13,5 +13,10 @@ class FizzBuzzTest {
         assertArrayEquals(new String[]{"1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11" , "Fizz" , "13", "14" , "FizzBuzz"}, FizzBuzz.fizzBuzz(1, 16));
         assertArrayEquals(new String[]{"Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz"}, FizzBuzz.fizzBuzz(3, 11));
         assertArrayEquals(new String[]{"Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11" , "Fizz" , "13", "14" , "FizzBuzz"}, FizzBuzz.fizzBuzz(5, 16));
+        assertArrayEquals(new String[]{"FizzBuzz", "1", "2", "Fizz"}, FizzBuzz.fizzBuzz(0, 4));
+        assertArrayEquals(new String[]{}, FizzBuzz.fizzBuzz(4, 4));
+        assertArrayEquals(new String[]{}, FizzBuzz.fizzBuzz(10, 4));
+        assertArrayEquals(new String[]{}, FizzBuzz.fizzBuzz(-3, 4));
+        assertArrayEquals(new String[]{}, FizzBuzz.fizzBuzz(-4, -2));
     }
 }
