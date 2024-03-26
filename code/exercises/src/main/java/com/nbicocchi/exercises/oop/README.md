@@ -411,9 +411,9 @@ class BankAccountPro {
     +double withdraw(double amount)
 }
 
+AbstractBankAccount ..|> BankAccount
 BankAccountEasy --|> AbstractBankAccount
 BankAccountPro --|> AbstractBankAccount
-AbstractBankAccount ..|> BankAccount
 ```
 ---
 
