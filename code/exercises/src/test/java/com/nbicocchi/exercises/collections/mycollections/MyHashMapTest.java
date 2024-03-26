@@ -51,4 +51,12 @@ class MyHashMapTest {
     void size() {
         assertEquals(3, m.size());
     }
+
+    @Test
+    void enlarge(){
+        for(int i=0;i<20;i++){
+            m.put(i+3, "Nome " + i+3);
+        }
+        assertEquals(22, m.size());
+    }
 }

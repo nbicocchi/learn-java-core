@@ -44,4 +44,13 @@ abstract class MyListTestBase {
         assertTrue(l.contains("nicola"));
         assertFalse(l.contains("marzia"));
     }
+
+    @Test
+    void enlarge(){
+        for(int i=0;i<20;i++){
+            l.add("Nome "+ i);
+        }
+        assertTrue(l.contains("Nome 19"));
+        assertEquals(20,l.size());
+    }
 }
