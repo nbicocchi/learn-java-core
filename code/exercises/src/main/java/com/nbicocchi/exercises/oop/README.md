@@ -120,7 +120,7 @@ classDiagram
 **[basic.Polygon]** Write a class named Polygon representing an irregular polygon.
 Internally, the class uses a Point[] for representing the vertices of the polygon.
 The class provides the following methods:
-* public Polygon(Point[] vertices) creating the polygon.
+* public Polygon(Point2D.Double[] vertices) creating the polygon.
 * public int getVerticesCount() returning the number of vertices.
 * public double getPerimeter() returning the perimeter of the polygon. 
 * public double getArea() returning the area of the polygon. 
@@ -129,7 +129,7 @@ The class provides the following methods:
 Polygons must have at least three vertices. We can throw an *exception* within the constructor to avoid the creation of invalid objects, as shown below:
 
 ```
-public Polygon(Point[] vertices) {
+public Polygon(Point2D.Double[] vertices) {
     if (vertices.length < 3) {
         throw new IllegalArgumentException("Al least three vertices are required");
     }
@@ -144,7 +144,7 @@ Refer to the UML diagram, JavaDoc documentation, and unit tests for further insp
 ```mermaid
 classDiagram
     class Polygon {
-        -final Point[] vertices
+        -final Point2D.Double[] vertices
         +Polygon(Point[] vertices)
         +int getVerticesCount()
         +double getPerimeter()
