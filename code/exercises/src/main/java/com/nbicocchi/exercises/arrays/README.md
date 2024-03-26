@@ -222,6 +222,9 @@ For example start=1 and end=5 gives the series 1, 2, 3, 4. Return a new String[]
 these numbers. For multiples of 3, use "Fizz" instead of the number, for multiples of 5 use "Buzz", and for multiples of
 both 3 and 5 use "FizzBuzz" (see Integer.toString()).
 
+The **start** and the **end** values passed to the function must be greather or equal to 0. If one or both values are
+lower than 0 the method must return an empty array.
+
 Examples:
 
 * fizzBuzz(1, 6) → ["1", "2", "Fizz", "4", "Buzz"]
