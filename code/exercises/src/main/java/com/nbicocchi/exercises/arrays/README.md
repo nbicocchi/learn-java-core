@@ -218,18 +218,19 @@ where:
 ---
 
 **[FizzBuzz.java]** Consider the series of numbers beginning at **start** and running up to but not including **end**.
-For example start=1 and end=5 gives the series 1, 2, 3, 4. Return a new String[] array containing the string form of
-these numbers. For multiples of 3, use "Fizz" instead of the number, for multiples of 5 use "Buzz", and for multiples of
-both 3 and 5 use "FizzBuzz" (see Integer.toString()).
+For example start=1 and end=5 gives the series 1, 2, 3, 4. Return a new String[] array (see Integer.toString()) containing:
+* *Fizz* for multiples of 3;
+* *Buzz* for multiples of 5;
+* *FizzBuzz* for multiple of both 3 and 5;
+* the String version of the number in all the other cases.
 
-The **start** and the **end** values passed to the function must be greather or equal to 0. If one or both values are
-lower than 0 the method must return an empty array.
+**start** has to be less than **end** and both must be greater or equal to 0. Otherwise, the method returns an empty String array.
 
 Examples:
 
 * fizzBuzz(1, 6) → ["1", "2", "Fizz", "4", "Buzz"]
 * fizzBuzz(1, 8) → ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7"]
-* fizzBuzz(1, 11) → ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz"]
+* fizzBuzz(12, 17) → ["Fizz", "13", "14", "FizzBuzz", "16"]
 
 The method has the following prototype:
 
