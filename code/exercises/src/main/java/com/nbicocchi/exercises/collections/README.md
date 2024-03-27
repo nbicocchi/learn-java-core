@@ -46,6 +46,7 @@ where:
 * **list** is the list to be downsized
 * **n** represents the intensity of the downsizing
 
+---
 
 **[SortAccount.java]** Given the following class Account:
 
@@ -58,8 +59,7 @@ public static class Account {
 }
 ```
 
-Write three methods accepting a ```List<Account>``` and returning void.
-Each method sorts the list based on one criterion (i.e., one attribute).
+Write three methods accepting a ```List<Account>``` and returning void. Each method sorts the list based on one criterion (i.e., one attribute).
 
 The methods have the following prototype:
 
@@ -113,8 +113,6 @@ public static List<String> reverse(List<String> sentence);
 where:
 
 * **sentence** is the list of words to be reversed.
-
----
 
 ## Java Exercises (Sets)
 
