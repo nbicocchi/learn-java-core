@@ -33,8 +33,7 @@
 * https://github.com/charlax/professional-programming
 
 ### Contributing
-Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. By contributing to this repository, you agree that your contributions will be licensed
-under the LICENSE file in the root directory of this source tree.
+Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. For a more general introduction, refer to [this](https://docs.github.com/en/get-started) page. By contributing to this repository, you agree that your contributions will be licensed under the LICENSE file in the root directory of this source tree.
 
 ### Modules
 [E1] From Functions to Classes
