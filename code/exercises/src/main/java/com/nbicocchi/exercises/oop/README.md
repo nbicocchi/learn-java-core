@@ -8,7 +8,7 @@ In IntelliJ, click on the oop package then select Tools -> Generate JavaDoc...
 
 ---
 
-**[basic.ClickCounter]** Write a class named ClickCounter representing a simple device to keep track of how many times a button (in this case a method) is clicked.
+**[basic.ClickCounter.java]** Write a class named ClickCounter representing a simple device to keep track of how many times a button (in this case a method) is clicked.
 Internally, the class represents the number of clicks with an int value (starting from 0).
 The class provides the following methods:
 * public int getValue() returning the current number of clicks.
@@ -31,7 +31,7 @@ classDiagram
 
 ---
 
-**[basic.RationalNumber]** Write a class named RationalNumber representing a rational number.
+**[basic.RationalNumber.java]** Write a class named RationalNumber representing a rational number.
 RationalNumbers are immutable objects, indeed they cannot be changed after creation.
 Internally, the class represents numerator and denominator as int values. RationalNumbers must support equality with other RationalNumbers (see Object.equals(), Object.hashCode()) 
 The class provides the following methods:
@@ -84,7 +84,7 @@ classDiagram
 
 ---
 
-**[basic.Circle]** Write a class named Circle representing a Circle on a 2D plane.
+**[basic.Circle.java]** Write a class named Circle representing a Circle on a 2D plane.
 Internally, the class uses a Point object and an int value for representing the center and the radius of the Circle, respectively. 
 The class provides the following methods:
 * public Circle(Point center, int radius) creating the circle.
@@ -117,7 +117,7 @@ classDiagram
 
 ---
 
-**[basic.Polygon]** Write a class named Polygon representing an irregular polygon.
+**[basic.Polygon.java]** Write a class named Polygon representing an irregular polygon.
 Internally, the class uses a Point[] for representing the vertices of the polygon.
 The class provides the following methods:
 * public Polygon(Point2D.Double[] vertices) creating the polygon.
@@ -155,7 +155,7 @@ classDiagram
 
 ---
 
-**[basic.BankAccount]** Write a class named BankAccount representing a bank account.
+**[basic.BankAccount.java]** Write a class named BankAccount representing a bank account.
 Internally, the class uses a double value for representing the balance of the account.
 The class provides the following methods:
 * public BankAccount() creating an empty account.
@@ -180,7 +180,7 @@ classDiagram
 
 ---
 
-**[basic.EnhancedResizableArray]** Write a class named EnhancedResizableArray representing a resizable array. It internally keeps an int array, enlarges it when needed, and provides its key functionalities via a set of methods:
+**[basic.EnhancedResizableArray.java]** Write a class named EnhancedResizableArray representing a resizable array. It internally keeps an int array, enlarges it when needed, and provides its key functionalities via a set of methods:
 
 * public EnhancedResizableArray() creating an empty resizable array (the underlying int[] has a default capacity of DEFAULT_CAPACITY items).
 * public int get(int index) returning the element at the specified index.
@@ -209,7 +209,7 @@ classDiagram
 
 ---
 
-**[basic.Letter]** Write a class for authoring a simple letter.
+**[basic.Letter.java]** Write a class for authoring a simple letter.
 In the constructor, supply the names of the sender and the recipient:
 
 ```

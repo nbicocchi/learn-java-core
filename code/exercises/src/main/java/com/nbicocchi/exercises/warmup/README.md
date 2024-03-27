@@ -2,7 +2,7 @@
 
 ## Java Exercises (Warmup)
 
-**[XMasTree]** Print to screen the little story below. 
+**[XMasTree.java]** Print to screen the little story below. 
 Remember: strings can be [multi-line](https://www.baeldung.com/java-multiline-string)!
 
 ```
@@ -42,18 +42,18 @@ Some times eats parents too, forgot to say that earlier.
 **[GuessNumber.java]** Write a program implementing a simple quiz game. The computer selects a random number between 0 and 3 then ask the user to guess the number. The game ends when the user correctly guesses the number 0.
 (see java.util.random.RandomGenerator, java.util.Scanner).
 
-**[MonkeyTrouble]** We have two monkeys, a and b, and two boolean values (aSmile and bSmile) indicate if each is smiling. 
+**[MonkeyTrouble.java]** We have two monkeys, a and b, and two boolean values (aSmile and bSmile) indicate if each is smiling. 
 We are in trouble if they are both smiling or if neither of them is smiling. 
 Write a program asking the user if monkeys are smiling and print an alert if we are in trouble (see java.util.Scanner).
 
-**[TheRightPrice]** The computer selects a random number between [0, 100] representing the price of an imaginary item.
+**[TheRightPrice.java]** The computer selects a random number between [0, 100] representing the price of an imaginary item.
 Two users are asked to guess the right price. The user which proposed the number closer to the right price wins.
 Note that Math.abs(n) returns the absolute value of a number (see java.util.random.RandomGenerator, java.util.Scanner).
 
-**[InterestRate]** Write a program that prints the balance of an account after the first, second, and third year. 
+**[InterestRate.java]** Write a program that prints the balance of an account after the first, second, and third year. 
 The account has an initial balance of $1,000 and earns 5 percent interest per year.
 
-**[EstimatePI]** It is possible to get an estimate of the mathematical constant π by using a random process. The idea is based on the fact that the area of a circle of radius 1 is equal to π, and the area of a quarter of that circle is π/4. 
+**[EstimatePI.java]** It is possible to get an estimate of the mathematical constant π by using a random process. The idea is based on the fact that the area of a circle of radius 1 is equal to π, and the area of a quarter of that circle is π/4. 
 
 ```
  <-- 1 -->
