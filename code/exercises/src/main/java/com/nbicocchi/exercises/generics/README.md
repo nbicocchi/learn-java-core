@@ -113,6 +113,28 @@ where:
 
 ---
 
+**[BinarySearch]**  Binary search is one of the most popular algorithms. It finds the position of a target value within a sorted array. Write a generic static method implementing binary search within a T[], where T is any Comparable type. The method returns -1 if the target value is not found.
+
+Examples:
+
+* find([0, 1, 2, 3, 4, 5], 2) → 2
+* find([0, 1, 2, 3, 4, 5], 3) → 3
+* find([0, 1, 2, 3, 4, 5], -2) → -1
+* find([0, 1, 2, 3, 4, 5], 10) → -1
+
+The method has the following prototype:
+
+```
+public static <T extends Comparable<T>> int find(T[] array, T key);
+```
+
+where:
+
+* **array** is the array to be searched within.
+* **key** is the key to be searched.
+
+---
+
 **[Pair.java]** Define a generic class Pair<K,V> representing a generic pair of objects with different types. The class must have two internal attributes named *first* and *second* of type K and V, respectively. Constructor, getters, and setters are also required.
 
 ```
