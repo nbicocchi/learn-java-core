@@ -225,6 +225,27 @@ where:
 
 ---
 
+**[CheckAnagrams]** Write a static method accepting two Strings and returning true if they are anagrams, false otherwise.
+
+Examples:
+
+* areAnagrams("dusty", "study") -> true
+* areAnagrams("world", "sky") -> false
+* areAnagrams("cheap", "") -> false
+
+The method has the following prototype:
+
+```
+public static boolean areAnagrams(String first, String second);
+```
+
+where:
+
+* **first** is the first string.
+* **second** is the second string.
+
+---
+
 **[ValuesKeys.java]** Write a static method accepting a ```Map<String, String>``` and returning true if some values have been used as keys as well.
 
 The method has the following prototype:
