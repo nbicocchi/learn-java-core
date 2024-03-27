@@ -2,7 +2,35 @@
 
 ## Java Exercises (Lists)
 
+**[CollatzSequence.java]** Consider the following operation on an arbitrary positive integer:
+
+* If the number is even, divide it by two.
+* If the number is odd, triple it and add one.
+
+The [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture) is one of the most famous unsolved problems in mathematics. The conjecture asks whether repeating the two simple arithmetic operations above will eventually transform every positive integer into 1. Write a static method returning the Collatz sequence for a given integer number greater than 0.
+
+Examples:
+
+* collatzSequence(1) -> [1]
+* collatzSequence(2) -> [2, 1]
+* collatzSequence(3) -> [3, 10, 5, 16, 8, 4, 2, 1]
+* collatzSequence(4) -> [4, 2, 1]
+
+The method has the following prototype:
+
+```
+public static List<Long> collatzSequence(long n);
+```
+
+where:
+
+* **n** represents the starting number of the sequence
+
+---
+
 **[DownSize.java]** Write a method that removes every nth String from a ```List<String>```.
+
+Examples:
 
 * downSize(["A", "B", "C", "D", "E", "F"], 2) -> ["A", "C", "E"] 
 * downSize(["A", "B", "C", "D", "E", "F"], 3) -> ["A", "B", "D", "E"]
