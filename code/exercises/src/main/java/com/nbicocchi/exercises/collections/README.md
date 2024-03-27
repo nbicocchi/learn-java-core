@@ -2,7 +2,7 @@
 
 ## Java Exercises (Lists)
 
-**[DownSize]** Write a method that removes every nth String from a ```List<String>```.
+**[DownSize.java]** Write a method that removes every nth String from a ```List<String>```.
 
 * downSize(["A", "B", "C", "D", "E", "F"], 2) -> ["A", "C", "E"] 
 * downSize(["A", "B", "C", "D", "E", "F"], 3) -> ["A", "B", "D", "E"]
@@ -203,7 +203,7 @@ public static List<String> lineToWords(String line) {
 
 ## Java Exercises (Maps)
 
-**[MorseCode]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation. The 26 lowercase letters of the english alphabet have to be supported. 
+**[MorseCode.java]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation. The 26 lowercase letters of the english alphabet have to be supported. 
 
 You have to use a ```Map<Characher, String>``` as a conversion table (dot='.', dash='_'). If the input String contains characters not supported by the conversion table, IllegalArgumentException have to be thrown.
 
@@ -225,7 +225,7 @@ where:
 
 ---
 
-**[CheckAnagrams]** Write a static method accepting two Strings and returning true if they are anagrams, false otherwise.
+**[CheckAnagrams.java]** Write a static method accepting two Strings and returning true if they are anagrams, false otherwise.
 
 Examples:
 
@@ -260,7 +260,7 @@ where:
 
 ---
 
-**[InvertMap]** Write a static method accepting a ```Map<Integer, String>``` and returning a ```Map<String, Integer>``` in which the original keys and values have been inverted.
+**[InvertMap.java]** Write a static method accepting a ```Map<Integer, String>``` and returning a ```Map<String, Integer>``` in which the original keys and values have been inverted.
 In case of repeated values (thus associated to multiple keys) you can select one of the keys.
 
 Examples:
