@@ -4,12 +4,18 @@ import java.util.Arrays;
 
 public class BubbleSort {
     public static int[] bubbleSortCopy(int[] v) {
+        if (v == null){
+            return null;
+        }
         int[] copy = Arrays.copyOf(v, v.length);
         bubbleSort(copy);
         return copy;
     }
 
     public static void bubbleSort(int[] v) {
+        if (v == null){
+            return;
+        }
         boolean changed = true;
         while (changed) {
             changed = false;

@@ -17,5 +17,7 @@ public class BubbleSortTest {
 
         assertArrayEquals(new int[]{2, 3, 4, 6}, BubbleSort.bubbleSortCopy(new int[]{6, 3, 4, 2}));
         assertArrayEquals(new int[]{0, 0, 0, 1}, BubbleSort.bubbleSortCopy(new int[]{1, 0, 0, 0}));
+        assertArrayEquals(null, BubbleSort.bubbleSortCopy(null));
+        BubbleSort.bubbleSort(null);
     }
 }
