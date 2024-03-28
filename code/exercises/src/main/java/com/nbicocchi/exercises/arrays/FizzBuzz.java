@@ -5,22 +5,19 @@ public class FizzBuzz {
         if (start >= end || start < 0) {
             return new String[]{};
         }
-
-        int j = 0;
-        String[] dst = new String[end - start];
-        for (int i = start; i < end; i++) {
-            String s;
-            if (i % 3 == 0 && i % 5 == 0) {
-                s = "FizzBuzz";
-            } else if (i % 3 == 0) {
-                s = "Fizz";
-            } else if (i % 5 == 0) {
-                s = "Buzz";
+        String[] FizzBuzz = new String[end - start];
+        for (int i = 0; i < FizzBuzz.length; i++) {
+            if (start % 3 == 0 && start % 5 == 0) {
+                FizzBuzz[i] = "FizzBuzz";
+            } else if (start % 3 == 0) {
+                FizzBuzz[i] = "Fizz";
+            } else if (start % 5 == 0) {
+                FizzBuzz[i] = "Buzz";
             } else {
-                s = Integer.toString(i);
+                FizzBuzz[i] = Integer.toString(start);
             }
-            dst[j++] = s;
+            start++;
         }
-        return dst;
+        return FizzBuzz;
     }
 }
