@@ -13,7 +13,7 @@ public class CanBalance {
         if (v.length < 2) {
             return false;
         }
-        int sumBegin = sum(v, 0, 1);
+        int sumBegin = v[0];
         int sumEnd = sum(v, 1, v.length);
         for (int i = 1; i < v.length; i++) {
             if (sumBegin == sumEnd) {

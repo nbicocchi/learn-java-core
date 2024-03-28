@@ -10,5 +10,6 @@ public class FibonacciTest {
         assertArrayEquals(new long[]{0}, Fibonacci.fibonacci(1));
         assertArrayEquals(new long[]{0, 1}, Fibonacci.fibonacci(2));
         assertArrayEquals(new long[]{0, 1, 1, 2, 3}, Fibonacci.fibonacci(5));
+        assertArrayEquals(null, Fibonacci.fibonacci(0));
     }
 }

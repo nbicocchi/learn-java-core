@@ -10,5 +10,6 @@ public class MoveZerosEndTest {
         assertArrayEquals(new int[]{4, 2, 0, 0}, MoveZerosEnd.moveZerosEnd(new int[]{0, 0, 4, 2}));
         assertArrayEquals(new int[]{9, 4, 0, 0}, MoveZerosEnd.moveZerosEnd(new int[]{9, 0, 0, 4}));
         assertArrayEquals(new int[]{1, 0, 0, 0}, MoveZerosEnd.moveZerosEnd(new int[]{1, 0, 0, 0}));
+        assertArrayEquals(null,MoveZerosEnd.moveZerosEnd(null));
     }
 }
