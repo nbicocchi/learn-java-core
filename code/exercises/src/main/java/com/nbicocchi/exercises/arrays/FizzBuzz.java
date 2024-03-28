@@ -9,17 +9,16 @@ public class FizzBuzz {
         int j = 0;
         String[] dst = new String[end - start];
         for (int i = start; i < end; i++) {
-            String s;
             if (i % 3 == 0 && i % 5 == 0) {
-                s = "FizzBuzz";
+                dst[j] = "FizzBuzz";
             } else if (i % 3 == 0) {
-                s = "Fizz";
+                dst[j] = "Fizz";
             } else if (i % 5 == 0) {
-                s = "Buzz";
+                dst[j] = "Buzz";
             } else {
-                s = Integer.toString(i);
+                dst[j] = Integer.toString(i);
             }
-            dst[j++] = s;
+            j++;
         }
         return dst;
     }
