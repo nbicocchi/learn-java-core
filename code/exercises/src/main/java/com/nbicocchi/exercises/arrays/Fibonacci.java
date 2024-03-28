@@ -3,7 +3,9 @@ package com.nbicocchi.exercises.arrays;
 public class Fibonacci {
     public static long[] fibonacci(int n) {
         long[] fibonacci;
-        if (n == 1) {
+        if (n < 1){
+            return null;
+        } else if (n == 1) {
             fibonacci = new long[]{0};
         } else if (n == 2) {
             fibonacci = new long[]{0, 1};
