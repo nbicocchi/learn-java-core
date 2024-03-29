@@ -116,17 +116,43 @@ where:
 
 ## Java Exercises (Sets)
 
-**[Intersection.java]** Write a method returning the intersection of two given sets of Integers (without using the Set.retainAll() method).
+**[Intersection.java]** Write a method returning the intersection of two given sets of Integers. 
+Write two versions of the same method with and without using Set.retainAll().
 
 Examples:
 
 * intersection([1,2,3], [4,5,6]) → []
 * intersection([1,2,3], [3,4,5]) → [3]
+* intersection([], []) → []
 
 The method has the following prototype:
 
 ```
 public static Set<Integer> intersection(Set<Integer> first, Set<Integer> second);
+public static Set<Integer> intersectionRetainAll(Set<Integer> first, Set<Integer> second);
+```
+
+where:
+
+* **first** is the first Set.
+* **second** is the second Set.
+
+---
+
+**[Union.java]** Write a method returning the union of two given sets of Integers.
+Write two versions of the same method with and without using Set.addAll().
+
+Examples:
+
+* union([1,2,3], [4,5,6]) → [1,2,3,4,5,6]
+* union([1,2,3], [3,4,5]) → [1,2,3,4,5]
+* union([], []) → []
+
+The method has the following prototype:
+
+```
+public static Set<Integer> union(Set<Integer> first, Set<Integer> second);
+public static Set<Integer> unionAddAll(Set<Integer> first, Set<Integer> second);
 ```
 
 where:

@@ -12,5 +12,13 @@ class IntersectionTest {
     void intersection() {
         assertEquals(Set.of(), Intersection.intersection(Set.of(1, 2, 3), Set.of(4, 5, 6)));
         assertEquals(Set.of(3), Intersection.intersection(Set.of(1, 2, 3), Set.of(3, 4, 5)));
+        assertEquals(Set.of(), Intersection.intersection(Set.of(), Set.of()));
+    }
+
+    @Test
+    void intersectionRetainAll() {
+        assertEquals(Set.of(), Intersection.intersectionRetainAll(Set.of(1, 2, 3), Set.of(4, 5, 6)));
+        assertEquals(Set.of(3), Intersection.intersectionRetainAll(Set.of(1, 2, 3), Set.of(3, 4, 5)));
+        assertEquals(Set.of(), Intersection.intersectionRetainAll(Set.of(), Set.of()));
     }
 }

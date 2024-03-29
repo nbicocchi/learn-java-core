@@ -5,12 +5,18 @@ import java.util.Set;
 
 public class Intersection {
     public static Set<Integer> intersection(Set<Integer> first, Set<Integer> second) {
-        Set<Integer> tmp = new HashSet<>();
-        for (int i : first) {
-            if (second.contains(i)) {
-                tmp.add(i);
+        Set<Integer> intersection = new HashSet<>();
+        for (int item : first) {
+            if (second.contains(item)) {
+                intersection.add(item);
             }
         }
-        return tmp;
+        return intersection;
+    }
+
+    public static Set<Integer> intersectionRetainAll(Set<Integer> first, Set<Integer> second) {
+        Set<Integer> intersection = new HashSet<>(first);
+        intersection.retainAll(second);
+        return intersection;
     }
 }
