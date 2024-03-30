@@ -355,6 +355,8 @@ where:
 
 **[CheckAnagrams.java]** Write a static method accepting two Strings and returning true if they are anagrams, false otherwise.
 
+Two strings are considered anagrams if they contain the same characters but in a different order. The order of characters doesn't matter, what matters is the frequency of each character in both strings.
+
 Examples:
 
 * areAnagrams("dusty", "study") -> true
