@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class MorseCode {
 
-    public static Map<Character, String> conversionMap() {
+    private static Map<Character, String> conversionMap() {
         HashMap<Character, String> conversionMap = new HashMap<>();
         conversionMap.put('a', "._");
         conversionMap.put('b', "_...");
@@ -37,7 +37,7 @@ public class MorseCode {
         return conversionMap;
     }
 
-    public static void checkString(Set<Character> allowedChars, String string) {
+    private static void checkString(Set<Character> allowedChars, String string) {
         for (char c : string.toLowerCase().toCharArray()) {
             if (!allowedChars.contains(c)) {
                 throw new IllegalArgumentException("String contains unsupported char");
