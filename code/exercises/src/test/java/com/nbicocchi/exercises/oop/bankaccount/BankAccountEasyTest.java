@@ -19,6 +19,8 @@ class BankAccountEasyTest {
         assertThrows(IllegalArgumentException.class, () -> new BankAccountEasy("It001234", 0.0));
         assertThrows(IllegalArgumentException.class, () -> new BankAccountEasy("It001234", 0.0));
         assertThrows(IllegalArgumentException.class, () -> new BankAccountEasy("it001234", 0.0));
+        assertThrows(IllegalArgumentException.class, () -> new BankAccountEasy("i0001234", 0.0));
+        assertThrows(IllegalArgumentException.class, () -> new BankAccountEasy("IT123456789012345678901234567890123", 0.0));
         assertDoesNotThrow(() -> new BankAccountEasy("IT001234", 0.0));
     }
 
