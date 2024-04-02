@@ -116,17 +116,43 @@ where:
 
 ## Java Exercises (Sets)
 
-**[Intersection.java]** Write a method returning the intersection of two given sets of Integers (without using the Set.retainAll() method).
+**[Intersection.java]** Write a method returning the intersection of two given sets of Integers. 
+Write two versions of the same method with and without using Set.retainAll().
 
 Examples:
 
 * intersection([1,2,3], [4,5,6]) → []
 * intersection([1,2,3], [3,4,5]) → [3]
+* intersection([], []) → []
 
 The method has the following prototype:
 
 ```
 public static Set<Integer> intersection(Set<Integer> first, Set<Integer> second);
+public static Set<Integer> intersectionRetainAll(Set<Integer> first, Set<Integer> second);
+```
+
+where:
+
+* **first** is the first Set.
+* **second** is the second Set.
+
+---
+
+**[Union.java]** Write a method returning the union of two given sets of Integers.
+Write two versions of the same method with and without using Set.addAll().
+
+Examples:
+
+* union([1,2,3], [4,5,6]) → [1,2,3,4,5,6]
+* union([1,2,3], [3,4,5]) → [1,2,3,4,5]
+* union([], []) → []
+
+The method has the following prototype:
+
+```
+public static Set<Integer> union(Set<Integer> first, Set<Integer> second);
+public static Set<Integer> unionAddAll(Set<Integer> first, Set<Integer> second);
 ```
 
 where:
@@ -224,8 +250,109 @@ public static List<String> lineToWords(String line) {
 }
 ```
 
+---
+
+**[ProjectManagement.java]** Sets are frequently used for representing *one-to-many* and *many-to-many* relationships between objects. In this exercise, we'll use the following three classes.
+
+* `Project` represents a project. It encapsulates information such as the project name, start date, end date, and a collection of tasks associated with the project. Projects can have multiple tasks assigned to them.
+* `Task` represents a specific task within a project. It contains details such as a unique identifier, description, estimated hours needed to complete the task, associated project, and team leader.
+* `Employee` class represents an employee within the system. It contains information such as the employee's first name, last name, and social security code.
+
+The meaning of the lines with one or two arrows in the UML diagram is the following: 
+* The *one-to-many* relationship between `Project` and `Task` is bidirectional in that `Project` keeps in memory a Set of `Task`, while `Task` keeps a reference to a `Project` object.
+* The *one-to-many* relationship between `Employee` and `Task` is unidirectional in that only `Task` keeps in memory a reference to its team leader `Employee`.
+
+Concerning object equality parameters (which are very important to allow the method `Collection.contains()` to work properly!):
+* Projects are considered equal if they have the same name, startDate, endDate.
+* Tasks are considered equal if they have the same UUID code (given that the other attributes are little descriptive).
+* Employees are considered equal if they have the same name, lastname, socialSecurityCode.
+
+Implement the described classes while paying attention at keeping the object relationships healthy! For example, if you assign a task to a project, the relationship has to be reflected in both `Project` and `Task` objects! 
+Remember also that relationships in UML (lines connecting classes) become attributes in terms of actual code!
+
+
+```mermaid
+classDiagram
+    class Project {
+        - String name
+        - LocalDate startDate
+        - LocalDate endDate
+        + Project(name: String, startDate: LocalDate, endDate: LocalDate)
+        + getName(): String
+        + setName(name: String): void
+        + getStartDate(): LocalDate
+        + setStartDate(startDate: LocalDate): void
+        + getEndDate(): LocalDate
+        + setEndDate(endDate: LocalDate): void
+        + addTask(task: Task): void
+        + removeTask(task: Task): void
+        + getTasks(): Set<Task>
+        + equals(Object o) : boolean 
+        + hashCode() : int
+    }
+
+    class Task {
+        - final UUID uuid
+        - String description
+        - Integer hoursNeeded
+        + Task(description: String, hoursNeeded: Integer)
+        + getUuid(): UUID
+        + getDescription(): String
+        + setDescription(description: String): void
+        + getHoursNeeded(): Integer
+        + setHoursNeeded(hoursNeeded: Integer): void
+        + getProject(): Project
+        + setProject(project: Project): void
+        + getTeamLeader(): Employee
+        + setTeamLeader(teamLeader: Employee): void
+        + equals(Object o) : boolean
+        + hashCode() : int
+    }
+
+    class Employee {
+        - String name
+        - String lastname
+        - String socialSecurityCode
+        + Employee(name: String, lastname: String, socialSecurityCode: String)
+        + getName(): String
+        + setName(name: String): void
+        + getLastname(): String
+        + setLastname(lastname: String): void
+        + getSocialSecurityCode(): String
+        + setSocialSecurityCode(socialSecurityCode: String): void
+        + equals(Object o) : boolean
+        + hashCode() : int
+    }
+    Project "1" <--> "*" Task
+    Employee "1" <-- "*" Task
+    
+```
+
 
 ## Java Exercises (Maps)
+
+**[CheckAnagrams.java]** Write a static method accepting two Strings and returning true if they are anagrams, false otherwise.
+
+Two strings are considered anagrams if they contain the same characters but in a different order. The order of characters doesn't matter, what matters is the frequency of each character in both strings.
+
+Examples:
+
+* areAnagrams("dusty", "study") -> true
+* areAnagrams("world", "sky") -> false
+* areAnagrams("cheap", "") -> false
+
+The method has the following prototype:
+
+```
+public static boolean areAnagrams(String first, String second);
+```
+
+where:
+
+* **first** is the first string.
+* **second** is the second string.
+
+---
 
 **[MorseCode.java]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation. The 26 lowercase letters of the english alphabet have to be supported. 
 
@@ -249,24 +376,44 @@ where:
 
 ---
 
-**[CheckAnagrams.java]** Write a static method accepting two Strings and returning true if they are anagrams, false otherwise.
+**[RomanToDecimal.java]** Roman numerals are represented by seven different symbols: 
+* `I` = 1
+* `V` = 5
+* `X` = 10
+* `L` = 50
+* `C` = 100
+* `D` = 500
+* `M` = 1000
+
+Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not `IIII`. Instead, the number four is written as `IV`. 
+Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as `IX`. 
+
+There are six instances where subtraction is used:
+* `I` can be placed before `V` (5) and `X` (10) to make 4 and 9.
+* `X` can be placed before `L` (50) and `C` (100) to make 40 and 90.
+* `C` can be placed before `D` (500) and `M` (1000) to make 400 and 900.
+
+Given a roman numeral, convert it to a decimal one.
 
 Examples:
-
-* areAnagrams("dusty", "study") -> true
-* areAnagrams("world", "sky") -> false
-* areAnagrams("cheap", "") -> false
+* romanToDecimal("III") -> 3
+* romanToDecimal("LVIII") -> 58
+* romanToDecimal("MCMXCIV") -> 1994
 
 The method has the following prototype:
 
 ```
-public static boolean areAnagrams(String first, String second);
+public static int romanToDecimal(String s);
 ```
 
 where:
 
-* **first** is the first string.
-* **second** is the second string.
+* **s** is the string representing the roman numeral.
+
+Constraints:
+
+* `1 <= s.length <= 15`
+* `s` contains only the characters `('I', 'V', 'X', 'L', 'C', 'D', 'M')`
 
 ---
 

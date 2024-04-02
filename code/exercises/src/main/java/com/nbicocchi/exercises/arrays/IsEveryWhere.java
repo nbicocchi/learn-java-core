@@ -5,10 +5,9 @@ public class IsEveryWhere {
         boolean isEveryWhere = true;
         for (int i = 0; i < v.length - 1; i++) {
             if (v[i] != value && v[i + 1] != value) {
-                isEveryWhere = false;
-                break;
+                return false;
             }
         }
-        return isEveryWhere;
+        return true;
     }
 }

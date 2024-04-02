@@ -13,6 +13,9 @@ public class CheckAnagrams {
      * @return {@code true} if two string are anagrams, otherwise {@code false}
      */
     public static boolean areAnagrams(String first, String second) {
+        if (first.length() != second.length()) {
+            return false;
+        }
         Map<Character, Integer> appearancesFirst = stringToAppearencesMap(first);
         Map<Character, Integer> appearancesSecond = stringToAppearencesMap(second);
         return appearancesFirst.equals(appearancesSecond);

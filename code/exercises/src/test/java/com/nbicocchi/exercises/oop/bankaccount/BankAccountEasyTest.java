@@ -15,11 +15,17 @@ class BankAccountEasyTest {
 
     @Test
     void checkIBAN() {
-        assertThrows(IllegalArgumentException.class, () -> new BankAccountEasy("IT00123", 0.0));
-        assertThrows(IllegalArgumentException.class, () -> new BankAccountEasy("It001234", 0.0));
-        assertThrows(IllegalArgumentException.class, () -> new BankAccountEasy("It001234", 0.0));
-        assertThrows(IllegalArgumentException.class, () -> new BankAccountEasy("it001234", 0.0));
-        assertDoesNotThrow(() -> new BankAccountEasy("IT001234", 0.0));
+        assertThrows(IllegalArgumentException.class, () -> new BankAccountPro("IT001230000000000000000000000000000", 0.0));
+        assertThrows(IllegalArgumentException.class, () -> new BankAccountPro("IT00123", 0.0));
+        assertThrows(IllegalArgumentException.class, () -> new BankAccountPro("It001234", 0.0));
+        assertThrows(IllegalArgumentException.class, () -> new BankAccountPro("It001234", 0.0));
+        assertThrows(IllegalArgumentException.class, () -> new BankAccountPro("it001234", 0.0));
+        assertDoesNotThrow(() -> new BankAccountPro("IT001234", 0.0));
+    }
+
+    @Test
+    void negativeFeeThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.setOperationFee(-1.0));
     }
 
     @Test
