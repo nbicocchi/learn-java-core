@@ -289,6 +289,7 @@ classDiagram
         + getTasks(): Set<Task>
         + equals(Object o) : boolean 
         + hashCode() : int
+        + toString() : String
     }
 
     class Task {
@@ -307,6 +308,7 @@ classDiagram
         + setTeamLeader(teamLeader: Employee): void
         + equals(Object o) : boolean
         + hashCode() : int
+        + toString() : String
     }
 
     class Employee {
@@ -322,6 +324,7 @@ classDiagram
         + setSocialSecurityCode(socialSecurityCode: String): void
         + equals(Object o) : boolean
         + hashCode() : int
+        + toString() : String
     }
     Project "1" <--> "*" Task
     Employee "1" <-- "*" Task
