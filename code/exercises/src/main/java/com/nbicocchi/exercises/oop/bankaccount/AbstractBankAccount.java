@@ -97,6 +97,9 @@ public abstract class AbstractBankAccount implements BankAccount {
      */
     @Override
     public void deposit(double amount) {
+        if(amount < 0.0){
+            throw new IllegalArgumentException("Invalid negative amount");
+        }
         balance += amount;
     }
 
@@ -107,6 +110,9 @@ public abstract class AbstractBankAccount implements BankAccount {
      */
     @Override
     public double withdraw(double amount) {
+        if(amount < 0.0){
+            throw new IllegalArgumentException("Invalid negative amount");
+        }
         balance -= amount;
         return amount;
     }

@@ -20,8 +20,8 @@ public class BankAccountPro extends AbstractBankAccount {
      */
     @Override
     public void deposit(double amount) {
-        applyFee();
         super.deposit(amount);
+        applyFee();
     }
 
     /**
@@ -31,7 +31,8 @@ public class BankAccountPro extends AbstractBankAccount {
      */
     @Override
     public double withdraw(double amount) {
+        double outAmount = super.withdraw(amount);
         applyFee();
-        return super.withdraw(amount);
+        return outAmount;
     }
 }

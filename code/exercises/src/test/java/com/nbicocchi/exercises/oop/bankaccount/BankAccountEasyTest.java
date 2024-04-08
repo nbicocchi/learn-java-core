@@ -30,12 +30,14 @@ class BankAccountEasyTest {
 
     @Test
     void deposit() {
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(-100));
         bankAccount.deposit(1000);
         assertEquals(2000, bankAccount.getBalance());
     }
 
     @Test
     void withdraw() {
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-100));
         assertEquals(1000, bankAccount.withdraw(2000));
         assertEquals(0, bankAccount.getBalance());
     }
