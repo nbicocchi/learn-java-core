@@ -344,14 +344,19 @@ PhoneBookList  ..|>  PhoneBook
 * BankAccountPro represents a fully fledged bank account, allowing international transfers, negative balances, and a 2pc interest rate. However, all this comes with the cost of 1 Euro for each operation (deposit, withdrawal). 
 * BankAccountEasy represents a basic bank account, which does not support negative balances, international transfers, and does not pay any interest. Nevertheless, deposits and withdrawals are free.
 
-Note well: a valid IBAN must have a length comprised between 8 and 34 characters and the first two characters (representing the country) must be uppercase letters. Both accounts must refuse to set **invalid IBANs** or **positive fees** (money being added for each operation). To implement these functionalities, you can throw an IllegalArgumentException as shown below:
+Note well:
+* a valid IBAN must have a length comprised between 8 and 34 characters and the first two characters (representing the country) must be uppercase letters;
+* the operationFee (money that will be subtracted for each operation) value must be greater or equal to zero;
+* the deposit or withdraw amount must be greater or equal to zero;
+
+Both accounts must refuse to set **invalid IBANs**, to set **negative fees** and to operate with **negative amounts**.
+To implement these functionalities, you can throw an IllegalArgumentException as shown below:
 
 ```
-public void setOperationFee(double operationFee) {
-    if (operationFee < 0.0) {
-        throw new IllegalArgumentException("Invalid negative fee");
+public void checkPositiveValue(double value){
+    if(value < 0.0){
+        throw new IllegalArgumentException("Negative values are not allowed for this operation");
     }
-    this.operationFee = operationFee;
 }
 ```
 
@@ -384,6 +389,7 @@ class AbstractBankAccount {
     # double operationFee
     # double interestRate
     # AbstractBankAccount(String IBAN, double balance, double operationFee, double interestRate)
+    +void checkPositiveValue(double value)
     +String getIBAN()
     +void setIBAN(String IBAN)
     +double getBalance()
