@@ -6,7 +6,7 @@ public class SpeedTest {
     public static long insertBeginning(List<String> list, String item, int times) {
         long begin = System.nanoTime();
         for (int i = 0; i < times; i++) {
-            list.add(0, item);
+            list.addFirst(item);
         }
         return System.nanoTime() - begin;
     }
@@ -14,7 +14,7 @@ public class SpeedTest {
     public static long insertEnd(List<String> list, String item, int times) {
         long begin = System.nanoTime();
         for (int i = 0; i < times; i++) {
-            list.add(item);
+            list.addLast(item);
         }
         return System.nanoTime() - begin;
     }
