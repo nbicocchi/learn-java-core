@@ -38,6 +38,16 @@ public abstract class AbstractBankAccount implements BankAccount {
         setOperationFee(operationFee);
     }
 
+    /**
+     * Trows an IllegalArgumentException if the passed value is negative.
+     * @param value the value to be evalueted by teh function.
+     */
+    public void checkPositiveValue(double value){
+        if(value < 0.0){
+            throw new IllegalArgumentException("Negative values are not allowed for this operation");
+        }
+    }
+
     @Override
     public String getIBAN() {
         return IBAN;
@@ -75,9 +85,7 @@ public abstract class AbstractBankAccount implements BankAccount {
      */
     @Override
     public void setOperationFee(double operationFee) {
-        if (operationFee < 0.0) {
-            throw new IllegalArgumentException("Invalid negative fee");
-        }
+        checkPositiveValue(operationFee);
         this.operationFee = operationFee;
     }
 
@@ -97,9 +105,7 @@ public abstract class AbstractBankAccount implements BankAccount {
      */
     @Override
     public void deposit(double amount) {
-        if(amount < 0.0){
-            throw new IllegalArgumentException("Invalid negative amount");
-        }
+        checkPositiveValue(amount);
         balance += amount;
     }
 
@@ -110,9 +116,7 @@ public abstract class AbstractBankAccount implements BankAccount {
      */
     @Override
     public double withdraw(double amount) {
-        if(amount < 0.0){
-            throw new IllegalArgumentException("Invalid negative amount");
-        }
+        checkPositiveValue(amount);
         balance -= amount;
         return amount;
     }
