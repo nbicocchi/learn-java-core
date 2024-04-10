@@ -347,7 +347,7 @@ PhoneBookList  ..|>  PhoneBook
 Note well:
 * a valid IBAN must have a length comprised between 8 and 34 characters and the first two characters (representing the country) must be uppercase letters;
 * the operationFee (money that will be subtracted for each operation) value must be greater or equal to zero;
-* the deposit or withdraw amount must be greater or equal to zero;
+* the deposit or withdraw amount must be greater or equal to zero.
 
 Both accounts must refuse to set **invalid IBANs**, to set **negative fees** and to operate with **negative amounts**.
 To implement these functionalities, you can throw an IllegalArgumentException as shown below:
@@ -389,7 +389,7 @@ class AbstractBankAccount {
     # double operationFee
     # double interestRate
     # AbstractBankAccount(String IBAN, double balance, double operationFee, double interestRate)
-    +void checkPositiveValue(double value)
+    #void checkPositiveValue(double value)
     +String getIBAN()
     +void setIBAN(String IBAN)
     +double getBalance()

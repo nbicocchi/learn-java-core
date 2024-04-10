@@ -42,8 +42,8 @@ public abstract class AbstractBankAccount implements BankAccount {
      * Trows an IllegalArgumentException if the passed value is negative.
      * @param value the value to be evalueted by teh function.
      */
-    public void checkPositiveValue(double value){
-        if(value < 0.0){
+    protected void checkPositiveValue(double value){
+        if (value < 0.0) {
             throw new IllegalArgumentException("Negative values are not allowed for this operation");
         }
     }
