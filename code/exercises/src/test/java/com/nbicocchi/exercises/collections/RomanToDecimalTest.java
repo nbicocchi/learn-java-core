@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RomanToDecimalTest {
 
     @Test
-    void romanToInteger() {
+    void romanToDecimal() {
         assertEquals(3, RomanToDecimal.romanToDecimal("III"));
         assertEquals(58, RomanToDecimal.romanToDecimal("LVIII"));
         assertEquals(1994, RomanToDecimal.romanToDecimal("MCMXCIV"));
