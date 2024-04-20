@@ -206,7 +206,7 @@ where:
 Greeks.
 This method will compute all prime numbers up to n. Choose an n. First insert all numbers from 1 to n into a set.
 Then erase all multiples of 2 (except 2); that is, 4, 6, 8, 10, 12 . . . .
-Erase all multiples of 3; that is, 6, 9, 12, 15 . . . . Go up to sqrt(n). Then return the set.
+Erase all multiples of 3; that is, 6, 9, 12, 15 . . . . Proceed removing all multiples of numbers up to sqrt(n). Then return the set.
 
 The method has the following prototype:
 
