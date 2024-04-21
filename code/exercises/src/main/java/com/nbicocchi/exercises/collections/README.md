@@ -213,7 +213,7 @@ public static Set<Integer> eratosthenes(int n);
 
 where:
 
-* [1, n] is the range in which searching for primes.
+* [2, n] is the range in which searching for primes.
 
 ---
 
