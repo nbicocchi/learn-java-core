@@ -202,7 +202,7 @@ where:
 
 ---
 
-**[Eratosthenes.java]** Implement the sieve of Eratosthenes: a method for computing prime numbers, known to the ancient Greeks.
+**[Eratosthenes.java]** Implement the [sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes): a method for computing prime numbers, known to the ancient Greeks.
 This method will compute all prime numbers up to *n*. Choose an integer number *n*. First, insert all numbers from 2 to *n* into a set. Then, erase all multiples of 2 (i.e., 4, 6, 8, 10, 12, ...), all multiples of 3 (i.e., 6, 9, 12, 15, ...) until all multiples of int(sqrt(n)). The elements remaining in the set at the end of the process, are all prime numbers.
 
 The method has the following prototype:
