@@ -7,10 +7,10 @@ import java.util.List;
 
 public class Reverse {
     public static List<String> reverse(List<String> sentence) {
-        Deque<String> stack = new ArrayDeque<>();
+        Deque<String> queue = new ArrayDeque<>();
         for (String s : sentence) {
-            stack.push(s);
+            queue.addFirst(s);
         }
-        return new ArrayList<>(stack);
+        return new ArrayList<>(queue);
     }
 }
