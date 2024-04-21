@@ -12,15 +12,15 @@ class SpeedTestTest {
 
     @Test
     void testInsertBeginning() {
-        long arrayList = SpeedTest.insertBeginning(new ArrayList<>(), "nicola", times);
-        long linkedList = SpeedTest.insertBeginning(new LinkedList<>(), "nicola", times);
-        assertTrue(linkedList < arrayList);
+        long arrayListTime = SpeedTest.insertBeginning(new ArrayList<>(), "nicola", times);
+        long linkedListTime = SpeedTest.insertBeginning(new LinkedList<>(), "nicola", times);
+        assertTrue(linkedListTime < arrayListTime);
     }
 
     @Test
     void testInsertEnd() {
-        long arrayList = SpeedTest.insertEnd(new ArrayList<>(), "nicola", times);
-        long linkedList = SpeedTest.insertEnd(new LinkedList<>(), "nicola", times);
-        assertTrue(linkedList > arrayList);
+        long arrayListTime = SpeedTest.insertEnd(new ArrayList<>(), "nicola", times);
+        long linkedListTime = SpeedTest.insertEnd(new LinkedList<>(), "nicola", times);
+        assertTrue(linkedListTime > arrayListTime);
     }
 }
