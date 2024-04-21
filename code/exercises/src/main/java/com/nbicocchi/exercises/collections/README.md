@@ -226,7 +226,7 @@ Write a method, reading all the unique words of the book (all words have to be c
 The method has the following prototype:
 
 ```
-public static String wordAfterWord(String filename, String word) throws IOException;
+public static String wordAfterWord(String filename, String string) throws IOException;
 ```
 
 where:
