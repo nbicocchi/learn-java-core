@@ -14,11 +14,7 @@ public class WordFrequency {
         Map<String, Integer> frequencies = new HashMap<>();
         for (String line : getLines(filename)) {
             for (String word : lineToWords(line)) {
-                if (frequencies.containsKey(word)) {
-                    frequencies.put(word, frequencies.get(word) + 1);
-                } else {
-                    frequencies.put(word, 1);
-                }
+                frequencies.put(word, frequencies.getOrDefault(word, 0) + 1);
             }
         }
         return frequencies;
