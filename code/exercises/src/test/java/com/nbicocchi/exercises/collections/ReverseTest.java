@@ -12,5 +12,6 @@ class ReverseTest {
     void reverse() {
         assertEquals(List.of("am", "I"), Reverse.reverse(List.of("I", "am")));
         assertEquals(List.of("1", "2", "3"), Reverse.reverse(List.of("3", "2", "1")));
+        assertEquals(List.of(), Reverse.reverse(List.of()));
     }
 }

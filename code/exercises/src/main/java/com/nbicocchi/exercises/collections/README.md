@@ -96,7 +96,7 @@ where:
 ## Java Exercises (Deque)
 
 **[Reverse.java]** Write a method reversing the order of words in a sentence (represented as a ```List<String>```) using
-an ArrayDeque as a stack (see .addLast() and .pollLast() methods). Each word has to be pushed to the stack and fetched
+an ArrayDeque as a stack (see .push() and .pull() methods). Each word has to be pushed to the stack and fetched
 later. If the stack is behaving correctly, the order is reversed.
 
 Examples:
@@ -202,11 +202,8 @@ where:
 
 ---
 
-**[Eratosthenes.java]** Implement the sieve of Eratosthenes: a method for computing prime numbers, known to the ancient
-Greeks.
-This method will compute all prime numbers up to n. Choose an n. First insert all numbers from 1 to n into a set.
-Then erase all multiples of 2 (except 2); that is, 4, 6, 8, 10, 12 . . . .
-Erase all multiples of 3; that is, 6, 9, 12, 15 . . . . Go up to sqrt(n). Then return the set.
+**[Eratosthenes.java]** Implement the [sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes): a method for computing prime numbers, known to the ancient Greeks.
+This method will compute all prime numbers up to *n*. Choose an integer number *n*. First, insert all numbers from 2 to *n* into a set. Then, erase all multiples of 2 (i.e., 4, 6, 8, 10, 12, ...), all multiples of 3 (i.e., 6, 9, 12, 15, ...) until all multiples of int(sqrt(n)). The elements remaining in the set at the end of the process, are all prime numbers.
 
 The method has the following prototype:
 
@@ -216,12 +213,12 @@ public static Set<Integer> eratosthenes(int n);
 
 where:
 
-* [1, n] is the range in which searching for primes.
+* **n** is the upper limit for searching primes.
 
 ---
 
 **[WordAfterWord.java]** Download the [Ulysses, by James Joyce](https://github.com/laumann/ds/blob/master/hashing/books/) book.
-Write a method, reading all the unique words of the book (all words have to be converted in lowercase), and sorting them in alphabetical order. Given a word, the method returns the next word (in alphabetical order) contained within the book (See TreeSet.tailSet()).
+Write a method, reading all words of the book without repetitions (all words have to be converted in lowercase), and sorting them in alphabetical order. Given a word, the method returns the next word (in alphabetical order) contained within the book (See TreeSet.tailSet()).
 
 The method has the following prototype:
 

@@ -16,10 +16,10 @@ public class Eratosthenes {
         return primes;
     }
 
-    public static Set<Integer> multiples(int n, int limit) {
+    public static Set<Integer> multiples(int i, int limit) {
         Set<Integer> multiples = new HashSet<>();
-        for (int i = 2; n * i <= limit; i++) {
-            multiples.add(n * i);
+        for (int j = 2; i * j <= limit; j++) {
+            multiples.add(i * j);
         }
         return multiples;
     }
