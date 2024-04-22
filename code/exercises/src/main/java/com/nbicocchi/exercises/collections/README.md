@@ -453,8 +453,8 @@ where:
 
 **[WordFrequency.java]** Download
 the [Ulysses, by James Joyce](https://github.com/laumann/ds/blob/master/hashing/books/) book.
-Write a method, reading all the lines of the file and returning a ```Map<String, Integer>``` having all the unique words
-of the book as keys, associated with the number of times they appeared.
+Write a method, reading all the lines of the file and returning a ```Map<String, Integer>``` containing all words
+of the book (without repetitions) as keys, associated with the number of times they appeared.
 
 The method has the following prototype:
 
