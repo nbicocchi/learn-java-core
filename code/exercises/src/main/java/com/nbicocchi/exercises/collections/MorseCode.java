@@ -37,21 +37,15 @@ public class MorseCode {
         return conversionMap;
     }
 
-    private static void checkString(Set<Character> allowedChars, String string) {
-        for (char c : string.toLowerCase().toCharArray()) {
-            if (!allowedChars.contains(c)) {
-                throw new IllegalArgumentException("String contains unsupported char");
-            }
-        }
-    }
-
     public static String morseCode(String string) {
         Map<Character, String> conversionMap = conversionMap();
-        checkString(conversionMap.keySet(), string);
-
         StringBuilder builder = new StringBuilder();
         for (char c : string.toLowerCase().toCharArray()) {
-            builder.append(conversionMap.get(c)).append(" ");
+            if (!conversionMap.containsKey(c)) {
+                throw new IllegalArgumentException("String contains an unsupported character.");
+            } else {
+                builder.append(conversionMap.get(c)).append(" ");
+            }
         }
         // trim() eventually removes the last space
         return builder.toString().trim();
