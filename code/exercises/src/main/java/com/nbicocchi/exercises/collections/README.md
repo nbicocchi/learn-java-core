@@ -95,9 +95,7 @@ where:
 
 ## Java Exercises (Deque)
 
-**[Reverse.java]** Write a method reversing the order of words in a sentence (represented as a ```List<String>```) using
-a Deque implementation as a stack (see .push()/.poll() methods). Each word has to be pushed to the stack and fetched
-later. If the stack is behaving correctly, the order is reversed.
+**[Reverse.java]** Write a method reversing the order of words in a sentence (represented as a `List<String>`) using a Deque implementation as a stack (see .push()/.poll() methods). Each word has to be pushed to the stack and fetched later in reverse order. The method returns void and modifies the original `List<String>`.
 
 Examples:
 
@@ -108,7 +106,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public static List<String> reverse(List<String> sentence);
+public static void reverse(List<String> sentence);
 ```
 
 where:
