@@ -96,13 +96,14 @@ where:
 ## Java Exercises (Deque)
 
 **[Reverse.java]** Write a method reversing the order of words in a sentence (represented as a ```List<String>```) using
-an ArrayDeque as a stack (see .push() and .pull() methods). Each word has to be pushed to the stack and fetched
+a Deque implementation as a stack (see .push()/.poll() methods). Each word has to be pushed to the stack and fetched
 later. If the stack is behaving correctly, the order is reversed.
 
 Examples:
 
 * reverse(["Hello", "World!"]) → ["World!", "Hello"]
 * reverse(["I", "am"]) → ["am", "I"]
+* reverse([]) → []
 
 The method has the following prototype:
 
