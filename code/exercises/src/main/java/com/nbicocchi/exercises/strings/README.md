@@ -23,7 +23,7 @@ where:
 
 ---
 
-**[Reverse.java]** Write a method accepting a string and returning the reversed string (see String.charAt() method).
+**[Reverse.java]** Write a method accepting a string and returning the reversed string (see StringBuilder class).
 
 Examples:
 
