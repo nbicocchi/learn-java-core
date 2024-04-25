@@ -256,6 +256,7 @@ where:
 ---
 
 **[HammingDistance.java]** In information theory, the [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) between two strings **of equal length** is the number of positions at which the corresponding symbols are different. Given two strings, return their Hamming distance.
+If strings have different lengths, an IllegalArgumentException has to be thrown.
 
 Examples:
 
