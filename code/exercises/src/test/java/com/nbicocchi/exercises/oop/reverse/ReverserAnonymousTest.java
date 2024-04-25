@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReverserAnonymousTest {
     @Test
-    void reverse() {
+    void reverseCharAtUsingStringBuilder() {
         Reverser r = new Reverser() {
             @Override
             public String reverse(String s) {

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReverserSlowTest {
     @Test
-    void reverse() {
+    void reverseCharAtUsingStringBuilder() {
         Reverser r = new ReverserSlow();
         assertEquals("!dlroW olleH", r.reverse("Hello World!"));
     }
