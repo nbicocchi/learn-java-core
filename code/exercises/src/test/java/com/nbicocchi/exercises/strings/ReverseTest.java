@@ -13,9 +13,9 @@ public class ReverseTest {
     }
 
     @Test
-    public void reverse() {
-        assertEquals("tset gnirtS", Reverse.reverse("String test"));
-        assertEquals("eoD nhoJ", Reverse.reverse("John Doe"));
-        assertEquals("!dlroW olleH", Reverse.reverse("Hello World!"));
+    public void reverseStringBuilder() {
+        assertEquals("tset gnirtS", Reverse.reverseStringBuilder("String test"));
+        assertEquals("eoD nhoJ", Reverse.reverseStringBuilder("John Doe"));
+        assertEquals("!dlroW olleH", Reverse.reverseStringBuilder("Hello World!"));
     }
 }
