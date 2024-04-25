@@ -38,4 +38,16 @@ public class EqualIsNot {
     public static boolean isEmpty(String s) {
         return s == null || s.isEmpty();
     }
+
+    // More compact version: when the cycle stop one or both of index are -1. If they are equals, I find out an even number of
+    // "is" and "not" occurrences. Otherwise, the number of occurrences is different.
+
+//    public static boolean equalIsNot(String string) {
+//        int indexIs = 0, indexNot = 0;
+//        while (indexIs != -1 && indexNot != -1) {
+//            indexIs = string.indexOf("is", indexIs + 1);
+//            indexNot = string.indexOf("not", indexNot + 1);
+//        }
+//        return indexIs == indexNot;
+//    }
 }
