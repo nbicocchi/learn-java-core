@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ReverseTest {
 
     @Test
-    void reverseCharAtUsingStringBuilder() {
+    void reverse() {
         List<Integer> l = new ArrayList<>(List.of(1, 2, 3, 4, 5));
         Reverse.reverse(l);
         assertEquals(List.of(5, 4, 3, 2, 1), l);

@@ -23,9 +23,7 @@ where:
 
 ---
 
-**[Reverse.java]** Write a method accepting a string and returning the reversed string (see StringBuilder class). 
-There are two different way to do this. Create two methods, the first one using only String's methods (see String.charAt() method);
-about the second one, feel free to use also StringBuilder's methods.
+**[Reverse.java]** Write a method accepting a string and returning the reversed string (see StringBuilder class).
 
 Examples:
 
@@ -33,11 +31,10 @@ Examples:
 * reverse("John Doe") → "eoD nhoJ"
 * reverse("Hello World!") → "!dlroW olleH"
 
-Methods have the following prototype:
+The method has the following prototype:
 
 ```
-public static String reverseCharAt(String string);
-public static String reverse(String string);
+ public static String reverse(String string);
 ```
 
 where:
