@@ -43,8 +43,9 @@ where:
 
 ---
 
-**[RemoveFirstTwoChars.java]** Write a method accepting a string and returning the same string without the first two
-characters (see StringBuilder class).
+**[RemoveFirstTwoChars.java]** Write two methods accepting a string and returning the same string without the first two
+characters. The first one has to use only String's methods (see String.charAt()), while the second one has to use StringBuilder's
+methods (see StringBuilder.delete()).
 
 Examples:
 
@@ -55,7 +56,8 @@ Examples:
 The method has the following prototype:
 
 ```
-public static String removeFirstTwoChars(String string);
+public static String removeFirstTwoCharsCharAt(String string);
+public static String removeFirstTwoCharsStringBuilder(String string);
 ```
 
 where:
