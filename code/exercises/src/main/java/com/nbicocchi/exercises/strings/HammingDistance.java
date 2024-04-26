@@ -12,7 +12,7 @@ public class HammingDistance {
      */
     public static int hammingDistance(String s1, String s2) {
         if (s1.length() != s2.length()) {
-            throw new IllegalArgumentException("String lengths must be equal");
+            return -1;
         }
 
         int counter = 0;
