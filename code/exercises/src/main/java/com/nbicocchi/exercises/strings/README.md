@@ -65,9 +65,9 @@ where:
 
 ---
 
-**[RemoveFirstTwoCharsIf.java]** Write a method accepting a string and returning the same string without the first
-two characters. Keep the first character if it is 'H' and keep the second character if it is 'e' (see StringBuilder
-class).
+**[RemoveFirstTwoCharsIf.java]** Write two methods accepting a string and returning the same string without the first
+two characters. Keep the first character if it is 'H' and keep the second character if it is 'e'. The first method has to use 
+only String's methods (see String.charAt()), while the second one has to use StringBuilder's methods (see StringBuilder.deleteCharAt()).
 
 Examples:
 
@@ -80,7 +80,8 @@ Examples:
 The method has the following prototype:
 
 ```
-public static String removeFirstTwoCharsIf(String string);
+public static String removeFirstTwoCharsIfCharAt(String string);
+public static String removeFirstTwoCharsIfStringBuilder(String string);
 ```
 
 where:
