@@ -13,6 +13,5 @@ class HammingDistanceTest {
         assertEquals(1, HammingDistance.hammingDistance("nicola", "n1cola"));
         assertEquals(6, HammingDistance.hammingDistance("nicola", "zzzzzz"));
         assertEquals(0, HammingDistance.hammingDistance("nicola", "nicola"));
-
     }
 }
