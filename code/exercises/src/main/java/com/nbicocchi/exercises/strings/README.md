@@ -44,9 +44,7 @@ where:
 
 ---
 
-**[RemoveFirstTwoChars.java]** Write two methods accepting a string and returning the same string without the first two
-characters. The first one has to use only String's methods (see String.charAt()), while the second one has to use StringBuilder's
-methods (see StringBuilder.delete()).
+**[RemoveFirstTwoChars.java]** Write two methods accepting a string and returning the same string without the first two characters. The first one has to use String.charAt(), while the second one has to use StringBuilder.delete().
 
 Examples:
 
@@ -54,7 +52,7 @@ Examples:
 * removeFirstTwoChars("No") → ""
 * removeFirstTwoChars("Y") → ""
 
-The method has the following prototype:
+The methods have the following prototype:
 
 ```
 public static String removeFirstTwoCharsCharAt(String string);
@@ -67,9 +65,7 @@ where:
 
 ---
 
-**[RemoveFirstTwoCharsIf.java]** Write two methods accepting a string and returning the same string without the first
-two characters. Keep the first character if it is 'H' and keep the second character if it is 'e'. The first method has to use 
-only String's methods (see String.charAt()), while the second one has to use StringBuilder's methods (see StringBuilder.deleteCharAt()).
+**[RemoveFirstTwoCharsIf.java]** Write two methods accepting a string and returning the same string without the first two characters. Keep the first character if it is 'H' and keep the second character if it is 'e'. The first method has to use String.charAt(), while the second one has to use StringBuilder.deleteCharAt().
 
 Examples:
 
@@ -79,7 +75,7 @@ Examples:
 * removeFirstTwoCharsIf("Ne") → "e"
 * removeFirstTwoCharsIf("Y") → ""
 
-The method has the following prototype:
+The methods have the following prototype:
 
 ```
 public static String removeFirstTwoCharsIfCharAt(String string);
