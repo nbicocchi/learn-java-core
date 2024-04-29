@@ -23,7 +23,7 @@ where:
 
 ---
 
-**[Reverse.java]** Write a method accepting a string and returning the reversed string (see String.charAt() method).
+**[Reverse.java]** Write two methods accepting a string and returning the reversed string. The first one has to use only String's methods (see String.charAt()), while the second one has to use StringBuilder's methods (see StringBuilder.reverse()).
 
 Examples:
 
@@ -31,10 +31,11 @@ Examples:
 * reverse("John Doe") → "eoD nhoJ"
 * reverse("Hello World!") → "!dlroW olleH"
 
-The method has the following prototype:
+Methods have the following prototype:
 
 ```
- public static String reverse(String string);
+public static String reverseCharAt(String string);
+public static String reverseStringBuilder(String string);
 ```
 
 where:
@@ -43,8 +44,7 @@ where:
 
 ---
 
-**[RemoveFirstTwoChars.java]** Write a method accepting a string and returning the same string without the first two
-characters (see StringBuilder class).
+**[RemoveFirstTwoChars.java]** Write two methods accepting a string and returning the same string without the first two characters. The first one has to use String.charAt(), while the second one has to use StringBuilder.delete().
 
 Examples:
 
@@ -52,10 +52,11 @@ Examples:
 * removeFirstTwoChars("No") → ""
 * removeFirstTwoChars("Y") → ""
 
-The method has the following prototype:
+The methods have the following prototype:
 
 ```
-public static String removeFirstTwoChars(String string);
+public static String removeFirstTwoCharsCharAt(String string);
+public static String removeFirstTwoCharsStringBuilder(String string);
 ```
 
 where:
@@ -64,9 +65,7 @@ where:
 
 ---
 
-**[RemoveFirstTwoCharsIf.java]** Write a method accepting a string and returning the same string without the first
-two characters. Keep the first character if it is 'H' and keep the second character if it is 'e' (see StringBuilder
-class).
+**[RemoveFirstTwoCharsIf.java]** Write two methods accepting a string and returning the same string without the first two characters. Keep the first character if it is 'H' and keep the second character if it is 'e'. The first method has to use String.charAt(), while the second one has to use StringBuilder.deleteCharAt().
 
 Examples:
 
@@ -76,10 +75,11 @@ Examples:
 * removeFirstTwoCharsIf("Ne") → "e"
 * removeFirstTwoCharsIf("Y") → ""
 
-The method has the following prototype:
+The methods have the following prototype:
 
 ```
-public static String removeFirstTwoCharsIf(String string);
+public static String removeFirstTwoCharsIfCharAt(String string);
+public static String removeFirstTwoCharsIfStringBuilder(String string);
 ```
 
 where:
@@ -255,13 +255,14 @@ where:
 
 ---
 
-**[HammingDistance.java]** In information theory, the [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) between two strings **of equal length** is the number of positions at which the corresponding symbols are different. Given two strings, return their Hamming distance.
+**[HammingDistance.java]** In information theory, the [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) between two strings **of equal length** is the number of positions at which the corresponding symbols are different. Given two strings, return their Hamming distance. If the two strings have different lengths, return -1;
 
 Examples:
 
 * hammingDistance("nicola", "n1cola") → 1
 * hammingDistance("nicola", "nicola") → 0
 * hammingDistance("nicola", "zzzzzz") → 6
+* hammingDistance("nicola", "nicol") → -1
 
 The method has the following prototype:
 
