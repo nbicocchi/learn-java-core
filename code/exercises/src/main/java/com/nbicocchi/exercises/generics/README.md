@@ -28,8 +28,7 @@ their specific type e.g. int, double, etc. (see java.lang.Number class).
 Examples:
 
 * divide(4, 2) → 2.0
-* divide(4.0, 2) → 2.0
-* divide(4, 2.0) → 2.0
+* divide(4.0, 2.0) → 2.0
 
 The method has the following prototype:
 
