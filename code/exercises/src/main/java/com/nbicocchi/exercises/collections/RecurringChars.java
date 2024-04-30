@@ -8,10 +8,6 @@ public class RecurringChars {
         Set<Character> seen = new HashSet<>();
         Set<Character> duplicates = new HashSet<>();
 
-        if(string.isEmpty()){
-            return duplicates;
-        }
-
         for (char c : string.toCharArray()) {
             if (!seen.contains(c)) {
                 seen.add(c);
