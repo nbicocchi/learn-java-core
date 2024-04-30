@@ -9,22 +9,22 @@ public class InterestRate {
 
         int anno;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Buongiorno benvenuti alla Di Quinzio's Bank, offriamo il 5% annuo di interessi");
+        System.out.println("Good morning and welcome to the Di Quinzio's Bank, we offer 5% as annual interest rate");
         while (true) {
             try {
-                System.out.println("Quanti anni di deposito volete? (max 70)");
+                System.out.println("How many years of deposit do you want? (max 70)");
                 anno = scanner.nextInt();
                 if (anno > 70 || anno < 1) {
-                    throw new IllegalArgumentException("Il numero deve essere compreso tra 1 e 70");
+                    throw new IllegalArgumentException("The range of the number is between 1 and 70");
                 }
-                System.out.println("Qual è il capitale iniziale? (min 1000 - max 99999.99)");
+                System.out.println("What is the initial capital (min 1000 - max 99999.99)");
                 balance = scanner.nextDouble();
                 if (balance < 1_000 || balance > 99_999.99) {
-                    throw new IllegalArgumentException("Il capitale può essere minimo 1000 e massimo 99999.99");
+                    throw new IllegalArgumentException("The capital is min 1000 and max 99999.99");
                 }
             } catch (Exception ex) {
                 scanner.nextLine();
-                System.err.println("Inserire valori validi");
+                System.err.println("Insert valid values");
                 continue;
             }
             break;
