@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Comparing {
 
-    public static class Car implements Comparable<Car> {
+    public static class Car {
         String brand;
 
         public Car(String brand) {
@@ -16,11 +16,6 @@ public class Comparing {
         @Override
         public String toString() {
             return "Car{" + "brand='" + brand + '\'' + '}';
-        }
-
-        @Override
-        public int compareTo(Car o) {
-            return brand.compareTo(o.brand);
         }
     }
 
