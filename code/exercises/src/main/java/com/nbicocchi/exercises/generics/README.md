@@ -91,7 +91,7 @@ where:
 ---
 
 **[CountOccurrences.java]** Write a generic static method counting all occurrences of a specific item of type T within a T[].
-It the passed item is null, the method should return the number of null values within the array.
+If the passed item is null, the method should return the number of null values within the array.
 
 Examples:
 
