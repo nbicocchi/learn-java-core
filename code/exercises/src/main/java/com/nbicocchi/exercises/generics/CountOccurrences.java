@@ -15,5 +15,14 @@ public class CountOccurrences {
             }
         }
         return count;
+
+        // Compact version
+//        int count = 0;
+//        for (T t : src) {
+//            if (item == null && t == null || t != null && t.equals(item)) {
+//                count++;
+//            }
+//        }
+//        return count;
     }
 }
