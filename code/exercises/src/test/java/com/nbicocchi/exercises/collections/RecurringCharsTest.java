@@ -10,6 +10,8 @@ class RecurringCharsTest {
 
     @Test
     void recurringChars() {
+        assertEquals(Set.of(), RecurringChars.recurringChars(""));
+        assertEquals(Set.of(' '), RecurringChars.recurringChars("  "));
         assertEquals(Set.of(), RecurringChars.recurringChars("Ciao"));
         assertEquals(Set.of('l'), RecurringChars.recurringChars("Hello"));
         assertEquals(Set.of('l', 'o'), RecurringChars.recurringChars("Hello World!"));

@@ -6,6 +6,7 @@ import java.util.Set;
 public class Intersection {
     public static Set<Integer> intersection(Set<Integer> first, Set<Integer> second) {
         Set<Integer> intersection = new HashSet<>();
+
         for (int item : first) {
             if (second.contains(item)) {
                 intersection.add(item);
