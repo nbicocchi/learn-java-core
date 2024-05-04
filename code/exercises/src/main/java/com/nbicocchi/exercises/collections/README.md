@@ -124,7 +124,7 @@ Examples:
 * intersection([1,2,3], [3,4,5]) → [3]
 * intersection([], []) → []
 
-The method has the following prototype:
+The methods have the following prototypes:
 
 ```
 public static Set<Integer> intersection(Set<Integer> first, Set<Integer> second);

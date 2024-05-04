@@ -90,8 +90,7 @@ where:
 
 ---
 
-**[CountOccurrences.java]** Write a generic static method counting all occurrences of a specific item of type T within a T[].
-If the passed item is null, the method should return the number of null values within the array.
+**[CountOccurrences.java]** Write a generic static method counting all occurrences of a specific item of type T within a T[]. If item is null, the method should return the number of null values within the array. Write two versions of the same method: the former in plain Java, the latter using *Objects.equals()* which provides null-safety.
 
 Examples:
 
@@ -99,10 +98,11 @@ Examples:
 * countOccurrences([null, null, 3, 4], null) → 2
 * countOccurrences(["hello", "world", null, null], "hello") → 1
 
-The method has the following prototype:
+The methods have the following prototypes:
 
 ```
-public static <T> int countOccurrences(T[] src, T item);
+public static <T> int countOccurrencesPlain(T[] src, T item);
+public static <T> int countOccurrencesObjects(T[] src, T item);
 ```
 
 where:

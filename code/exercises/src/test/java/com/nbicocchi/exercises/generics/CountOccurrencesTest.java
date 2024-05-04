@@ -7,10 +7,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CountOccurrencesTest {
 
     @Test
-    void countOccurrences() {
-        assertEquals(1, CountOccurrences.countOccurrences(new Integer[]{1, 2, 3}, 3));
-        assertEquals(3, CountOccurrences.countOccurrences(new Integer[]{1, 2, 3, 3, 3}, 3));
-        assertEquals(2, CountOccurrences.countOccurrences(new Integer[]{null, 2, null}, null));
-        assertEquals(1, CountOccurrences.countOccurrences(new Integer[]{null, 2, null}, 2));
+    void countOccurrencesPlain() {
+        assertEquals(1, CountOccurrences.countOccurrencesPlain(new Integer[]{1, 2, 3}, 3));
+        assertEquals(3, CountOccurrences.countOccurrencesPlain(new Integer[]{1, 2, 3, 3, 3}, 3));
+        assertEquals(2, CountOccurrences.countOccurrencesPlain(new Integer[]{null, 2, null}, null));
+        assertEquals(1, CountOccurrences.countOccurrencesPlain(new Integer[]{null, 2, null}, 2));
+    }
+
+    @Test
+    void countOccurrencesObjects() {
+        assertEquals(1, CountOccurrences.countOccurrencesObjects(new Integer[]{1, 2, 3}, 3));
+        assertEquals(3, CountOccurrences.countOccurrencesObjects(new Integer[]{1, 2, 3, 3, 3}, 3));
+        assertEquals(2, CountOccurrences.countOccurrencesObjects(new Integer[]{null, 2, null}, null));
+        assertEquals(1, CountOccurrences.countOccurrencesObjects(new Integer[]{null, 2, null}, 2));
     }
 }
