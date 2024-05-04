@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class MeasureTest {
 
     @Test
-    void max() {
+    void measure() {
         Measure.Measurer<String> measurer = new Measure.Measurer<>() {
             @Override
             public double measure(String item) {
