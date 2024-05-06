@@ -22,13 +22,14 @@ where:
 
 ---
 
-**[Divide.java]** Write a generic static method returning the floating point division of any two numbers regardless of
-their specific type e.g. int, double, etc. (see java.lang.Number class).
+**[Divide.java]** Write a generic static method returning the floating point division of any two numbers regardless of their specific type (see java.lang.Number class). Despite the prototype below seem to indicate that both arguments are required to have the same type *T*, remember that the inference algorithm tries to find the **most specific** type that works with all of the arguments. Read more [here](https://docs.oracle.com/javase/tutorial/java/generics/genTypeInference.html).
 
 Examples:
 
 * divide(4, 2) → 2.0
 * divide(4.0, 2.0) → 2.0
+* divide(4, 2.0) → 2.0
+* divide(4.0, 2) → 2.0
 
 The method has the following prototype:
 

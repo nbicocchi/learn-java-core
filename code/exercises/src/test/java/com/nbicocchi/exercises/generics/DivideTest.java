@@ -10,8 +10,8 @@ class DivideTest {
     @Test
     void divide() {
         assertEquals(2.0, Divide.divide(4, 2), DELTA);
-        assertEquals(2.0, Divide.divide(4, 2.0), DELTA);
         assertEquals(2.0, Divide.divide(4.0, 2.0), DELTA);
+        assertEquals(2.0, Divide.divide(4, 2.0), DELTA);
         assertEquals(2.0, Divide.divide(4.0, 2), DELTA);
         assertEquals(Double.POSITIVE_INFINITY, Divide.divide(1.0,0.0));
     }
