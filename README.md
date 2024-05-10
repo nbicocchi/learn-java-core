@@ -18,7 +18,7 @@
 
 ### Official Tutorials
 * [IntelliJ Tutorial](https://www.jetbrains.com/idea/resources/)
-* [Java SE Tutorial](https://docs.oracle.com/javase/tutorial/)
+* [Java SE Tutorial](https://dev.java/)
 * [Java SE API](https://docs.oracle.com/en/java/javase/21/docs/api/index.html)
 
 ### Other Tutorials/Exercises
