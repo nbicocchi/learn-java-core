@@ -12,17 +12,13 @@ public class RetryWrite {
         }
     }
 
-    public static void writeWithTries(int maxTries) {
-        int count = 0;
-        while(true) {
-            try {
+    public static void writeWithTries(int maxTries)  {
+        try {
+            for (int attempt = 0; attempt < maxTries; attempt++) {
                 write("Hello world!");
-                break;
-            } catch (IOException e) {
-                if (++count == maxTries) {
-                    throw new UncheckedIOException(e);
-                }
             }
+        } catch (IOException e){
+            throw new UncheckedIOException(e);
         }
     }
 
