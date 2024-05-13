@@ -1,5 +1,7 @@
 package com.nbicocchi.tutorials.threads;
 
+import java.time.Duration;
+
 public class LockingGranularity {
     static class Actor extends Thread {
         Runnable runnable;
@@ -21,9 +23,9 @@ public class LockingGranularity {
         public synchronized void A() {
             System.out.println(Thread.currentThread().getName() + " A()");
             try {
-                Thread.sleep(100);
+                Thread.sleep(Duration.ofMillis(100));
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
 
