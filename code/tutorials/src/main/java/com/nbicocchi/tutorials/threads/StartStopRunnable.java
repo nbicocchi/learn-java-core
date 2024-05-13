@@ -5,17 +5,18 @@ public class StartStopRunnable {
     static class MyRunnable implements Runnable {
         @Override
         public void run() {
-            System.out.println(Thread.currentThread().getName() + " started");
-
-            while(!Thread.currentThread().isInterrupted()) {
-                System.out.println(Thread.currentThread().getName() + " running...");
+            Thread currentThread = Thread.currentThread();
+            System.out.println(currentThread.getName() + " started");
+            while(!currentThread.isInterrupted()) {
+                System.out.println(currentThread.getName() + " running...");
             }
-
-            System.out.println(Thread.currentThread().getName() + " terminated");
+            System.out.println(currentThread.getName() + " terminated");
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
+        System.out.println("Main thread started");
+
         Thread t0 = new Thread(new MyRunnable());
         Thread t1 = new Thread(new MyRunnable());
 
@@ -38,6 +39,6 @@ public class StartStopRunnable {
         t0.join();
         t1.join();
 
-        System.out.println("Father finished!");
+        System.out.println("Main thread terminated");
     }
 }
