@@ -11,5 +11,7 @@ class CheckLicencePlateTest {
         assertDoesNotThrow(() -> CheckLicencePlate.checkLicencePlate("AA958LV"));
         assertThrows(IllegalArgumentException.class, () -> CheckLicencePlate.checkLicencePlate("BO95889"));
         assertThrows(IllegalArgumentException.class, () -> CheckLicencePlate.checkLicencePlate("1295889"));
+        assertThrows(IllegalArgumentException.class, () -> CheckLicencePlate.checkLicencePlate("AA958L"));
+        assertThrows(IllegalArgumentException.class, () -> CheckLicencePlate.checkLicencePlate("AA958LVA"));
     }
 }
