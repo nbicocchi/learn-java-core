@@ -15,6 +15,8 @@ class RomanToDecimalTest {
         assertEquals(3999, RomanToDecimal.romanToDecimal("MMMCMXCIX"));
         assertEquals(444, RomanToDecimal.romanToDecimal("CDXLIV"));
         assertEquals(3888, RomanToDecimal.romanToDecimal("MMMDCCCLXXXVIII"));
+        assertThrows(IllegalArgumentException.class, () -> RomanToDecimal.romanToDecimal(""));
+        assertThrows(IllegalArgumentException.class, () -> RomanToDecimal.romanToDecimal("AMMMDDCCC"));
     }
 
 }
