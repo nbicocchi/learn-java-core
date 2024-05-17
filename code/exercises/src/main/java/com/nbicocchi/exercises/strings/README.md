@@ -263,7 +263,7 @@ Examples:
 * hammingDistance("nicola", "nicola") → 0
 * hammingDistance("nicola", "zzzzzz") → 6
 * hammingDistance("nicola", "nicol") → -1
-* * hammingDistance("", "nicol") → -1
+* hammingDistance("", "nicol") → -1
 
 The method has the following prototype:
 
