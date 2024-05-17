@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NoYYZTest {
     @Test
-    void noYY() {
+    void noYYZ() {
         assertEquals(List.of("ay", "by", "cy"), NoYYZ.noYYZ(List.of("a", "b", "c")));
         assertEquals(List.of("ay", "by"), NoYYZ.noYYZ(List.of("a", "b", "cy")));
         assertEquals(List.of("xxy", "yay", "zzy"), NoYYZ.noYYZ(List.of("xx", "ya", "zz")));
