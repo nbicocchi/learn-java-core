@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ReadLinePartialDelegationTest {
     @Test
     void readLinePartialDelegationTest() {
-        assertThrows(RuntimeException.class, () -> ReadLinePartialDelegation.readLinePartialDelegation("/tmp/missing"));
-        assertEquals("Hello!",ReadLinePartialDelegation.readLinePartialDelegation("src/main/resources/Hello"));
+        assertThrows(RuntimeException.class, () -> ReadLinePartialDelegation.readLinePartialDelegation("src/main/resources/missing-file.txt"));
+        assertEquals("aahing",ReadLinePartialDelegation.readLinePartialDelegation("src/main/resources/english-words.txt"));
     }
 }

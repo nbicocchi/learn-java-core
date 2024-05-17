@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class ReadLineNoDelegationTest {
     @Test
     void noDelegation() {
-        assertNull(ReadLineNoDelegation.readLineNoDelegation("/tmp/missing"));
-        assertEquals("Hello!",ReadLineNoDelegation.readLineNoDelegation("src/main/resources/Hello"));
+        assertNull(ReadLineNoDelegation.readLineNoDelegation("src/main/resources/missing-file.txt"));
+        assertEquals("aahing",ReadLineNoDelegation.readLineNoDelegation("src/main/resources/english-words.txt"));
     }
 }
