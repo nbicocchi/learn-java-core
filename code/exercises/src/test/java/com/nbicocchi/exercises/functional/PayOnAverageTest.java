@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PayOnAverageTest {
     @Test
-    void payMore() {
+    void payOnAverage() {
         Map<String, Double> fees = new HashMap<>(Map.of(
                 "3474565432", 11.75,
                 "3336534965", 9.95,
