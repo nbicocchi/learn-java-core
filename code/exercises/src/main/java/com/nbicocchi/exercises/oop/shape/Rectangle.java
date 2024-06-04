@@ -30,12 +30,12 @@ public class Rectangle extends AbstractShape {
 
     @Override
     public double getPerimeter() {
-        return ((bottomRight.x - upperLeft.x) + (upperLeft.y - bottomRight.y)) * 2.0;
+        return ((bottomRight.getX() - upperLeft.getX()) + (upperLeft.getY() - bottomRight.getY())) * 2.0;
     }
 
     @Override
     public double getArea() {
-        return (bottomRight.x - upperLeft.x) * (double)(upperLeft.y - bottomRight.y);
+        return (bottomRight.getX() - upperLeft.getY()) * (upperLeft.getX() - bottomRight.getY());
     }
 
     @Override
@@ -46,8 +46,9 @@ public class Rectangle extends AbstractShape {
 
     @Override
     public void resize(double scale) {
-        bottomRight.x = (int) (upperLeft.x + ((bottomRight.x - upperLeft.x) * scale));
-        bottomRight.y = (int) (upperLeft.y - ((upperLeft.y - bottomRight.y) * scale));
+        double newX = upperLeft.getX() + ((bottomRight.getX() - upperLeft.getX()) * scale);
+        double newY = upperLeft.getY() - ((upperLeft.getY() - bottomRight.getY()) * scale);
+        bottomRight.setLocation(newX, newY);
     }
 
     @Override
