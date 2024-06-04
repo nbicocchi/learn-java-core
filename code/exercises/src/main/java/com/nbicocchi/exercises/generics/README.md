@@ -183,7 +183,7 @@ where:
 
 ---
 
-**[Measure.java]** Transform the Measurer interface (reported below) into a generic interface. Additionally, implement two static generic methods returning the maximum and minimum values of an array (see prototype below), using a Measurer object as the sorting criterion. Note well: The *measure()* method of the Measurer interface associates every object to an easy to sort double value!
+**[Measure.java]** Transform the Measurer interface (reported below) into a generic interface. Then, implement in the Measure class two static generic methods returning the maximum and minimum values of an array (see prototype below), using a Measurer object as the sorting criterion. Note well: The *measure()* method of the Measurer interface associates every object to an easy to sort double value!
 
 ```
 public interface Measurer {
