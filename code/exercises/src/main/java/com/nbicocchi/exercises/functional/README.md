@@ -306,7 +306,7 @@ where:
 **[PhoneBook.java]** Write a class PhoneBook implementing a phone book as a `List<Person>`.
 
 ```
-public class Person {
+public static class Person {
     String name;
     String lastname;
     String phone;
