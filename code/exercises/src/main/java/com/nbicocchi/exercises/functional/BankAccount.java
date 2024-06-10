@@ -1,6 +1,7 @@
 package com.nbicocchi.exercises.functional;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ public class BankAccount {
         return accounts.stream()
                 .filter(a -> a.getDuePayment().isBefore(LocalDateTime.now()))
                 .peek(Account::applyInterest)
-                .sorted((o1, o2) -> (int)o2.getAmount() - (int)o1.getAmount())
+                .sorted(Comparator.comparingDouble(a -> a.amount))
                 .collect(Collectors.toList());
     }
 }
