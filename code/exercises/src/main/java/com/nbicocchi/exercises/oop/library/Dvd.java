@@ -35,6 +35,6 @@ public class Dvd extends Item {
 
     @Override
     public String toString() {
-        return "Dvd{" + "duration=" + length + ", title='" + title + '\'' + ", year=" + year + '}';
+        return "Dvd{" + "length=" + length + ", title='" + title + '\'' + ", year=" + year + '}';
     }
 }

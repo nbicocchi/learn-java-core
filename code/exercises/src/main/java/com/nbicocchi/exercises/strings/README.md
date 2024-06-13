@@ -100,7 +100,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public static boolean goodAtTheBeginning(String string);
+public static boolean goodAtTheBeginning(String s);
 ```
 
 where:
@@ -121,7 +121,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public static boolean goodAroundTheBeginning(String string);
+public static boolean goodAroundTheBeginning(String s);
 ```
 
 where:
@@ -144,7 +144,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public static String removeFirstLast(String string);
+public static String removeFirstLast(String s);
 ```
 
 where:
@@ -165,7 +165,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public static char[] duplicateChars(String string);
+public static char[] duplicateChars(String input);
 ```
 
 where:
@@ -186,7 +186,7 @@ Examples:
 The method has the following prototype:
 
 ```
-public static boolean isPalindrome(String string);
+public static boolean isPalindrome(String s);
 ```
 
 where:
