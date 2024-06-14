@@ -15,9 +15,9 @@ public class RationalNumber {
      * @param denominator the denominator ot the rational
      */
     public RationalNumber(int numerator, int denominator) {
-        int gcm = greatestCommonDivisor(numerator, denominator);
-        this.numerator = numerator / gcm;
-        this.denominator = denominator / gcm;
+        int gcd = greatestCommonDivisor(numerator, denominator);
+        this.numerator = numerator / gcd;
+        this.denominator = denominator / gcd;
     }
 
     /**

@@ -617,10 +617,10 @@ class Person {
     + toString() String
 }
 class Rent {
-    ~ LocalDate begin
-    ~ LocalDate end
     ~ Item item
     ~ Person person
+    ~ LocalDate begin
+    ~ LocalDate end
     + Rent(Item, Person, LocalDate, LocalDate)
     + getBegin() LocalDate
     + getEnd() LocalDate
