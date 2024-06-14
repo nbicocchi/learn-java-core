@@ -1,6 +1,7 @@
 package com.nbicocchi.exercises.collections;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 public class SortAccount {
@@ -29,14 +30,14 @@ public class SortAccount {
     }
 
     public static void sortByAmount(List<Account> accounts) {
-        accounts.sort((a1, a2) -> Double.compare(a1.getAmount(), a2.getAmount()));
+        accounts.sort(Comparator.comparingDouble(Account::getAmount));
     }
 
     public static void sortByInterestRate(List<Account> accounts) {
-        accounts.sort((a1, a2) -> Double.compare(a1.getInterestRate(), a2.getInterestRate()));
+        accounts.sort(Comparator.comparingDouble(Account::getInterestRate));
     }
 
     public static void sortByDuePayment(List<Account> accounts) {
-        accounts.sort((a1, a2) -> a1.getDuePayment().compareTo(a2.getDuePayment()));
+        accounts.sort(Comparator.comparing(Account::getDuePayment));
     }
 }
