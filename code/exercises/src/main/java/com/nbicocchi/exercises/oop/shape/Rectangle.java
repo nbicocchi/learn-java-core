@@ -35,7 +35,7 @@ public class Rectangle extends AbstractShape {
 
     @Override
     public double getArea() {
-        return (bottomRight.getX() - upperLeft.getY()) * (upperLeft.getX() - bottomRight.getY());
+        return (bottomRight.getX() - upperLeft.getX()) * (upperLeft.getY() - bottomRight.getY());
     }
 
     @Override
