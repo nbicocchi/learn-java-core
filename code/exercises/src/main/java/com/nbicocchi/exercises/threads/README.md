@@ -1,6 +1,6 @@
 # Object-Oriented Programming - DIEF/UNIMORE
 
-## Java Exercises (Lists)
+## Java Exercises (Threads)
 
 **[StartStop.java]** Write a program in which the main thread starts two child threads, waits 100 ms, and gracefully terminates both of them. Each child thread, during its lifespan, prints the following messages where *T1* is its name and the milliseconds represent the time elapsed since the thread first started.
 
