@@ -286,10 +286,10 @@ public static class Account {
 ```
 
 Write a method for: 
-(a) filtering all the accounts whose duePayment is expired, 
-(b) apply interests (amount += amount * interestRate),
-(c) sort them based their on amount,
-(d) return a List of the filtered accounts.
+* (a) filtering all the accounts whose duePayment is expired, 
+* (b) apply interests (amount += amount * interestRate),
+* (c) sort them based their on amount (in decremental order),
+* (d) return a List of the filtered accounts.
 
 The method has the following prototype:
 
