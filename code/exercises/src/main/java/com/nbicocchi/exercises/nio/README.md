@@ -6,7 +6,7 @@
 
 The methods have the following prototypes:
 
-```
+```java
 public static boolean exists(String filename);
 public static boolean isReadable(String filename);
 public static boolean isWritable(String filename);
@@ -27,7 +27,7 @@ where:
 
 The methods have the following prototypes:
 
-```
+```java
 public static void fileCopy(String src, String dst) throws IOException;
 public static void fileMove(String src, String dst) throws IOException;
 ```
@@ -43,7 +43,7 @@ where:
 
 The methods have the following prototypes:
 
-```
+```java
 public static void createFile(String src) throws IOException;
 public static void deleteFile(String src) throws IOException;
 ```
@@ -58,7 +58,7 @@ where:
 
 The method has the following prototype:
 
-```
+```java
 public static Set<String> fileList(String src) throws IOException;
 ```
 
@@ -72,7 +72,7 @@ where:
 
 The method has the following prototype:
 
-```
+```java
 public static String portableDesktopPath();
 ```
 
@@ -82,7 +82,7 @@ public static String portableDesktopPath();
 
 The first method has the following prototype:
 
-```
+```java
 public static byte[] readBinaryFile(String filename) throws IOException;
 ```
 
@@ -92,7 +92,7 @@ where:
 
 The second method has the following prototype:
 
-```
+```java
 public static void writeBinaryFile(String filename, byte[] bytes) throws IOException;
 ```
 
@@ -107,7 +107,7 @@ where:
 
 The first method has the following prototype:
 
-```
+```java
 public static List<String> readTextFile(String filename) throws IOException;
 ```
 
@@ -117,7 +117,7 @@ where:
 
 The second method has the following prototype:
 
-```
+```java
 public static <T extends CharSequence> void writeTextFile(String filename, List<T> lines) throws IOException;
 ```
 
@@ -132,7 +132,7 @@ where:
 
 The method has the following prototype:
 
-```
+```java
 public static void copyBinaryLong(String src, String dst);
 ```
 
@@ -147,7 +147,7 @@ where:
 
 The method has the following prototype:
 
-```
+```java
 public static void copyTextLong(String src, String dst);
 ```
 
