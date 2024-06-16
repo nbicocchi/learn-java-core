@@ -5,7 +5,7 @@
 **[XMasTree.java]** Print to screen the little story below. 
 Remember: strings can be [multi-line](https://www.baeldung.com/java-multiline-string)!
 
-```
+```text
 +--------------[The Christmass Child Eater Monster]-------------------+
 |                               /\                                    |
 |                               ||                                    |
@@ -52,7 +52,7 @@ The account has an initial balance of $1,000 and earns 5 percent interest per ye
 
 **[EstimatePI.java]** It is possible to get an estimate of the mathematical constant π by using a random process. The idea is based on the fact that the area of a circle of radius 1 is equal to π, and the area of a quarter of that circle is π/4. 
 
-```
+```text
  <-- 1 -->
  ---------
 |x        |
@@ -66,7 +66,7 @@ The area of the square is 1, while the area of the part inside the circle is π/
 
 Write a program producing increasingly accurate estimates of PI as reported below (see System.out.printf()):
 
-```
+```text
 [trials=2^3] [error=27.32395447pc] [estimate=4.0000000000000000]
 [trials=2^4] [error=11.40846016pc] [estimate=3.5000000000000000]
 [trials=2^5] [error=3.45071301pc] [estimate=3.2500000000000000]
