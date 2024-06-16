@@ -12,7 +12,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static double[] copyArray(double[] v);
 ```
 
@@ -34,7 +34,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static double[] fillArray(int size, double value, boolean addNoise);
 ```
 
@@ -57,7 +57,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static double[] divideArray(double[] v, double factor);
 ```
 
@@ -79,7 +79,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static double[] divideArrays(double[] v1, double[] v2);
 ```
 
@@ -101,7 +101,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static long[] fibonacci(int n);
 ```
 
@@ -123,7 +123,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static void bubbleSort(int[] v);
 public static int[] bubbleSortCopy(int[] v);
 ```
@@ -144,7 +144,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static int[] moveZerosEnd(int[] v);
 ```
 
@@ -163,7 +163,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static int[] splitter(int input);
 ```
 
@@ -184,7 +184,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean isEveryWhere(int[] v, int value);
 ```
 
@@ -206,7 +206,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static int[] tenRun(int[] v);
 ```
 
@@ -234,7 +234,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static String[] fizzBuzz(int start, int end);
 ```
 
@@ -257,7 +257,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static int matchUp(int[] v1, int[] v2);
 ```
 
@@ -279,7 +279,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean canBalance(int[] v);
 ```
 
@@ -305,7 +305,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean containsBruteForce(String[] strings, String searched);
 public static boolean containsBinary(String[] strings, String searched);
 ```
@@ -321,6 +321,6 @@ where:
 
 The method has the following prototype:
 
-```
+```java
 public static int[][] deepCopy(int[][] original);
 ```
