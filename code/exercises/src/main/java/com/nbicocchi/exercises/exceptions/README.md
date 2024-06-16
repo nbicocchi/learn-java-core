@@ -6,7 +6,7 @@
 throws IllegalArgumentException. *Note well: IllegalArgumentException is an unchecked exception so its declaration in
 the method signature is not required!* The method has the following prototype:
 
-```
+```java
 public static double division(double a, double b);
 ```
 
@@ -21,7 +21,7 @@ where:
 i.e., (a / b) ^ 2). If b == 0, the method returns 0, instead of an exception. The implementation of this method must
 avoid the use of the *if* statement. The method has the following prototype:
 
-```
+```java
 public static int divisionSquared(int a, int b);
 ```
 
@@ -36,7 +36,7 @@ where:
 returning true if the first date is before the second date (see java.time.LocalDate).
 Eventual exceptions must be delegated to the caller (Remember: not all exceptions are checked). The method has the following prototype:
 
-```
+```java
 public static boolean checkIntervalBetweenDates(String begin, String end);
 ```
 
@@ -52,7 +52,7 @@ returning true if the first date is before the second date (see java.time.LocalD
 Eventual exceptions must be locally intercepted and false is returned in case of errors. The method has the following
 prototype:
 
-```
+```java
 public static boolean checkIntervalBetweenDatesAlt(String begin, String end);
 ```
 
@@ -67,7 +67,7 @@ where:
 the italian format (i.e., LLDDDLL where L represents a letter while D a digit). If the string does not respect the
 format, the method throws IllegalArgumentException (see Character.isDigit() and Character.isLetter() methods).
 
-```
+```java
 public static void checkLicencePlate(String licence);
 ```
 
@@ -81,7 +81,7 @@ where:
 example, a0b3h4z1r4). The method delegates ParseException for notifying the caller about eventual malformations (see
 Character.isDigit() and Character.isLetter() methods). The method has the following prototype:
 
-```
+```java
 public static void checkString(String s) throws ParseException;
 ```
 
@@ -94,7 +94,7 @@ where:
 **[FilterItems.java]** Using the checkString() method, write another method for filtering a List<String>. The method
 returns a different List<String> comprising only those strings which are an alternating sequence of letters and numbers (for example a0b3h4z1r4). The original list is not modified. The method has the following prototype:
 
-```
+```java
 public static List<String> filterItems(List<String> strings);
 ```
 
@@ -109,7 +109,7 @@ of lists of strings). The method returns a List<List<String>> comprising only th
 alternating sequences of letters and numbers (for example a0b3h4z1r4). The original List should not be modified. The
 method has the following prototype:
 
-```
+```java
 public static List<List<String>> filterLists(List<List<String>> lists);
 ```
 
@@ -122,7 +122,7 @@ where:
 **[ReadLineCompleteDelegation.java]** Write a method for reading the first line of a given file (see
 java.io.BufferedReader class). In case of errors (IOException), the method applies a complete delegation model. Use the syntax try-with-resources for guaranteeing the proper closing of the file under any circumstance. The method has the following prototype:
 
-```
+```java
 public static String readLineCompleteDelegation(String filename) throws IOException;
 ```
 
@@ -135,7 +135,7 @@ where:
 **[ReadLinePartialDelegation.java]** Write a method for reading the first line of a given file (see
 java.io.BufferedReader class). In case of errors (IOException), the method applies a partial delegation model throwing an unchecked exception (RunTimeException) instead of IOException. The method has the following prototype:
 
-```
+```java
 public static String readLinePartialDelegation(String filename);
 ```
 
@@ -148,7 +148,7 @@ where:
 **[ReadLineNoDelegation.java]** Write a method reading the first line of a given file (see java.io.BufferedReader
 class). In case of errors (IOException), the method applies a no-delegation model and returns null. The method has the following prototype:
 
-```
+```java
 public static String readLineNoDelegation(String filename);
 ```
 
@@ -160,7 +160,7 @@ where:
 
 **[RetryWrite.java]** The following RetryWrite class contains a *write()* method for writing a message over a network connection which might fail (in this example it always throws an IOException). Because network connections sometimes fail unexpectedly, we do not want to call it directly from the *main()* method. Instead, we use an intermediate *writeWithTries()* which, if *write()* fails, calls it again until the specified number of retries (maxTries) has been reached. Complete the *writeWithTries()* method to make the code below work.
 
-```
+```java
 public class RetryWrite {
     public static void main(String[] args) {
         try {
