@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LookAndSayTest {
     @Test
     void lookAndSay() {
+        assertIterableEquals(List.of(), CollatzSequence.collatzSequence(0));
         assertIterableEquals(List.of("1"), LookAndSay.lookAndSay(1));
         assertIterableEquals(List.of("1", "11"), LookAndSay.lookAndSay(2));
         assertIterableEquals(List.of("1", "11", "21"), LookAndSay.lookAndSay(3));
