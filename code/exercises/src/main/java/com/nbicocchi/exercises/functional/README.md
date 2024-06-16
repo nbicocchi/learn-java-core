@@ -9,7 +9,7 @@ Examples:
 * justPrintList(["Marco", "Matteo", "Luca", "Giovanni"]) → void
 
 Prints:
-```
+```text
 Hello Marco!
 Hello Matteo!
 Hello Luca!
@@ -19,7 +19,7 @@ Hello Giovanni!
 * justPrintMap(1: "nicola", 2: "agata", 3: "darma", 4: "marzia") → void
 
 Prints:
-```
+```text
 k:4, v:marzia
 k:3, v:darma
 k:2, v:agata
@@ -28,7 +28,7 @@ k:1, v:nicola
 
 The methods have the following prototypes:
 
-```
+```java
 public static <T> void justPrintList(List<T> list);
 public static <K,V> void justPrintMap(Map<K, V> map);
 ```
@@ -46,7 +46,7 @@ where:
 
 **[PayMore.java]** A large telecom operator keeps track of the monthly subscription fees associated with each phone number using a Map as the one showed below:
 
-```
+```text
 Map<String, Double> fees = {
     "34745..." : 11.75,
     "33367..." : 9.75,
@@ -66,7 +66,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static void payMore(Map<String, Double> fees, String numberFamily, double costDelta);
 ```
 
@@ -89,7 +89,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static List<Integer> noTeen(List<Integer> nums);
 ```
 
@@ -110,7 +110,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static List<Integer> oneTen(List<Integer> nums);
 ```
 
@@ -130,7 +130,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static List<Integer> twoTwo(List<Integer> nums);
 ```
 
@@ -150,7 +150,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static long squareFive(List<Integer> nums);
 ```
 
@@ -170,7 +170,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean allPalindrome(List<String> strings);
 ```
 
@@ -191,7 +191,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static List<String> noYY(List<String> strings);
 ```
 
@@ -213,7 +213,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static List<String> noYYZ(List<String> strings);
 ```
 
@@ -230,7 +230,7 @@ a substring).
 
 The methods have the following prototype:
 
-```
+```java
 public static long howManyLines(String filename, String subString);
 public static long howManyTimes(String filename, String word);
 ```
@@ -243,7 +243,7 @@ where:
 
 For reading the file and transforming it into a ```List<String>```, you can use:
 
-```
+```text
 public static List<String> getLines(String filename) throws IOException {
     return Files.readAllLines(Path.of(filename));
 }
@@ -251,7 +251,7 @@ public static List<String> getLines(String filename) throws IOException {
 
 For splitting a line into a list of single words, you can use:
 
-```
+```text
 public static List<String> lineToWords(String line) {
     return Arrays.asList(line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+"));
 }
@@ -263,7 +263,7 @@ public static List<String> lineToWords(String line) {
 
 The method has the following prototype:
 
-```
+```java
 public static <T> String toString(Stream<T> stream, int n);
 ```
 
@@ -276,7 +276,7 @@ where:
 
 **[BankAccount.java]** Given the following class Account:
 
-```
+```text
 public static class Account {
     double amount;
     double interestRate;
@@ -293,7 +293,7 @@ Write a method for:
 
 The method has the following prototype:
 
-```
+```java
 public static List<Account> applyInterest(List<Account> accounts);
 ```
 
@@ -305,7 +305,7 @@ where:
 
 **[PhoneBook.java]** Write a class PhoneBook implementing a phone book as a `List<Person>`.
 
-```
+```text
 public static class Person {
     String name;
     String lastname;
@@ -316,7 +316,7 @@ public static class Person {
 
 The class has a single constructor accepting a `List<Person>` and provides two methods *searchByLastname*, *searchByNameAndLastname* returning the first Person instance matching the search criteria. The two methods have the following prototypes:
 
-```
+```java
 public Optional<Person> searchByLastname(String lastname);
 public Optional<Person> searchByNameAndLastname(String name, String lastname);
 ```
@@ -330,7 +330,7 @@ where:
 
 **[PayOnAverage.java]** A large telecom operator keeps track of the monthly subscription fees associated with each phone number using a Map as the one showed below:
 
-```
+```text
 Map<String, Double> fees = {
     "34745..." : 11.75,
     "33367..." : 9.75,
@@ -349,7 +349,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static Map<String, Double> payOnAverage(Map<String, Double> fees);
 ```
 
