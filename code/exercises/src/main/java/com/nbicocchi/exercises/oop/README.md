@@ -44,7 +44,7 @@ The class provides the following methods:
 
 You can use the following two methods for computing the least common multiple and the greatest common divisor of two integer numbers.
 
-```
+```java
 public static int greatestCommonDivisor(int a, int b) {
     int max = Math.max(a, b);
     int min = Math.min(a, b);
@@ -128,7 +128,7 @@ The class provides the following methods:
 
 Polygons must have at least three vertices. We can throw an *exception* within the constructor to avoid the creation of invalid objects, as shown below:
 
-```
+```java
 public Polygon(Point2D.Double[] vertices) {
     if (vertices.length < 3) {
         throw new IllegalArgumentException("Al least three vertices are required");
@@ -212,25 +212,25 @@ classDiagram
 **[basic.Letter.java]** Write a class for authoring a simple letter.
 In the constructor, supply the names of the sender and the recipient:
 
-```
-public Letter(String from, String to)
+```java
+public Letter(String from, String to);
 ```
 
 Supply a method to add a line of text to the body of the letter.
 
-```
-public void addLine(String line)
+```java
+public void addLine(String line);
 ```
 
 Supply a method that returns the entire text of the letter.
 
-```
-public String getText()
+```java
+public String getText();
 ```
 
 The text has the form:
 
-```
+```text
 Dear recipient name: 
 blank line
 first line of the body 
@@ -352,7 +352,7 @@ Note well:
 Both accounts must refuse to set **invalid IBANs**, to set **negative fees** and to operate with **negative amounts**.
 To implement these functionalities, you can throw an IllegalArgumentException as shown below:
 
-```
+```java
 public void checkPositiveValue(double value){
     if(value < 0.0){
         throw new IllegalArgumentException("Negative values are not allowed for this operation");
