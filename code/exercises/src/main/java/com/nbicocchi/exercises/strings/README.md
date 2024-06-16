@@ -13,7 +13,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static String concatenate(String[] strings);
 ```
 
@@ -33,7 +33,7 @@ Examples:
 
 Methods have the following prototype:
 
-```
+```java
 public static String reverseCharAt(String string);
 public static String reverseStringBuilder(String string);
 ```
@@ -54,7 +54,7 @@ Examples:
 
 The methods have the following prototype:
 
-```
+```java
 public static String removeFirstTwoCharsCharAt(String string);
 public static String removeFirstTwoCharsStringBuilder(String string);
 ```
@@ -77,7 +77,7 @@ Examples:
 
 The methods have the following prototype:
 
-```
+```java
 public static String removeFirstTwoCharsIfCharAt(String string);
 public static String removeFirstTwoCharsIfStringBuilder(String string);
 ```
@@ -99,7 +99,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean goodAtTheBeginning(String s);
 ```
 
@@ -120,7 +120,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean goodAroundTheBeginning(String s);
 ```
 
@@ -143,7 +143,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static String removeFirstLast(String s);
 ```
 
@@ -164,7 +164,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static char[] duplicateChars(String input);
 ```
 
@@ -185,7 +185,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean isPalindrome(String s);
 ```
 
@@ -205,7 +205,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static int countYZ(String string);
 ```
 
@@ -225,7 +225,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean equalIsNot(String string);
 ```
 
@@ -245,7 +245,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static int sumDigits(String string);
 ```
 
@@ -267,7 +267,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static int hammingDistance(String s1, String s2);
 ```
 
