@@ -44,13 +44,13 @@ The reading process is on adjacent digits, so the fifth number is not "3112" but
 
 Examples:
 
-* lookAndSay(1) -> ["1"]
-* lookAndSay(5) -> ["1", "11", "21", "1211", "111221"]
+* lookAndSay(1) -> [1]
+* lookAndSay(5) -> [1, 11, 21, 1211, 111221]
 
 The method has the following prototype:
 
 ```
-public static List<String> lookAndSay(long n);
+public static List<Long> lookAndSay(long n);
 ```
 
 where:
