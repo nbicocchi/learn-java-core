@@ -12,7 +12,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static <E> String iterableToString(Iterable<E> src);
 ```
 
@@ -33,7 +33,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static <T extends Number> double divide(T a, T b);
 ```
 
@@ -54,7 +54,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static <T> void append(List<T> dst, List<T> src);
 ```
 
@@ -81,7 +81,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static <T> void reverse(List<T> list);
 ```
 
@@ -101,7 +101,7 @@ Examples:
 
 The methods have the following prototypes:
 
-```
+```java
 public static <T> int countOccurrencesPlain(T[] src, T item);
 public static <T> int countOccurrencesObjects(T[] src, T item);
 ```
@@ -124,7 +124,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static <T extends Comparable<T>> int find(T[] array, T key);
 ```
 
@@ -137,9 +137,9 @@ where:
 
 **[Pair.java]** Define a generic class Pair<K,V> representing a generic pair of objects with different types. The class must have two internal attributes named *first* and *second* of type K and V, respectively. Constructor, getters, and setters are also required.
 
-```
+```java
 public class Pair<K, V> {
-    ...
+    //...
 }
 ```
 
@@ -148,11 +148,11 @@ public class Pair<K, V> {
 **[PairSameType.java]** Modify the Pair class (see Pair.java) so that both values have the same type. Furthermore, add a method *void swap()* that swaps the first and second elements of the pair. 
 
 
-```
+```java
 public class PairSameType<T> {
-    ...
+    //...
     public void swap();
-    ...
+    //...
 }
 ```
 
@@ -161,7 +161,7 @@ public class PairSameType<T> {
 **[PairUtil.java]** Write a generic static method whose argument is a Pair object. The method returns a new pair,
 with the first and second element swapped. The method has the following prototype:
 
-```
+```java
 public static <K, V> Pair<V, K> swap(Pair<K, V> src);
 ```
 
@@ -173,7 +173,7 @@ where:
 
 **[MapToPairs.java]** Write a generic static method that, given a Map<K, V>, returns a List<Pair<K, V>> of the key/value pairs in the map (see Map.entrySet()). The method has the following prototype:
 
-```
+```java
 public static <K, V> List<Pair<K, V>> mapToPairs(Map<K, V> src);
 ```
 
@@ -185,13 +185,13 @@ where:
 
 **[Measure.java]** Transform the Measurer interface (reported below) into a generic interface. Then, implement in the Measure class two static generic methods returning the maximum and minimum values of an array (see prototype below), using a Measurer object as the sorting criterion. Note well: The *measure()* method of the Measurer interface associates every object to an easy to sort double value!
 
-```
+```java
 public interface Measurer {
     double measure(Object obj);
 }
 ```
 
-```
+```java
 public static <T> T max(T[] array, Measurer<T> measurer);
 public static <T> T min(T[] array, Measurer<T> measurer);
 ```
@@ -207,7 +207,7 @@ where:
 instance of Comparator (see java.util.Comparator<T>) is used as a sorting criterion. The methods have the following
 prototype:
 
-```
+```java
 public static <T> T max(List<T> list, Comparator<? super T> cmp);
 public static <T> T min(List<T> list, Comparator<? super T> cmp);
 ```
