@@ -60,7 +60,7 @@ STOP thread=pool-1-thread-4 task=6 t=455 ms
 STOP thread=pool-1-thread-1 task=7 t=566 ms
 ```
 
-**[ScheduledExecution.java]** Write a program printing, every second, the time of day followed by "Hello!" as shown below (see java.time.LocalDate, java.util.concurrent.ScheduledExecutorService).
+**[ScheduledExecution.java]** Write a program printing, every second, the time of day followed by "Hello!" as shown below (see java.time.LocalTime, java.util.concurrent.ScheduledExecutorService).
 
 ```text
 21:03:28.221207: Hello!
@@ -106,6 +106,7 @@ public static class PrimeEngine implements Callable<List<Integer>> {
         return true;
     }
 
+    @Override
     public List<Integer> call() {
         List<Integer> result = new ArrayList<>();
         for (int i = start; i < end; i++) {

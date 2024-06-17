@@ -243,7 +243,7 @@ where:
 
 For reading the file and transforming it into a ```List<String>```, you can use:
 
-```text
+```java
 public static List<String> getLines(String filename) throws IOException {
     return Files.readAllLines(Path.of(filename));
 }
@@ -251,7 +251,8 @@ public static List<String> getLines(String filename) throws IOException {
 
 For splitting a line into a list of single words, you can use:
 
-```text
+
+```java
 public static List<String> lineToWords(String line) {
     return Arrays.asList(line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+"));
 }
@@ -276,12 +277,12 @@ where:
 
 **[BankAccount.java]** Given the following class Account:
 
-```text
+```java
 public static class Account {
     double amount;
     double interestRate;
     LocalDateTime duePayment;
-    ...
+    //...
 }
 ```
 
@@ -305,12 +306,12 @@ where:
 
 **[PhoneBook.java]** Write a class PhoneBook implementing a phone book as a `List<Person>`.
 
-```text
+```java
 public static class Person {
     String name;
     String lastname;
     String phone;
-    ...
+    //...
 }
 ```
 

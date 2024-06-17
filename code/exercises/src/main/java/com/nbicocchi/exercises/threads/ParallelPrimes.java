@@ -41,12 +41,9 @@ public class ParallelPrimes {
         ExecutorService executor = Executors.newFixedThreadPool(4);
 
         List<Callable<List<Integer>>> callables = new ArrayList<>();
-        callables.add(new PrimeEngine(0, 1000));
-        callables.add(new PrimeEngine(1000, 2000));
-        callables.add(new PrimeEngine(2000, 3000));
-        callables.add(new PrimeEngine(3000, 4000));
-        callables.add(new PrimeEngine(4000, 5000));
-        callables.add(new PrimeEngine(5000, 6000));
+        for (int i = 0; i < 6; i++) {
+            callables.add(new PrimeEngine(i * 1000, (i + 1) * 1000));
+        }
 
         List<Future<List<Integer>>> futures = executor.invokeAll(callables);
 

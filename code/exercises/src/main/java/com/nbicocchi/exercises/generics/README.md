@@ -22,7 +22,7 @@ where:
 
 ---
 
-**[Divide.java]** Write a generic static method returning the floating point division of any two numbers regardless of their specific type (see java.lang.Number class). Despite the prototype below seem to indicate that both arguments are required to have the same type *T*, remember that the inference algorithm tries to find the **most specific** type that works with all of the arguments. Read more [here](https://docs.oracle.com/javase/tutorial/java/generics/genTypeInference.html).
+**[Divide.java]** Write a generic static method returning the floating point division of any two numbers regardless of their specific type (see java.lang.Number class). Despite the prototype below seem to indicate that both arguments are required to have the same type *T*, remember that the inference algorithm tries to find the **most specific** type that works with all the arguments. Read more [here](https://docs.oracle.com/javase/tutorial/java/generics/genTypeInference.html).
 
 Examples:
 
@@ -137,9 +137,10 @@ where:
 
 **[Pair.java]** Define a generic class Pair<K,V> representing a generic pair of objects with different types. The class must have two internal attributes named *first* and *second* of type K and V, respectively. Constructor, getters, and setters are also required.
 
-```text
+
+```java
 public class Pair<K, V> {
-    ...
+    //...
 }
 ```
 
@@ -148,11 +149,11 @@ public class Pair<K, V> {
 **[PairSameType.java]** Modify the Pair class (see Pair.java) so that both values have the same type. Furthermore, add a method *void swap()* that swaps the first and second elements of the pair. 
 
 
-```text
+```java
 public class PairSameType<T> {
-    ...
+    //...
     public void swap();
-    ...
+    //...
 }
 ```
 
