@@ -2,6 +2,7 @@ package com.nbicocchi.exercises.collections;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public class MorseCode {
@@ -34,24 +35,32 @@ public class MorseCode {
         conversionMap.put('x', "_.._");
         conversionMap.put('y', "_.__");
         conversionMap.put('z', "__..");
-        return conversionMap;
-    }
+        conversionMap.put('1', ".____");
+        conversionMap.put('2', "..___");
+        conversionMap.put('3', "...__");
+        conversionMap.put('4', "...._");
+        conversionMap.put('5', ".....");
+        conversionMap.put('6', "_....");
+        conversionMap.put('7', "__...");
+        conversionMap.put('8', "___..");
+        conversionMap.put('9', "____.");
+        conversionMap.put('0', "_____");
 
-    private static void checkString(Set<Character> allowedChars, String string) {
-        for (char c : string.toLowerCase().toCharArray()) {
-            if (!allowedChars.contains(c)) {
-                throw new IllegalArgumentException("String contains unsupported char");
-            }
-        }
+        return conversionMap;
     }
 
     public static String morseCode(String string) {
         Map<Character, String> conversionMap = conversionMap();
-        checkString(conversionMap.keySet(), string);
 
         StringBuilder builder = new StringBuilder();
-        for (char c : string.toLowerCase().toCharArray()) {
-            builder.append(conversionMap.get(c)).append(" ");
+        String res;
+        for(char c : string.toLowerCase().toCharArray()){
+            res = conversionMap.get(c);
+            if(Objects.isNull(res)){
+                throw new IllegalArgumentException();
+            }
+
+            builder.append(res).append(" ");
         }
         // trim() eventually removes the last space
         return builder.toString().trim();
