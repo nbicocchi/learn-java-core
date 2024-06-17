@@ -107,7 +107,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 [E6] Functional Programming
 
 > Read: Big Java (Chapter 19), 
-> Object Oriented vs Functional Programming (Chapter 1)
+> Object-Oriented vs Functional Programming (Chapter 1)
 
 > Lab: [com.nbicocchi.exercises.functional](code/exercises/src/main/java/com/nbicocchi/exercises/functional)
 
@@ -135,7 +135,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 
 * IO vs NIO frameworks
 * Manipulating paths
-* Manipulating filesystem (copy, move, etc)
+* Manipulating filesystem (copy, move, etc.)
 * Reading and writing files
 
 [E9] Multi-threading
