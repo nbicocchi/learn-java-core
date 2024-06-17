@@ -7,16 +7,16 @@ public class CheckString {
         if (s.length() < 2) {
             throw new ParseException(s, 0);
         }
-        boolean waitingLetter = true;
+
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (Character.isDigit(c) && (waitingLetter)) {
+
+            if (!Character.isDigit(c) && (i % 2 == 1)) {
                 throw new ParseException(s, i);
             }
-            if (Character.isLetter(c) && (!waitingLetter)) {
+            if (!Character.isLetter(c) && (i % 2 == 0)) {
                 throw new ParseException(s, i);
             }
-            waitingLetter = !waitingLetter;
         }
     }
 }
