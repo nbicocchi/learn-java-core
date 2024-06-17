@@ -58,7 +58,6 @@ public static List<Long> lookAndSay(long n);
 where:
 
 * **n** represents the number of elements of the sequence
-* **return** the sequence as a List of Long
 
 ---
 
