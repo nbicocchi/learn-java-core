@@ -3,7 +3,6 @@ package com.nbicocchi.exercises.collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 public class MorseCode {
 
@@ -51,17 +50,16 @@ public class MorseCode {
 
     public static String morseCode(String string) {
         Map<Character, String> conversionMap = conversionMap();
-
         StringBuilder builder = new StringBuilder();
-        String res;
-        for(char c : string.toLowerCase().toCharArray()){
-            res = conversionMap.get(c);
-            if(Objects.isNull(res)){
-                throw new IllegalArgumentException();
-            }
 
-            builder.append(res).append(" ");
+        for (char c : string.toLowerCase().toCharArray()) {
+            String converted = conversionMap.get(c);
+            if (Objects.isNull(converted)) {
+                throw new IllegalArgumentException("Unsupported char: " + c);
+            }
+            builder.append(converted).append(" ");
         }
+
         // trim() eventually removes the last space
         return builder.toString().trim();
     }
