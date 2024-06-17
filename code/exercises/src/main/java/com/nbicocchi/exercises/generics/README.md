@@ -137,6 +137,7 @@ where:
 
 **[Pair.java]** Define a generic class Pair<K,V> representing a generic pair of objects with different types. The class must have two internal attributes named *first* and *second* of type K and V, respectively. Constructor, getters, and setters are also required.
 
+
 ```java
 public class Pair<K, V> {
     //...

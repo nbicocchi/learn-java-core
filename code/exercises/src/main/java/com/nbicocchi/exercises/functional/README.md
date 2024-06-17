@@ -9,7 +9,7 @@ Examples:
 * justPrintList(["Marco", "Matteo", "Luca", "Giovanni"]) → void
 
 Prints:
-```
+```text
 Hello Marco!
 Hello Matteo!
 Hello Luca!
@@ -19,7 +19,7 @@ Hello Giovanni!
 * justPrintMap(1: "nicola", 2: "agata", 3: "darma", 4: "marzia") → void
 
 Prints:
-```
+```text
 k:4, v:marzia
 k:3, v:darma
 k:2, v:agata
@@ -46,7 +46,7 @@ where:
 
 **[PayMore.java]** A large telecom operator keeps track of the monthly subscription fees associated with each phone number using a Map as the one showed below:
 
-```
+```text
 Map<String, Double> fees = {
     "34745..." : 11.75,
     "33367..." : 9.75,
@@ -251,6 +251,7 @@ public static List<String> getLines(String filename) throws IOException {
 
 For splitting a line into a list of single words, you can use:
 
+
 ```java
 public static List<String> lineToWords(String line) {
     return Arrays.asList(line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+"));
@@ -330,7 +331,7 @@ where:
 
 **[PayOnAverage.java]** A large telecom operator keeps track of the monthly subscription fees associated with each phone number using a Map as the one showed below:
 
-```
+```text
 Map<String, Double> fees = {
     "34745..." : 11.75,
     "33367..." : 9.75,

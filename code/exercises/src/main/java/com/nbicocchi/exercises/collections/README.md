@@ -18,7 +18,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static List<Long> collatzSequence(long n);
 ```
 
@@ -70,7 +70,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static void downsize(List<String> list, int n);
 ```
 
@@ -83,7 +83,7 @@ where:
 
 **[SortAccount.java]** Given the following class Account:
 
-```
+```text
 public static class Account {
     double amount;
     double interestRate;
@@ -96,7 +96,7 @@ Write three methods accepting a ```List<Account>``` and returning void. Each met
 
 The methods have the following prototype:
 
-```
+```java
 public static void sortByAmount(List<Account> accounts);
 public static void sortByInterestRate(List<Account> accounts);
 public static void sortByDuePayment(List<Account> accounts);
@@ -115,7 +115,7 @@ is true when inserting elements at the beginning (see System.nanoTime()).
 
 The methods have the following prototype:
 
-```
+```java
 public static long insertBeginning(List<String> list, String item, int times);
 public static long insertEnd(List<String> list, String item, int times);
 ```
@@ -138,7 +138,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static void reverse(List<String> sentence);
 ```
 
@@ -159,7 +159,7 @@ Examples:
 
 The methods have the following prototypes:
 
-```
+```java
 public static Set<Integer> intersection(Set<Integer> first, Set<Integer> second);
 public static Set<Integer> intersectionRetainAll(Set<Integer> first, Set<Integer> second);
 ```
@@ -182,7 +182,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static Set<Integer> union(Set<Integer> first, Set<Integer> second);
 public static Set<Integer> unionAddAll(Set<Integer> first, Set<Integer> second);
 ```
@@ -205,7 +205,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static Set<Character> recurringChars(String string);
 ```
 
@@ -224,7 +224,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static List<Integer> removeDuplicates(List<Integer> list);
 ```
 
@@ -239,7 +239,7 @@ This method will compute all prime numbers up to *n*. Choose an integer number *
 
 The method has the following prototype:
 
-```
+```java
 public static Set<Integer> eratosthenes(int n);
 ```
 
@@ -254,7 +254,7 @@ Write a method, reading all words of the book without repetitions (all words hav
 
 The method has the following prototype:
 
-```
+```java
 public static String wordAfterWord(String filename, String word) throws IOException;
 ```
 
@@ -265,7 +265,7 @@ where:
 
 For reading the file and transforming it into a ```List<String>```, you can use:
 
-```
+```text
 public static List<String> getLines(String filename) throws IOException {
     return Files.readAllLines(Path.of(filename));
 }
@@ -273,7 +273,7 @@ public static List<String> getLines(String filename) throws IOException {
 
 For splitting a line into a list of single words, you can use:
 
-```
+```text
 public static List<String> lineToWords(String line) {
     return Arrays.asList(line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+"));
 }
@@ -375,7 +375,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean areAnagrams(String first, String second);
 ```
 
@@ -398,7 +398,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static String morseCode(String string);
 ```
 
@@ -434,7 +434,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static int romanToDecimal(String s);
 ```
 
@@ -453,7 +453,7 @@ Constraints:
 
 The method has the following prototype:
 
-```
+```java
 public static boolean valuesKeys(Map<String, String> map);
 ```
 
@@ -463,7 +463,7 @@ where:
 
 ---
 
-**[InvertMap.java]** Write a static method accepting a ```Map<Integer, String>``` and returning a ```Map<String, Integer>``` in which the original keys and values have been inverted.
+**[InvertMap.java]** Write a static method accepting a ```Map<Integer, String>``` and returning a `Map<String, Integer>` in which the original keys and values have been inverted.
 In case of repeated values (thus associated to multiple keys) you can select one of the keys.
 
 Examples:
@@ -473,7 +473,7 @@ Examples:
 
 The method has the following prototype:
 
-```
+```java
 public static Map<String, Integer> invertMap(Map<Integer, String> src);
 ```
 
@@ -490,7 +490,7 @@ of the book as keys, associated with the number of times they appeared.
 
 The method has the following prototype:
 
-```
+```java
 public static Map<String, Integer> wordFrequency(String filename) throws IOException;
 ```
 
@@ -500,7 +500,7 @@ where:
 
 For reading the file and transforming it into a ```List<String>```, you can use:
 
-```
+```text
 public static List<String> getLines(String filename) throws IOException {
     return Files.readAllLines(Path.of(filename));
 }
@@ -508,7 +508,7 @@ public static List<String> getLines(String filename) throws IOException {
 
 For splitting a line into a list of single words, you can use:
 
-```
+```text
 public static List<String> lineToWords(String line) {
     return Arrays.asList(line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+"));
 }
@@ -524,7 +524,7 @@ Remember also that LinkedHashMap is an implementation of Map maintaining the ins
 
 The methods have the following prototype:
 
-```
+```java
 public static Map<String, Integer> mostFrequent(Map<String, Integer> map, int limit);
 public static Map<String, Integer> lessFrequent(Map<String, Integer> map, int limit);
 ```
