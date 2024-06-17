@@ -1,7 +1,6 @@
 package com.nbicocchi.exercises.exceptions;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 
 public class RetryWrite {
     public static void main(String[] args) {
@@ -13,17 +12,15 @@ public class RetryWrite {
     }
 
     public static void writeWithTries(int maxTries) {
-        int count = 0;
-        while(true) {
-            try {
-                write("Hello world!");
-                break;
-            } catch (IOException e) {
-                if (++count == maxTries) {
-                    throw new UncheckedIOException(e);
-                }
+        for (int i = 0; i < maxTries; i++) {
+            try{
+                write("message");
+                return;
+            } catch (IOException ignored) {
             }
         }
+
+        throw new RuntimeException("Write failed");
     }
 
     public static void write(String message) throws IOException {
