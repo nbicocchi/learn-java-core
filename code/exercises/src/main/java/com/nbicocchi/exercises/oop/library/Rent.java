@@ -51,7 +51,7 @@ public class Rent {
     /**
      * Checks if a rent is expired
      * @param now the specified date
-     * @return true if the of the rent is before the specified date
+     * @return true if the end of the rent is before the specified date
      */
     public boolean isExpired(LocalDate now) {
         return end.isBefore(now);
