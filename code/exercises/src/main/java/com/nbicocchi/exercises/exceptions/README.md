@@ -161,6 +161,8 @@ where:
 **[RetryWrite.java]** The following RetryWrite class contains a *write()* method for writing a message over a network connection which might fail (in this example it always throws an IOException). Because network connections sometimes fail unexpectedly, we do not want to call it directly from the *main()* method. Instead, we use an intermediate *writeWithTries()* which, if *write()* fails, calls it again until the specified number of retries (maxTries) has been reached. Complete the *writeWithTries()* method to make the code below work.
 
 ```java
+import java.io.IOException;
+
 public class RetryWrite {
     public static void main(String[] args) {
         try {
@@ -174,8 +176,17 @@ public class RetryWrite {
         // to be completed
     }
 
+    /**
+     * Simulates a write with 67% probability of failing
+     * @param message the message to write
+     * @throws IOException when write fails
+     */
     public static void write(String message) throws IOException {
-        throw new IOException("Unable to send: " + message);
+        Random rnd = new Random();
+        double rand = rnd.nextDouble(1);
+        if (rand > 0.33) {
+            throw new IOException("Unable to send: " + message);
+        }
     }
 }
 ```
