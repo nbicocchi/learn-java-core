@@ -8,15 +8,25 @@ public class Rectangle extends AbstractShape {
 
     public Rectangle(String id, String color, Point upperLeft, Point bottomRight) {
         super(id, color);
+
+        check(bottomRight, upperLeft);
         this.upperLeft = upperLeft;
         this.bottomRight = bottomRight;
     }
+    private void check(Point bottomRight, Point upperLeft){
+        double height = upperLeft.y - bottomRight.y;
+        double base = bottomRight.x - upperLeft.x;
 
+        if(height < 0 || base < 0){
+            throw new IllegalArgumentException("Height or Base is Negative");
+        }
+    }
     public Point getUpperLeft() {
         return upperLeft;
     }
 
     public void setUpperLeft(Point upperLeft) {
+        check(bottomRight, upperLeft);
         this.upperLeft = upperLeft;
     }
 
@@ -25,6 +35,7 @@ public class Rectangle extends AbstractShape {
     }
 
     public void setBottomRight(Point bottomRight) {
+        check(bottomRight, upperLeft);
         this.bottomRight = bottomRight;
     }
 
@@ -46,6 +57,9 @@ public class Rectangle extends AbstractShape {
 
     @Override
     public void resize(double scale) {
+        if(scale < 0){
+            throw new IllegalArgumentException("Negative Scale");
+        }
         double newX = upperLeft.getX() + ((bottomRight.getX() - upperLeft.getX()) * scale);
         double newY = upperLeft.getY() - ((upperLeft.getY() - bottomRight.getY()) * scale);
         bottomRight.setLocation(newX, newY);

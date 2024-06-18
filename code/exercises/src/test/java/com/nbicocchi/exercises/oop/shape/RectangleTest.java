@@ -27,6 +27,20 @@ class RectangleTest {
     }
 
     @Test
+    void setBottomRight() {
+        rectangle.setBottomRight(new Point(8, 0));
+        assertEquals(80, rectangle.getArea());
+        assertThrows(IllegalArgumentException.class, () -> rectangle.setBottomRight(new Point(-1, 0)));
+    }
+
+    @Test
+    void setUpperLeft() {
+        rectangle.setUpperLeft(new Point(0, 8));
+        assertEquals(80, rectangle.getArea());
+        assertThrows(IllegalArgumentException.class, () -> rectangle.setUpperLeft(new Point(0, -1)));
+    }
+
+    @Test
     void getPerimeter() {
         assertEquals(40, rectangle.getPerimeter(), DELTA);
     }
