@@ -10,7 +10,7 @@ public class FillArray {
         if (addNoise) {
             RandomGenerator rnd = RandomGenerator.getDefault();
             for (int i = 0; i < dst.length; i++) {
-                dst[i] += (rnd.nextDouble(value * 0.1) - value * 0.05);
+                dst[i] += rnd.nextDouble(-value, value) * 0.05;
             }
         }
         return dst;
