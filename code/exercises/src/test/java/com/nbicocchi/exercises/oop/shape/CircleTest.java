@@ -27,6 +27,13 @@ class CircleTest {
     }
 
     @Test
+    void setRadius() {
+        circle.setRadius(20);
+        assertEquals(circle.getRadius(), 20);
+        assertThrows(IllegalArgumentException.class,() -> circle.setRadius(-20));
+    }
+
+    @Test
     void getPerimeter() {
         assertEquals(62.83185307179586, circle.getPerimeter(), DELTA);
     }

@@ -8,6 +8,10 @@ public class Circle extends AbstractShape {
 
     public Circle(String id, String color, Point center, double radius) {
         super(id, color);
+
+        if(radius < 0){
+            throw new IllegalArgumentException("Negative Radius");
+        }
         this.center = center;
         this.radius = radius;
     }
@@ -25,6 +29,9 @@ public class Circle extends AbstractShape {
     }
 
     public void setRadius(double radius) {
+        if(radius < 0){
+            throw new IllegalArgumentException("Negative Radius");
+        }
         this.radius = radius;
     }
 
@@ -45,6 +52,9 @@ public class Circle extends AbstractShape {
 
     @Override
     public void resize(double scale) {
+        if(scale < 0){
+            throw new IllegalArgumentException("Negative Scale");
+        }
         radius *= scale;
     }
 
