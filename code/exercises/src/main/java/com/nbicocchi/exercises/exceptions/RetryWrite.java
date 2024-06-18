@@ -2,6 +2,7 @@ package com.nbicocchi.exercises.exceptions;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.util.Random;
 
 public class RetryWrite {
     public static void main(String[] args) {
@@ -26,7 +27,15 @@ public class RetryWrite {
         }
     }
 
+    /**
+     * Simulates a write with 66% probability of failing
+     * @param message the message to write
+     * @throws IOException when write fails
+     */
     public static void write(String message) throws IOException {
-        throw new IOException("Unable to send: " + message);
+        Random rnd = new Random();
+        if(rnd.nextDouble(1) > 0.33){
+            throw new IOException("Unable to send: " + message);
+        }
     }
 }
