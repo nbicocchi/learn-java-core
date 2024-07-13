@@ -12,11 +12,13 @@ public class EqualIsNot {
             return true;
         }
 
-        int indexIs = 0, indexNot = 0;
+        int indexIs = string.indexOf("is");
+        int indexNot = string.indexOf("not");
         while (indexIs != -1 && indexNot != -1) {
-            indexIs = string.indexOf("is", indexIs + 1);
-            indexNot = string.indexOf("not", indexNot + 1);
+            indexIs = string.indexOf("is", indexIs + 2);
+            indexNot = string.indexOf("not", indexNot + 3);
         }
         return indexIs == indexNot;
     }
+
 }
