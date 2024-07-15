@@ -8,8 +8,7 @@ public class CountYZ {
         StringTokenizer tokenizer = new StringTokenizer(string);
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken().toLowerCase();
-            char lastChar = token.charAt(token.length() - 1);
-            if (lastChar == 'y' || lastChar == 'z') {
+            if (token.endsWith("z") || token.endsWith("y")) {
                 countYZ++;
             }
         }

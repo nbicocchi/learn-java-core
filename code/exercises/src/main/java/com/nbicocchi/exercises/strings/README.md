@@ -195,7 +195,7 @@ where:
 
 ---
 
-**[CountYZ.java]** Write a method accepting a string, and counting the number of words ending in 'y' or 'z' so the 'y' in "heavy" and the 'z' in "fez" count, but not the 'y' in "yellow" (not case-sensitive) (see java.util.StringTokenizer class).
+**[CountYZ.java]** Write a method accepting a string, and counting the number of words ending in 'y' or 'z' so the 'y' in "heavy" and the 'z' in "fez" count, but not the 'y' in "yellow" (not case-sensitive) (see java.util.StringTokenizer class, String.endsWith() method).
 
 Examples:
 
