@@ -219,6 +219,7 @@ where:
 
 Examples:
 
+* equalIsNot("is not") → true
 * equalIsNot("This is not") → false
 * equalIsNot("This is notnot") → true
 * equalIsNot("noisxxnotyynotxisi") → true
