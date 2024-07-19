@@ -456,13 +456,9 @@ class AbstractShape {
   <<abstract>>
   # String color
   # String id
-  # AbstractShape(String, String) 
-  + getArea() double
+  # AbstractShape(String, String)
   + getColor() String
   + getId() String
-  + getPerimeter() double
-  + move(Point) void
-  + resize(double) void
   + setColor(String) void
   + setId(String) void
 }
