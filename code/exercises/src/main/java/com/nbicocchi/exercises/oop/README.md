@@ -454,8 +454,8 @@ class Resizable {
 }
 class AbstractShape {
   <<abstract>>
-  # String color
   # String id
+  # String color
   # AbstractShape(String, String)
   + getColor() String
   + getId() String
@@ -477,8 +477,8 @@ class Circle {
   + toString() String
 }
 class Rectangle {
-  ~ Point bottomRight
   ~ Point upperLeft
+  ~ Point bottomRight
   + Rectangle(String, String, Point, Point) 
   + getArea() double
   + getBottomRight() Point
