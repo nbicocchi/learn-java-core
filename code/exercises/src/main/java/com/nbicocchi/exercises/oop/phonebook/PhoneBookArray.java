@@ -16,16 +16,16 @@ public class PhoneBookArray implements PhoneBook {
     }
 
     @Override
-    public boolean addPerson(Person p) {
+    public boolean addPerson(Person person) {
         for (int i = 0; i < MAX_PERSONS; i++) {
-            if (phoneBook[i] != null && phoneBook[i].equals(p)) {
+            if (phoneBook[i] != null && phoneBook[i].equals(person)) {
                 return false;
             }
         }
 
         for (int i = 0; i < MAX_PERSONS; i++) {
             if (phoneBook[i] == null) {
-                phoneBook[i] = p;
+                phoneBook[i] = person;
                 return true;
             }
         }
