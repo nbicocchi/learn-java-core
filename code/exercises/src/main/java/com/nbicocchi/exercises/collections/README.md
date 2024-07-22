@@ -394,7 +394,8 @@ Examples:
 
 * morseCode("hello") -> `.... . ._.. ._.. ___`
 * morseCode("world") -> `.__ ___ ._. ._.. _..`
-* morseCode("w0rld") -> IllegalArgumentException
+* morseCode("w0rld") -> `.__ _____ ._. ._.. _..`
+* morseCode("w$rld") -> IllegalArgumentException
 
 The method has the following prototype:
 
