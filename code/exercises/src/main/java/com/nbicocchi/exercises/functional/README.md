@@ -231,8 +231,8 @@ a substring).
 The methods have the following prototype:
 
 ```java
-public static long howManyLines(String filename, String subString);
-public static long howManyTimes(String filename, String word);
+public static long howManyLines(String filename, String subString) throws IOException;
+public static long howManyTimes(String filename, String word) throws IOException;
 ```
 
 where:
