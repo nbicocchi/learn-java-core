@@ -108,9 +108,9 @@ where:
 
 ---
 
-**[SpeedTest.java]** Demonstrate that the position is which elements are added to a List impacts performance in a significant way.
+**[SpeedTest.java]** Demonstrate that the position in which elements are added to a List impacts performance in a significant way.
 Write two methods for inserting an element at the beginning (or end) of a List a certain number of times, returning the elapsed time.
-Then, write a test for showing that ArrayList is faster than LinkedList when adding elements at the end, while the opposite 
+Then, write a test for showing that ArrayList is faster than LinkedList when adding elements to the end, while the opposite 
 is true when inserting elements at the beginning (see System.nanoTime()).
 
 The methods have the following prototype:
