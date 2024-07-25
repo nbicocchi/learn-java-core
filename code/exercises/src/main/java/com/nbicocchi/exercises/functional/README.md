@@ -180,7 +180,7 @@ where:
 
 ---
 
-**[NoYY.java]** Given a list of strings, return a list where each string has "y" added at its end, omitting any
+**[NoYY.java]** Given a list of strings, return a list where each string has "y" added to its end, omitting any
 resulting strings that contain "yy" as a substring anywhere.
 
 Examples:
@@ -201,9 +201,9 @@ where:
 
 ---
 
-**[NoYYZ.java]** Given a list of strings, return a list where each string has "y" added at its end, omitting any
+**[NoYYZ.java]** Given a list of strings, return a list where each string has "y" added to its end, omitting any
 resulting strings that contain "yy" as a substring anywhere. 
-Nevertheless, each string starting with "z" has to printed to standard output. (see Stream.peek())
+Nevertheless, each string starting with "z" must be printed to standard output. (see Stream.peek())
 
 Examples:
 
@@ -286,10 +286,10 @@ public static class Account {
 }
 ```
 
-Write a method for: 
-* (a) filtering all the accounts whose duePayment is expired, 
+Write a method to: 
+* (a) filter all the accounts whose duePayment is expired, 
 * (b) apply interests (amount += amount * interestRate),
-* (c) sort them based their on amount (in decremental order),
+* (c) sort the accounts based on their amount (in decremental order),
 * (d) return a List of the filtered accounts.
 
 The method has the following prototype:
