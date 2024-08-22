@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilterItems {
-    public static List<String> filterItems(List<String> src) {
+    public static List<String> filterItems(List<String> strings) {
         List<String> dst = new ArrayList<>();
-        for (String s : src) {
+        for (String s : strings) {
             try {
                 CheckString.checkString(s);
                 dst.add(s);
