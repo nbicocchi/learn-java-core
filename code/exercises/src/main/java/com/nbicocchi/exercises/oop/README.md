@@ -457,10 +457,10 @@ class AbstractShape {
   # String id
   # String color
   # AbstractShape(String, String)
-  + getColor() String
   + getId() String
-  + setColor(String) void
   + setId(String) void
+  + getColor() String
+  + setColor(String) void
 }
 class Circle {
   ~ Point center
