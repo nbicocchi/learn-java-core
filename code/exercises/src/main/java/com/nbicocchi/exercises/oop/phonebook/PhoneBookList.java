@@ -17,10 +17,7 @@ public class PhoneBookList implements PhoneBook {
 
     @Override
     public boolean addPerson(Person p) {
-        if (phoneBook.contains(p)) {
-            return false;
-        }
-        if (phoneBook.size() >= MAX_PERSONS) {
+        if (phoneBook.contains(p) || phoneBook.size() >= MAX_PERSONS) {
             return false;
         }
         return phoneBook.add(p);
