@@ -131,7 +131,7 @@ Polygons must have at least three vertices. We can throw an *exception* within t
 ```java
 public Polygon(Point2D.Double[] vertices) {
     if (vertices.length < 3) {
-        throw new IllegalArgumentException("Al least three vertices are required");
+        throw new IllegalArgumentException("At least three vertices are required");
     }
     this.vertices = vertices;
 }
