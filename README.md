@@ -28,6 +28,7 @@
 * https://www.w3resource.com/
 * https://codingbat.com/
 * https://www.programiz.com/
+* https://boldcoder.blogspot.com/
 * https://exercism.io/
 * https://github.com/TheAlgorithms/Java/
 * https://github.com/charlax/professional-programming

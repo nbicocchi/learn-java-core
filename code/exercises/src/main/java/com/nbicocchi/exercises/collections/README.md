@@ -388,7 +388,7 @@ where:
 
 **[MorseCode.java]** Write a static method accepting a String, converting it to lowercase, and returning its [Morse](https://en.wikipedia.org/wiki/Morse_code) translation. The 26 lowercase letters of the english alphabet and the digits from 0 to 9 have to be supported. 
 
-You have to use a ```Map<Characher, String>``` as a conversion table (dot='.', dash='_'). If the input String contains characters not supported by the conversion table, IllegalArgumentException have to be thrown.
+You have to use a ```Map<Character, String>``` as a conversion table (dot='.', dash='_'). If the input String contains characters not supported by the conversion table, IllegalArgumentException have to be thrown.
 
 Examples:
 
