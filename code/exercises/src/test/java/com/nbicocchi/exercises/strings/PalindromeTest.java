@@ -12,5 +12,8 @@ public class PalindromeTest {
         assertTrue(Palindrome.isPalindrome("radar"));
         assertTrue(Palindrome.isPalindrome("r"));
         assertTrue(Palindrome.isPalindrome(""));
+        assertTrue(Palindrome.isPalindrome("RaceCar"));
+        assertFalse(Palindrome.isPalindrome("Algorithm"));
+        assertTrue(Palindrome.isPalindrome("Level"));
     }
 }

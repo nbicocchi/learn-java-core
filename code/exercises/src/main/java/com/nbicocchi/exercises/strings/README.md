@@ -174,7 +174,7 @@ where:
 
 ---
 
-**[Palindrome.java]** Write a method accepting a string and returning true if the string is a palindrome (see StringBuilder class).
+**[Palindrome.java]** Write a method accepting a string and returning true if the string is a palindrome, ignoring case considerations (see StringBuilder class).
 
 Examples:
 
@@ -182,6 +182,7 @@ Examples:
 * palindrome("radar") → true
 * palindrome("r") → true
 * palindrome("") → true
+* palindrome("RaceCar") → true
 
 The method has the following prototype:
 
