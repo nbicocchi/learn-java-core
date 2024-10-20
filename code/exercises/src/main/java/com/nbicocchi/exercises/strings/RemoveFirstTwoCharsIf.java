@@ -29,11 +29,18 @@ public class RemoveFirstTwoCharsIf {
 
     public static String removeFirstTwoCharsIfStringBuilder(String string) {
         StringBuilder sb = new StringBuilder(string);
+        int deletedH=0;
         if (!string.isEmpty() && string.charAt(0) != 'H') {
             sb.deleteCharAt(0);
+            deletedH=1;
         }
         if (string.length() > 1 && string.charAt(1) != 'e') {
-            sb.deleteCharAt(1);
+            if(deletedH==0){
+                sb.deleteCharAt(1);
+            }
+            else{
+                sb.deleteCharAt(0);
+            }
         }
         return sb.toString();
     }
