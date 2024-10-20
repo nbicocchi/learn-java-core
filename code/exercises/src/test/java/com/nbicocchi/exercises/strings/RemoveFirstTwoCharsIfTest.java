@@ -19,6 +19,7 @@ public class RemoveFirstTwoCharsIfTest {
     public void removeFirstTwoCharsIfStringBuilder() {
         assertEquals("Hello World!", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("Hello World!"));
         assertEquals("od World!", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("Good World!"));
+        assertEquals("e pen is on the table", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("The pen is on the table"));
         assertEquals("H", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("Ho"));
         assertEquals("e", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("Ne"));
         assertEquals("", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("Y"));
