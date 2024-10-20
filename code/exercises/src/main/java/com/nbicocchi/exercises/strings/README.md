@@ -70,7 +70,7 @@ where:
 Examples:
 
 * removeFirstTwoCharsIf("Hello World!") → "Hello World!"
-* removeFirstTwoCharsIf("Good World!") → "od World!"
+* removeFirstTwoCharsIf("The pen is on the table") → "e pen is on the table"
 * removeFirstTwoCharsIf("Ho") → "H"
 * removeFirstTwoCharsIf("Ne") → "e"
 * removeFirstTwoCharsIf("Y") → ""
