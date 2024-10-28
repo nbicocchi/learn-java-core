@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RemoveFirstTwoCharsIfTest {
     @Test
     public void removeFirstTwoCharsIfCharAt() {
+        assertEquals("e pen is on the table", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("The pen is on the table"));
         assertEquals("Hello World!", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfCharAt("Hello World!"));
         assertEquals("od World!", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfCharAt("Good World!"));
         assertEquals("H", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfCharAt("Ho"));
@@ -17,6 +18,7 @@ public class RemoveFirstTwoCharsIfTest {
     }
     @Test
     public void removeFirstTwoCharsIfStringBuilder() {
+        assertEquals("e pen is on the table", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("The pen is on the table"));
         assertEquals("Hello World!", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("Hello World!"));
         assertEquals("od World!", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("Good World!"));
         assertEquals("H", RemoveFirstTwoCharsIf.removeFirstTwoCharsIfStringBuilder("Ho"));
