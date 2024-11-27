@@ -15,7 +15,7 @@ class UnionTest {
         assertEquals(Set.of(), Union.union(Set.of(), Set.of()));
         assertEquals(Set.of(1,2,3), Union.union(Set.of(1, 2, 3), Set.of()));
         assertEquals(Set.of(4,5,6), Union.union(Set.of(), Set.of(4, 5, 6)));
-
+        assertEquals(Set.of(5, 6, 7, 8), Union.union(Set.of(5, 6, 7, 8), Set.of(5, 6, 7, 8)));
     }
 
     @Test
@@ -25,5 +25,6 @@ class UnionTest {
         assertEquals(Set.of(), Union.unionAddAll(Set.of(), Set.of()));
         assertEquals(Set.of(1,2,3), Union.unionAddAll(Set.of(1, 2, 3), Set.of()));
         assertEquals(Set.of(4,5,6), Union.unionAddAll(Set.of(), Set.of(4, 5, 6)));
+        assertEquals(Set.of(5, 6, 7, 8), Union.unionAddAll(Set.of(5, 6, 7, 8), Set.of(5, 6, 7, 8)));
     }
 }

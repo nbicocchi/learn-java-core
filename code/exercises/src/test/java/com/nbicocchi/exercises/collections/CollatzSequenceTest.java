@@ -15,5 +15,6 @@ class CollatzSequenceTest {
         assertIterableEquals(List.of(2L, 1L), CollatzSequence.collatzSequence(2));
         assertIterableEquals(List.of(3L, 10L, 5L, 16L, 8L, 4L, 2L, 1L), CollatzSequence.collatzSequence(3));
         assertIterableEquals(List.of(4L, 2L, 1L), CollatzSequence.collatzSequence(4));
+        assertIterableEquals(List.of(), CollatzSequence.collatzSequence(-1));
     }
 }
