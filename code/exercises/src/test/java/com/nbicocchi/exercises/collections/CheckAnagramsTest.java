@@ -18,5 +18,11 @@ class CheckAnagramsTest {
         assertFalse(CheckAnagrams.areAnagrams("peach", "cheap "));
         assertFalse(CheckAnagrams.areAnagrams("", "cheap"));
         assertFalse(CheckAnagrams.areAnagrams("peach", ""));
+        assertTrue(CheckAnagrams.areAnagrams("CAT", "act"));
+        assertTrue(CheckAnagrams.areAnagrams("Night", "Thing"));
+        assertFalse(CheckAnagrams.areAnagrams("Peach", "chekP"));
+        assertFalse(CheckAnagrams.areAnagrams("VidEo Game", "give a dEMo"));
+        assertTrue(CheckAnagrams.areAnagrams("DUSTY", "STUDY"));
+        assertTrue(CheckAnagrams.areAnagrams("", ""));
     }
 }
