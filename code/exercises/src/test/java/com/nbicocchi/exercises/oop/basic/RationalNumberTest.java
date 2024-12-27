@@ -25,6 +25,12 @@ class RationalNumberTest {
         RationalNumber r3 = new RationalNumber(5, 10);
         RationalNumber r4 = new RationalNumber(5, 10);
         assertEquals(new RationalNumber(1, 1), r3.add(r4));
+        RationalNumber r5 = new RationalNumber(1, 3);
+        RationalNumber r6 = new RationalNumber(-7, 2);
+        assertEquals(new RationalNumber(-19, 6), r5.add(r6));
+        RationalNumber r7 = new RationalNumber(-13, 3);
+        RationalNumber r8 = new RationalNumber(-6, 5);
+        assertEquals(new RationalNumber(-83, 15), r7.add(r8));
     }
 
     @Test
@@ -32,6 +38,12 @@ class RationalNumberTest {
         RationalNumber r1 = new RationalNumber(6, 3);
         RationalNumber r2 = new RationalNumber(6, 3);
         assertEquals(new RationalNumber(4, 1), r1.multiply(r2));
+        RationalNumber r3 = new RationalNumber(5, 2);
+        RationalNumber r4 = new RationalNumber(-1, 4);
+        assertEquals(new RationalNumber(-5, 8), r3.multiply(r4));
+        RationalNumber r5 = new RationalNumber(-7, 2);
+        RationalNumber r6 = new RationalNumber(-2, 3);
+        assertEquals(new RationalNumber(7, 3), r5.multiply(r6));
     }
 
     @Test

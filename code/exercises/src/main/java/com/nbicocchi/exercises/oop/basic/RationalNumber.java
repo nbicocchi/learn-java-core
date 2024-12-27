@@ -65,8 +65,8 @@ public class RationalNumber {
      * @return the greatest common divisor
      */
     public static int greatestCommonDivisor(int a, int b) {
-        int max = Math.max(a, b);
-        int min = Math.min(a, b);
+        int max = Math.max(Math.abs(a), Math.abs(b));
+        int min = Math.min(Math.abs(a), Math.abs(b));
 
         int rest = max % min;
         if (max % min == 0) {

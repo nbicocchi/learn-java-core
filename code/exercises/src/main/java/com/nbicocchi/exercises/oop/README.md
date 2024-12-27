@@ -46,8 +46,8 @@ You can use the following two methods for computing the least common multiple an
 
 ```java
 public static int greatestCommonDivisor(int a, int b) {
-    int max = Math.max(a, b);
-    int min = Math.min(a, b);
+    int max = Math.max(Math.abs(a), Math.abs(b));
+    int min = Math.min(Math.abs(a), Math.abs(b));
 
     int rest = max % min;
     if (max % min == 0) {
