@@ -17,5 +17,9 @@ public class CheckStringTest {
         assertThrows(ParseException.class, () -> CheckString.checkString("0"));
         assertDoesNotThrow(() -> CheckString.checkString("a0b3h4z1r4"));
         assertDoesNotThrow(() -> CheckString.checkString("a0"));
+        assertThrows(ParseException.class, () -> CheckString.checkString(""));
+        assertThrows(ParseException.class, () -> CheckString.checkString("5q2"));
+        assertThrows(ParseException.class, () -> CheckString.checkString("a1b2c"));
+        assertThrows(ParseException.class, () -> CheckString.checkString("f3s4z1r4x"));
     }
 }

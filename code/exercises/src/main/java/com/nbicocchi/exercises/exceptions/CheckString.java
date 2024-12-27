@@ -4,7 +4,7 @@ import java.text.ParseException;
 
 public class CheckString {
     public static void checkString(String s) throws ParseException {
-        if (s.length() < 2) {
+        if (s.length() < 2 || s.length() % 2 != 0) {
             throw new ParseException(s, 0);
         }
         boolean waitingLetter = true;
