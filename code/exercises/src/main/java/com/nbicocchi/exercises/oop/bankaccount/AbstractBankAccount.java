@@ -40,7 +40,7 @@ public abstract class AbstractBankAccount implements BankAccount {
 
     /**
      * Trows an IllegalArgumentException if the passed value is negative.
-     * @param value the value to be evalueted by teh function.
+     * @param value the value to be evaluated by the function.
      */
     protected void checkPositiveValue(double value){
         if (value < 0.0) {
@@ -122,7 +122,7 @@ public abstract class AbstractBankAccount implements BankAccount {
     }
 
     /**
-     * Transfers and amount on a different account.
+     * Transfers an amount on a different account.
      * Fees are applied according to the specific rules of each account.
      * @param other the other bank account
      * @param amount the amount to be transferred

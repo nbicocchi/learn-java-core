@@ -7,10 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BankAccountEasyTest {
     BankAccount bankAccount;
+    BankAccount bankAccount1;
 
     @BeforeEach
     void init() {
         bankAccount = new BankAccountEasy("IT0000012345", 1000);
+        bankAccount1 = new BankAccountEasy("DE0009911385", 2000);
     }
 
     @Test
@@ -21,6 +23,7 @@ class BankAccountEasyTest {
         assertThrows(IllegalArgumentException.class, () -> new BankAccountPro("It001234", 0.0));
         assertThrows(IllegalArgumentException.class, () -> new BankAccountPro("it001234", 0.0));
         assertDoesNotThrow(() -> new BankAccountPro("IT001234", 0.0));
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.setIBAN("IT11"));
     }
 
     @Test
@@ -50,6 +53,9 @@ class BankAccountEasyTest {
         assertEquals(1000, bankAccount.transfer(otherNational,2000));
         assertEquals(0, bankAccount.getBalance());
         assertEquals(2000, otherNational.getBalance());
+        assertEquals(500, bankAccount1.transfer(otherInternational,500));
+        assertEquals(1500, bankAccount1.getBalance());
+        assertEquals(1500, otherInternational.getBalance());
     }
 
     @Test

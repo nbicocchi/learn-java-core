@@ -21,6 +21,7 @@ class BankAccountProTest {
         assertThrows(IllegalArgumentException.class, () -> new BankAccountPro("It001234", 0.0));
         assertThrows(IllegalArgumentException.class, () -> new BankAccountPro("it001234", 0.0));
         assertDoesNotThrow(() -> new BankAccountPro("IT001234", 0.0));
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.setIBAN("IT11"));
     }
 
     @Test
