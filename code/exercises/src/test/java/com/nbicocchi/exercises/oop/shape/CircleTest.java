@@ -24,6 +24,9 @@ class CircleTest {
         assertThrows(IllegalArgumentException.class, () -> circle.setColor("#ABCDEFF"));
         assertThrows(IllegalArgumentException.class, () -> circle.setColor("#ABCDEG"));
         assertThrows(IllegalArgumentException.class, () -> circle.setColor("#ABCDE"));
+        assertThrows(IllegalArgumentException.class, () -> circle.setColor("800080F"));
+        assertDoesNotThrow(() -> circle.setColor("#FF00ff"));
+        assertDoesNotThrow(() -> circle.setColor("#0000ff"));
     }
 
     @Test
