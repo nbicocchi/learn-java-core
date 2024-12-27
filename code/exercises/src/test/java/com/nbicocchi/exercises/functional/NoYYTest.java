@@ -12,5 +12,8 @@ class NoYYTest {
         assertEquals(List.of("ay", "by", "cy"), NoYY.noYY(List.of("a", "b", "c")));
         assertEquals(List.of("ay", "by"), NoYY.noYY(List.of("a", "b", "cy")));
         assertEquals(List.of("xxy", "yay", "zzy"), NoYY.noYY(List.of("xx", "ya", "zz")));
+        assertEquals(List.of(), NoYY.noYY(List.of()));
+        assertEquals(List.of("ay", "by", "defy"), NoYY.noYY(List.of("a", "b", "cy", "def")));
+        assertEquals(List.of("xxy", "yay", "zzy", "y"), NoYY.noYY(List.of("xx", "ya", "zz", "ayyab", "yyya", "")));
     }
 }
