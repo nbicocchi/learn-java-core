@@ -47,6 +47,8 @@ class CircleTest {
         assertTrue(circle.contains(new Point(10, 10)));
         assertFalse(circle.contains(new Point(15, 15)));
         assertFalse(circle.contains(new Point(-5, -5)));
+        assertFalse(circle.contains(new Point(15, 5)));
+        assertFalse(circle.contains(new Point(5, -5)));
     }
 
     @Test
