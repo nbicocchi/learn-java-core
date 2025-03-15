@@ -4,14 +4,12 @@ import java.util.StringTokenizer;
 
 public class CountYZ {
     public static int countYZ(String string) {
-        int countYZ = 0;
-        StringTokenizer tokenizer = new StringTokenizer(string);
-        while (tokenizer.hasMoreTokens()) {
-            String token = tokenizer.nextToken().toLowerCase();
-            if (token.endsWith("z") || token.endsWith("y")) {
-                countYZ++;
-            }
+         StringTokenizer str = new StringTokenizer(string);
+
+        if(string.toLowerCase().endsWith("y") || string.toLowerCase().endsWith("z")){
+            return str.countTokens();
         }
-        return countYZ;
+
+        return 0;
     }
 }
