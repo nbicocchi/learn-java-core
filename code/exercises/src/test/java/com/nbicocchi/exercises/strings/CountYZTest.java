@@ -11,5 +11,7 @@ class CountYZTest {
         assertEquals(2, CountYZ.countYZ("day fez"));
         assertEquals(2, CountYZ.countYZ("day fyyyz"));
         assertEquals(2, CountYZ.countYZ("daY fyyYZ"));
+        assertEquals(0, CountYZ.countYZ("hello world!"));
+        assertEquals(1, CountYZ.countYZ("we love technology"));
     }
 }
