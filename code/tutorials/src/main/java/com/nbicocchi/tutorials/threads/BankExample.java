@@ -43,13 +43,15 @@ public class BankExample {
         public void run() {
             RandomGenerator rnd = RandomGenerator.getDefault();
             while (!interrupted()) {
-                synchronized (account) {
-                    if (account.getBalance() <= 0) {
+                //synchronized (account) {
+
+                    int balance = account.getBalance();
+                    int amount = rnd.nextInt(account.getBalance() + 1);
+
+                    if (balance <= 0) {
                         log("ACCOUNT EMPTY", 0);
                         break;
                     }
-
-                    int amount = rnd.nextInt(account.getBalance() + 1);
 
                     log("START WITHDRAW", amount);
 
@@ -61,8 +63,9 @@ public class BankExample {
                         log("DOH!", amount);
                         break;
                     }
+
                     Thread.yield();
-                }
+                //}
             }
         }
     }

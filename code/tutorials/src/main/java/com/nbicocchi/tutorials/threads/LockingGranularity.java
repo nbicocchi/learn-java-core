@@ -48,7 +48,7 @@ public class LockingGranularity {
         b.start();
         c.start();
 
-        Thread.sleep(10);
+        Thread.sleep(2);
 
         a.interrupt();
         b.interrupt();
