@@ -46,7 +46,11 @@ The reading process is on adjacent digits, so the fifth number is not "3112" but
 
 Examples:
 
+* lookAndSay(0) -> []
 * lookAndSay(1) -> [1]
+* lookAndSay(2) -> [1, 11]
+* lookAndSay(3) -> [1, 11, 21]
+* lookAndSay(4) -> [1, 11, 21, 1211]
 * lookAndSay(5) -> [1, 11, 21, 1211, 111221]
 
 The method has the following prototype:
