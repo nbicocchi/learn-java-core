@@ -128,18 +128,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * Checked and unchecked exceptions
 * Closing resources
 
-[E8] IO/NIO Frameworks
-
-> Read: Big Java (Chapter 21)
-
-> Lab: [com.nbicocchi.exercises.nio](code/exercises/src/main/java/com/nbicocchi/exercises/nio)
-
-* IO vs NIO frameworks
-* Manipulating paths
-* Manipulating filesystem (copy, move, etc.)
-* Reading and writing files
-
-[E9] Multi-threading
+[E8] Multi-threading
 
 > Read: Big Java (Chapter 22)
 
