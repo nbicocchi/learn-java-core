@@ -21,18 +21,6 @@
 * [Java SE Tutorial](https://dev.java/)
 * [Java SE API](https://docs.oracle.com/en/java/javase/21/docs/api/index.html)
 
-### Other Tutorials/Exercises
-* https://java-programming.mooc.fi/
-* https://www.baeldung.com/
-* https://jenkov.com/
-* https://www.w3resource.com/
-* https://codingbat.com/
-* https://www.programiz.com/
-* https://boldcoder.blogspot.com/
-* https://exercism.io/
-* https://github.com/TheAlgorithms/Java/
-* https://github.com/charlax/professional-programming
-
 ### Contributing
 Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. For a more general introduction to GitHub, refer to [this](https://github.com/skills/) page. By contributing to this repository, you agree that your contributions will be licensed under the LICENSE file in the root directory of this source tree.
 
@@ -54,13 +42,11 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 > [com.nbicocchi.exercises.strings](code/exercises/src/main/java/com/nbicocchi/exercises/strings) 
 
 * Variables, methods and parameter passing
-* Fundamental data types
-* Decisions
-* Loops
-* Arrays (and brief introduction to ArrayList)
+* Primitive data types
+* Conditional statements
+* Iterative statements
+* Arrays
 * Strings
-* Input and output
-* Random numbers
 * [Coding Standard](books/Java-Coding-Standard.pdf)
 
 [E3] Object Oriented Design
@@ -84,7 +70,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 
 > Read: Big Java (Chapter 14-15)
 
-> Lab: package [com.nbicocchi.exercises.collections](code/exercises/src/main/java/com/nbicocchi/exercises/collections)
+> Lab: [com.nbicocchi.exercises.collections](code/exercises/src/main/java/com/nbicocchi/exercises/collections)
 
 * Iterable and Iterator interfaces
 * List interface and its implementations (ArrayList, LinkedList)
