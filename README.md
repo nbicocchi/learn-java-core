@@ -6,7 +6,6 @@
 * [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/) [Plugins: [Mermaid](https://plugins.jetbrains.com/plugin/20146-mermaid)]
 * [Scene Builder](https://gluonhq.com/products/scene-builder/)
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-* [Mermaid](https://mermaid.js.org/)
 
 ### Books
 * **Big Java - Early Objects 7th Edition; Horstmann; Wiley Press (intermediate)**
