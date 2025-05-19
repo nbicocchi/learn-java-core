@@ -49,7 +49,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * Strings
 * [Coding Standard](books/Java-Coding-Standard.pdf)
 
-[E3] Object Oriented Design
+[E3] Classes
 
 > Read: Big Java (Chapter 3-8-9-10-12)
 > Read: UML Distilled (Chapter 3)
@@ -66,7 +66,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * Wrapper types
 * UML class diagrams 
 
-[E4] Data Structures (Collections Framework)
+[E4] Data Structures
 
 > Read: Big Java (Chapter 14-15)
 
@@ -79,7 +79,18 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * Map interface and its implementations (HashMap, LinkedHashMap, TreeMap)
 * Sorting and searching
 
-[E5] Generic Data Structures (Generics)
+[E5] Exceptions
+
+> Read: Big Java (Chapter 11)
+
+> Lab: [com.nbicocchi.exercises.exceptions](code/exercises/src/main/java/com/nbicocchi/exercises/exceptions)
+
+* Throwing exceptions
+* Catching exceptions
+* Checked and unchecked exceptions
+* Closing resources
+
+[E6] Generics
 
 > Read: Big Java (Chapter 18)
 
@@ -91,7 +102,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * Constraining type parameters
 * Type erasure
 
-[E6] Functional Programming
+[E7] Functional Programming
 
 > Read: Big Java (Chapter 19), 
 > Object-Oriented vs Functional Programming (Chapter 1)
@@ -103,18 +114,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * Producing, transforming, and collecting functional streams
 * The *Optional* type
 
-[E7] Exceptions
-
-> Read: Big Java (Chapter 11)
-
-> Lab: [com.nbicocchi.exercises.exceptions](code/exercises/src/main/java/com/nbicocchi/exercises/exceptions)
-
-* Throwing exceptions
-* Catching exceptions
-* Checked and unchecked exceptions
-* Closing resources
-
-[E8] Multi-threading
+[E8] Platform Threads
 
 > Read: Big Java (Chapter 22)
 
