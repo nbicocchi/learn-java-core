@@ -56,12 +56,12 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 
 > Lab: [com.nbicocchi.exercises.oop](code/exercises/src/main/java/com/nbicocchi/exercises/oop)
 
-* Instance variables and encapsulation
-* Specifying the public interface of a class (and its implementation)
+* Encapsulation
 * Static variables and methods
-* Inheritance hierarchies
+* Inheritance
 * Abstract classes
 * Interfaces (and anonymous implementations)
+* Polymorphism
 * Object: the cosmic superclass
 * Wrapper types
 * UML class diagrams 
@@ -75,9 +75,9 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * Iterable and Iterator interfaces
 * List interface and its implementations (ArrayList, LinkedList)
 * Set interface and its implementations (HashSet, LinkedHashSet, TreeSet)
-* Deque interface and its implementations (ArrayDeque, LinkedList)
+* Queue interface and its implementations (ArrayDeque, LinkedList)
 * Map interface and its implementations (HashMap, LinkedHashMap, TreeMap)
-* Sorting and searching
+* Sorting and searching collections
 
 [E5] Exceptions
 
@@ -97,7 +97,6 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 > Lab: [com.nbicocchi.exercises.generics](code/exercises/src/main/java/com/nbicocchi/exercises/generics)
 
 * Generic classes and type parameters
-* Implementing generic types
 * Generic methods
 * Constraining type parameters
 * Type erasure
@@ -111,7 +110,6 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 
 * Lambda expressions
 * Functional interfaces
-* Producing, transforming, and collecting functional streams
 * The *Optional* type
 
 [E8] Platform Threads
