@@ -76,7 +76,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * Set interface and its implementations (HashSet, LinkedHashSet, TreeSet)
 * Queue interface and its implementations (ArrayDeque, LinkedList)
 * Map interface and its implementations (HashMap, LinkedHashMap, TreeMap)
-* Sorting and searching collections
+* Sorting and searching
 
 [E5] Exceptions
 
@@ -109,6 +109,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 
 * Lambda expressions
 * Functional interfaces
+* Streams
 * The *Optional* type
 
 [E8] Platform Threads

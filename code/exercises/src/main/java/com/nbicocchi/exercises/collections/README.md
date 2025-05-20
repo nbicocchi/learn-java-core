@@ -522,8 +522,7 @@ public static List<String> lineToWords(String line) {
 
 ---
 
-**[WordFrequencySorted.java]** Add two methods to WordFrequency.java for returning a new ```Map<String, Integer>```
-containing only the n most (or less) frequent words and their frequency. Entries within the returned Map, have to be
+**[WordFrequencySorted.java]** Add two methods to WordFrequency.java for returning a new ```Map<String, Integer>``` containing only the n most (or less) frequent words and their frequency. Entries within the returned Map, have to be
 sorted by value (i.e. frequency). For sorting, you can transform the ```Map<String, Integer>``` into
 a ```List<Map.Entry<String, Integer>>``` which can be sorted using a ```Comparator<Map.Entry<String, Integer>>```.
 Remember also that LinkedHashMap is an implementation of Map maintaining the insertion order.
@@ -540,3 +539,63 @@ where:
 * **map** is the Map<String, Integer> to be processed.
 * **limit** is the number of most (or less) frequent words to be returned.
 
+---
+
+**[GetUserMemos.java]** Our task is to iterate through a list of Users and, for each user, retrieve the corresponding content from a list of Posts (see code below).
+
+```java
+public class GetUserMemos {
+    public record User(Long userId, String name) {}
+    public record Post(Long userId, String content) {}
+    public record UserPost(String name, String content) {}
+
+    public static List<User> getUsers() {
+        List<User> users = new ArrayList<>();
+        for (int i = 0; i < 4000; i++) {
+            User user = new User((long)i, UUID.randomUUID().toString());
+            users.add(user);
+        }
+        return users;
+    }
+
+    public static List<Post> getPosts() {
+        List<Post> posts = new ArrayList<>();
+        for (int i = 0; i < 4000; i++) {
+            Post post = new Post((long)i, UUID.randomUUID().toString());
+            posts.add(post);
+        }
+        return posts;
+    }
+
+    public static List<UserPost> getUserPosts() {
+        List<UserPost> userPosts = new ArrayList<>();
+        for (User user : getUsers()) {
+            for (Post post : getPosts()) {
+                if (user.userId().equals(post.userId())) {
+                    userPosts.add(new UserPost(user.name(), post.content()));
+                }
+            }
+        }
+        return userPosts;
+    }
+
+    public static List<UserPost> getUserPostsFast() {
+        // to do!
+    }
+}
+```
+
+* **User**: Represents a user with an ID and a name.
+* **Post**: Represents a post associated with a `userId` and some content.
+* **UserPost**: Represents a combined view of a post with the user's name and post content.
+* **getUsers()**: Generates 4000 random users.
+* **getPosts()**: Generates 4000 random posts.
+* **getUserPosts()**
+
+    * Combines users and posts by matching `userId`.
+    * For each user, it checks all posts to find matches (`O(n²)` complexity).  This is **inefficient** due to the nested loop — performance will degrade significantly as data size grows.
+    * When a matching post is found, it creates a `UserPost` with the user's name and the post's content.
+
+Implement the `getUserPostsFast()` method so that it is **functionally identical** to the existing `getUserPosts()` method — that is, it must return the same list of `UserPost` records, containing the user's name and post content for every user-post pair where the `userId` matches.
+
+However, your implementation must be **at least 10 times faster** than the current version. To accomplish this, use more efficient data structures (e.g., a `Map<Long, User>`) to avoid the nested loop and improve lookup performance.
