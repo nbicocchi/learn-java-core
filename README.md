@@ -55,14 +55,12 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 
 > Lab: [com.nbicocchi.exercises.oop](code/exercises/src/main/java/com/nbicocchi/exercises/oop)
 
-* Encapsulation
 * Static variables and methods
-* Inheritance
-* Abstract classes
-* Interfaces (and anonymous implementations)
-* Polymorphism
-* Object: the cosmic superclass
+* Concrete classes, Interfaces, Abstract classes
+* Encapsulation, Inheritance, Polymorphism
+* The Object superclass
 * Wrapper types
+* Garbage collection
 * UML class diagrams 
 
 [E4] Data Structures
