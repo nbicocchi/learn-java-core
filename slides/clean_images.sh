@@ -17,6 +17,14 @@ check_extension() {
 
 
 for fname in images/*; do
+  # useless image
+  slides=$(find_slides_using_it "$fname")
+  if [ -z "$slides" ]; then
+    echo "[NU]" "$fname"
+    rm -rf "$fname"
+    continue
+  fi
+
 	# already avif image
 	if check_extension "avif" "$fname"; then
 		continue
@@ -25,14 +33,6 @@ for fname in images/*; do
 	# conversion to avif not supported
 	if ! check_extension "jpeg jpg png" "$fname"; then
 		echo "[NS]" "$fname"
-		continue
-	fi
-
-	# useless image
-	slides=$(find_slides_using_it "$fname")
-	if [ -z "$slides" ]; then
-		echo "[NU]" "$fname"
-		rm -rf "$fname"
 		continue
 	fi
 
