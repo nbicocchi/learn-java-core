@@ -9,9 +9,11 @@ public class Eratosthenes {
         for (int i = 2; i <= n; i++) {
             primes.add(i);
         }
-
+    
         for (int i = 2; i <= Math.sqrt(n); i++) {
-            primes.removeAll(multiples(i, n));
+            if (primes.contains(i)) {  
+                primes.removeAll(multiples(i, n));
+            }
         }
         return primes;
     }
