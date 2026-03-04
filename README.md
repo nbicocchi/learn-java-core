@@ -1,4 +1,4 @@
-# Java Core2
+# Java Core
 
 ### Software
 
