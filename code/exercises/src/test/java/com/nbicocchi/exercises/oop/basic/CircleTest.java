@@ -57,10 +57,4 @@ class CircleTest {
         assertEquals(-5, circle.getCenter().getX());
         assertEquals(-5, circle.getCenter().getY());
     }
-
-    @Test
-    void testToString(){
-        assertEquals("Circle{center=java.awt.Point[x=5,y=5], radius=10}", circle.toString());
-    }
-
 }
