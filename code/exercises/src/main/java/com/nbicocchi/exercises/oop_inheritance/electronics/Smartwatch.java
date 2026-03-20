@@ -10,7 +10,6 @@ public class Smartwatch extends Gadget {
 
     @Override
     public String getStatus() {
-        return "Smartwatch: " + brand + ", battery life: " + batteryLife + " hours"
-                + (supportsHeartRate ? ", supports heart rate monitoring" : "");
+        return "Smartwatch{brand='" + brand + "', batteryLife=" + batteryLife + ", heartRate=" + supportsHeartRate + "}";
     }
 }

@@ -11,7 +11,6 @@ public class Motorcycle extends Transport {
 
     @Override
     public String getCapacityInfo() {
-        return "Motorcycle: " + name + " can carry " + maxPassengers + " passengers"
-                + (hasSidecar ? " and has a sidecar" : "");
+        return "Motorcycle{name='" + name + "', maxPassengers=" + maxPassengers + ", sidecar=" + hasSidecar + "}";
     }
 }

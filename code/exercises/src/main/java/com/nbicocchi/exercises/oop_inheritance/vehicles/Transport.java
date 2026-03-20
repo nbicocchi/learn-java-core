@@ -13,11 +13,24 @@ public class Transport {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getMaxPassengers() {
         return maxPassengers;
     }
 
+    public void setMaxPassengers(int maxPassengers) {
+        this.maxPassengers = maxPassengers;
+    }
+
     public String getCapacityInfo() {
-        return "Transport: " + name + " can carry " + maxPassengers + " passengers";
+        return "Transport{name='" + name + "', maxPassengers=" + maxPassengers + "}";
+    }
+
+    @Override
+    public String toString() {
+        return getCapacityInfo();
     }
 }

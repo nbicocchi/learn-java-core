@@ -10,6 +10,6 @@ public class Manager extends Employee {
 
     @Override
     public String getDetails() {
-        return "Manager: " + name + ", salary: " + salary + ", team size: " + teamSize;
+        return "Manager{name='" + name + "', salary=" + salary + ", teamSize=" + teamSize + "}";
     }
 }

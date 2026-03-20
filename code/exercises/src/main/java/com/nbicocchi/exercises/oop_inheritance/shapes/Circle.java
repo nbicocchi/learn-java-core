@@ -15,6 +15,6 @@ public class Circle extends Shape {
 
     @Override
     public String getDescription() {
-        return "Circle with color: " + color + ", radius: " + radius;
+        return "Circle{color='" + color + "', radius=" + radius + "}";
     }
 }

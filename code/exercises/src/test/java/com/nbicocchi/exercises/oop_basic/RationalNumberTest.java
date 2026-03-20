@@ -1,6 +1,5 @@
-package com.nbicocchi.exercises.oop_full.basic;
+package com.nbicocchi.exercises.oop_basic;
 
-import com.nbicocchi.exercises.oop_basic.RationalNumber;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -14,11 +14,24 @@ public class Gadget {
         return brand;
     }
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public double getBatteryLife() {
         return batteryLife;
     }
 
+    public void setBatteryLife(double batteryLife) {
+        this.batteryLife = batteryLife;
+    }
+
     public String getStatus() {
-        return "Gadget: " + brand + ", battery life: " + batteryLife + " hours";
+        return "Gadget{brand='" + brand + "', batteryLife=" + batteryLife + "}";
+    }
+
+    @Override
+    public String toString() {
+        return getStatus();
     }
 }

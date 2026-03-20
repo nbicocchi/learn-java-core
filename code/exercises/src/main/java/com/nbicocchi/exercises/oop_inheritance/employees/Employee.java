@@ -9,8 +9,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    // Base method, can be overridden
     public String getDetails() {
-        return "Employee: " + name + ", salary: " + salary;
+        return "Employee{name='" + name + "', salary=" + salary + "}";
     }
 }

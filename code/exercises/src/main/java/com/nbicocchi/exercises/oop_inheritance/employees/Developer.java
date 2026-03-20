@@ -10,6 +10,6 @@ public class Developer extends Employee {
 
     @Override
     public String getDetails() {
-        return "Developer: " + name + ", salary: " + salary + ", language: " + programmingLanguage;
+        return "Developer{name='" + name + "', salary=" + salary + ", language='" + programmingLanguage + "'}";
     }
 }

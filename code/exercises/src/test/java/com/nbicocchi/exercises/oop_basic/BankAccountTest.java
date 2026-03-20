@@ -1,6 +1,5 @@
-package com.nbicocchi.exercises.oop_full.basic;
+package com.nbicocchi.exercises.oop_basic;
 
-import com.nbicocchi.exercises.oop_basic.BankAccount;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;

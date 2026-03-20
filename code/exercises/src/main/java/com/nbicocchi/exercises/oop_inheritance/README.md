@@ -1,30 +1,39 @@
 # Object-Oriented Programming - DIEF/UNIMORE
 
-## Java Exercises (Concrete Classes & Polymorphism)
-
 ---
 
-### **[employees package]**
+## [employees package]
 
-Define a concrete base class `Employee` and subclasses `Manager` and `Developer`.
+### Specification
 
-* `Employee`:
+**Employee**
 
-    * name (String)
-    * salary (double)
-    * method `getDetails()` returning `"Employee: name, salary"`
+* `name` (String)
+* `salary` (double)
+* `getDetails()` →
 
-* `Manager`:
+  ```
+  Employee{name='name', salary=salary}
+  ```
+* `toString()` → delegates to `getDetails()`
 
-    * teamSize (int)
-    * overrides `getDetails()` to include team size
+**Manager**
 
-* `Developer`:
+* `teamSize` (int)
+* overrides `getDetails()` →
 
-    * programmingLanguage (String)
-    * overrides `getDetails()` to include programming language
+  ```
+  Manager{name='name', salary=salary, teamSize=teamSize}
+  ```
 
-Goal: create a list of `Employee` objects and print `getDetails()` to test **polymorphic behavior**.
+**Developer**
+
+* `programmingLanguage` (String)
+* overrides `getDetails()` →
+
+  ```
+  Developer{name='name', salary=salary, language='language'}
+  ```
 
 ```mermaid
 classDiagram
@@ -35,6 +44,7 @@ class Employee {
   + getName() String
   + getSalary() double
   + getDetails() String
+  + toString() String
 }
 class Manager {
   - int teamSize
@@ -52,24 +62,22 @@ Developer --|> Employee
 
 ---
 
-### **[animals package]**
+## [animals package]
 
-Define a concrete class `Animal` and subclasses `Dog` and `Cat`.
+### Specification
 
-* `Animal`:
+**Animal**
 
-    * name (String)
-    * method `makeSound()` returning `"some generic sound"`
+* `name` (String)
+* `makeSound()` → `"generic"`
 
-* `Dog`:
+**Dog**
 
-    * overrides `makeSound()` → `"woof"`
+* overrides `makeSound()` → `"woof"`
 
-* `Cat`:
+**Cat**
 
-    * overrides `makeSound()` → `"meow"`
-
-Goal: create an array of `Animal` objects and call `makeSound()` to demonstrate **polymorphism and overriding**.
+* overrides `makeSound()` → `"meow"`
 
 ```mermaid
 classDiagram
@@ -93,29 +101,40 @@ Cat --|> Animal
 
 ---
 
-### **[shapes package]**
+## [shapes package]
 
-Define a concrete base class `Shape` and subclasses `Circle` and `Rectangle`.
+### Specification
 
-* `Shape`:
+**Shape**
 
-    * color (String)
-    * method `getArea()` returning `0`
-    * method `getDescription()` returning `"Shape with color: color"`
+* `color` (String)
+* `getArea()` → `0`
+* `getDescription()` →
 
-* `Circle`:
+  ```
+  Shape{color='color'}
+  ```
+* `toString()` → delegates to `getDescription()`
 
-    * radius (double)
-    * overrides `getArea()` → `Math.PI * radius^2`
-    * overrides `getDescription()` → include radius
+**Circle**
 
-* `Rectangle`:
+* `radius` (double)
+* overrides `getArea()` → `Math.PI * radius^2`
+* overrides `getDescription()` →
 
-    * width (double), height (double)
-    * overrides `getArea()` → `width * height`
-    * overrides `getDescription()` → include width and height
+  ```
+  Circle{color='color', radius=radius}
+  ```
 
-Goal: create a `Shape[]` with circles and rectangles, iterate, and print `getArea()` and `getDescription()` to test **polymorphism**.
+**Rectangle**
+
+* `width`, `height` (double)
+* overrides `getArea()` → `width * height`
+* overrides `getDescription()` →
+
+  ```
+  Rectangle{color='color', width=width, height=height}
+  ```
 
 ```mermaid
 classDiagram
@@ -125,6 +144,7 @@ class Shape {
   + getColor() String
   + getArea() double
   + getDescription() String
+  + toString() String
 }
 class Circle {
   - double radius
@@ -145,27 +165,38 @@ Rectangle --|> Shape
 
 ---
 
-### **[vehicles package]**
+## [vehicles package]
 
-Define a concrete base class `Transport` and subclasses `Bus` and `Motorcycle`.
+### Specification
 
-* `Transport`:
+**Transport**
 
-    * name (String)
-    * maxPassengers (int)
-    * method `getCapacityInfo()` → `"Transport: name can carry maxPassengers passengers"`
+* `name` (String)
+* `maxPassengers` (int)
+* `getCapacityInfo()` →
 
-* `Bus`:
+  ```
+  Transport{name='name', maxPassengers=maxPassengers}
+  ```
+* `toString()` → delegates to `getCapacityInfo()`
 
-    * hasDoubleDeck (boolean)
-    * overrides `getCapacityInfo()` → include if double deck
+**Bus**
 
-* `Motorcycle`:
+* `hasDoubleDeck` (boolean)
+* overrides `getCapacityInfo()` →
 
-    * hasSidecar (boolean)
-    * overrides `getCapacityInfo()` → include sidecar info
+  ```
+  Bus{name='name', maxPassengers=maxPassengers, doubleDeck=true/false}
+  ```
 
-Goal: create a `Transport[]` array with buses and motorcycles and print `getCapacityInfo()` to see polymorphic behavior.
+**Motorcycle**
+
+* `hasSidecar` (boolean)
+* overrides `getCapacityInfo()` →
+
+  ```
+  Motorcycle{name='name', maxPassengers=maxPassengers, sidecar=true/false}
+  ```
 
 ```mermaid
 classDiagram
@@ -176,6 +207,7 @@ class Transport {
   + getName() String
   + getMaxPassengers() int
   + getCapacityInfo() String
+  + toString() String
 }
 class Bus {
   - boolean hasDoubleDeck
@@ -193,27 +225,38 @@ Motorcycle --|> Transport
 
 ---
 
-### **[electronics package]**
+## [electronics package]
 
-Define a concrete base class `Gadget` and subclasses `Tablet` and `Smartwatch`.
+### Specification
 
-* `Gadget`:
+**Gadget**
 
-    * brand (String)
-    * batteryLife (double)
-    * method `getStatus()` → `"Gadget: brand, batteryLife hours"`
+* `brand` (String)
+* `batteryLife` (double)
+* `getStatus()` →
 
-* `Tablet`:
+  ```
+  Gadget{brand='brand', batteryLife=batteryLife}
+  ```
+* `toString()` → delegates to `getStatus()`
 
-    * screenSize (double)
-    * overrides `getStatus()` → include screen size
+**Tablet**
 
-* `Smartwatch`:
+* `screenSize` (double)
+* overrides `getStatus()` →
 
-    * supportsHeartRate (boolean)
-    * overrides `getStatus()` → include heart rate support
+  ```
+  Tablet{brand='brand', batteryLife=batteryLife, screenSize=screenSize}
+  ```
 
-Goal: create a `Gadget[]` array and call `getStatus()` for all objects to see **polymorphism** in action.
+**Smartwatch**
+
+* `supportsHeartRate` (boolean)
+* overrides `getStatus()` →
+
+  ```
+  Smartwatch{brand='brand', batteryLife=batteryLife, heartRate=true/false}
+  ```
 
 ```mermaid
 classDiagram
@@ -224,6 +267,7 @@ class Gadget {
   + getBrand() String
   + getBatteryLife() double
   + getStatus() String
+  + toString() String
 }
 class Tablet {
   - double screenSize
@@ -238,3 +282,4 @@ class Smartwatch {
 Tablet --|> Gadget
 Smartwatch --|> Gadget
 ```
+

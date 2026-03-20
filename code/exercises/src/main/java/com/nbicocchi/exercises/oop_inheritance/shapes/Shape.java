@@ -16,6 +16,6 @@ public class Shape {
     }
 
     public String getDescription() {
-        return "Shape with color: " + color;
+        return "Shape{color='" + color + "'}";
     }
 }

@@ -10,6 +10,6 @@ public class Tablet extends Gadget {
 
     @Override
     public String getStatus() {
-        return "Tablet: " + brand + ", battery life: " + batteryLife + " hours, screen size: " + screenSize + " inches";
+        return "Tablet{brand='" + brand + "', batteryLife=" + batteryLife + ", screenSize=" + screenSize + "}";
     }
 }

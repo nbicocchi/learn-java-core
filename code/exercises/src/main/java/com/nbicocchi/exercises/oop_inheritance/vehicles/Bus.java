@@ -10,7 +10,6 @@ public class Bus extends Transport {
 
     @Override
     public String getCapacityInfo() {
-        return "Bus: " + name + " can carry " + maxPassengers + " passengers"
-                + (hasDoubleDeck ? " and has a double deck" : "");
+        return "Bus{name='" + name + "', maxPassengers=" + maxPassengers + ", doubleDeck=" + hasDoubleDeck + "}";
     }
 }

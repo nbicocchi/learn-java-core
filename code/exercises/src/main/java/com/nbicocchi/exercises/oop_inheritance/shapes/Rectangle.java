@@ -17,6 +17,6 @@ public class Rectangle extends Shape {
 
     @Override
     public String getDescription() {
-        return "Rectangle with color: " + color + ", width: " + width + ", height: " + height;
+        return "Rectangle{color='" + color + "', width=" + width + ", height=" + height + "}";
     }
 }
