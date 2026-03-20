@@ -53,7 +53,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 > Read: Big Java (Chapter 3-8-9-10-12)
 > Read: UML Distilled (Chapter 3)
 
-> Lab: [com.nbicocchi.exercises.oop](code/exercises/src/main/java/com/nbicocchi/exercises/oop)
+> Lab: [com.nbicocchi.exercises.oop_full](code/exercises/src/main/java/com/nbicocchi/exercises/oop_full)
 
 * Static variables and methods
 * Concrete classes, Interfaces, Abstract classes
