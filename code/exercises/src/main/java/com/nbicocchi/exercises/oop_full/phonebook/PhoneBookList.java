@@ -32,7 +32,7 @@ public class PhoneBookList implements PhoneBook {
     public Person[] searchByLastname(String lastname) {
         ArrayList<Person> tmp = new ArrayList<>();
         for (Person p : phoneBook) {
-            if (p.getLastname().equals(lastname)) {
+            if (p.lastname().equals(lastname)) {
                 tmp.add(p);
             }
         }
@@ -43,7 +43,7 @@ public class PhoneBookList implements PhoneBook {
     public Person[] searchByNameAndLastname(String name, String lastname) {
         ArrayList<Person> tmp = new ArrayList<>();
         for (Person p : phoneBook) {
-            if (p.getLastname().equals(lastname) && p.getName().equals(name)) {
+            if (p.lastname().equals(lastname) && p.name().equals(name)) {
                 tmp.add(p);
             }
         }
