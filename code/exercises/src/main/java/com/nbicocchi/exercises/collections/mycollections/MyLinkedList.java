@@ -95,11 +95,6 @@ public class MyLinkedList extends MyAbstractList implements MyDeque {
         return payload;
     }
 
-    /**
-     * Implementation of a single node composing the linked list
-     *
-     * @author Nicola Bicocchi
-     */
     private static class Node {
         private Object payload;
         private Node next;
