@@ -2,7 +2,7 @@
 
 ## Java Exercises (OOP Design)
 
-Before starting this module, generate the JavaDoc documentation of the whole oop package.
+Before starting this module, generate the JavaDoc documentation of the oop_full package.
 
 In IntelliJ, click on the oop package then select Tools -> Generate JavaDoc...
 
