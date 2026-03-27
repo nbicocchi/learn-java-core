@@ -52,9 +52,6 @@ class Person {
   + getLastname() String
   + getName() String
   + getPhone() String
-  + setLastname(String) void
-  + setName(String) void
-  + setPhone(String) void
   + equals(Object) boolean
   + hashCode() int
   + toString() String
