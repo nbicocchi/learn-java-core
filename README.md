@@ -2,7 +2,7 @@
 
 ### Software
 
-* [JDK Development Kit 21](https://www.oracle.com/it/java/technologies/downloads/)
+* [JDK Development Kit 25](https://www.oracle.com/it/java/technologies/downloads/#java25)
 * [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/) [Plugins: [Mermaid](https://plugins.jetbrains.com/plugin/20146-mermaid)]
 * [Scene Builder](https://gluonhq.com/products/scene-builder/)
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
@@ -18,7 +18,7 @@
 ### Official Tutorials
 * [IntelliJ Tutorial](https://www.jetbrains.com/idea/resources/)
 * [Java SE Tutorial](https://dev.java/)
-* [Java SE API](https://docs.oracle.com/en/java/javase/21/docs/api/index.html)
+* [Java SE API](https://docs.oracle.com/en/java/javase/25/docs/api/index.html)
 
 ### Contributing
 Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. For a more general introduction to GitHub, refer to [this](https://github.com/skills/) page. By contributing to this repository, you agree that your contributions will be licensed under the LICENSE file in the root directory of this source tree.
@@ -122,4 +122,3 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * ExecutorService
 * Callable/Future/Task
 
-*"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." --- Martin Fowler*

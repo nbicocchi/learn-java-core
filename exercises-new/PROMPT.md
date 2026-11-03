@@ -94,7 +94,7 @@ Non confondere sistematicamente la progettazione con la correzione di una riga e
 
 Mostra soltanto:
 
-1. Numero progressivo e titolo neutro, che non anticipi il difetto.
+1. Numero progressivo all’interno del modulo e titolo neutro, che non anticipi il difetto. Ogni modulo ha una numerazione indipendente che parte da Esercizio 1; prosegui da 2, 3, ecc. quando generi altri esercizi dello stesso modulo.
 2. Tempo indicativo: 5–7 minuti. Java 25.
 3. Scenario e requisiti essenziali.
 4. Codice con numeri di riga, precisando che non ne fanno parte.
