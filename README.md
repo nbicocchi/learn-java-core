@@ -24,101 +24,93 @@
 Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. For a more general introduction to GitHub, refer to [this](https://github.com/skills/) page. By contributing to this repository, you agree that your contributions will be licensed under the LICENSE file in the root directory of this source tree.
 
 ### Modules
-[E1] From Functions to Classes
 
-* Evolution of programming languages
-* Limits of procedural programming
-* Modularization, reuse of code, and object-oriented programming
-* Object-oriented programming key features
+#### E1 — From Functions to Classes
 
-[E2] Basics
+* [E1.1 — From functions to classes](<slides/E1.1 - Java From Functions to Classes.md>)
+* [E1.2 — Environment and build tools](<slides/E1.2 - Java Environment and Build Tools.md>)
 
-> Read: Big Java (Chapter 2-4-5-6-7)
+#### E2 — Basics
 
-> Lab:
-> [com.nbicocchi.exercises.warmup](code/exercises/src/main/java/com/nbicocchi/exercises/warmup),
-> [com.nbicocchi.exercises.arrays](code/exercises/src/main/java/com/nbicocchi/exercises/arrays),
-> [com.nbicocchi.exercises.strings](code/exercises/src/main/java/com/nbicocchi/exercises/strings) 
+* [E2.1 — Types and expressions](<slides/E2.1 - Java Types and Expressions.md>)
+* [E2.2 — Control flow](<slides/E2.2 - Java Control Flow.md>)
+* [E2.3 — Methods and references](<slides/E2.3 - Java Methods and References.md>)
+* [E2.4 — Arrays](<slides/E2.4 - Java Arrays.md>)
+* [E2.5 — Strings](<slides/E2.5 - Java Strings.md>)
+* [E2.6 — Wrapper classes](<slides/E2.6 - Java Wrapper Classes.md>)
+* [E2.7 — Text input and output](<slides/E2.7 - Java Text Input and Output.md>)
 
-* Variables, methods and parameter passing
-* Primitive data types
-* Conditional statements
-* Iterative statements
-* Arrays
-* Strings
-* [Coding Standard](books/Java-Coding-Standard.pdf)
+> **Practice:** [E2 — Java Basics](<exercises-new/E2 - Java Basics.md>)
+>
+> **Read:** Big Java (Chapters 2, 4, 5, 6, 7)
 
-[E3] Classes
+#### E3 — Object-Oriented Programming
 
-> Read: Big Java (Chapter 3-8-9-10-12)
-> Read: UML Distilled (Chapter 3)
+* [E3.1 — Classes and constructors](<slides/E3.1 - Java Classes and Constructors.md>)
+* [E3.2 — Encapsulation and invariants](<slides/E3.2 - Java Encapsulation and Invariants.md>)
+* [E3.3 — Inheritance and polymorphism](<slides/E3.3 - Java Inheritance and Polymorphism.md>)
+* [E3.4 — Interfaces](<slides/E3.4 - Java Interfaces.md>)
+* [E3.5 — Abstract classes and composition](<slides/E3.5 - Java Abstract Classes and Composition.md>)
+* [E3.6 — Object equality and hashing](<slides/E3.6 - Java Object Equality and Hashing.md>)
+* [E3.7 — Immutability and records](<slides/E3.7 - Java Immutability and Records.md>)
+* [E3.8 — Enums and state modelling](<slides/E3.8 - Java Enums and State Modelling.md>)
+* [E3.9 — Nested classes](<slides/E3.9 - Java Nested Classes.md>)
+* [E3.10 — SOLID principles](<slides/E3.10 - SOLID Principles.md>)
 
-> Lab: [com.nbicocchi.exercises.oop_full](code/exercises/src/main/java/com/nbicocchi/exercises/oop_full)
+> **Practice:** [E3 — Object-Oriented Programming](<exercises-new/E3 - Java Object-Oriented Programming.md>)
+>
+> **Read:** Big Java (Chapters 3, 8, 9, 10, 12); UML Distilled (Chapter 3)
 
-* Static variables and methods
-* Concrete classes, Interfaces, Abstract classes
-* Encapsulation, Inheritance, Polymorphism
-* The Object superclass
-* Wrapper types
-* Garbage collection
-* UML class diagrams 
+#### E4 — Collections
 
-[E4] Data Structures
+* [E4.1 — Collections, lists and iterators](<slides/E4.1 - Java Collections Lists and Iterators.md>)
+* [E4.2 — Sets](<slides/E4.2 - Java Sets.md>)
+* [E4.3 — Queues and deques](<slides/E4.3 - Java Queues and Deques.md>)
+* [E4.4 — Maps](<slides/E4.4 - Java Maps.md>)
+* [E4.5 — Collection ordering and search](<slides/E4.5 - Java Collection Ordering and Search.md>)
 
-> Read: Big Java (Chapter 14-15)
+> **Practice:** [E4 — Collections](<exercises-new/E4 - Java Collections.md>)
+>
+> **Read:** Big Java (Chapters 14, 15)
 
-> Lab: [com.nbicocchi.exercises.collections](code/exercises/src/main/java/com/nbicocchi/exercises/collections)
+#### E5 — Exceptions and Resources
 
-* Iterable and Iterator interfaces
-* List interface and its implementations (ArrayList, LinkedList)
-* Set interface and its implementations (HashSet, LinkedHashSet, TreeSet)
-* Queue interface and its implementations (ArrayDeque, LinkedList)
-* Map interface and its implementations (HashMap, LinkedHashMap, TreeMap)
-* Sorting and searching
+* [E5.1 — Exceptions and propagation](<slides/E5.1 - Java Exceptions and Propagation.md>)
+* [E5.2 — Error handling and contracts](<slides/E5.2 - Java Error Handling and Contracts.md>)
+* [E5.3 — Resource ownership](<slides/E5.3 - Java Resource Ownership.md>)
 
-[E5] Exceptions
+> **Practice:** [E5 — Exceptions](<exercises-new/E5 - Java Exceptions.md>)
+>
+> **Read:** Big Java (Chapter 11)
 
-> Read: Big Java (Chapter 11)
+#### E6 — Generics
 
-> Lab: [com.nbicocchi.exercises.exceptions](code/exercises/src/main/java/com/nbicocchi/exercises/exceptions)
+* [E6.1 — Generic classes and methods](<slides/E6.1 - Java Generic Classes and Methods.md>)
+* [E6.2 — Bounds and wildcards](<slides/E6.2 - Java Bounds and Wildcards.md>)
+* [E6.3 — Type erasure](<slides/E6.3 - Java Type Erasure.md>)
 
-* Throwing exceptions
-* Catching exceptions
-* Checked and unchecked exceptions
-* Closing resources
+> **Practice:** [E6 — Generics](<exercises-new/E6 - Java Generics.md>)
+>
+> **Read:** Big Java (Chapter 18)
 
-[E6] Generics
+#### E7 — Functional Programming
 
-> Read: Big Java (Chapter 18)
+* [E7.1 — Lambdas and functional interfaces](<slides/E7.1 - Java Lambdas and Functional Interfaces.md>)
+* [E7.2 — Function composition and Optional](<slides/E7.2 - Java Function Composition and Optional.md>)
+* [E7.3 — Stream pipelines](<slides/E7.3 - Java Stream Pipelines.md>)
+* [E7.4 — Stream collection and reduction](<slides/E7.4 - Java Stream Collection and Reduction.md>)
 
-> Lab: [com.nbicocchi.exercises.generics](code/exercises/src/main/java/com/nbicocchi/exercises/generics)
+> **Practice:** [E7 — Functional Programming](<exercises-new/E7 - Java Functional Programming.md>)
+>
+> **Read:** Big Java (Chapter 19); Object-Oriented vs Functional Programming (Chapter 1)
 
-* Generic classes and type parameters
-* Generic methods
-* Constraining type parameters
-* Type erasure
+#### E8 — Concurrency
 
-[E7] Functional Programming
+* [E8.1 — Threads and execution](<slides/E8.1 - Java Threads and Execution.md>)
+* [E8.2 — Shared state and synchronization](<slides/E8.2 - Java Shared State and Synchronization.md>)
+* [E8.3 — Thread coordination](<slides/E8.3 - Java Thread Coordination.md>)
+* [E8.4 — Executors, tasks and futures](<slides/E8.4 - Java Executors Tasks and Futures.md>)
 
-> Read: Big Java (Chapter 19), 
-> Object-Oriented vs Functional Programming (Chapter 1)
-
-> Lab: [com.nbicocchi.exercises.functional](code/exercises/src/main/java/com/nbicocchi/exercises/functional)
-
-* Lambda expressions
-* Functional interfaces
-* Streams
-* The *Optional* type
-
-[E8] Platform Threads
-
-> Read: Big Java (Chapter 22)
-
-> Lab: [com.nbicocchi.exercises.threads](code/exercises/src/main/java/com/nbicocchi/exercises/threads)
-
-* Thread states
-* Thread interference
-* Thread synchronisation (synchronised/wait/notify)
-* ExecutorService
-* Callable/Future/Task
-
+> **Practice:** [E8 — Concurrency](<exercises-new/E8 - Java Concurrency.md>)
+>
+> **Read:** Big Java (Chapter 22)
