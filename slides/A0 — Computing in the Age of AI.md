@@ -96,23 +96,6 @@ There are concrete reasons to choose it:
 
 These are reasons for adaptability, not immunity to disruption. Entry-level opportunities may also become harder to access if organizations automate tasks through which beginners traditionally learned.
 
-## Job security or career resilience?
-
-Distinguish:
-
-* **Job security:** keeping a particular position or set of duties.
-* **Career resilience:** being able to find another useful role when technologies and organizations change.
-
-The stronger argument for computer engineering is the second: broad foundations and skills applicable across sectors can provide options for repositioning.
-
-That resilience is not automatic. It depends on continued learning, practical experience, communication, and understanding the domain in which a system operates. Access to opportunities and labor-market conditions matter as well.
-
-## Why study the foundations if AI can write code?
-
-**If the goal is only to produce routine code, AI puts that plan under pressure. If the goal is to understand, design, integrate, and verify systems, studying computing remains a strong choice.**
-
-We cannot promise that computing will employ more people, or that particular tasks will remain human, ten years from now.
-
 > **The payoff of studying computer engineering is being able to take on harder, better-paid problems—and build products of your own. Use the classroom to develop skills that are difficult to acquire by prompting alone: understanding systems, diagnosing failures, and making things work under real constraints. AI can help you build a demo; those skills help you turn it into something people pay for.**
 
 ## Resources
