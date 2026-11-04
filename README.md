@@ -8,8 +8,8 @@
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 ### Books
-* **Big Java - Early Objects 7th Edition; Horstmann; Wiley Press (intermediate)**
-* Effective Java; Bloch; O'Reilly (advanced)
+* [Java Core — Course notes and exercises](<books/Java Core.pdf>)
+* Big Java - Early Objects 7th Edition; Horstmann; Wiley Press
 
 ### Videos
 * [YouTube OOP Java](https://www.youtube.com/watch?v=y3H3xwI0prM&list=PLhlcRDRHVUzTruZmXalUSJAK26pouP8ST)
