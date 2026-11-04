@@ -241,7 +241,15 @@ def prepare_document(document, source, work, prefix, appendix=False):
                     config = work / "puppeteer.json"
                     config.write_text(json.dumps({"args": ["--no-sandbox"]}), encoding="utf-8")
                     command += ["--puppeteerConfigFile", str(config)]
-                run(command)
+                environment = os.environ.copy()
+                if not environment.get("PUPPETEER_EXECUTABLE_PATH"):
+                    browser = next((path for name in (
+                        "chromium", "chromium-browser", "google-chrome",
+                        "google-chrome-stable", "chrome")
+                        if (path := shutil.which(name))), None)
+                    if browser:
+                        environment["PUPPETEER_EXECUTABLE_PATH"] = browser
+                run(command, env=environment)
             node.clear()
             node.update({"t": "Para", "c": [{"t": "Image", "c": [
                 ["", [], [["width", "100%"], ["height", "180mm"]]],
@@ -331,6 +339,7 @@ def main():
              "--pdf-engine=xelatex", "--top-level-division=chapter",
              "--toc", "--toc-depth=1", "--highlight-style=tango",
              "--metadata=title:Java Core", "--metadata=subtitle:Course notes and exercises",
+             "--metadata=author:Nicola Bicocchi",
              "--variable=book:true", "--variable=classoption:oneside", "--variable=classoption:open=any",
              "--variable=has-frontmatter:true", "--variable=papersize:a4",
              "--variable=geometry:margin=22mm,includehead,includefoot", "--variable=fontsize:10pt",

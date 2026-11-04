@@ -109,18 +109,10 @@ That resilience is not automatic. It depends on continued learning, practical ex
 
 ## Why study the foundations if AI can write code?
 
-Using an AI tool does not by itself establish that its output solves the right problem or behaves correctly.
-
-To evaluate a proposed solution, we need models of computation, data, algorithms, system boundaries, and failure—not just familiarity with a tool's interface.
-
 **If the goal is only to produce routine code, AI puts that plan under pressure. If the goal is to understand, design, integrate, and verify systems, studying computing remains a strong choice.**
-
-These foundations do not make us irreplaceable. They help us make informed decisions as tools and responsibilities change.
-
-## Takeaway
-
-**Choosing computer engineering is not a foolish bet. It is a reasonable choice with many possible directions—but not a guarantee that today's work will remain unchanged.**
 
 We cannot promise that computing will employ more people, or that particular tasks will remain human, ten years from now.
 
-> **The reason to study computing is not that AI will leave it unchanged. It is that we want to understand and help shape that change.**
+> **The payoff of studying computer engineering is being able to take on harder, better-paid problems—and build products of your own. Use the classroom to develop skills that are difficult to acquire by prompting alone: understanding systems, diagnosing failures, and making things work under real constraints. AI can help you build a demo; those skills help you turn it into something people pay for.**
+
+## Resources
