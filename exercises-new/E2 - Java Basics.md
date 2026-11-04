@@ -590,3 +590,65 @@ quantity = increment(quantity);
 **Alternativa valida:** mantenere un parametro `Integer` e restituire un `Integer`, rispettando l’assunzione di non nullità. Il punto essenziale è il contratto di restituzione e la riassegnazione nel chiamante, non il tipo wrapper o primitivo della firma.
 
 </details>
+
+---
+
+# Esercizio 10 — Media dei consumi
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un’applicazione riceve i consumi giornalieri di un dispositivo. Un valore negativo indica una lettura mancante e deve essere ignorato. Il componente deve calcolare la media delle sole letture disponibili, senza modificare l’array. La media può avere una parte frazionaria. L’array è non nullo, anche vuoto, e contiene al massimo cento interi tra -1 e 100; non si considera overflow.
+
+Il frammento è eseguito in un metodo. I numeri di riga non fanno parte del codice.
+
+```java
+01  int[] readings = {2, -1, 3};
+02  int total = 0;
+03  int count = 0;
+04  for (int value : readings) {
+05      if (value < 0) continue;
+06      total += value;
+07      count++;
+08  }
+09  double average = total / count;
+10  System.out.println(average);
+```
+
+## 1. Scelta multipla
+
+Qual è l’output? Seleziona una sola risposta.
+
+- **A.** `2.5`.
+- **B.** `1.0`.
+- **C.** Solleva `ArithmeticException`.
+- **D.** `2.0`.
+
+## 2. Risposta aperta
+
+Proponi firma e contratto di un metodo che riceva l’array e restituisca la media frazionaria, segnalando con `IllegalArgumentException` l’assenza di letture valide. Indica quali parti del ciclo riutilizzare e come terminare il metodo. Non riscrivere il ciclo.
+
+**Lunghezza indicativa:** una firma, massimo 3 righe finali e una frase.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 10</summary>
+
+### 1. Scelta multipla: D
+
+La somma è `5` e il conteggio è `2`. La divisione tra interi produce `2`, poi convertito in `double`.
+
+- **A errata:** l’assegnazione a `double` non cambia il tipo della divisione già eseguita.
+- **B errata:** la lettura negativa non partecipa né alla somma né al conteggio.
+- **C errata:** il denominatore è `2`, non zero.
+
+### 2. Risposta aperta
+
+La firma può essere `static double average(int[] readings)`. Riutilizzo il ciclo con somma e conteggio locali; dopo il ciclo eseguo:
+
+```java
+if (count == 0) throw new IllegalArgumentException("Nessuna lettura");
+return (double) total / count;
+```
+
+Il controllo copre array vuoti e array di sole letture mancanti; il cast rende frazionaria la divisione. È equivalente accumulare la somma in un `double`.
+
+</details>

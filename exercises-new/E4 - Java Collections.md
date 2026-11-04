@@ -2,7 +2,9 @@
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-L’applicazione raccoglie nomi non nulli. L’uguaglianza è sensibile a maiuscole e minuscole. Il frammento è eseguito in un metodo con gli import indicati; i numeri di riga non fanno parte del codice.
+Un servizio prepara i destinatari di un avviso a partire da una lista di iscrizioni. La stessa persona può comparire più volte perché iscritta a canali diversi. La prima versione copia le iscrizioni e rimuove un destinatario prima dell’invio. La lista originale deve restare disponibile per altre elaborazioni. I nomi sono non nulli e l’uguaglianza è sensibile a maiuscole e minuscole.
+
+Il frammento è eseguito in un metodo con gli import indicati; i numeri di riga non fanno parte del codice.
 
 ```java
 01  import java.util.ArrayList;
@@ -34,13 +36,34 @@ Scegli tipo dichiarato e implementazione della collezione risultante e mostra co
 
 **Lunghezza indicativa:** massimo 2 righe di codice e 2 frasi. Puoi omettere gli import aggiuntivi.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 1</summary>
+
+### 1. Scelta multipla: A
+
+`remove("Ada")` elimina solo la prima occorrenza nella copia: resta `[Linus, Ada, Grace]`. L’originale conserva quattro elementi.
+
+- **B errata:** non vengono eliminate tutte le occorrenze.
+- **C errata:** la rimozione non cambia la lista originale.
+- **D errata:** `ArrayList` è modificabile anche se costruita da `List.of`.
+
+### 2. Risposta aperta
+
+```java
+Set<String> unique = new LinkedHashSet<>(input);
+```
+
+Il set elimina duplicati e `LinkedHashSet` conserva l’ordine di prima inserzione. È un contenitore distinto da `input`; le stringhe condivise sono immutabili. È valida anche una `SequencedSet<String>` come tipo dichiarato.
+
+</details>
+
 ---
 
 # Esercizio 2 — Visite a una pagina
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Una mappa associa ogni pagina visitata al relativo numero di visite. `visit` deve incrementare il conteggio oppure creare una voce pari a 1 per una pagina nuova. Mappa e nomi sono non nulli, i conteggi presenti sono piccoli interi non negativi e mai nulli. Il programma è monothread.
+Un sito mantiene un riepilogo delle visite per pagina. Una mappa associa il nome di ogni pagina al conteggio corrente. `visit` deve incrementare il conteggio oppure creare una voce pari a 1 per una pagina nuova. Le pagine già presenti non devono essere duplicate come chiavi. Mappa e nomi sono non nulli, i conteggi sono piccoli interi non negativi e mai nulli; il programma è monothread e senza overflow.
 
 Il metodo va dichiarato nel corpo di una classe e le istruzioni in un suo metodo statico, con `java.util.Map` e `java.util.HashMap` importate. `put` restituisce il valore precedente associato alla chiave, oppure `null` se non esisteva. I numeri di riga non fanno parte del codice.
 
@@ -72,13 +95,36 @@ Considera separatamente una mappa inizialmente vuota e due chiamate consecutive 
 
 **Lunghezza indicativa:** 1–2 frasi e massimo 3 righe per il corpo del metodo.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 2</summary>
+
+### 1. Scelta multipla: B
+
+Il primo `put` non sostituisce valori e restituisce `null`; il secondo restituisce il precedente `1`. La chiave rimane una sola.
+
+- **A errata:** `put` restituisce il valore precedente, non quello inserito.
+- **C errata:** sostituire un valore non aggiunge una chiave.
+- **D errata:** i primi due risultati non sono i nuovi valori.
+
+### 2. Risposta breve
+
+La prima chiamata fallisce durante l’unboxing di `null` restituito da `get`. Il corpo può diventare:
+
+```java
+counts.put(page, counts.getOrDefault(page, 0) + 1);
+```
+
+Dopo due chiamate il conteggio è `2`. È valido anche un controllo esplicito dell’assenza prima dell’incremento, oppure `merge(page, 1, Integer::sum)`.
+
+</details>
+
 ---
 
 # Esercizio 3 — Gestione delle richieste
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Le richieste sono identificate da nomi non nulli. La prima versione le gestisce in ordine di arrivo. Tutte le operazioni avvengono nello stesso thread.
+Uno sportello riceve richieste identificate da un nome. La prima versione deve servirle nell’ordine di arrivo. La consultazione della prossima richiesta non deve estrarla, mentre il servizio effettivo deve rimuoverla. Il frammento simula arrivi e servizio senza altri componenti esterni. I nomi sono non nulli e tutte le operazioni avvengono nello stesso thread.
 
 Il frammento è eseguito in un metodo con `java.util.Queue` e `java.util.ArrayDeque` importate. I numeri di riga non fanno parte del codice.
 
@@ -108,3 +154,405 @@ La nuova versione distingue richieste urgenti e normali. Alla scelta della pross
 Scegli una rappresentazione con collezioni standard e descrivi inserimento ed estrazione. Specifica il risultato dell’estrazione quando non esistono richieste. Non serve implementare una classe completa.
 
 **Lunghezza indicativa:** le dichiarazioni dei campi necessari e 3 frasi, oppure uno schema equivalente di massimo 6 righe.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 3</summary>
+
+### 1. Scelta multipla: D
+
+`poll` estrae `A`; `peek` legge `B` senza rimuoverlo. Dopo l’inserimento di `C` restano due richieste.
+
+- **A errata:** una coda FIFO serve prima `A`.
+- **B errata:** `peek` non riduce la dimensione.
+- **C errata:** `B` precede `C` nella coda.
+
+### 2. Risposta aperta
+
+```java
+Queue<String> urgent = new ArrayDeque<>();
+Queue<String> normal = new ArrayDeque<>();
+```
+
+Inserisco con `offer` nella coda della categoria. Estraggo con `poll` dalle urgenti se non vuote, altrimenti dalle normali, ottenendo `null` se entrambe sono vuote. Le due code mantengono il FIFO interno e permettono che nuove urgenti precedano normali in attesa.
+
+**Alternativa valida:** una coda a priorità con categoria e numero progressivo come criteri di ordinamento; la sola categoria non garantisce il FIFO tra pari priorità.
+
+</details>
+
+---
+
+# Esercizio 4 — Pulizia di una lista
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un catalogo conserva le quantità disponibili in una lista modificabile. Le quantità pari a zero devono essere rimosse prima della stampa. Il chiamante conserva la lista e deve osservare la pulizia sullo stesso oggetto. I valori sono interi non nulli e non negativi. Il programma è monothread.
+
+Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno parte del codice.
+
+```java
+01  List<Integer> quantities = new ArrayList<>(List.of(0, 2, 0, 3));
+02  Iterator<Integer> cursor = quantities.iterator();
+03  while (cursor.hasNext()) {
+04      if (cursor.next() == 0) cursor.remove();
+05  }
+06  System.out.println(quantities);
+```
+
+## 1. Scelta multipla
+
+Qual è l’output? Seleziona una sola risposta.
+
+- **A.** `[0, 2, 0, 3]`.
+- **B.** `[2, 0, 3]`.
+- **C.** `[2, 3]`.
+- **D.** Solleva sempre `ConcurrentModificationException`.
+
+## 2. Risposta breve
+
+Un revisore propone un ciclo per indici che, quando trova zero, esegue `quantities.remove(i)` e incrementa sempre `i`. Fornisci un input minimo che mostri una quantità zero residua e spiega perché il ciclo con l’iteratore non ha quel difetto.
+
+**Lunghezza indicativa:** un input e 2 frasi.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 4</summary>
+
+### 1. Scelta multipla: C
+
+L’iteratore rimuove entrambi gli zeri tramite la propria operazione di rimozione.
+
+- **A errata:** il codice modifica la lista.
+- **B errata:** il ciclo visita anche il secondo zero.
+- **D errata:** rimuovere tramite lo stesso iteratore è supportato da `ArrayList`.
+
+### 2. Risposta breve
+
+Con `[0, 0]`, dopo la rimozione all’indice zero, il secondo elemento scivola all’indice zero e viene saltato dall’incremento di `i`. L’iteratore mantiene correttamente la posizione dopo `remove()` e visita il successivo elemento rimasto.
+
+</details>
+
+---
+
+# Esercizio 5 — Elenco pubblico dei turni
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un servizio conserva i turni in una lista interna. Vuole esporre i nomi senza permettere ai lettori di modificarli. La versione mostrata costruisce una vista non modificabile e una copia. Dopo la pubblicazione il servizio può aggiungere nuovi turni alla lista interna. Tutte le operazioni sono nello stesso thread e i nomi sono stringhe non nulle.
+
+Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno parte del codice.
+
+```java
+01  List<String> internal = new ArrayList<>(List.of("Ada"));
+02  List<String> view = Collections.unmodifiableList(internal);
+03  List<String> snapshot = List.copyOf(internal);
+04  internal.add("Linus");
+05  System.out.println(view.size());
+06  System.out.println(snapshot.size());
+```
+
+## 1. Scelta multipla
+
+Seleziona le due righe di output nell’ordine.
+
+- **A.** `1`, poi `1`.
+- **B.** `2`, poi `1`.
+- **C.** `2`, poi `2`.
+- **D.** Eccezione alla riga 4.
+
+## 2. Risposta aperta
+
+L’API deve pubblicare una fotografia non modificabile dei turni al momento della chiamata, non una vista aggiornata. Proponi il corpo di `List<String> turns()` assumendo che `internal` sia il campo della classe e motiva perché basta per questi elementi.
+
+**Lunghezza indicativa:** una riga di codice e 2 frasi.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 5</summary>
+
+### 1. Scelta multipla: B
+
+La vista segue la lista interna, mentre la copia mantiene il contenuto iniziale.
+
+- **A errata:** la vista riflette l’aggiunta.
+- **C errata:** la copia non è collegata alle modifiche successive.
+- **D errata:** la lista interna resta modificabile.
+
+### 2. Risposta aperta
+
+```java
+return List.copyOf(internal);
+```
+
+Il risultato non permette modifiche e non riflette i successivi aggiornamenti di `internal`. La condivisione dei riferimenti agli elementi non espone stato modificabile perché `String` è immutabile. È valida una vista non modificabile su una nuova `ArrayList` copiata, non direttamente sul campo.
+
+</details>
+
+---
+
+# Esercizio 6 — Graduatoria dei risultati
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Una gara mantiene una graduatoria con i punteggi degli iscritti. Due iscritti possono avere lo stesso punteggio. Il componente mostrato usa un insieme ordinato per memorizzare i risultati. La stampa serve a controllare ordinamento e numero di elementi. I punteggi sono interi e non ci sono operazioni concorrenti.
+
+Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno parte del codice.
+
+```java
+01  Set<Integer> scores = new TreeSet<>();
+02  scores.add(8);
+03  scores.add(5);
+04  scores.add(8);
+05  System.out.println(scores);
+06  System.out.println(scores.size());
+```
+
+## 1. Scelta multipla
+
+Seleziona l’output corretto.
+
+- **A.** `[8, 5, 8]`, poi `3`.
+- **B.** `[8, 5]`, poi `2`.
+- **C.** `[5, 8, 8]`, poi `3`.
+- **D.** `[5, 8]`, poi `2`.
+
+## 2. Risposta aperta
+
+La graduatoria deve conservare una voce per ogni iscritto, anche a parità di punteggio, ordinandole per punteggio decrescente. Scegli una collezione e descrivi come ordinarla; non occorre aggiungere nomi o una nuova classe.
+
+**Lunghezza indicativa:** massimo 2 righe di codice e 1–2 frasi.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 6</summary>
+
+### 1. Scelta multipla: D
+
+`TreeSet` ordina i valori e conserva una sola occorrenza per punteggio.
+
+- **A errata:** un set non conserva questi duplicati.
+- **B errata:** l’ordine naturale degli interi è crescente, non di inserimento.
+- **C errata:** il secondo `8` non viene aggiunto.
+
+### 2. Risposta aperta
+
+```java
+List<Integer> ranking = new ArrayList<>(List.of(8, 5, 8));
+ranking.sort(Comparator.reverseOrder());
+```
+
+La lista mantiene le due occorrenze di `8`; il comparatore dà l’ordine decrescente. Sono valide altre liste modificabili ordinabili; un set dei soli punteggi non soddisfa il requisito.
+
+</details>
+
+---
+
+# Esercizio 7 — Prossima attività
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un pianificatore associa a ogni attività una priorità numerica. In questo esempio le attività sono rappresentate soltanto dalle priorità e il valore minore deve essere servito prima. La coda permette di estrarre ripetutamente la prossima priorità. Possono esserci duplicati e la coda può diventare vuota. Tutte le operazioni avvengono nello stesso thread.
+
+Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno parte del codice.
+
+```java
+01  Queue<Integer> queue = new PriorityQueue<>();
+02  queue.offer(4);
+03  queue.offer(1);
+04  queue.offer(3);
+05  System.out.println(queue.poll());
+06  System.out.println(queue.poll());
+07  System.out.println(queue.peek());
+```
+
+## 1. Scelta multipla
+
+Seleziona l’output corretto.
+
+- **A.** `1`, `3`, `4`.
+- **B.** `4`, `1`, `3`.
+- **C.** `1`, `4`, `3`.
+- **D.** L’ordine delle tre stampe non è garantito.
+
+## 2. Risposta breve
+
+Un client sostituisce le estrazioni con un ciclo `for` sulla coda e presume di ottenere tutte le priorità in ordine crescente. La garanzia è corretta? Indica come produrre la sequenza ordinata senza consumare la coda originale.
+
+**Lunghezza indicativa:** 2–3 frasi, senza codice obbligatorio.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 7</summary>
+
+### 1. Scelta multipla: A
+
+Le estrazioni prendono il minimo: prima `1`, poi `3`; resta `4` in testa.
+
+- **B errata:** la coda non usa l’ordine di arrivo.
+- **C errata:** dopo `1`, il minimo residuo è `3`.
+- **D errata:** l’ordine di estrazione per queste priorità è garantito.
+
+### 2. Risposta breve
+
+L’iteratore di `PriorityQueue` non garantisce l’ordine crescente. Si può copiare la coda in una nuova `PriorityQueue` ed estrarre con `poll` fino allo svuotamento della copia. In alternativa, si copiano gli elementi in una lista e la si ordina.
+
+</details>
+
+---
+
+# Esercizio 8 — Ordine dei contatti
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Una rubrica associa ogni nome a un numero interno. L’ordine richiesto è quello del primo inserimento del nome. Un aggiornamento del numero non deve spostare il contatto. La rubrica mostrata è monothread e non usa la modalità di ordine per accesso. Chiavi e valori sono stringhe non nulle.
+
+Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno parte del codice.
+
+```java
+01  Map<String, String> contacts = new LinkedHashMap<>();
+02  contacts.put("Ada", "10");
+03  contacts.put("Linus", "20");
+04  contacts.put("Ada", "30");
+05  System.out.println(contacts.keySet());
+06  System.out.println(contacts.get("Ada"));
+```
+
+## 1. Scelta multipla
+
+Seleziona l’output corretto.
+
+- **A.** `[Linus, Ada]`, poi `30`.
+- **B.** `[Ada, Linus, Ada]`, poi `10`.
+- **C.** `[Ada, Linus]`, poi `30`.
+- **D.** `[Ada, Linus]`, poi `10`.
+
+## 2. Risposta breve
+
+Il client riceve `Set<String> names = contacts.keySet();` e chiama `names.remove("Ada")`. Descrivi l’effetto sulla rubrica. Se il requisito è dare una copia modificabile dei soli nomi senza permettere modifiche alla rubrica, proponi una costruzione che conservi l’ordine.
+
+**Lunghezza indicativa:** 1–2 frasi e una riga di codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 8</summary>
+
+### 1. Scelta multipla: C
+
+L’aggiornamento mantiene la posizione della chiave ma sostituisce il suo valore con `30`.
+
+- **A errata:** l’aggiornamento non reinserisce la chiave in fondo.
+- **B errata:** una mappa non duplica una chiave uguale.
+- **D errata:** il valore precedente è stato sostituito.
+
+### 2. Risposta breve
+
+`keySet()` è una vista collegata alla mappa: rimuovere la chiave elimina anche l’associazione. Una copia indipendente e modificabile è:
+
+```java
+Set<String> names = new LinkedHashSet<>(contacts.keySet());
+```
+
+</details>
+
+---
+
+# Esercizio 9 — Ricerca nel catalogo
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un catalogo conserva codici unici in ordine crescente. Un client cerca un codice mediante `Collections.binarySearch`. Se non lo trova, deve inserirlo mantenendo l’ordinamento. Il confronto usa l’ordine naturale degli interi. Per una ricerca senza successo, l’API restituisce `-(puntoDiInserimento) - 1`.
+
+Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno parte del codice.
+
+```java
+01  List<Integer> codes = new ArrayList<>(List.of(10, 30, 50));
+02  int position = Collections.binarySearch(codes, 40);
+03  System.out.println(position);
+04  System.out.println(codes.size());
+```
+
+## 1. Scelta multipla
+
+Seleziona l’output corretto.
+
+- **A.** `2`, poi `4`.
+- **B.** `-3`, poi `3`.
+- **C.** `-1`, poi `3`.
+- **D.** `3`, poi `3`.
+
+## 2. Risposta breve
+
+Mostra come usare `position` per inserire `40` soltanto se assente. Spiega perché applicare la stessa ricerca a una lista non ordinata non soddisferebbe il requisito generale.
+
+**Lunghezza indicativa:** una riga di codice e 1–2 frasi.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 9</summary>
+
+### 1. Scelta multipla: B
+
+Il punto di inserimento è `2`, quindi il risultato è `-3`. La ricerca non modifica la dimensione.
+
+- **A errata:** la ricerca non inserisce e restituisce una codifica negativa quando manca il codice.
+- **C errata:** `-1` codificherebbe il punto zero.
+- **D errata:** non è un indice trovato.
+
+### 2. Risposta breve
+
+```java
+if (position < 0) codes.add(-position - 1, 40);
+```
+
+La ricerca binaria richiede l’ordinamento con lo stesso criterio di confronto. Su una lista non ordinata non garantisce né una ricerca corretta né un punto di inserimento utile.
+
+</details>
+
+---
+
+# Esercizio 10 — Iscrizioni ai laboratori
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un’organizzazione conserva gli iscritti a due laboratori. Ogni laboratorio usa un set di nomi, quindi un nome non si ripete al suo interno. Serve calcolare chi frequenta entrambi senza modificare le iscrizioni originali. La stampa verifica soltanto appartenenza e dimensione, non l’ordine dei set hash. I nomi sono stringhe non nulle e i set sono modificabili.
+
+Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno parte del codice.
+
+```java
+01  Set<String> first = new HashSet<>(Set.of("Ada", "Linus"));
+02  Set<String> second = new HashSet<>(Set.of("Ada", "Grace"));
+03  Set<String> common = new HashSet<>(first);
+04  common.retainAll(second);
+05  System.out.println(common.contains("Ada"));
+06  System.out.println(first.size());
+```
+
+## 1. Scelta multipla
+
+Seleziona l’output corretto.
+
+- **A.** `true`, poi `1`.
+- **B.** `false`, poi `2`.
+- **C.** `false`, poi `1`.
+- **D.** `true`, poi `2`.
+
+## 2. Risposta aperta
+
+Una nuova funzione deve invece restituire tutti gli iscritti, senza duplicati, ordinati alfabeticamente e indipendenti dai set ricevuti. Proponi rappresentazione e costruzione del risultato senza modificare gli input.
+
+**Lunghezza indicativa:** massimo 2 righe di codice e una frase.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 10</summary>
+
+### 1. Scelta multipla: D
+
+L’intersezione della copia contiene `Ada`; `first` resta invariato con due elementi.
+
+- **A errata:** viene modificato solo `common`.
+- **B errata:** `Ada` appartiene a entrambi i set.
+- **C errata:** sono errate sia l’appartenenza sia la dimensione originale.
+
+### 2. Risposta aperta
+
+```java
+Set<String> all = new TreeSet<>(first);
+all.addAll(second);
+```
+
+`TreeSet` elimina duplicati e ordina alfabeticamente secondo l’ordine naturale delle stringhe; i contenitori originali non vengono modificati. È valida anche una lista ordinata costruita da un’unione deduplicata.
+
+</details>

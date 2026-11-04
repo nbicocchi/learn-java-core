@@ -2,7 +2,7 @@
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Il livello audio deve rimanere tra 0 e 10. Il costruttore e `setLevel` rifiutano valori esterni a questo intervallo con `IllegalArgumentException`, senza modificare lo stato di un oggetto già costruito. Il programma è monothread.
+Un lettore musicale espone un controllo del volume usato da più comandi della schermata. Ogni controllo conserva un livello tra 0 e 10. Il costruttore e `setLevel` rifiutano valori esterni a questo intervallo con `IllegalArgumentException`, senza modificare lo stato di un oggetto già costruito. Due variabili possono riferirsi allo stesso controllo, senza creare una copia. Il programma è monothread.
 
 Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -43,13 +43,32 @@ Proponi la nuova API: indica firme e visibilità dei metodi necessari, quali mem
 
 **Lunghezza indicativa:** massimo 4 firme di metodi e 2 frasi. Non occorre aggiornare le istruzioni dimostrative.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 1</summary>
+
+### 1. Scelta multipla: A
+
+Si stampa `5`: le due variabili indicano lo stesso oggetto.
+
+- **B errata:** non viene creata una copia del volume.
+- **C errata:** `5` è ammesso.
+- **D errata:** il campo viene usato attraverso metodi accessibili.
+
+### 2. Risposta aperta
+
+Conservo `getLevel()` pubblico; sostituisco il setter pubblico con `public void increase()` e `public void decrease()`. Mantengo il costruttore con il livello iniziale e rendo il setter privato, riutilizzandone il controllo prima dell’assegnazione. I due nuovi metodi gli passano rispettivamente `level + 1` e `level - 1`, così il fallimento non modifica lo stato.
+
+**Alternativa valida:** controlli nel costruttore e nei due metodi, senza setter; l’API deve impedire aggiornamenti arbitrari dall’esterno.
+
+</details>
+
 ---
 
 # Esercizio 2 — Numero di una sessione
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-La classe tiene il conto delle sessioni costruite. Il programma è monothread, parte senza sessioni preesistenti e ne crea al massimo mille.
+Un servizio crea una sessione per ogni nuovo collegamento. La classe mantiene un conteggio delle sessioni costruite durante l’esecuzione. Il metodo `number` viene invocato su una singola sessione per consultarne l’informazione corrente. Il programma è monothread, parte senza sessioni preesistenti e ne crea al massimo mille. Non vengono distrutte o riutilizzate sessioni per questo conteggio.
 
 Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -85,13 +104,37 @@ Scegli quali informazioni debbano appartenere alla classe e quali a ciascuna ist
 
 **Lunghezza indicativa:** massimo 5 righe di codice e una frase di motivazione.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 2</summary>
+
+### 1. Scelta multipla: C
+
+Entrambe le chiamate leggono il campo statico, che dopo due costruzioni vale `2`.
+
+- **A errata:** il codice non salva un numero distinto in ogni istanza.
+- **B errata:** il contatore è condiviso e viene incrementato due volte.
+- **D errata:** i costruttori aggiornano il contatore prima delle letture.
+
+### 2. Risposta aperta
+
+```java
+private static int count;
+private final int number;
+Session() { number = ++count; }
+public int number() { return number; }
+```
+
+Il contatore appartiene alla classe; il numero assegnato appartiene all’istanza ed è stabile perché `final` e senza setter. L’assunzione monothread evita problemi di assegnazione concorrente.
+
+</details>
+
 ---
 
 # Esercizio 3 — Dimensioni di una scatola
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-La scatola rettangolare conserva larghezza e altezza. Il costruttore con un solo argomento deve costruire un quadrato. Le dimensioni ricevute sono piccoli interi, ma possono essere non positive; non considerare overflow.
+Un catalogo descrive scatole rettangolari attraverso larghezza e altezza. Dopo la costruzione, le dimensioni non devono essere riassegnate. Per le scatole quadrate è disponibile un costruttore con un solo argomento. Il metodo `area` viene usato per confrontare gli ingombri. Le dimensioni ricevute sono piccoli interi, ma possono essere non positive; non considerare overflow.
 
 Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -128,13 +171,36 @@ Una review richiede di garantire larghezza e altezza strettamente positive fin d
 
 **Lunghezza indicativa:** massimo 2 righe di codice e 2 frasi.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 3</summary>
+
+### 1. Scelta multipla: A
+
+Il costruttore delega a quello con due parametri, assegnando `3` a entrambe le dimensioni: l’area è `9`.
+
+- **B errata:** l’area è un prodotto, non una somma.
+- **C errata:** `final` non impedisce l’inizializzazione nel costruttore.
+- **D errata:** la delega con `this(...)` è consentita.
+
+### 2. Risposta breve
+
+Inserisco il controllo nel costruttore a due parametri, prima delle assegnazioni: anche quello a un parametro vi delega.
+
+```java
+if (width <= 0 || height <= 0) throw new IllegalArgumentException();
+```
+
+`final` impedisce riassegnazioni successive, ma non rifiuta valori iniziali non validi.
+
+</details>
+
 ---
 
 # Esercizio 4 — Tariffe di consegna
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Ogni consegna espone la propria tariffa mediante `fee`. Il metodo `quote` deve restituire quella tariffa per qualsiasi sottotipo di `Delivery`. Gli argomenti sono non nulli.
+Un negozio offre diversi tipi di consegna. Ogni consegna espone la propria tariffa attraverso `fee`. Il componente `Quotes` deve fornire un preventivo uguale alla tariffa dell’oggetto ricevuto, anche quando vengono introdotti nuovi sottotipi di `Delivery`. Il chiamante può conservare una consegna mediante un riferimento al tipo base. Gli argomenti sono non nulli e le tariffe sono piccoli interi non negativi.
 
 Le istruzioni dopo le classi sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -174,13 +240,30 @@ Valuta se `quote` rispetta il requisito per ogni possibile sottotipo. Se non è 
 
 **Lunghezza indicativa:** 2–3 frasi oppure una piccola classe e una frase.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 4</summary>
+
+### 1. Scelta multipla: D
+
+La chiamata sul primo oggetto usa l’override di `Express`, restituendo `9`; il secondo oggetto è un `Delivery` e restituisce `5`.
+
+- **A errata:** il tipo dichiarato non elimina il dispatch dinamico.
+- **B errata:** scambia le due implementazioni.
+- **C errata:** il secondo oggetto non è un `Express`.
+
+### 2. Risposta breve
+
+Un sottotipo `Pickup extends Delivery` che ridefinisce `fee()` restituendo zero è un controesempio: `Quotes.quote(new Pickup())` restituisce `5` anziché `0`. Anche un sottotipo di `Express` con tariffa diversa verrebbe gestito male. La selezione dei due valori fissi non rispetta il contratto generale.
+
+</details>
+
 ---
 
 # Esercizio 5 — Confronto di biglietti
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Ogni biglietto ha un codice intero. Il metodo di confronto mostrato fa parte dell’API corrente; la classe non dichiara altri metodi oltre a quelli riportati.
+Un sistema di prenotazione rappresenta ciascun biglietto con un codice intero. Più oggetti possono contenere lo stesso codice perché arrivano da richieste diverse. Alcuni client conservano i biglietti attraverso variabili di tipo `Object`. Il metodo di confronto mostrato fa parte dell’API corrente; la classe non dichiara altri metodi oltre a quelli riportati. I codici non cambiano dopo la costruzione.
 
 Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -217,13 +300,32 @@ Indica le firme dei metodi da ridefinire e descrivi le rispettive regole. Precis
 
 **Lunghezza indicativa:** 2 firme e 2–3 frasi.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 5</summary>
+
+### 1. Scelta multipla: D
+
+L’argomento ha tipo dichiarato `Object`: viene scelto `equals(Object)` ereditato da `Object`, che confronta l’identità. I due oggetti sono distinti.
+
+- **A errata:** `equals(Ticket)` non ridefinisce `equals(Object)`.
+- **B errata:** il metodo ereditato è comunque disponibile.
+- **C errata:** non viene eseguito alcun cast.
+
+### 2. Risposta aperta
+
+Ridefinisco `public boolean equals(Object other)` e `public int hashCode()`. `equals` accetta soltanto un `Ticket` con lo stesso codice, rifiutando `null` e altri tipi. `hashCode` dipende dal codice: oggetti uguali devono avere lo stesso hash, mentre la coincidenza degli hash non implica uguaglianza.
+
+**Alternativa valida:** trasformare il tipo in un record con il solo codice, se è ammesso cambiare la dichiarazione e l’API preserva il requisito; i metodi generati forniscono la semantica richiesta.
+
+</details>
+
 ---
 
 # Esercizio 6 — Report del personale
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Un report può ricevere persone generiche e dipendenti. Soltanto i dipendenti hanno una retribuzione, rappresentata da un piccolo intero non negativo. Gli elementi sono non nulli.
+Un ufficio produce un report delle persone registrate. L’elenco può contenere persone generiche e dipendenti. Soltanto i dipendenti espongono una retribuzione, rappresentata da un piccolo intero non negativo. Il codice conserva tutti gli elementi mediante il tipo comune `Person`, ma deve distinguere quali operazioni siano disponibili sugli oggetti effettivi. Gli elementi sono non nulli.
 
 Le istruzioni dopo le classi sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -266,6 +368,32 @@ In un’esecuzione separata il report usa:
 Il requisito è stampare la retribuzione dei soli dipendenti, ignorando le persone generiche. Valuta il ciclo e, se necessario, correggilo senza aggiungere una retribuzione fittizia a `Person`.
 
 **Lunghezza indicativa:** una frase e massimo 4 righe di codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 6</summary>
+
+### 1. Scelta multipla: B
+
+Il cast riesce perché l’oggetto effettivo è un `Employee` e non crea una copia: i riferimenti restano uguali.
+
+- **A errata:** un cast non costruisce un oggetto.
+- **C errata:** il cast esplicito è ammesso.
+- **D errata:** l’oggetto soddisfa il tipo richiesto dal cast.
+
+### 2. Risposta breve
+
+Il ciclo originale stampa `20` e poi fallisce con `ClassCastException` sulla persona generica; non soddisfa il requisito. Si può verificare il tipo prima dell’accesso:
+
+```java
+for (Person value : people) {
+    if (value instanceof Employee employee)
+        System.out.println(employee.salary());
+}
+```
+
+**Alternativa valida:** `instanceof Employee` seguito dal cast esplicito nello stesso ramo protetto.
+
+</details>
 
 ---
 
@@ -613,7 +741,7 @@ Il metodo `total` resta quello ereditato: restituisce zero per ogni numero di un
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-`Reading` conserva campioni interi in un array non nullo. Per questa versione si considera soltanto l’accesso ai campioni, non l’uguaglianza tra rilevazioni.
+Uno strumento produce rilevazioni composte da campioni interi. `Reading` riceve i campioni dal chiamante, che può continuare a usare e modificare il proprio array. Il record espone i dati per la consultazione attraverso l’accessor generato. Nella versione mostrata si considera soltanto l’accesso ai campioni, non l’uguaglianza tra rilevazioni. L’array è non nullo, anche eventualmente vuoto.
 
 Le istruzioni dopo il record sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -649,13 +777,32 @@ Scegli una rappresentazione interna e descrivi come costruzione, lettura, `equal
 
 **Lunghezza indicativa:** 3 frasi oppure uno schema di massimo 5 righe.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 10</summary>
+
+### 1. Scelta multipla: C
+
+Il costruttore conserva un clone: la modifica di `source` non raggiunge quell’array e si stampa `4`.
+
+- **A errata:** la copia in ingresso separa i due array.
+- **B errata:** un componente di un record può essere un array.
+- **D errata:** `final` non rende immutabile il contenuto di un array.
+
+### 2. Risposta aperta
+
+Una possibilità è un record con componente `List<Integer>`, costruita copiando i valori dell’array e poi resa non modificabile con `List.copyOf`. La lettura può esporre tale lista perché gli elementi `Integer` sono immutabili; i metodi generati del record usano l’uguaglianza e l’hash della lista, basati sulla sequenza dei valori. Le successive modifiche all’array del chiamante non incidono sul record.
+
+**Alternativa valida:** conservare l’array con copie difensive sia in ingresso sia nell’accessor e ridefinire `equals`/`hashCode` tramite `Arrays.equals`/`Arrays.hashCode`. Il solo clone nel costruttore non basta: l’accessor generato espone l’array interno e l’uguaglianza predefinita degli array è per identità.
+
+</details>
+
 ---
 
 # Esercizio 11 — Indicatore di un contatore
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Un indicatore viene ottenuto da un contatore e permette di leggerne un valore. Tutte le operazioni avvengono nello stesso thread; i valori sono piccoli interi.
+Una schermata ottiene un indicatore da un contatore. Il contatore può ricevere nuovi valori dopo che l’indicatore è stato creato. La schermata usa `read` per consultare il valore esposto dall’indicatore. La versione mostrata usa una classe interna per organizzare i due componenti. Tutte le operazioni avvengono nello stesso thread e i valori sono piccoli interi.
 
 Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -695,13 +842,38 @@ Scegli la forma della classe annidata, lo stato necessario e il modo in cui il v
 
 **Lunghezza indicativa:** uno schema di massimo 5 righe e una frase.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 11</summary>
+
+### 1. Scelta multipla: D
+
+L’indicatore interno legge il campo del contatore a cui è associato; dopo `set(7)` legge `7`.
+
+- **A errata:** il costruttore implicito non fotografa il valore `4`.
+- **B errata:** il campo è già stato aggiornato.
+- **C errata:** la classe annidata può accedere ai membri privati dell’esterna.
+
+### 2. Risposta aperta
+
+```java
+static final class Indicator {
+    private final int snapshot;
+    Indicator(int snapshot) { this.snapshot = snapshot; }
+    int read() { return snapshot; }
+}
+```
+
+`indicator()` restituisce `new Indicator(value)`: la classe annidata statica non ha un riferimento implicito al contatore e conserva solo il valore ricevuto. È valida anche una dichiarazione di record annidato con componente numerico e metodo `read` equivalente.
+
+</details>
+
 ---
 
 # Esercizio 12 — Stato di una lavorazione
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Una lavorazione espone uno stato appartenente a un insieme finito. Nella versione attuale il chiamante può assegnarlo attraverso `setState`, purché non sia nullo.
+Un laboratorio tiene traccia dello stato di una lavorazione. Ogni nuova istanza parte da `NEW` e permette di leggere lo stato corrente. Nella versione mostrata il chiamante assegna direttamente uno degli stati attraverso `setState`. L’unico controllo del setter attuale riguarda la non nullità. Il programma è monothread e non sono richiesti altri stati oltre a quelli elencati.
 
 Le istruzioni dopo le dichiarazioni sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -740,13 +912,32 @@ Proponi l’API pubblica e le condizioni da verificare, indicando che cosa cambi
 
 **Lunghezza indicativa:** massimo 3 firme di metodi e 2 frasi.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 12</summary>
+
+### 1. Scelta multipla: B
+
+Il setter accetta `DONE`, che non è nullo; il confronto tra la costante enum letta e `State.DONE` vale `true`.
+
+- **A errata:** `==` è appropriato per le costanti enum.
+- **C errata:** un accesso a una costante enum non crea una nuova istanza.
+- **D errata:** il setter corrente non impone un percorso tra gli stati.
+
+### 2. Risposta aperta
+
+Conservo `public State state()` e sostituisco il setter pubblico con `public void start()` e `public void finish()`. `start` verifica `NEW` prima di assegnare `RUNNING`; `finish` verifica `RUNNING` prima di assegnare `DONE`, altrimenti sollevano `IllegalStateException` senza assegnazioni.
+
+**Alternativa valida:** mantenere `setState(State next)` validando esattamente le due coppie di transizione ammesse prima di aggiornare il campo e rifiutando ogni altra richiesta, incluso `null`, con l’eccezione prevista.
+
+</details>
+
 ---
 
 # Esercizio 13 — Calcolo delle spese
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-`Checkout` calcola un totale in centesimi. Subtotali e risultati sono piccoli interi non negativi: non considerare overflow. Il parametro `shipping` è non nullo.
+Un negozio calcola il totale di un ordine sommando subtotale e spese di spedizione. `Checkout` riceve il nome della modalità scelta dal cliente. La versione mostrata riconosce due modalità, ciascuna con una spesa fissa. Le modalità non riconosciute devono essere segnalate invece di applicare una tariffa arbitraria. Subtotali e risultati sono piccoli interi non negativi, senza overflow; `shipping` è non nullo.
 
 Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -786,13 +977,37 @@ Proponi una modifica al contratto di `total` e le sole dichiarazioni di supporto
 
 **Lunghezza indicativa:** massimo 6 righe di codice e una frase.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 13</summary>
+
+### 1. Scelta multipla: D
+
+`pickup` seleziona il ramo `default`, che solleva l’eccezione prima che `println` riceva un risultato.
+
+- **A errata:** non è prevista una tariffa zero per il ritiro.
+- **B errata:** `pickup` non coincide con `standard`.
+- **C errata:** il ramo `default` gestisce i valori non elencati.
+
+### 2. Risposta aperta
+
+```java
+interface ShippingRule { int fee(int subtotal); }
+int total(int subtotal, ShippingRule shipping) {
+    return subtotal + shipping.fee(subtotal);
+}
+```
+
+Le nuove regole risiedono in implementazioni di `ShippingRule`, scelte dal chiamante per ogni calcolo; `Checkout` dipende dal contratto, non dai loro nomi. È valida anche un’interfaccia funzionale standard appropriata, se nel contratto viene mantenuto il vincolo di spesa non negativa.
+
+</details>
+
 ---
 
 # Esercizio 14 — Operazioni su un conto
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Il contratto di `Account.withdraw` richiede che un prelievo positivo non superiore al saldo abbia successo e riduca il saldo della quantità richiesta. Considera soltanto chiamate che rispettano questa precondizione. Il programma è monothread.
+Un servizio bancario consulta saldi ed esegue prelievi. Il contratto di `Account.withdraw` richiede che un prelievo positivo non superiore al saldo abbia successo e riduca il saldo della quantità richiesta. Una versione del progetto introduce anche conti bloccati. Il frammento mostra la relazione attuale tra i due tipi di conto. Considera soltanto prelievi che rispettano la precondizione indicata e un programma monothread.
 
 Le istruzioni dopo le classi sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -829,13 +1044,40 @@ Il progetto deve supportare sia conti prelevabili sia conti bloccati: entrambi p
 
 **Lunghezza indicativa:** uno schema di massimo 5 righe con le firme essenziali e 1–2 frasi. Non implementare i conti.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 14</summary>
+
+### 1. Scelta multipla: C
+
+Viene letto il saldo iniziale `10`; il frammento non chiama `withdraw`.
+
+- **A errata:** la sottoclasse non azzera il saldo.
+- **B errata:** il metodo che solleva l’eccezione non viene invocato.
+- **D errata:** il metodo `balance` viene ereditato.
+
+### 2. Risposta aperta
+
+La gerarchia viola il contratto: un `LockedAccount` rifiuta anche un prelievo valido, come `withdraw(1)` con saldo `10`. Si possono distinguere i ruoli:
+
+```java
+interface BalanceView { int balance(); }
+interface Withdrawable extends BalanceView { void withdraw(int amount); }
+// Conto bloccato: implementa BalanceView.
+// Conto prelevabile: implementa Withdrawable.
+void processWithdrawal(Withdrawable account, int amount);
+```
+
+Il servizio riceve solo conti che promettono davvero il prelievo. Sono valide altre gerarchie o composizioni che mantengano questa distinzione statica.
+
+</details>
+
 ---
 
 # Esercizio 15 — Dispositivi da ufficio
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Un’applicazione usa dispositivi di stampa e acquisizione. L’implementazione mostrata sa stampare ma non acquisire documenti.
+Un ufficio usa dispositivi per stampare e acquisire documenti. Alcuni dispositivi offrono soltanto una delle due capacità. L’interfaccia corrente le raggruppa entrambe, mentre l’implementazione mostrata sa solo stampare. Il servizio di stampa riceve un testo e lo invia al dispositivo scelto. Testi e dispositivi sono non nulli e la stampa simulata termina normalmente.
 
 Le istruzioni dopo le dichiarazioni sono eseguite in un metodo statico separato. I numeri di riga non fanno parte del codice.
 
@@ -871,3 +1113,26 @@ Devono essere supportati anche scanner privi di stampa e dispositivi che offrono
 Proponi le interfacce necessarie e la firma di un metodo del servizio che riceva il dispositivo appropriato. Indica come un dispositivo multifunzione parteciperà ai contratti. Non implementare dispositivi o servizi.
 
 **Lunghezza indicativa:** massimo 5 righe di dichiarazioni e una frase.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 15</summary>
+
+### 1. Scelta multipla: A
+
+La chiamata a `print` stampa `Report`; `scan` non viene invocato.
+
+- **B errata:** l’eccezione appartiene a un altro metodo.
+- **C errata:** un metodo che termina sempre con `throw` non deve raggiungere un `return`.
+- **D errata:** il compilatore controlla dichiarazioni e corpi, non la capacità fisica di acquisire documenti.
+
+### 2. Risposta aperta
+
+```java
+interface Printer { void print(String text); }
+interface ScannerDevice { String scan(); }
+String acquire(ScannerDevice device);
+```
+
+Un dispositivo multifunzione implementa entrambe le interfacce; il servizio di acquisizione dipende solo da `ScannerDevice`. È valida anche un’interfaccia aggregata che estenda le due capacità, senza imporla ai dispositivi monofunzione.
+
+</details>

@@ -11,20 +11,27 @@
 * [Java Core — Course notes and exercises](<books/Java Core.pdf>)
 * Big Java - Early Objects 7th Edition; Horstmann; Wiley Press
 
-### Videos
-* [YouTube OOP Java](https://www.youtube.com/watch?v=y3H3xwI0prM&list=PLhlcRDRHVUzTruZmXalUSJAK26pouP8ST)
-* [YouTube IntelliJ](https://www.youtube.com/c/intellijidea/videos)
-
-### Official Tutorials
+### Documentation
 * [IntelliJ Tutorial](https://www.jetbrains.com/idea/resources/)
-* [Java SE Tutorial](https://dev.java/)
-* [Java SE API](https://docs.oracle.com/en/java/javase/25/docs/api/index.html)
+* [Java Tutorial](https://dev.java/)
+* [Java API](https://docs.oracle.com/en/java/javase/25/docs/api/index.html)
 
 ### Exercises
 
 The [exercises-new](exercises-new/) directory contains exam-style exercises validated by the instructor.
 
 For additional practice, use [PROMPT.md](exercises-new/PROMPT.md) with an AI assistant to generate more exercises on the course topics. The exam papers will be generated using the same method and validated by the instructor before use. Additional exercises generated independently for practice are not automatically instructor-validated.
+
+### Project
+
+Publish your project in a **public GitHub repository** and send its URL to the instructor **before the exam** for review. **Submitting the repository URL in advance is a requirement for admission to the exam.** Submit the repository URL through the [project submission form](https://docs.google.com/forms/d/e/1FAIpQLSeNDcHf6t4hLVJFgaQgIYuyHf9RBsqFUl9wXsMIVWy4_-a4QA/viewform?usp=dialog).
+
+The project must include:
+
+* A `README.md` describing the project, prerequisites, and exact Maven commands to build, test, and launch it.
+* A `LICENSE` file specifying the project's license.
+* Documentation explaining usage and the main design decisions.
+* Cross-platform support: **the instructor will run the project on Linux**. Avoid machine-specific absolute paths and hard-coded path separators; respect filename case and include all required resources.
 
 ### Contributing
 Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. For a more general introduction to GitHub, refer to [this](https://github.com/skills/) page. By contributing to this repository, you agree that your contributions will be licensed under the LICENSE file in the root directory of this source tree.

@@ -2,7 +2,7 @@
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Una misura è valida se è non negativa e minore di una soglia. Ogni regola viene creata con una soglia fissa; misure e soglie sono piccoli interi. `Predicate.and` produce la congiunzione dei due predicati, senza modificare quelli originali.
+Un laboratorio costruisce regole riutilizzabili per validare le misure. Una misura è ammessa se è non negativa e minore di una soglia. Ogni regola viene creata con una soglia fissa e può essere usata più volte. Le misure sono interi non nulli e le soglie sono piccoli interi. `Predicate.and` produce la congiunzione dei due predicati, senza modificare quelli originali.
 
 Il metodo va dichiarato nel corpo di una classe, le istruzioni in un suo metodo statico; è importata `java.util.function.Predicate`. I numeri di riga non fanno parte del codice.
 
@@ -42,13 +42,30 @@ Valuta se sia compilabile e rispetti il contratto. Il revisore sostiene che la l
 
 **Lunghezza indicativa:** 2–3 frasi; non occorre riscrivere il metodo.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 1</summary>
+
+### 1. Scelta multipla: D
+
+`-1` non soddisfa la non negatività; `4` soddisfa entrambe le condizioni.
+
+- **A errata:** la prima condizione rifiuta `-1`.
+- **B errata:** `4` è minore di `5` e non negativo.
+- **C errata:** inverte entrambi i risultati.
+
+### 2. Risposta breve
+
+La variante non compila: `limit` è un parametro locale catturato dalla lambda e non è più effettivamente finale perché viene incrementato. Non viene automaticamente creata una fotografia che consenta di ignorare la riassegnazione. La versione originale, senza incremento, compila e conserva la soglia richiesta.
+
+</details>
+
 ---
 
 # Esercizio 2 — Nome da visualizzare
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Un nome può essere presente o assente. `display` deve restituire il valore presente; soltanto in sua assenza deve invocare una volta il fornitore del nome di riserva. L’`Optional`, il fornitore e le stringhe prodotte sono non nulli. Il fornitore può svolgere un calcolo costoso o avere effetti osservabili.
+Una schermata riceve un nome eventualmente assente. Il metodo `display` deve restituire il valore presente senza calcolare un sostituto. Soltanto in sua assenza deve invocare una volta il fornitore del nome di riserva. Il fornitore può svolgere un calcolo costoso o avere effetti osservabili. L’`Optional`, il fornitore e le stringhe prodotte sono non nulli.
 
 Il metodo va dichiarato nel corpo di una classe e le istruzioni in un suo metodo statico, con `java.util.Optional` e `java.util.function.Supplier` importate. I numeri di riga non fanno parte del codice.
 
@@ -80,13 +97,34 @@ Valuta separatamente `display(Optional.of("Ada"), fallback)` e `display(Optional
 
 **Lunghezza indicativa:** una riga di codice e 1–2 frasi.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 2</summary>
+
+### 1. Scelta multipla: D
+
+I due `map` producono un nuovo `Optional` contenente `3`; `name` conserva il testo originale con spazi.
+
+- **A errata:** la lunghezza è calcolata dopo `strip`.
+- **B errata:** le trasformazioni non cambiano il valore nell’`Optional` originale.
+- **C errata:** il valore trasformato è presente, quindi non si usa `-1`.
+
+### 2. Risposta breve
+
+```java
+return name.orElseGet(fallback);
+```
+
+La versione originale invoca `fallback.get()` prima della chiamata a `orElse`, anche con nome presente, violando il contratto. `orElseGet` invoca il fornitore soltanto per l’assenza, una volta per questa chiamata.
+
+</details>
+
 ---
 
 # Esercizio 3 — Trasformazioni di un’etichetta
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Il componente costruisce trasformazioni da applicare ai dati prima della visualizzazione. I valori numerici sono piccoli; non considerare overflow. Testi, trasformazioni e risultati testuali sono non nulli.
+Un componente prepara i dati prima della visualizzazione. I client possono combinare trasformazioni elementari in un ordine scelto. La versione attuale del metodo testuale applica sempre la stessa pulizia. Un frammento numerico separato mostra l’effetto dell’ordine di composizione. I valori sono piccoli e senza overflow; testi, trasformazioni e risultati testuali sono non nulli.
 
 Il metodo va dichiarato nel corpo di una classe e le istruzioni in un suo metodo statico, con `java.util.function.Function` importata. `f.andThen(g)` applica prima `f` e poi `g`; `f.compose(g)` applica prima `g` e poi `f`. I numeri di riga non fanno parte del codice.
 
@@ -120,13 +158,36 @@ Scegli un’interfaccia funzionale standard, definisci la nuova firma e il corpo
 
 **Lunghezza indicativa:** massimo 3 righe di codice e una frase. Puoi omettere eventuali nuovi import.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 3</summary>
+
+### 1. Scelta multipla: B
+
+`andThen` calcola prima `3 + 1`, poi raddoppia ottenendo `8`; `compose` raddoppia `3` e poi incrementa ottenendo `7`.
+
+- **A errata:** scambia i due ordini.
+- **C errata:** la composizione non equivale sempre alla sequenza nell’ordine di scrittura.
+- **D errata:** il primo calcolo incrementa prima del raddoppio.
+
+### 2. Risposta aperta
+
+```java
+static String format(String text, Function<String, String> operation) {
+    return operation.apply(text);
+}
+```
+
+`Function` esprime un ingresso e un risultato; `Consumer` non restituisce un testo. È valido anche `UnaryOperator<String>`, specializzazione per ingresso e risultato dello stesso tipo.
+
+</details>
+
 ---
 
 # Esercizio 4 — Nomi selezionati
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Si vogliono selezionare i nomi che iniziano con `A`, preservandone l’ordine e senza modificare la lista originale. I nomi sono non nulli e lo stream è sequenziale.
+Una schermata deve consultare i nomi che iniziano con `A`. La selezione deve preservare l’ordine e non modificare la lista originale. Il filtro stampa un messaggio diagnostico quando viene valutato, così da osservare quando il lavoro è eseguito. La prima richiesta riguarda soltanto il primo nome selezionato. I nomi sono non nulli e lo stream è sequenziale.
 
 Il frammento è eseguito in un metodo con `java.util.List` e `java.util.stream.Stream` importate. I numeri di riga non fanno parte del codice.
 
@@ -163,13 +224,38 @@ Valuta se il programma stampi sia il numero sia la lista completa dei nomi selez
 
 **Lunghezza indicativa:** una frase e massimo 3 righe di codice.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 4</summary>
+
+### 1. Scelta multipla: A
+
+La pipeline è lazy: prima si stampa `Ready`; `findFirst` valuta il primo elemento, stampa `Check Ada` e restituisce `Ada` senza cercare oltre.
+
+- **B errata:** la sola costruzione della pipeline non esegue il filtro.
+- **C errata:** `findFirst` interrompe la ricerca al primo risultato.
+- **D errata:** esiste un elemento che soddisfa il filtro.
+
+### 2. Risposta breve
+
+Il terminale `count` consuma lo stream; non è possibile usarlo nuovamente per ottenere la lista. Si materializza una volta il risultato:
+
+```java
+List<String> result = selected.toList();
+System.out.println(result.size());
+System.out.println(result);
+```
+
+I messaggi diagnostici precedono le due stampe finali; il filtro non viene eseguito due volte.
+
+</details>
+
 ---
 
 # Esercizio 5 — Autori dei gruppi
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-I gruppi contengono nomi non nulli. La selezione deve produrre ciascun nome una sola volta, nell’ordine della prima comparsa. Le liste originali non devono essere modificate. Lo stream è sequenziale.
+Un’organizzazione raccoglie gli autori presenti in diversi gruppi di lavoro. Ogni gruppo contiene una lista di nomi. Il riepilogo deve produrre ciascun nome una sola volta, nell’ordine della prima comparsa tra i gruppi. Le liste originali devono restare disponibili e non devono essere modificate. Nomi e liste sono non nulli e lo stream è sequenziale.
 
 Il frammento è eseguito in un metodo con `java.util.List` importata. I numeri di riga non fanno parte del codice.
 
@@ -199,13 +285,39 @@ Un nuovo chiamante vuole ordinare `result` sul posto e aggiungervi successivamen
 
 **Lunghezza indicativa:** 1–2 frasi e massimo 5 righe di codice. Puoi omettere gli import aggiuntivi.
 
+<details>
+<summary>Mostra la soluzione dell’esercizio 5</summary>
+
+### 1. Scelta multipla: C
+
+`flatMap` visita i nomi dei gruppi in ordine; `distinct` mantiene la prima occorrenza di ogni stringa nello stream ordinato.
+
+- **A errata:** il risultato non contiene più liste annidate.
+- **B errata:** il duplicato `Ada` viene eliminato.
+- **D errata:** `Linus` precede `Grace` nell’ordine di incontro.
+
+### 2. Risposta breve
+
+`Stream.toList()` restituisce una lista non modificabile. Una costruzione conforme è:
+
+```java
+List<String> result = groups.stream()
+    .flatMap(List::stream)
+    .distinct()
+    .collect(java.util.stream.Collectors.toCollection(java.util.ArrayList::new));
+```
+
+È valida anche una nuova `ArrayList` costruita dal risultato originale. Non si deve presumere che `Collectors.toList()` garantisca una particolare implementazione o la modificabilità richiesta.
+
+</details>
+
 ---
 
 # Esercizio 6 — Totali delle misure
 
 **Tempo indicativo: 5–7 minuti · Java 25**
 
-Le misure sono interi non nulli compresi tra -100 e 100 e le liste contengono al massimo cento elementi. Non ci sono quindi problemi di overflow. Le elaborazioni non devono modificare la lista di partenza.
+Un servizio prepara totali a partire da misure già raccolte. La prima elaborazione ignora quelle negative e raddoppia le altre. Un secondo riepilogo deve considerare invece tutti gli elementi. Entrambe le elaborazioni devono lasciare invariata la lista di partenza. Le misure sono interi non nulli tra -100 e 100 e le liste contengono al massimo cento elementi, quindi non ci sono problemi di overflow.
 
 Il frammento è eseguito in un metodo con `java.util.List` importata. I numeri di riga non fanno parte del codice.
 
@@ -239,3 +351,230 @@ Separatamente, si vuole calcolare il negativo della somma di tutti gli elementi,
 Valuta se la riduzione garantisca il risultato richiesto. Motiva considerando il raggruppamento delle sottrazioni, con un piccolo esempio, e proponi un’espressione alternativa valida anche per una lista vuota.
 
 **Lunghezza indicativa:** 2 frasi, un esempio numerico e una riga di codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 6</summary>
+
+### 1. Scelta multipla: D
+
+Restano `2` e `4`, trasformati in `4` e `8`: il totale è `12`.
+
+- **A errata:** omette il raddoppio.
+- **B errata:** include la misura negativa.
+- **C errata:** somma l’input senza filtro né trasformazione.
+
+### 2. Risposta breve
+
+La sottrazione non è associativa e lo zero non è un’identità a sinistra: `(0 - 2) - 3 = -5`, mentre `(0 - 2) - (0 - 3) = 1`. I raggruppamenti della riduzione parallela non garantiscono il risultato richiesto; una forma corretta, anche sull’input vuoto, è:
+
+```java
+int negativeTotal = -values.parallelStream().mapToInt(Integer::intValue).sum();
+```
+
+</details>
+
+---
+
+# Esercizio 7 — Ordine di selezione
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un servizio estrae un numero limitato di misure valide. Le misure devono essere positive e conservare il loro ordine. Il chiamante richiede al massimo due risultati. La sorgente è una lista non nulla di interi non nulli. Lo stream è sequenziale e nessuna elaborazione modifica la lista.
+
+Frammento in un metodo con `java.util.List` importata. I numeri di riga non fanno parte del codice.
+
+```java
+01  List<Integer> values = List.of(-1, 2, 3, 4);
+02  List<Integer> result = values.stream()
+03      .limit(2)
+04      .filter(value -> value > 0)
+05      .toList();
+06  System.out.println(result);
+```
+
+## 1. Scelta multipla
+
+Qual è l’output? Seleziona una sola risposta.
+
+- **A.** `[2, 3]`.
+- **B.** `[-1, 2]`.
+- **C.** `[2, 3, 4]`.
+- **D.** `[2]`.
+
+## 2. Risposta breve
+
+La richiesta è «le prime due misure positive, o tutte quelle disponibili se meno di due». Valuta l’ordine attuale delle operazioni e proponi la modifica minima. Che risultato deve avere una sorgente di soli valori non positivi?
+
+**Lunghezza indicativa:** 2 frasi oppure una frase e 2 righe di pipeline.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 7</summary>
+
+### 1. Scelta multipla: D
+
+`limit` seleziona prima `-1` e `2`; il filtro elimina `-1` e resta solo `2`.
+
+- **A errata:** richiederebbe il filtro prima del limite.
+- **B errata:** il filtro rifiuta `-1`.
+- **C errata:** il limite impedisce di raggiungere tutti gli elementi.
+
+### 2. Risposta breve
+
+Scambio le operazioni: prima `filter(value -> value > 0)`, poi `limit(2)`. Così il limite conta i risultati validi, non gli elementi iniziali; in assenza di positivi si ottiene una lista vuota.
+
+</details>
+
+---
+
+# Esercizio 8 — Quantità per categoria
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un negozio riceve una sequenza di categorie per i prodotti venduti. Il riepilogo deve contare quante vendite appartengono a ciascuna categoria. Due stringhe uguali indicano la stessa categoria. Non interessa l’ordine delle chiavi della mappa risultante. La sorgente contiene stringhe non nulle e non deve essere modificata.
+
+Frammento in un metodo con `java.util.*`, `java.util.function.Function` e `java.util.stream.Collectors` importate. `groupingBy` raggruppa per la chiave calcolata; `counting` conta gli elementi di ogni gruppo con risultato `Long`. I numeri di riga non fanno parte del codice.
+
+```java
+01  List<String> categories = List.of("book", "pen", "book");
+02  Map<String, Long> counts = categories.stream()
+03      .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+04  System.out.println(counts.get("book"));
+05  System.out.println(counts.size());
+```
+
+## 1. Scelta multipla
+
+Seleziona l’output corretto.
+
+- **A.** `1`, poi `3`.
+- **B.** `2`, poi `2`.
+- **C.** `2`, poi `3`.
+- **D.** Eccezione per la chiave duplicata `book`.
+
+## 2. Risposta aperta
+
+Il chiamante vuole una funzione riutilizzabile `countBy` che riceva una lista di stringhe e una regola per calcolare la categoria di ciascuna stringa. Proponi la firma con un’interfaccia funzionale standard e descrivi come riusare il collector; regola e risultati sono non nulli.
+
+**Lunghezza indicativa:** una firma e 1–2 frasi.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 8</summary>
+
+### 1. Scelta multipla: B
+
+Due elementi appartengono a `book`; le categorie distinte sono due.
+
+- **A errata:** raggruppare non elimina il contributo delle ripetizioni al conteggio.
+- **C errata:** la dimensione della mappa conta le chiavi, non gli input.
+- **D errata:** il collector gestisce proprio gruppi con la stessa chiave.
+
+### 2. Risposta aperta
+
+`static Map<String, Long> countBy(List<String> values, Function<String, String> category)` usa `groupingBy(category, counting())` al posto della funzione identità. La funzione riceve l’elemento e restituisce la sua chiave; sono valide wildcard compatibili nella firma.
+
+</details>
+
+---
+
+# Esercizio 9 — Scelta di un risultato
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un componente cerca il primo nome sufficientemente lungo. L’assenza di risultati è prevista e non deve essere trattata come un guasto. Il chiamante vuole sempre una stringa da visualizzare. La lista è non nulla e contiene stringhe non nulle. Lo stream è sequenziale e segue l’ordine della lista.
+
+Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno parte del codice.
+
+```java
+01  List<String> names = List.of("Ada", "Bo");
+02  Optional<String> found = names.stream()
+03      .filter(name -> name.length() > 5)
+04      .findFirst();
+05  System.out.println(found.isPresent());
+06  System.out.println(found.orElse("None"));
+```
+
+## 1. Scelta multipla
+
+Seleziona l’output corretto.
+
+- **A.** `false`, poi `None`.
+- **B.** `true`, poi `Ada`.
+- **C.** `false`, poi `null`.
+- **D.** Solleva `NoSuchElementException`.
+
+## 2. Risposta aperta
+
+Una variante deve visualizzare la lunghezza del nome trovato oppure zero se assente, senza `get()` né un controllo esplicito con `if`. Proponi l’espressione e spiega perché gestisce entrambe le situazioni.
+
+**Lunghezza indicativa:** una riga di codice e 1–2 frasi.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 9</summary>
+
+### 1. Scelta multipla: A
+
+Nessun nome supera cinque caratteri: l’`Optional` è vuoto e si usa il testo di riserva.
+
+- **B errata:** `Ada` non supera la soglia.
+- **C errata:** il ripiego esplicito è `None`, non `null`.
+- **D errata:** `orElse` gestisce l’assenza senza leggere con `get()`.
+
+### 2. Risposta aperta
+
+```java
+int length = found.map(String::length).orElse(0);
+```
+
+`map` trasforma solo il valore presente; `orElse` fornisce zero quando il risultato è assente. Non occorre una lettura non protetta.
+
+</details>
+
+---
+
+# Esercizio 10 — Riepilogo dei codici
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un esportatore deve produrre una stringa con i codici ricevuti. I codici vanno separati da una virgola, senza separatore iniziale o finale. La lista può essere vuota e in quel caso il risultato deve essere una stringa vuota. I codici sono stringhe non nulle e non contengono virgole. Il codice deve funzionare anche se la pipeline viene resa parallela.
+
+Frammento in un metodo con `java.util.List` e `java.util.stream.Collectors` importate. I numeri di riga non fanno parte del codice.
+
+```java
+01  List<String> codes = List.of("A", "B", "C");
+02  String text = codes.stream()
+03      .map(code -> code.toLowerCase(java.util.Locale.ROOT))
+04      .collect(Collectors.joining(","));
+05  System.out.println(text);
+```
+
+## 1. Scelta multipla
+
+Qual è l’output? Seleziona una sola risposta.
+
+- **A.** `,a,b,c`.
+- **B.** `a,b,c,`.
+- **C.** `a,b,c`.
+- **D.** `[a, b, c]`.
+
+## 2. Risposta breve
+
+Un revisore usa un unico `StringBuilder` esterno, condiviso dalle lambda di un `parallelStream().forEach(...)`, per aggiungere codici e virgole. Spiega due ragioni per cui tale versione non garantisce il contratto, senza proporre sincronizzazione. Quale parte della versione mostrata evita la necessità di uno stato esterno condiviso?
+
+**Lunghezza indicativa:** 2–3 frasi.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 10</summary>
+
+### 1. Scelta multipla: C
+
+`joining` inserisce la virgola soltanto tra gli elementi; i codici sono trasformati in minuscolo.
+
+- **A errata:** non viene aggiunto un delimitatore iniziale.
+- **B errata:** non viene aggiunto un delimitatore finale.
+- **D errata:** il risultato è una stringa unita, non la rappresentazione di una lista.
+
+### 2. Risposta breve
+
+Il builder condiviso non è sicuro per modifiche concorrenti e `forEach` parallelo non garantisce l’ordine della sorgente. Inoltre una semplice aggiunta della virgola dopo ogni codice lascerebbe un separatore finale. Il collector `joining` gestisce accumulazione, combinazione e delimitatori senza esporre un unico builder esterno alle lambda; preserva l’ordine di incontro dello stream ordinato.
+
+</details>
