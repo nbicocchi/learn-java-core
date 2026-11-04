@@ -26,8 +26,7 @@
 target/
 out/
 build/
-/book/Java Core.pdf
-/book/.course-book-*/
+/books/.course-book-*/
 
 # Maven
 pom.xml.tag

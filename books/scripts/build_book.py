@@ -19,6 +19,7 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = "https://github.com/nbicocchi/learn-java-core/blob/main/"
+TEMPLATE = ROOT / "scripts/templates/eisvogel/eisvogel.latex"
 
 
 def run(command, **kwargs):
@@ -80,12 +81,36 @@ def heading(level, title, identifier):
             [{"t": "Str", "c": title}]]}
 
 
+def installation_command(packages):
+    try:
+        release = platform.freedesktop_os_release()
+    except OSError:
+        release = {}
+    distributions = {release.get("ID", ""), *release.get("ID_LIKE", "").split()}
+    if distributions & {"arch", "cachyos", "manjaro"}:
+        arch_packages = {
+            "pandoc": "pandoc-cli",
+            "texlive-binaries": "texlive-bin",
+            "texlive-xetex": "texlive-xetex",
+            "texlive-latex-base": "texlive-latex",
+            "texlive-latex-recommended": "texlive-latexrecommended",
+            "texlive-latex-extra": "texlive-latexextra",
+            "texlive-fonts-recommended": "texlive-fontsrecommended",
+            "fonts-dejavu-core": "ttf-dejavu",
+            "librsvg2-bin": "librsvg",
+        }
+        return "sudo pacman -S --needed " + " ".join(
+            arch_packages.get(package, package) for package in packages)
+    return "sudo apt install " + " ".join(packages)
+
+
 def dependency_error(sources):
     """Report all missing executables with concrete installation instructions."""
     requirements = [
         (("pandoc",), "Pandoc", ["pandoc"]),
         (("xelatex",), "XeLaTeX", ["texlive-xetex", "texlive-latex-extra",
                                    "texlive-fonts-recommended", "fonts-dejavu-core"]),
+        (("kpsewhich",), "TeX package checker", ["texlive-binaries"]),
         (("rsvg-convert",), "SVG converter", ["librsvg2-bin"]),
         (("magick", "convert"), "ImageMagick", ["imagemagick"]),
     ]
@@ -109,26 +134,7 @@ def dependency_error(sources):
         for package in needed:
             if package not in packages:
                 packages.append(package)
-    try:
-        release = platform.freedesktop_os_release()
-    except OSError:
-        release = {}
-    distributions = {release.get("ID", ""), *release.get("ID_LIKE", "").split()}
-    if distributions & {"arch", "cachyos", "manjaro"}:
-        arch_packages = {
-            "pandoc": "pandoc-cli",
-            "texlive-xetex": "texlive-xetex",
-            "texlive-latex-extra": "texlive-latexextra",
-            "texlive-fonts-recommended": "texlive-fontsrecommended",
-            "fonts-dejavu-core": "ttf-dejavu",
-            "librsvg2-bin": "librsvg",
-        }
-        lines += ["", "Install the missing tools on Arch Linux/CachyOS:",
-                  "  sudo pacman -S --needed "
-                  + " ".join(arch_packages.get(package, package) for package in packages)]
-    else:
-        lines += ["", "Install the missing tools on Debian/Ubuntu:",
-                  "  sudo apt install " + " ".join(packages)]
+    lines += ["", "Install the missing tools:", "  " + installation_command(packages)]
     if any(commands == ("mmdc",) for commands, _, _ in missing):
         lines.append('  npm install --global --prefix "$HOME/.local" @mermaid-js/mermaid-cli@11.4.1')
         lines.append('  export PATH="$HOME/.local/bin:$PATH"')
@@ -137,6 +143,29 @@ def dependency_error(sources):
               "Then rerun this script, ensuring the commands are available in PATH.",
               "The existing PDF has not been modified."]
     return "\n".join(lines)
+
+
+def latex_dependency_error():
+    """Check Eisvogel's required TeX components before rendering the course."""
+    requirements = {
+        "texlive-latex-base": ["graphicx.sty", "longtable.sty", "afterpage.sty"],
+        "texlive-latex-recommended": ["scrbook.cls", "fontspec.sty", "unicode-math.sty",
+                                      "booktabs.sty", "setspace.sty"],
+        "texlive-latex-extra": ["fvextra.sty", "pagecolor.sty", "csquotes.sty",
+                               "mdframed.sty", "footnotebackref.sty", "titling.sty",
+                               "footnotehyper.sty", "xurl.sty"],
+    }
+    files = [name for names in requirements.values() for name in names]
+    result = subprocess.run(["kpsewhich", *files], text=True, capture_output=True)
+    found = {Path(line).name for line in result.stdout.splitlines()}
+    missing = [name for name in files if name not in found]
+    if not missing:
+        return None
+    packages = [package for package, names in requirements.items()
+                if any(name in missing for name in names)]
+    return ("Missing LaTeX components required by Eisvogel:\n  - "
+            + "\n  - ".join(missing) + "\n\nInstall the missing packages:\n  "
+            + installation_command(packages) + "\nThe existing PDF has not been modified.")
 
 
 class HTMLImages(HTMLParser):
@@ -244,8 +273,8 @@ def prepare_document(document, source, work, prefix, appendix=False):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "book/Java Core.pdf",
-                        help="Output PDF (default: book/Java Core.pdf)")
+    parser.add_argument("--output", type=Path, default=ROOT / "books/Java Core.pdf",
+                        help="Output PDF (default: books/Java Core.pdf)")
     args = parser.parse_args()
     slides = sorted((ROOT / "slides").glob("*.md"), key=natural_key)
     exercises = sorted((ROOT / "exercises-new").glob("E[0-9]*.md"), key=natural_key)
@@ -253,6 +282,11 @@ def main():
         parser.error("Expected slides/*.md and exercise collections in exercises-new/E*.md")
 
     missing = dependency_error(slides + exercises)
+    if missing:
+        parser.error(missing)
+    if not TEMPLATE.is_file():
+        parser.error(f"Missing bundled Eisvogel template: {TEMPLATE}. Restore scripts/templates/eisvogel/.")
+    missing = latex_dependency_error()
     if missing:
         parser.error(missing)
 
@@ -292,13 +326,18 @@ def main():
 \setlength{\emergencystretch}{3em}
 """, encoding="utf-8")
         temporary_pdf = work / "course-book.pdf"
-        run(["pandoc", str(manuscript), "--from=json", "--standalone",
+        run(["pandoc", str(manuscript), "--from=json", "--standalone", "--template", str(TEMPLATE),
              "--pdf-engine=xelatex", "--top-level-division=chapter",
              "--toc", "--toc-depth=1", "--highlight-style=tango",
              "--metadata=title:Java Core", "--metadata=subtitle:Course notes and exercises",
-             "--variable=documentclass:report", "--variable=papersize:a4",
-             "--variable=geometry:margin=22mm", "--variable=fontsize:10pt",
-             "--variable=mainfont:DejaVu Serif", "--variable=monofont:DejaVu Sans Mono",
+             "--variable=book:true", "--variable=classoption:oneside", "--variable=classoption:open=any",
+             "--variable=has-frontmatter:true", "--variable=papersize:a4",
+             "--variable=geometry:margin=22mm,includehead,includefoot", "--variable=fontsize:10pt",
+             "--variable=mainfont:DejaVu Sans", "--variable=monofont:DejaVu Sans Mono",
+             "--variable=titlepage:true", "--variable=titlepage-color:193549",
+             "--variable=titlepage-text-color:FFFFFF", "--variable=titlepage-rule-color:5CC8FF",
+             "--variable=toc-own-page:true", "--variable=header-left:Java Core",
+             "--variable=header-right:Java 25", "--variable=linestretch:1.1",
              "--variable=colorlinks:true", "--include-in-header", str(header),
              "--output", str(temporary_pdf)], cwd=work)
         if not temporary_pdf.is_file() or not temporary_pdf.read_bytes().startswith(b"%PDF-"):
