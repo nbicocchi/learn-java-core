@@ -1,9 +1,3 @@
-> **E5 — Java Exceptions** · [Indice del corso](../README.md#modules)
-> Gli esercizi sono organizzati per obiettivo principale e possono richiamare competenze dei moduli precedenti. La numerazione è indipendente per ciascun macro-modulo.
-
-
----
-
 # Esercizio 1 — Importazione di quantità
 
 **Tempo indicativo: 5–7 minuti · Java 25**

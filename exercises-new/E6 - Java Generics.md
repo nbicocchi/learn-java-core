@@ -1,9 +1,3 @@
-> **E6 — Java Generics** · [Indice del corso](../README.md#modules)
-> Gli esercizi sono organizzati per obiettivo principale e possono richiamare competenze dei moduli precedenti. La numerazione è indipendente per ciascun macro-modulo.
-
-
----
-
 # Esercizio 1 — Primo elemento
 
 **Tempo indicativo: 5–7 minuti · Java 25**

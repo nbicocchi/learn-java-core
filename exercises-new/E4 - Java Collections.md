@@ -1,9 +1,3 @@
-> **E4 — Java Collections** · [Indice del corso](../README.md#modules)
-> Gli esercizi sono organizzati per obiettivo principale e possono richiamare competenze dei moduli precedenti. La numerazione è indipendente per ciascun macro-modulo.
-
-
----
-
 # Esercizio 1 — Destinatari di un avviso
 
 **Tempo indicativo: 5–7 minuti · Java 25**
