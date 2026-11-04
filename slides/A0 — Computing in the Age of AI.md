@@ -4,7 +4,7 @@
 
 AI tools can generate code, explain programs, propose tests, and automate parts of software development.
 
-But **we do not know what computing jobs will look like in ten years**. Technical progress, reliability, adoption costs, regulation, and demand all affect the outcome.
+But **[we do not know what computing jobs will look like in ten years](https://www.youtube.com/watch?v=vDjW_dRyKXY&t=3526s)**. Technical progress, reliability, adoption costs, regulation, and demand all affect the outcome.
 
 We can examine how earlier technologies changed work and use those mechanisms to reason about possible futures.
 
