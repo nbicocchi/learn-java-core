@@ -20,6 +20,12 @@
 * [Java SE Tutorial](https://dev.java/)
 * [Java SE API](https://docs.oracle.com/en/java/javase/25/docs/api/index.html)
 
+### Exercises
+
+The [exercises-new](exercises-new/) directory contains exam-style exercises validated by the instructor.
+
+For additional practice, use [PROMPT.md](exercises-new/PROMPT.md) with an AI assistant to generate more exercises on the course topics. The exam papers will be generated using the same method and validated by the instructor before use. Additional exercises generated independently for practice are not automatically instructor-validated.
+
 ### Contributing
 Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. For a more general introduction to GitHub, refer to [this](https://github.com/skills/) page. By contributing to this repository, you agree that your contributions will be licensed under the LICENSE file in the root directory of this source tree.
 

@@ -17,9 +17,10 @@ import tempfile
 from urllib.parse import unquote, urlsplit
 
 
-ROOT = Path(__file__).resolve().parents[1]
+SCRIPT_DIR = Path(__file__).resolve().parent
+ROOT = SCRIPT_DIR.parents[1]
 REPOSITORY = "https://github.com/nbicocchi/learn-java-core/blob/main/"
-TEMPLATE = ROOT / "scripts/templates/eisvogel/eisvogel.latex"
+TEMPLATE = SCRIPT_DIR / "templates/eisvogel/eisvogel.latex"
 
 
 def run(command, **kwargs):
@@ -285,7 +286,7 @@ def main():
     if missing:
         parser.error(missing)
     if not TEMPLATE.is_file():
-        parser.error(f"Missing bundled Eisvogel template: {TEMPLATE}. Restore scripts/templates/eisvogel/.")
+        parser.error(f"Missing bundled Eisvogel template: {TEMPLATE}. Restore books/scripts/templates/eisvogel/.")
     missing = latex_dependency_error()
     if missing:
         parser.error(missing)
