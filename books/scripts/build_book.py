@@ -352,7 +352,10 @@ def main():
     if notes_output == exercises_output:
         parser.error("The course-notes and exercises PDFs must have different output paths")
 
-    slides = sorted((ROOT / "slides").glob("*.md"), key=natural_key)
+    slides = sorted(
+        (path for path in (ROOT / "slides").glob("*.md") if path.name != "README.md"),
+        key=natural_key,
+    )
     exercises = sorted((ROOT / "exercises/exercises-ai").glob("E[0-9]*.md"), key=natural_key)
     if not slides or not exercises:
         parser.error("Expected slides/*.md and exercise collections in exercises/exercises-ai/E*.md")
