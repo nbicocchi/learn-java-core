@@ -20,7 +20,7 @@
 
 The [exercises-ai](code/exercises-ai) directory contains exam-style exercises validated by the instructor.
 
-For additional practice, use [PROMPT.md](exercises-new/PROMPT.md) with an AI assistant to generate more exercises on the course topics. The exam papers will be generated using the same method and validated by the instructor before use. Additional exercises generated independently for practice are not automatically instructor-validated.
+For additional practice, use [PROMPT.md](code/exercises-ai/PROMPT.md) with an AI assistant to generate more exercises on the course topics. The exam papers will be generated using the same method and validated by the instructor before use. Additional exercises generated independently for practice are not automatically instructor-validated.
 
 ### Project
 
@@ -58,7 +58,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E2.7 — Text input and output](<slides/E2.7 — Text Input and Output.md>)
 * [E2.8 — Unit testing with JUnit](<slides/E2.8 — Unit Testing with JUnit.md>)
 
-> **Practice:** [E2 — Java Basics](<exercises-new/E2 - Java Basics.md>)
+> **Practice:** [E2 — Java Basics](<code/exercises-ai/E2 - Java Basics.md>)
 >
 > **Read:** Big Java (Chapters 2, 4, 5, 6, 7)
 
@@ -75,7 +75,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E3.9 — Nested classes](<slides/E3.9 — Nested Classes.md>)
 * [E3.10 — SOLID principles](<slides/E3.10 — SOLID Principles.md>)
 
-> **Practice:** [E3 — Object-Oriented Programming](<exercises-new/E3 - Java Object-Oriented Programming.md>)
+> **Practice:** [E3 — Object-Oriented Programming](<code/exercises-ai/E3 - Java Object-Oriented Programming.md>)
 >
 > **Read:** Big Java (Chapters 3, 8, 9, 10, 12); UML Distilled (Chapter 3)
 
@@ -87,7 +87,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E4.4 — Maps](<slides/E4.4 — Maps.md>)
 * [E4.5 — Collection ordering and search](<slides/E4.5 — Collection Ordering and Search.md>)
 
-> **Practice:** [E4 — Collections](<exercises-new/E4 - Java Collections.md>)
+> **Practice:** [E4 — Collections](<code/exercises-ai/E4 - Java Collections.md>)
 >
 > **Read:** Big Java (Chapters 14, 15)
 
@@ -97,7 +97,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E5.2 — Error handling and contracts](<slides/E5.2 — Error Handling and Contracts.md>)
 * [E5.3 — Resource ownership](<slides/E5.3 — Resource Ownership.md>)
 
-> **Practice:** [E5 — Exceptions](<exercises-new/E5 - Java Exceptions.md>)
+> **Practice:** [E5 — Exceptions](<code/exercises-ai/E5 - Java Exceptions.md>)
 >
 > **Read:** Big Java (Chapter 11)
 
@@ -107,7 +107,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E6.2 — Bounds and wildcards](<slides/E6.2 — Bounds and Wildcards.md>)
 * [E6.3 — Type erasure](<slides/E6.3 — Type Erasure.md>)
 
-> **Practice:** [E6 — Generics](<exercises-new/E6 - Java Generics.md>)
+> **Practice:** [E6 — Generics](<code/exercises-ai/E6 - Java Generics.md>)
 >
 > **Read:** Big Java (Chapter 18)
 
@@ -118,7 +118,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E7.3 — Stream pipelines](<slides/E7.3 — Stream Pipelines.md>)
 * [E7.4 — Stream collection and reduction](<slides/E7.4 — Stream Collection and Reduction.md>)
 
-> **Practice:** [E7 — Functional Programming](<exercises-new/E7 - Java Functional Programming.md>)
+> **Practice:** [E7 — Functional Programming](<code/exercises-ai/E7 - Java Functional Programming.md>)
 >
 > **Read:** Big Java (Chapter 19); Object-Oriented vs Functional Programming (Chapter 1)
 
@@ -129,6 +129,6 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E8.3 — Thread coordination](<slides/E8.3 — Thread Coordination.md>)
 * [E8.4 — Executors, tasks and futures](<slides/E8.4 — Executors Tasks and Futures.md>)
 
-> **Practice:** [E8 — Concurrency](<exercises-new/E8 - Java Concurrency.md>)
+> **Practice:** [E8 — Concurrency](<code/exercises-ai/E8 - Java Concurrency.md>)
 >
 > **Read:** Big Java (Chapter 22)

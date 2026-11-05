@@ -286,9 +286,9 @@ def main():
                         help="Output PDF (default: books/Java Core.pdf)")
     args = parser.parse_args()
     slides = sorted((ROOT / "slides").glob("*.md"), key=natural_key)
-    exercises = sorted((ROOT / "exercises-new").glob("E[0-9]*.md"), key=natural_key)
+    exercises = sorted((ROOT / "code/exercises-ai").glob("E[0-9]*.md"), key=natural_key)
     if not slides or not exercises:
-        parser.error("Expected slides/*.md and exercise collections in exercises-new/E*.md")
+        parser.error("Expected slides/*.md and exercise collections in code/exercises-ai/E*.md")
 
     missing = dependency_error(slides + exercises)
     if missing:
