@@ -21,22 +21,24 @@ Generate both course PDFs with `python3 books/scripts/build_book.py`. Use `--out
 
 ### Exercises
 
-The [exercises-ai](code/exercises-ai) directory contains exam-style exercises validated by the instructor.
+The two exercise collections develop complementary skills:
 
-For additional practice, use [PROMPT.md](code/exercises-ai/PROMPT.md) with an AI assistant to generate more exercises on the course topics. The exam papers will be generated using the same method and validated by the instructor before use. Additional exercises generated independently for practice are not automatically instructor-validated.
+* **[exercises-no-ai](exercises/exercises-no-ai) — Traditional coding exercises:** write the Java code yourself, without AI-generated solutions, and check its correctness using the supplied automated tests.
+* **[exercises-ai](exercises/exercises-ai) — Modern code-analysis exercises:** start from AI-generated code, then explain its behavior, reason about its correctness, identify defects, and justify corrections or design choices. The focus is on understanding and critically evaluating code, rather than writing it from scratch. These exam-style exercises are validated by the instructor.
 
-### Guided labs
+For additional practice **in the exercises-ai format**, use [PROMPT.md](exercises/exercises-ai/PROMPT.md) with an AI assistant to generate more code-analysis exercises on the course topics. The exam papers will be generated using the same method and validated by the instructor before use. Additional exercises generated independently for practice are not automatically instructor-validated.
 
-The labs progressively build the same address-book application. Labs 1–3 and 5 include theory and a detailed tutorial; lab4 introduces the backend through theory and a completed example, without a construction tutorial. Application examples are independently runnable Java 25 Maven projects. Lab2 provides Docker/PostgreSQL, SQL scripts, and small JDBC console examples instead of a duplicate GUI project. Lab5 contains only the JavaFX REST client and uses the backend in lab4.
+### Labs
 
-* Lab 1 — JavaFX interface and in-memory contacts: [Theory](code/lab1/theory.md) · [Tutorial](code/lab1/tutorial.md)
-* Lab 2 — JDBC concepts, Docker, and PostgreSQL CLI: [Theory](code/lab2/theory.md) · [Tutorial](code/lab2/tutorial.md)
-* Lab 3 — Persistent JavaFX address book with JDBC: [Theory](code/lab3/theory.md) · [Tutorial](code/lab3/tutorial.md)
-* Lab 4 — Spring Boot REST backend: [Theory, runnable example, and curl requests](code/lab4/theory.md)
-* Lab 5 — JavaFX REST client for the lab4 backend: [Theory](code/lab5/theory.md) · [Tutorial](code/lab5/tutorial.md)
-* Lab 6: reserved for a later iteration; not implemented yet.
+These incremental labs guide us through building a complete Java application together in class, from the desktop frontend to the backend and database.
 
-### Project
+* Lab 1 — JavaFX interface: [Theory](labs/lab1/theory.md) · [Tutorial](labs/lab1/tutorial.md)
+* Lab 2 — JDBC concepts, Docker, and PostgreSQL CLI: [Theory](labs/lab2/theory.md) · [Tutorial](labs/lab2/tutorial.md)
+* Lab 3 — Persistent JavaFX address book with JDBC: [Theory](labs/lab3/theory.md) · [Tutorial](labs/lab3/tutorial.md)
+* Lab 4 — Spring Boot REST backend: [Theory, runnable example, and curl requests](labs/lab4/theory.md)
+* Lab 5 — JavaFX REST client for the lab4 backend: [Theory](labs/lab5/theory.md) · [Tutorial](labs/lab5/tutorial.md)
+
+### Projects
 
 Publish your project in a **public GitHub repository** and send its URL to the instructor **before the exam** for review. **Submitting the repository URL in advance is a requirement for admission to the exam.** Submit the repository URL through the [project submission form](https://docs.google.com/forms/d/e/1FAIpQLSeNDcHf6t4hLVJFgaQgIYuyHf9RBsqFUl9wXsMIVWy4_-a4QA/viewform?usp=dialog).
 
@@ -55,10 +57,7 @@ The project is assessed as a working application, based on:
 
 The assessment focuses on the application as seen and used, not on a source-code review. Individual technical knowledge is assessed through the written exam.
 
-### Contributing
-Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. For a more general introduction to GitHub, refer to [this](https://github.com/skills/) page. By contributing to this repository, you agree that your contributions will be licensed under the LICENSE file in the root directory of this source tree.
-
-### Modules
+### Slides
 
 #### A0 — Computing in the Age of AI
 
@@ -80,7 +79,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E2.7 — Text input and output](<slides/E2.7 — Text Input and Output.md>)
 * [E2.8 — Unit testing with JUnit](<slides/E2.8 — Unit Testing with JUnit.md>)
 
-> **Practice:** [E2 — Java Basics](<code/exercises-ai/E2 - Java Basics.md>)
+> **Practice:** [E2 — Java Basics](<exercises/exercises-ai/E2 - Java Basics.md>)
 >
 > **Read:** Big Java (Chapters 2, 4, 5, 6, 7)
 
@@ -97,7 +96,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E3.9 — Nested classes](<slides/E3.9 — Nested Classes.md>)
 * [E3.10 — SOLID principles](<slides/E3.10 — SOLID Principles.md>)
 
-> **Practice:** [E3 — Object-Oriented Programming](<code/exercises-ai/E3 - Java Object-Oriented Programming.md>)
+> **Practice:** [E3 — Object-Oriented Programming](<exercises/exercises-ai/E3 - Java Object-Oriented Programming.md>)
 >
 > **Read:** Big Java (Chapters 3, 8, 9, 10, 12); UML Distilled (Chapter 3)
 
@@ -109,7 +108,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E4.4 — Maps](<slides/E4.4 — Maps.md>)
 * [E4.5 — Collection ordering and search](<slides/E4.5 — Collection Ordering and Search.md>)
 
-> **Practice:** [E4 — Collections](<code/exercises-ai/E4 - Java Collections.md>)
+> **Practice:** [E4 — Collections](<exercises/exercises-ai/E4 - Java Collections.md>)
 >
 > **Read:** Big Java (Chapters 14, 15)
 
@@ -119,7 +118,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E5.2 — Error handling and contracts](<slides/E5.2 — Error Handling and Contracts.md>)
 * [E5.3 — Resource ownership](<slides/E5.3 — Resource Ownership.md>)
 
-> **Practice:** [E5 — Exceptions](<code/exercises-ai/E5 - Java Exceptions.md>)
+> **Practice:** [E5 — Exceptions](<exercises/exercises-ai/E5 - Java Exceptions.md>)
 >
 > **Read:** Big Java (Chapter 11)
 
@@ -129,7 +128,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E6.2 — Bounds and wildcards](<slides/E6.2 — Bounds and Wildcards.md>)
 * [E6.3 — Type erasure](<slides/E6.3 — Type Erasure.md>)
 
-> **Practice:** [E6 — Generics](<code/exercises-ai/E6 - Java Generics.md>)
+> **Practice:** [E6 — Generics](<exercises/exercises-ai/E6 - Java Generics.md>)
 >
 > **Read:** Big Java (Chapter 18)
 
@@ -140,7 +139,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E7.3 — Stream pipelines](<slides/E7.3 — Stream Pipelines.md>)
 * [E7.4 — Stream collection and reduction](<slides/E7.4 — Stream Collection and Reduction.md>)
 
-> **Practice:** [E7 — Functional Programming](<code/exercises-ai/E7 - Java Functional Programming.md>)
+> **Practice:** [E7 — Functional Programming](<exercises/exercises-ai/E7 - Java Functional Programming.md>)
 >
 > **Read:** Big Java (Chapter 19); Object-Oriented vs Functional Programming (Chapter 1)
 
@@ -151,6 +150,6 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E8.3 — Thread coordination](<slides/E8.3 — Thread Coordination.md>)
 * [E8.4 — Executors, tasks and futures](<slides/E8.4 — Executors Tasks and Futures.md>)
 
-> **Practice:** [E8 — Concurrency](<code/exercises-ai/E8 - Java Concurrency.md>)
+> **Practice:** [E8 — Concurrency](<exercises/exercises-ai/E8 - Java Concurrency.md>)
 >
 > **Read:** Big Java (Chapter 22)

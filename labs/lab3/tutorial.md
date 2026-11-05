@@ -4,7 +4,7 @@
 
 Requires JDK 25, Maven, a graphical desktop, and Docker with Compose V2. This lab adds a JDBC repository, persistent CRUD, form validation, cancellation, delete confirmation, and supplied background-task infrastructure. It does not introduce REST, Spring Boot, ORM/JPA, connection pools, authentication, or concurrent-edit conflict resolution.
 
-The completed [Maven project](address-book/) runs independently of the other Java projects. Database preparation is described in section 2. After that, from `code/lab3/`, run `mvn -f address-book/pom.xml clean test` and `mvn -f address-book/pom.xml javafx:run`. No fake contacts are substituted when the database fails.
+The completed [Maven project](address-book/) runs independently of the other Java projects. Database preparation is described in section 2. After that, from `labs/lab3/`, run `mvn -f address-book/pom.xml clean test` and `mvn -f address-book/pom.xml javafx:run`. No fake contacts are substituted when the database fails.
 
 ## 1. Start from the preceding checkpoint
 
@@ -16,7 +16,7 @@ The tutorial first verifies the database, then builds the repository, then conne
 
 **Required before launching the application:** PostgreSQL must contain the `persons` table. The lab2 JDBC micro-examples create only a separate `names` table; running those examples does not prepare `persons`. Run `sql/01-schema.sql` below even if you have already imported names. It safely leaves an existing `persons` table and its data intact.
 
-If lab2's database is running, first run `docker compose down` from `code/lab2/`, without deleting volumes. Then move to `code/lab3/` and run:
+If lab2's database is running, first run `docker compose down` from `labs/lab2/`, without deleting volumes. Then move to `labs/lab3/` and run:
 
 ```bash
 docker compose up -d --wait
@@ -219,7 +219,7 @@ Run the application from your working project's directory:
 mvn javafx:run
 ```
 
-Or run the supplied checkpoint from `code/lab3/` with `mvn -f address-book/pom.xml javafx:run`.
+Or run the supplied checkpoint from `labs/lab3/` with `mvn -f address-book/pom.xml javafx:run`.
 
 ## 12. Acceptance checks with the real database
 
@@ -249,11 +249,11 @@ mvn -Djavafx.smoke=true -Djdbc.integration=true test
 
 The default command runs five model/data tests and skips four opt-in tests; it requires neither PostgreSQL nor a display. `jdbc.integration` adds two tests against real PostgreSQL using a randomly named temporary schema that is removed afterward, without clearing `public.persons`. The database user must be allowed to create/drop schemas; do not use a production database. `javafx.smoke` adds two GUI tests using an in-memory repository test double, so it requires a display but not PostgreSQL.
 
-For the supplied checkpoint, run these commands from `code/lab3/` with `-f address-book/pom.xml`, for example `mvn -f address-book/pom.xml -Djdbc.integration=true test`.
+For the supplied checkpoint, run these commands from `labs/lab3/` with `-f address-book/pom.xml`, for example `mvn -f address-book/pom.xml -Djdbc.integration=true test`.
 
 The GUI switch needs a display; on a headless Linux runner with Xvfb, prefix the command with `xvfb-run -a`. GUI tests use a test double of the repository, while JDBC tests use real PostgreSQL. With both enabled, expect nine tests and no skips.
 
-Stop the course database from `code/lab3/`:
+Stop the course database from `labs/lab3/`:
 
 ```bash
 docker compose down

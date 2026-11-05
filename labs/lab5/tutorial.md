@@ -13,14 +13,14 @@ Use the following commands from the **repository root**, not from a Maven source
 If a previous lab's Compose copy is active, stop it there with `docker compose down` without deleting volumes. Then:
 
 ```bash
-docker compose -f code/lab4/compose.yaml up -d --wait
-docker compose -f code/lab4/compose.yaml exec -T postgres psql -U addressbook -d addressbook -v ON_ERROR_STOP=1 < code/lab4/sql/01-schema.sql
+docker compose -f labs/lab4/compose.yaml up -d --wait
+docker compose -f labs/lab4/compose.yaml exec -T postgres psql -U addressbook -d addressbook -v ON_ERROR_STOP=1 < labs/lab4/sql/01-schema.sql
 ```
 
 If you want the six sample contacts and have not already loaded them:
 
 ```bash
-docker compose -f code/lab4/compose.yaml exec -T postgres psql -U addressbook -d addressbook -v ON_ERROR_STOP=1 < code/lab4/sql/02-seed.sql
+docker compose -f labs/lab4/compose.yaml exec -T postgres psql -U addressbook -d addressbook -v ON_ERROR_STOP=1 < labs/lab4/sql/02-seed.sql
 ```
 
 Seeding is optional, not an application startup action. The schema creation is required if `persons` is absent: the lab2 name-import example's `names` table does not replace it. Existing contacts from labs 2–4 can be reused without resetting data. For PowerShell, the [lab4 instructions](../lab4/theory.md#run-the-example) explain the copy/`psql -f` alternative to input redirection.
@@ -28,15 +28,15 @@ Seeding is optional, not an application startup action. The schema creation is r
 Start the existing backend:
 
 ```bash
-mvn -f code/lab4/address-book-backend/pom.xml spring-boot:run
+mvn -f labs/lab4/address-book-backend/pom.xml spring-boot:run
 ```
 
 ### Terminal 2 — Check HTTP, then run JavaFX
 
 ```bash
 curl -i http://localhost:8080/api/persons
-mvn -f code/lab5/address-book/pom.xml clean test
-mvn -f code/lab5/address-book/pom.xml javafx:run
+mvn -f labs/lab5/address-book/pom.xml clean test
+mvn -f labs/lab5/address-book/pom.xml javafx:run
 ```
 
 Curl must return `200` and an array before you investigate GUI problems. An empty array is valid: use New to create a contact. There is **no backend, Compose file, or schema script inside lab5**.
@@ -51,7 +51,7 @@ This is already the default. Set it in the frontend's shell before launching if 
 
 If the backend uses another database port, configure its `ADDRESSBOOK_DB_URL` in **Terminal 1**, following lab4. Do not pass database credentials to the frontend. If the backend's HTTP port changes with `SERVER_PORT`, update `ADDRESSBOOK_API_URL` in Terminal 2 accordingly.
 
-In IntelliJ, open `code/lab5/address-book/pom.xml` as the Maven project, select JDK 25, and set the API environment variable in the App run configuration if needed. Running App directly needs VM option `--enable-native-access=javafx.graphics`; `mvn javafx:run` already supplies it.
+In IntelliJ, open `labs/lab5/address-book/pom.xml` as the Maven project, select JDK 25, and set the API environment variable in the App run configuration if needed. Running App directly needs VM option `--enable-native-access=javafx.graphics`; `mvn javafx:run` already supplies it.
 
 ## 2. Make your own working copy of lab3
 
@@ -217,13 +217,13 @@ The supplied [RestPersonClientTest](address-book/src/test/java/com/nbicocchi/add
 From the repository root:
 
 ```bash
-mvn -f code/lab5/address-book/pom.xml test
-mvn -f code/lab5/address-book/pom.xml -Djavafx.smoke=true test
+mvn -f labs/lab5/address-book/pom.xml test
+mvn -f labs/lab5/address-book/pom.xml -Djavafx.smoke=true test
 ```
 
 The default command runs **13 tests** (five model and eight HTTP-client tests) and skips two GUI tests. No Docker, PostgreSQL, lab4 process, or display is needed; the HTTP tests need permission to bind a loopback port. The GUI switch adds two tests and requires a graphical session, but still uses a test double rather than the live backend. With both categories active, all **15 tests** should pass. On a headless Linux runner with Xvfb, prefix the GUI test command with `xvfb-run -a`.
 
-For your separate working project, omit `-f code/lab5/address-book/pom.xml` and run from its POM directory.
+For your separate working project, omit `-f labs/lab5/address-book/pom.xml` and run from its POM directory.
 
 ## 9. Verify the real frontend/backend flow
 
@@ -246,7 +246,7 @@ Use a practice contact's actual ID for curl checks; do not modify unrelated cont
 Close the JavaFX window, stop the backend with Ctrl+C in its own terminal, and stop the course database when no longer needed:
 
 ```bash
-docker compose -f code/lab4/compose.yaml down
+docker compose -f labs/lab4/compose.yaml down
 ```
 
 Do not add `--volumes`: later iterations can continue using the same data.

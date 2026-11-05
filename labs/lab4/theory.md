@@ -274,7 +274,7 @@ The next iteration preserves this HTTP contract and changes the desktop applicat
 
 Requirements: **JDK 25**, Maven, Docker with Compose V2, and `curl`. No GUI or external Tomcat installation is needed.
 
-From **`code/lab4/`**, start PostgreSQL and ensure the table exists:
+From **`labs/lab4/`**, start PostgreSQL and ensure the table exists:
 
 ```bash
 docker compose up -d --wait
@@ -337,7 +337,7 @@ In PowerShell use `$env:POSTGRES_PORT = '55432'` and `$env:ADDRESSBOOK_DB_URL = 
 
 ## Test the backend with curl
 
-Run the following commands in a **second terminal from `code/lab4/`**. `-i` includes the response status and headers; JSON request bodies come from the included UTF-8 files. These examples need neither Postman nor `jq`. On Windows PowerShell, use **`curl.exe`** in place of `curl` to avoid the legacy alias to `Invoke-WebRequest`.
+Run the following commands in a **second terminal from `labs/lab4/`**. `-i` includes the response status and headers; JSON request bodies come from the included UTF-8 files. These examples need neither Postman nor `jq`. On Windows PowerShell, use **`curl.exe`** in place of `curl` to avoid the legacy alias to `Invoke-WebRequest`.
 
 ### List contacts
 
@@ -420,7 +420,7 @@ Do not automatically repeat a failed POST: if the connection was lost near commi
 mvn -f address-book-backend/pom.xml test
 ```
 
-Run from `code/lab4/`. Default tests need neither PostgreSQL nor a graphical display. They exercise HTTP routing, JSON, status codes, validation, and error responses with an in-memory repository test double. Spring Data JDBC supplies the running application's repository implementation; the actual generated SQL/PostgreSQL/HTTP flow can be checked using the curl examples above.
+Run from `labs/lab4/`. Default tests need neither PostgreSQL nor a graphical display. They exercise HTTP routing, JSON, status codes, validation, and error responses with an in-memory repository test double. Spring Data JDBC supplies the running application's repository implementation; the actual generated SQL/PostgreSQL/HTTP flow can be checked using the curl examples above.
 
 ## What this example deliberately omits
 

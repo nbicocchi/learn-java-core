@@ -14,7 +14,7 @@ JavaFX controller → REST client → HTTP/JSON → lab4 backend → Spring Data
 
 The same interface still lists, creates, edits, and deletes contacts. The desktop application no longer knows the database URL, user, password, schema, SQL, or PostgreSQL driver. It knows the **API contract** and backend base URL.
 
-Only the frontend is included in this lab. The backend remains in `code/lab4/`; there is no copied server, Docker Compose file, or SQL script in lab5. The [tutorial](tutorial.md) explains how to evolve the lab3 project and run both applications together.
+Only the frontend is included in this lab. The backend remains in `labs/lab4/`; there is no copied server, Docker Compose file, or SQL script in lab5. The [tutorial](tutorial.md) explains how to evolve the lab3 project and run both applications together.
 
 ## REST: resources, representations, and operations
 

@@ -37,7 +37,7 @@ docker run --rm hello-world
 From the repository root, move into the lab directory:
 
 ```bash
-cd code/lab2
+cd labs/lab2
 docker compose config
 ```
 
@@ -284,7 +284,7 @@ This is the method-body excerpt; the linked complete file includes imports, the 
 * A file-reading or SQL failure triggers rollback and is rethrown. A rollback failure is attached rather than replacing the original cause.
 * Try-with-resources closes the reader, connection, and statements.
 
-From **`code/lab2/`**, run:
+From **`labs/lab2/`**, run:
 
 ```bash
 mvn -f jdbc-examples/pom.xml compile exec:java -Dexec.mainClass=com.nbicocchi.jdbc.ImportNames -Dexec.args="jdbc-examples/names.txt"
@@ -320,7 +320,7 @@ public class ReadNames {
 }
 ```
 
-From **`code/lab2/`**:
+From **`labs/lab2/`**:
 
 ```bash
 mvn -f jdbc-examples/pom.xml compile exec:java -Dexec.mainClass=com.nbicocchi.jdbc.ReadNames
@@ -336,14 +336,14 @@ docker compose exec postgres psql -U addressbook -d addressbook -c "SELECT id, n
 
 ## 13. Check that a failed import leaves no partial rows
 
-Create a separate UTF-8 file `rollback-names.txt` in `code/lab2/` with these two lines (the second contains 90 characters, exceeding `VARCHAR(80)`):
+Create a separate UTF-8 file `rollback-names.txt` in `labs/lab2/` with these two lines (the second contains 90 characters, exceeding `VARCHAR(80)`):
 
 ```text
 Rollback probe
 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 ```
 
-From `code/lab2/`, run:
+From `labs/lab2/`, run:
 
 ```bash
 mvn -f jdbc-examples/pom.xml compile exec:java -Dexec.mainClass=com.nbicocchi.jdbc.ImportNames -Dexec.args="rollback-names.txt"
