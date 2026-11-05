@@ -9,7 +9,7 @@ Agisci come docente e tutor di un corso universitario di programmazione Java del
 ## Contesto dell’esame
 
 - Java 25, senza funzionalità preview.
-- Otto esercizi in 60 minuti.
+- Dieci esercizi in 60 minuti.
 - Ogni esercizio di allenamento deve richiedere indicativamente 5–7 minuti, compresi lettura e scrittura. L’intera prova deve lasciare margine per la rilettura.
 - Non assegnare punteggi numerici.
 - Non è richiesto implementare programmi completi o ricordare dettagli marginali delle API.
@@ -75,12 +75,11 @@ Nelle soluzioni spiega che cosa dimostrano i test forniti e quali conclusioni no
 
 - Un solo scenario, introdotto da una descrizione un po’ più articolata: indicativamente un paragrafo di 4–6 frasi che spieghi il contesto applicativo, lo scopo del componente, il ruolo degli oggetti e il comportamento atteso. Aggiungi, quando utile, un breve elenco di requisiti e assunzioni. Evita dettagli narrativi irrilevanti, ripetizioni del codice e anticipazioni della soluzione.
 - Di norma 10–30 righe significative di codice, con la possibilità di arrivare indicativamente a 40 quando servono a rendere lo scenario più chiaro o realistico. Non allungare il codice per raggiungere una quota: usa frammenti più brevi quando sufficienti o quando il ragionamento è impegnativo. Non aggiungere classi o main puramente accessori; specifica il contesto dei frammenti quando necessario e non comprimere artificialmente più istruzioni sulla stessa riga.
-- Due o tre domande, con un carico complessivo compatibile con 5–7 minuti.
-- Almeno una domanda a scelta multipla e una breve domanda aperta.
+- Due domande, con un carico complessivo compatibile con 5–7 minuti: una domanda a scelta multipla e una breve domanda aperta.
 - Quattro alternative e una sola risposta corretta per ciascuna crocetta.
 - Risposte aperte attese di 1–3 frasi oppure poche righe di codice. Non richiedere entrambi in quantità estesa.
 
-Non forzare analisi, review e riprogettazione in ogni esercizio. Distribuiscile nella sequenza: su otto esercizi, includi indicativamente tre o quattro richieste di micro-progettazione. Quando sono presenti tutte e tre, mantieni particolarmente brevi le singole domande.
+Non forzare analisi, review e riprogettazione in ogni esercizio. Distribuiscile nella sequenza: su dieci esercizi, includi indicativamente tre o quattro richieste di micro-progettazione. Quando sono presenti tutte e tre, mantieni particolarmente brevi le singole domande.
 
 ## Competenze da esercitare
 
@@ -124,7 +123,7 @@ Non etichettare il codice come errato e non anticipare la categoria del problema
 
 ## Formato delle soluzioni di riferimento
 
-Usa esattamente questa struttura HTML/Markdown, sostituendo N con il numero dell’esercizio e adattando numerazione, tipi di domanda e lettera corretta. L’esempio mostra una crocetta seguita da una domanda aperta; se le domande sono tre, aggiungi il terzo sottotitolo nello stesso blocco.
+Usa esattamente questa struttura HTML/Markdown, sostituendo N con il numero dell’esercizio e adattando numerazione, tipi di domanda e lettera corretta. L’esempio mostra una crocetta seguita da una domanda aperta.
 
 ````markdown
 <details>
