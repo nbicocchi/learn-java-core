@@ -26,6 +26,6 @@ Course materials, practice activities, and Java application examples.
 | Section | Contents |
 |---|---|
 | [Slides](slides/README.md) | Course slides by topic, with practice and reading references. |
-| [Exercises](exercises/README.md) | Traditional coding exercises and AI-generated code-analysis exercises. |
-| [Labs](labs/README.md) | Guided labs, from a JavaFX frontend to a REST backend and database. |
-| [Projects](projects/README.md) | Example applications, project requirements, and exam submission instructions. |
+| [Exercises](exercises/README.md) | Exam preparation exercises in two modes: with AI and without AI. |
+| [Labs](labs/README.md) | A guided path to building a simple application with a JavaFX frontend and a Spring backend. |
+| [Projects](projects/README.md) | Example projects and guidelines for submitting the course project. |
