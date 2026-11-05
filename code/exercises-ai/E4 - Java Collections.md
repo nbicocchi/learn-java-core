@@ -556,3 +556,139 @@ all.addAll(second);
 `TreeSet` elimina duplicati e ordina alfabeticamente secondo l’ordine naturale delle stringhe; i contenitori originali non vengono modificati. È valida anche una lista ordinata costruita da un’unione deduplicata.
 
 </details>
+
+---
+
+# Esercizio 11 — Indice dei nomi
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un servizio inverte una mappa che associa codici numerici a nomi. Il risultato deve contenere ogni nome distinto come chiave, associato a uno dei codici che avevano quel nome nella mappa originale. Quando più codici hanno lo stesso nome, il contratto consente di sceglierne uno qualsiasi. Non è richiesto un particolare ordine e la mappa originale non deve essere modificata.
+
+Chiavi e valori sono non nulli. `putIfAbsent(k, v)` inserisce l'associazione soltanto se la chiave non è già presente. La `LinkedHashMap` del test viene attraversata nell'ordine di inserimento. Il frammento appartiene a una classe di test; import omessi. `@Test` identifica un test e `assertEquals(atteso, effettivo)` confronta le mappe per associazioni, non per ordine. I numeri di riga non fanno parte del codice.
+
+```java
+01  static Map<String, Integer> invert(Map<Integer, String> source) {
+02      Map<String, Integer> result = new HashMap<>();
+03      for (Map.Entry<Integer, String> entry : source.entrySet()) {
+04          result.putIfAbsent(entry.getValue(), entry.getKey());
+05      }
+06      return result;
+07  }
+08
+09  @Test
+10  void distinctNames() {
+11      Map<Integer, String> source = Map.of(1, "Ada", 2, "Lino");
+12      assertEquals(Map.of("Ada", 1, "Lino", 2), invert(source));
+13  }
+14
+15  @Test
+16  void sharedName() {
+17      Map<Integer, String> source = new LinkedHashMap<>();
+18      source.put(1, "Ada");
+19      source.put(2, "Ada");
+20      assertEquals(Map.of("Ada", 2), invert(source));
+21  }
+```
+
+## 1. Scelta multipla
+
+Quale valutazione dei test e dell'implementazione è corretta?
+
+- **A.** Entrambi i test passano e verificano anche l'ordine delle mappe.
+- **B.** `sharedName` fallisce, dimostrando che il metodo viola il contratto sui duplicati.
+- **C.** Entrambi falliscono perché una `HashMap` non è confrontabile con `Map.of`.
+- **D.** `distinctNames` passa; `sharedName` fallisce anche se il risultato prodotto è ammesso dal contratto.
+
+## 2. Risposta aperta
+
+Descrivi in **1–3 frasi** quali proprietà dovrebbe verificare un test del caso con nomi ripetuti, per accettare tutte e sole le associazioni consentite dal contratto. Non scrivere codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 11</summary>
+
+### 1. Scelta multipla: D
+
+Nel primo test ogni nome ha un solo codice e le associazioni coincidono. Nel secondo, `putIfAbsent` conserva `1`, mentre il test pretende `2`: l'asserzione fallisce, ma entrambe le scelte sono ammesse.
+
+- **A errata:** il secondo test fallisce; inoltre l'uguaglianza delle mappe non confronta l'ordine.
+- **B errata:** il contratto non richiede di conservare l'ultimo codice incontrato.
+- **C errata:** mappe di implementazioni diverse possono essere uguali se contengono le stesse associazioni.
+
+### 2. Risposta aperta
+
+Le chiavi del risultato devono essere esattamente i nomi distinti dell'input; per ogni coppia `(nome, codice)` restituita, l'input deve associare proprio quel codice a quel nome. Nel caso mostrato, occorre accettare sia `{"Ada": 1}` sia `{"Ada": 2}`, ma non una mappa vuota, un codice estraneo o nomi aggiuntivi; va inoltre verificato separatamente che l'input resti invariato.
+
+</details>
+
+---
+
+# Esercizio 12 — Messaggi degli utenti
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un servizio combina gli utenti con i loro messaggi mediante l'identificativo dell'autore. Ogni utente ha un identificativo univoco e può avere zero, uno o più messaggi. Il risultato deve contenere una voce per ogni messaggio di un utente noto, con il nome dell'utente e il testo; i messaggi di utenti sconosciuti vanno ignorati. L'ordine richiesto è quello degli utenti e, per ciascun utente, quello dei suoi messaggi nell'input.
+
+Liste, elementi e campi sono non nulli; gli input non devono essere modificati. Il frammento appartiene a una classe di test. I record confrontano i propri campi per valore; `Map.put` sostituisce il valore precedente se la chiave esiste già. `@Test` identifica un test e `assertEquals(atteso, effettivo)` confronta le liste per contenuto e ordine. Import omessi; i numeri di riga non fanno parte del codice.
+
+```java
+01  record User(long id, String name) {}
+02  record Post(long userId, String text) {}
+03  record UserPost(String name, String text) {}
+04
+05  static List<UserPost> combine(List<User> users, List<Post> posts) {
+06      Map<Long, Post> byUser = new HashMap<>();
+07      for (Post post : posts) {
+08          byUser.put(post.userId(), post);
+09      }
+10      List<UserPost> result = new ArrayList<>();
+11      for (User user : users) {
+12          Post post = byUser.get(user.id());
+13          if (post != null) {
+14              result.add(new UserPost(user.name(), post.text()));
+15          }
+16      }
+17      return result;
+18  }
+19
+20  @Test
+21  void messagesFromKnownUsers() {
+22      List<User> users = List.of(new User(1, "Ada"), new User(2, "Lino"));
+23      List<Post> posts = List.of(new Post(2, "B"), new Post(1, "A"),
+24              new Post(9, "X"));
+25      assertEquals(List.of(new UserPost("Ada", "A"),
+26              new UserPost("Lino", "B")), combine(users, posts));
+27  }
+```
+
+## 1. Scelta multipla
+
+Come termina il test mostrato?
+
+- **A.** Passa: il risultato è `[("Ada", "A"), ("Lino", "B")]`.
+- **B.** Fallisce: il risultato segue l'ordine dei messaggi, quindi comincia con Lino.
+- **C.** Fallisce: contiene anche il messaggio `X` dell'utente sconosciuto.
+- **D.** Lancia `NullPointerException` quando incontra il messaggio dell'utente 9.
+
+## 2. Risposta aperta
+
+Valuta se il test è sufficiente rispetto alla molteplicità dei messaggi ammessa dal contratto. In **1–3 frasi**, proponi un piccolo input aggiuntivo e indica risultato atteso e risultato effettivo, senza scrivere codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 12</summary>
+
+### 1. Scelta multipla: A
+
+La mappa contiene i messaggi indicizzati per autore; il ciclo finale segue la lista degli utenti, prima Ada e poi Lino. L'utente 9 non viene attraversato e il suo messaggio non entra nel risultato.
+
+- **B errata:** l'ordine finale è determinato dal ciclo sugli utenti, non dall'ordine di inserimento nella mappa.
+- **C errata:** il risultato viene costruito soltanto per gli utenti noti.
+- **D errata:** non viene cercato un utente per ogni messaggio e non si dereferenzia un utente mancante.
+
+### 2. Risposta aperta
+
+Il test non verifica più messaggi dello stesso autore: con utenti `[(1, "Ada")]` e messaggi `[(1, "A"), (1, "B")]`, il risultato atteso è `[("Ada", "A"), ("Ada", "B")]`, quello effettivo è soltanto `[("Ada", "B")]`. La mappa conserva un solo `Post` per identificativo e il secondo inserimento sostituisce il primo.
+
+**Alternativa valida:** qualsiasi input con più messaggi di uno stesso utente noto, accompagnato dai risultati corretti e dalla spiegazione della sostituzione.
+
+</details>

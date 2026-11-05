@@ -602,3 +602,142 @@ La prima chiamata fallisce e stampa `Failed`; la seconda restituisce `7` e il `b
 Con un unico `try` esterno, l’eccezione abbandona tutto il ciclo e il secondo tentativo non parte. Il `catch` interno all’iterazione consente invece di proseguire alla successiva. La riprova richiede questa gestione per tentativo, non il rientro automatico nel punto che ha fallito.
 
 </details>
+
+---
+
+# Esercizio 11 — Confronto delle date
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un servizio verifica che la data iniziale di una prenotazione sia strettamente precedente a quella finale. Le date arrivano come stringhe nel formato `yyyy-MM-dd`. Il contratto di `before` richiede di propagare al chiamante gli errori di interpretazione, per distinguerli da un intervallo non valido. Un altro componente dell'applicazione usa invece una politica diversa, restituendo `false` anche per date malformate: i due contratti non vanno confusi.
+
+Le stringhe sono non nulle. `LocalDate.parse` interpreta una data e lancia `DateTimeParseException` se non è valida; `isBefore` è falso anche quando le date sono uguali. Il frammento appartiene a una classe di test. `@Test` identifica un test; `assertTrue` richiede una condizione vera e `assertThrows(T.class, azione)` richiede che l'azione lanci un'eccezione di tipo `T` o di un suo sottotipo, altrimenti fallisce. Import omessi; i numeri di riga non fanno parte del codice.
+
+```java
+01  static boolean before(String begin, String end) {
+02      try {
+03          return LocalDate.parse(begin).isBefore(LocalDate.parse(end));
+04      } catch (DateTimeParseException e) {
+05          return false;
+06      }
+07  }
+08
+09  @Test
+10  void validInterval() {
+11      assertTrue(before("2026-05-01", "2026-05-03"));
+12  }
+13
+14  @Test
+15  void malformedDate() {
+16      assertThrows(DateTimeParseException.class,
+17              () -> before("not-a-date", "2026-05-03"));
+18  }
+```
+
+## 1. Scelta multipla
+
+Qual è l'esito dei test rispetto al metodo mostrato?
+
+- **A.** Passano entrambi perché `parse` lancia l'eccezione richiesta.
+- **B.** Passa soltanto `malformedDate`.
+- **C.** Passa soltanto `validInterval`.
+- **D.** Il metodo non compila perché `DateTimeParseException` deve comparire in una clausola `throws`.
+
+## 2. Risposta aperta
+
+Indica, in **1–3 frasi**, un caso che permetta di distinguere il requisito «strettamente precedente» da «precedente o uguale», con l'esito atteso. Spiega anche perché il solo caso di un intervallo crescente non distingue queste due interpretazioni. Non scrivere codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 11</summary>
+
+### 1. Scelta multipla: C
+
+Il primo intervallo è crescente e restituisce `true`. Nel secondo test `parse` lancia l'eccezione, ma il metodo la intercetta e restituisce `false`: `assertThrows` fallisce perché non riceve alcuna eccezione.
+
+- **A errata:** conta l'eccezione che esce dall'azione, non una che viene lanciata e gestita al suo interno.
+- **B errata:** è il test sull'input malformato a fallire; quello sull'intervallo valido passa.
+- **D errata:** `DateTimeParseException` è unchecked e non richiede una dichiarazione `throws`.
+
+### 2. Risposta aperta
+
+Con `begin` ed `end` entrambi uguali a `"2026-05-01"`, l'esito atteso è `false`; un confronto che ammette anche l'uguaglianza restituirebbe `true`. Un intervallo crescente soddisfa entrambe le interpretazioni e non permette di distinguerle; questa verifica del confine è distinta da quella sulla propagazione degli errori.
+
+</details>
+
+---
+
+# Esercizio 12 — Invio di una notifica
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un servizio prova a inviare una notifica e ripete l'operazione se riceve `IOException`. Il parametro `maxAttempts` è il numero massimo di chiamate totali, inclusa la prima, ed è almeno uno. Al primo successo il servizio deve terminare; se tutti i tentativi consentiti falliscono deve propagare l'ultima eccezione. Nei test, `Writer` simula un numero prestabilito di fallimenti iniziali e conta le chiamate.
+
+Non vi sono concorrenza o altri tipi di errore. Il frammento appartiene a una classe di test e `Writer` è una classe annidata statica. `@Test` identifica un test; `assertEquals(atteso, effettivo)` confronta i valori e `assertThrows(T.class, azione)` intercetta un'eccezione del tipo richiesto o di un suo sottotipo, fallendo se non viene lanciata. Import omessi; i numeri di riga non fanno parte del codice.
+
+```java
+01  static class Writer {
+02      final int failures;
+03      int calls;
+04      Writer(int failures) { this.failures = failures; }
+05      void write() throws IOException {
+06          calls++;
+07          if (calls <= failures) {
+08              throw new IOException("Unavailable");
+09          }
+10      }
+11  }
+12  static void send(Writer writer, int maxAttempts) throws IOException {
+13      for (int attempt = 0; attempt <= maxAttempts; attempt++) {
+14          try {
+15              writer.write();
+16              return;
+17          } catch (IOException e) {
+18              if (attempt == maxAttempts) {
+19                  throw e;
+20              }
+21          }
+22      }
+23  }
+24  @Test
+25  void recovery() throws IOException {
+26      Writer writer = new Writer(1);
+27      send(writer, 2);
+28      assertEquals(2, writer.calls);
+29  }
+30  @Test
+31  void unavailable() {
+32      Writer writer = new Writer(5);
+33      assertThrows(IOException.class, () -> send(writer, 2));
+34      assertEquals(2, writer.calls);
+35  }
+```
+
+## 1. Scelta multipla
+
+Qual è l'esito dei test?
+
+- **A.** Passano entrambi: il limite rappresenta due ritentativi dopo il primo invio.
+- **B.** Passa soltanto `recovery`; in `unavailable` l'eccezione è intercettata dall'asserzione, ma il contatore vale `3`.
+- **C.** Passa soltanto `unavailable`; il metodo continua a chiamare `write` anche dopo un successo.
+- **D.** Falliscono entrambi perché il primo `IOException` esce immediatamente da `send`.
+
+## 2. Risposta aperta
+
+Un collega propone di sostituire `Writer` nei test con un oggetto che fallisce casualmente a ogni chiamata. Valuta in **1–3 frasi** l'effetto di questa scelta sulla riproducibilità dei test e sulla verifica del limite di tentativi. Non scrivere codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 12</summary>
+
+### 1. Scelta multipla: B
+
+In `recovery` il primo invio fallisce e il secondo riesce: il `return` termina il metodo con due chiamate. In `unavailable` il ciclo usa gli indici `0`, `1`, `2`, effettuando tre chiamate: `assertThrows` passa, poi il confronto tra `2` e `3` fallisce.
+
+- **A errata:** il contratto definisce due tentativi totali, non due ritentativi oltre al primo.
+- **C errata:** il `return` impedisce chiamate successive al successo.
+- **D errata:** il `catch` gestisce i fallimenti intermedi e propaga soltanto quello dell'ultima iterazione.
+
+### 2. Risposta aperta
+
+Con esiti casuali il numero di chiamate e l'eventuale eccezione cambierebbero tra esecuzioni: un test sul limite potrebbe incontrare un successo anticipato e non verificare il percorso desiderato. Gli esiti prestabiliti consentono invece di verificare separatamente recupero dopo un fallimento e fallimento di tutti i tentativi, con aspettative riproducibili.
+
+</details>

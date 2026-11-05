@@ -1136,3 +1136,212 @@ String acquire(ScannerDevice device);
 Un dispositivo multifunzione implementa entrambe le interfacce; il servizio di acquisizione dipende solo da `ScannerDevice`. È valida anche un’interfaccia aggregata che estenda le due capacità, senza imporla ai dispositivi monofunzione.
 
 </details>
+
+---
+
+# Esercizio 16 — Pulsante di conteggio
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un dispositivo conta le pressioni di un pulsante mediante un oggetto `ClickCounter`. Il contatore parte da zero, `click` aggiunge un evento e `reset` azzera il valore. L'operazione `undo` annulla un evento se presente; quando il valore è zero deve lasciarlo invariato. Il valore del contatore non deve mai diventare negativo.
+
+Si considerano soltanto sequenze brevi, senza overflow e senza concorrenza. Il frammento appartiene a una classe di test, con `ClickCounter` come classe annidata statica; gli import sono omessi. `@Test` identifica un test e `assertEquals(atteso, effettivo)` confronta i valori. I numeri di riga non fanno parte del codice.
+
+```java
+01  static class ClickCounter {
+02      private int value;
+03      int value() { return value; }
+04      void click() { value++; }
+05      void reset() { value = 0; }
+06      void undo() {
+07          if (value >= 0) {
+08              value--;
+09          }
+10      }
+11  }
+12
+13  @Test
+14  void cancelOneEvent() {
+15      ClickCounter counter = new ClickCounter();
+16      counter.click();
+17      counter.undo();
+18      assertEquals(0, counter.value());
+19  }
+20
+21  @Test
+22  void clearEvents() {
+23      ClickCounter counter = new ClickCounter();
+24      counter.click();
+25      counter.click();
+26      counter.reset();
+27      assertEquals(0, counter.value());
+28  }
+```
+
+## 1. Scelta multipla
+
+Qual è l'esito dei test mostrati?
+
+- **A.** Passano entrambi.
+- **B.** Passa soltanto `cancelOneEvent`.
+- **C.** Passa soltanto `clearEvents`.
+- **D.** Falliscono entrambi.
+
+## 2. Risposta aperta
+
+I test forniti bastano a verificare l'invariante per tutte le operazioni ammesse? In **1–3 frasi**, indica un'ulteriore breve sequenza di chiamate, il valore atteso e quello effettivo che motivano la tua valutazione. Non scrivere codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 16</summary>
+
+### 1. Scelta multipla: A
+
+Nel primo test il valore passa da `0` a `1` e poi a `0`. Nel secondo passa da `0` a `2`, poi `reset` lo porta a `0`.
+
+- **B errata:** anche l'azzeramento soddisfa l'asserzione.
+- **C errata:** annullare un evento esistente porta correttamente da `1` a `0`.
+- **D errata:** nessuno dei due test chiama `undo` quando il valore è zero.
+
+### 2. Risposta aperta
+
+No: su un contatore appena creato, una chiamata a `undo` dovrebbe lasciare `0`, ma produce `-1` perché la condizione accetta anche lo zero. I test mostrano il comportamento di alcune sequenze, ma non verificano la transizione da zero mediante `undo`.
+
+**Alternativa valida:** `click`, `undo`, `undo`, oppure `click`, `reset`, `undo`: in entrambi i casi il valore finale atteso è `0`, quello effettivo è `-1`.
+
+</details>
+
+---
+
+# Esercizio 17 — Richiesta di prelievo
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un conto di pagamento consente prelievi soltanto entro il saldo disponibile. Se l'importo supera il saldo, `withdraw` deve lanciare `IllegalArgumentException` e lasciare invariato il conto. Un prelievo accettato deve invece ridurre il saldo dell'importo richiesto. Il test seguente rappresenta una richiesta rifiutata.
+
+Saldo iniziale e importi sono interi non negativi espressi in centesimi; non vi sono commissioni, overflow o concorrenza. Il frammento appartiene a una classe di test e `Account` è una classe annidata statica. `@Test` identifica un test; `assertThrows(T.class, azione)` passa se l'azione lancia un'eccezione di tipo `T` o di un suo sottotipo. `assertEquals(atteso, effettivo)` confronta i valori; se un'asserzione fallisce, il test termina. Import omessi; i numeri di riga non fanno parte del codice.
+
+```java
+01  static class Account {
+02      private int balance;
+03      Account(int initialBalance) { balance = initialBalance; }
+04      int balance() { return balance; }
+05      void withdraw(int amount) {
+06          balance -= amount;
+07          if (balance < 0) {
+08              throw new IllegalArgumentException("Insufficient funds");
+09          }
+10      }
+11  }
+12
+13  @Test
+14  void rejectedWithdrawal() {
+15      Account account = new Account(100);
+16      assertThrows(IllegalArgumentException.class,
+17              () -> account.withdraw(150));
+18      assertEquals(100, account.balance());
+19  }
+```
+
+## 1. Scelta multipla
+
+Quale descrizione dell'esecuzione del test è corretta?
+
+- **A.** Entrambe le asserzioni passano: l'eccezione annulla automaticamente le modifiche.
+- **B.** `assertThrows` fallisce perché `withdraw` non dichiara `throws`.
+- **C.** `assertThrows` passa; la seconda asserzione non viene eseguita perché l'eccezione esce dal test.
+- **D.** `assertThrows` passa; `assertEquals` fallisce perché il saldo è `-50`.
+
+## 2. Risposta aperta
+
+Un revisore propone di conservare soltanto `assertThrows` nel test e di verificare il saldo solo nei test dei prelievi accettati. Valuta la proposta rispetto al contratto, in **1–3 frasi**, senza correggere il codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 17</summary>
+
+### 1. Scelta multipla: D
+
+Il metodo sottrae prima di verificare il saldo: ottiene `-50` e poi lancia l'eccezione attesa. `assertThrows` la intercetta, quindi l'esecuzione prosegue e il confronto con `100` fallisce.
+
+- **A errata:** un'eccezione non esegue un rollback automatico delle assegnazioni.
+- **B errata:** `IllegalArgumentException` è unchecked e non deve essere dichiarata nella firma.
+- **C errata:** l'eccezione attesa è gestita da `assertThrows`, non abbandona il metodo di test.
+
+### 2. Risposta aperta
+
+La proposta elimina la verifica di una parte esplicita del contratto: il conto deve restare invariato dopo un rifiuto. I test dei prelievi accettati non verificano questo percorso; occorre osservare il saldo anche dopo l'operazione che lancia l'eccezione.
+
+</details>
+
+---
+
+# Esercizio 18 — Contatti con lo stesso cognome
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Una rubrica deve restituire tutti i contatti con il cognome richiesto, nell'ordine in cui sono memorizzati. I contatti possono avere lo stesso cognome ma nomi diversi. Una ricerca senza corrispondenze deve restituire una lista vuota. Il team vuole usare i test del contratto anche per una futura implementazione della rubrica basata su array.
+
+Rubrica, contatti e stringhe sono non nulli; il confronto distingue maiuscole e minuscole. Il frammento appartiene a una classe di test, con `Directory` come classe annidata statica. Gli import sono omessi. `@Test` identifica un test; `assertEquals(atteso, effettivo)` confronta le liste per contenuto e ordine, usando `equals` sui contatti. Il record fornisce l'uguaglianza per valori. I numeri di riga non fanno parte del codice.
+
+```java
+01  record Person(String name, String lastname) {}
+02  static class Directory {
+03      private final List<Person> people;
+04      Directory(List<Person> people) { this.people = people; }
+05      List<Person> find(String lastname) {
+06          List<Person> found = new ArrayList<>();
+07          for (Person person : people) {
+08              if (person.lastname().equals(lastname)) {
+09                  found.add(person);
+10                  break;
+11              }
+12          }
+13          return found;
+14      }
+15  }
+16
+17  @Test
+18  void searchContact() {
+19      Person ada = new Person("Ada", "Rossi");
+20      Directory book = new Directory(List.of(ada));
+21      assertEquals(List.of(ada), book.find("Rossi"));
+22      assertEquals(List.of(), book.find("Verdi"));
+23  }
+24
+25  @Test
+26  void searchSharedLastname() {
+27      Person ada = new Person("Ada", "Rossi");
+28      Person lino = new Person("Lino", "Rossi");
+29      Directory book = new Directory(List.of(ada, lino));
+30      assertEquals(List.of(ada, lino), book.find("Rossi"));
+31  }
+```
+
+## 1. Scelta multipla
+
+Qual è l'esito dei due test?
+
+- **A.** Passano entrambi perché i due contatti hanno lo stesso cognome.
+- **B.** Passa soltanto `searchContact`.
+- **C.** Passa soltanto `searchSharedLastname`.
+- **D.** Falliscono entrambi perché le liste vengono confrontate per identità.
+
+## 2. Risposta aperta
+
+Per la futura implementazione basata su array, quali parti di questi test devono rimanere indipendenti dalla rappresentazione interna? Rispondi in **1–3 frasi**, distinguendo preparazione della rubrica e comportamento verificato, senza implementare classi o test.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 18</summary>
+
+### 1. Scelta multipla: B
+
+Il primo test verifica una corrispondenza e un'assenza, entrambe gestite come richiesto. Nel secondo, il `break` interrompe la ricerca dopo `ada`: la lista effettiva è `[ada]`, non `[ada, lino]`.
+
+- **A errata:** il contratto richiede tutti i contatti, non un rappresentante per cognome.
+- **C errata:** la seconda ricerca perde il secondo contatto, mentre il primo test passa.
+- **D errata:** `List.equals` confronta contenuto e ordine; non richiede che le liste siano lo stesso oggetto.
+
+### 2. Risposta aperta
+
+Devono rimanere gli stessi dati logici e le stesse aspettative: tutti i contatti corrispondenti nello stesso ordine, oppure una lista vuota. Può cambiare il modo di costruire e popolare la rubrica, ma le asserzioni devono usare l'operazione pubblica di ricerca, non ispezionare array o liste interne; una comune interfaccia consentirebbe di riutilizzare le verifiche.
+
+</details>

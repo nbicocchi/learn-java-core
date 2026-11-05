@@ -548,3 +548,70 @@ static <T> List<T> empty() {
 La lista fornisce una raccolta modificabile con controllo statico del tipo, senza creare array generici. `List.of()` non soddisferebbe il requisito di modificabilità.
 
 </details>
+
+---
+
+# Esercizio 11 — Selezione secondo un criterio
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un'utilità generica seleziona il massimo di una lista secondo un criterio fornito dal chiamante. Il contratto richiede di usare il `Comparator` ricevuto, anche quando è diverso dall'ordine naturale degli elementi. A parità di confronto può essere restituito uno qualsiasi degli elementi massimi. I test esercitano lo stesso metodo con due criteri.
+
+Liste, elementi e comparatori sono non nulli; le liste non sono vuote e non devono essere modificate. `compare(a, b)` positivo significa che `a` è maggiore di `b` secondo il comparatore; `compareTo` usa invece l'ordine naturale. `Comparator.naturalOrder()` usa l'ordine naturale e `reverseOrder()` lo inverte. Il frammento appartiene a una classe di test; `@Test` identifica un test e `assertEquals(atteso, effettivo)` confronta i valori. Import omessi; i numeri di riga non fanno parte del codice.
+
+```java
+01  static <T extends Comparable<? super T>> T max(
+02          List<T> values, Comparator<? super T> order) {
+03      T best = values.getFirst();
+04      for (T candidate : values) {
+05          if (candidate.compareTo(best) > 0) {
+06              best = candidate;
+07          }
+08      }
+09      return best;
+10  }
+11
+12  @Test
+13  void naturalCriterion() {
+14      Integer result = max(List.of(2, 7, 3), Comparator.naturalOrder());
+15      assertEquals(Integer.valueOf(7), result);
+16  }
+17
+18  @Test
+19  void reversedCriterion() {
+20      Integer result = max(List.of(2, 7, 3), Comparator.reverseOrder());
+21      assertEquals(Integer.valueOf(2), result);
+22  }
+```
+
+## 1. Scelta multipla
+
+Qual è l'esito dei test?
+
+- **A.** Passano entrambi perché `max` adatta automaticamente `compareTo` al comparatore.
+- **B.** Passa soltanto `reversedCriterion`.
+- **C.** Il metodo non compila perché `Comparator<? super T>` non ammette comparatori di interi.
+- **D.** Passa soltanto `naturalCriterion`; nell'altro test il risultato effettivo è `7`.
+
+## 2. Risposta aperta
+
+Proponi, in **1–3 frasi**, un test discriminante su stringhe con un criterio diverso dall'ordine naturale: indica elementi, criterio, massimo atteso e risultato effettivo del metodo. Non scrivere codice; puoi assumere disponibile un comparatore che ordina per lunghezza crescente.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 11</summary>
+
+### 1. Scelta multipla: D
+
+Il metodo sceglie sempre secondo `compareTo` e non usa `order`. Restituisce quindi `7` in entrambi i test: corretto per l'ordine naturale, ma non per quello inverso, il cui massimo è `2`.
+
+- **A errata:** passare un comparatore non modifica il comportamento di `compareTo`; il metodo deve usarlo esplicitamente.
+- **B errata:** il test naturale passa e quello inverso fallisce.
+- **C errata:** il vincolo e il wildcard sono compatibili con `Integer` e con entrambi i comparatori mostrati.
+
+### 2. Risposta aperta
+
+Con la lista `["z", "aa"]` e un comparatore per lunghezza crescente, il massimo atteso è `"aa"`, ma il metodo restituisce `"z"` secondo l'ordine naturale delle stringhe. Questo test distingue il rispetto del criterio passato dall'uso esclusivo di `compareTo`; test con il solo ordine naturale non lo fanno.
+
+**Alternativa valida:** altri elementi e criteri esplicitati per cui il massimo naturale differisce da quello richiesto, senza ambiguità dovute a parità.
+
+</details>

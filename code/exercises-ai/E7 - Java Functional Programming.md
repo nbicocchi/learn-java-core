@@ -578,3 +578,79 @@ Un revisore usa un unico `StringBuilder` esterno, condiviso dalle lambda di un `
 Il builder condiviso non è sicuro per modifiche concorrenti e `forEach` parallelo non garantisce l’ordine della sorgente. Inoltre una semplice aggiunta della virgola dopo ogni codice lascerebbe un separatore finale. Il collector `joining` gestisce accumulazione, combinazione e delimitatori senza esporre un unico builder esterno alle lambda; preserva l’ordine di incontro dello stream ordinato.
 
 </details>
+
+---
+
+# Esercizio 11 — Aggiornamento dei conti scaduti
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un servizio seleziona i conti con scadenza strettamente precedente alla data di riferimento. Deve aumentare del 10% il saldo dei soli conti selezionati, modificando gli oggetti originali, e restituirli in ordine di saldo aggiornato decrescente. I conti non scaduti devono rimanere invariati. Ogni test prepara nuovi oggetti e invoca il servizio una sola volta.
+
+Liste, conti e date sono non nulli; i saldi sono centesimi interi positivi multipli di 100, senza overflow. Lo stream è sequenziale. `peek` esegue l'azione sugli elementi che attraversano quello stadio; `filter` lascia passare quelli che soddisfano il predicato, `sorted` li ordina e `toList` raccoglie i riferimenti senza copiare gli oggetti. Il frammento appartiene a una classe di test, con `Account` come classe annidata statica. `@Test` identifica un test e `assertEquals(atteso, effettivo)` confronta valori o contenuto e ordine delle liste. Import omessi; i numeri di riga non fanno parte del codice.
+
+```java
+01  static class Account {
+02      int balance;
+03      final LocalDate due;
+04      Account(int balance, LocalDate due) {
+05          this.balance = balance;
+06          this.due = due;
+07      }
+08  }
+09  static List<Account> applyInterest(List<Account> accounts, LocalDate today) {
+10      return accounts.stream()
+11              .peek(a -> a.balance += a.balance / 10)
+12              .filter(a -> a.due.isBefore(today))
+13              .sorted(Comparator.comparingInt((Account a) -> a.balance).reversed())
+14              .toList();
+15  }
+16  @Test
+17  void selectedAccounts() {
+18      LocalDate today = LocalDate.of(2026, 5, 10);
+19      Account old = new Account(100, today.minusDays(1));
+20      Account current = new Account(200, today.plusDays(1));
+21      List<Account> selected = applyInterest(List.of(old, current), today);
+22      assertEquals(List.of(old), selected);
+23      assertEquals(110, old.balance);
+24  }
+25  @Test
+26  void currentBalance() {
+27      LocalDate today = LocalDate.of(2026, 5, 10);
+28      Account current = new Account(200, today.plusDays(1));
+29      applyInterest(List.of(current), today);
+30      assertEquals(200, current.balance);
+31  }
+```
+
+## 1. Scelta multipla
+
+Qual è l'esito dei test?
+
+- **A.** Passano entrambi: `filter` impedisce ogni modifica ai conti esclusi.
+- **B.** Falliscono entrambi perché `toList` crea copie indipendenti dei conti.
+- **C.** Passa soltanto `selectedAccounts`; in `currentBalance` il saldo effettivo è `220`.
+- **D.** Passa soltanto `currentBalance`; `peek` non viene eseguito quando si usa `toList`.
+
+## 2. Risposta aperta
+
+Il test `selectedAccounts` verifica anche il requisito sull'ordinamento? In **1–3 frasi**, proponi dati aggiuntivi e l'ordine atteso che permettano di verificarlo, senza scrivere codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 11</summary>
+
+### 1. Scelta multipla: C
+
+`toList` consuma la pipeline e il `peek` precedente al filtro aumenta il saldo anche dei conti che saranno esclusi. Il primo test osserva soltanto la selezione e il saldo del conto scaduto, entrambi corretti; nel secondo il conto non scaduto passa da `200` a `220`, violando il contratto.
+
+- **A errata:** il filtro non annulla gli effetti già avvenuti negli stadi precedenti.
+- **B errata:** `toList` raccoglie gli stessi riferimenti, non copie indipendenti dei conti.
+- **D errata:** `toList` è un'operazione terminale e, in questa pipeline, gli elementi attraversano `peek` prima della selezione.
+
+### 2. Risposta aperta
+
+No: una lista con un solo conto selezionato non distingue ordinamenti diversi. Si possono inserire nell'ordine due conti entrambi scaduti, con saldi `100` e `300`: dopo l'aggiornamento devono comparire prima quello con `330`, poi quello con `110`; l'implementazione mostrata soddisfa questa verifica, pur non rispettando il requisito sui conti esclusi.
+
+**Alternativa valida:** altri saldi distinti di conti scaduti, inizialmente non già in ordine decrescente, con saldi aggiornati e ordine atteso corretti.
+
+</details>

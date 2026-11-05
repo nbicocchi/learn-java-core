@@ -652,3 +652,65 @@ return (double) total / count;
 Il controllo copre array vuoti e array di sole letture mancanti; il cast rende frazionaria la divisione. È equivalente accumulare la somma in un `double`.
 
 </details>
+
+---
+
+# Esercizio 11 — Ricerca tra i codici
+
+**Tempo indicativo: 5–7 minuti · Java 25**
+
+Un catalogo conserva i codici dei prodotti in un array. Il metodo `contains` deve indicare se un codice è presente, senza modificare il contenuto o l'ordine dell'array ricevuto. Il chiamante può quindi continuare a usare l'ordine originale per la visualizzazione. Due test verificano aspetti del contratto.
+
+Gli array e le stringhe sono non nulli. `Arrays.sort` ordina l'array ricevuto; `Arrays.binarySearch` cerca nell'array ordinato e restituisce un indice non negativo se trova il valore, un numero negativo altrimenti.
+
+Il frammento appartiene a una classe di test; gli import sono omessi. `@Test` identifica un test, `assertTrue` richiede una condizione vera e `assertArrayEquals(atteso, effettivo)` confronta contenuto e ordine degli array. Ogni test usa i propri dati. I numeri di riga non fanno parte del codice.
+
+```java
+01  static boolean contains(String[] codes, String searched) {
+02      Arrays.sort(codes);
+03      return Arrays.binarySearch(codes, searched) >= 0;
+04  }
+05
+06  @Test
+07  void existingCode() {
+08      String[] codes = {"B", "A", "C"};
+09      assertTrue(contains(codes, "A"));
+10  }
+11
+12  @Test
+13  void catalogOrder() {
+14      String[] codes = {"B", "A", "C"};
+15      contains(codes, "A");
+16      assertArrayEquals(new String[]{"B", "A", "C"}, codes);
+17  }
+```
+
+## 1. Scelta multipla
+
+Qual è l'esito dei due test?
+
+- **A.** Passano entrambi.
+- **B.** Passa soltanto `catalogOrder`.
+- **C.** Passa soltanto `existingCode`.
+- **D.** Falliscono entrambi.
+
+## 2. Risposta aperta
+
+Un collega propone di usare soltanto array già ordinati nei test del metodo. Questa scelta permette di verificare adeguatamente il requisito sulla conservazione dell'input? Motiva in **1–3 frasi**, senza scrivere codice.
+
+<details>
+<summary>Mostra la soluzione dell’esercizio 11</summary>
+
+### 1. Scelta multipla: C
+
+La ricerca trova `A`, quindi `existingCode` passa. `catalogOrder` fallisce: dopo la chiamata l'array contiene `{"A", "B", "C"}`, mentre il test si aspetta `{"B", "A", "C"}`.
+
+- **A errata:** il risultato della ricerca è corretto, ma l'ordine dell'input è stato modificato.
+- **B errata:** è proprio il test sull'ordine a fallire.
+- **D errata:** l'ordinamento rende valida la ricerca binaria e il codice cercato viene trovato.
+
+### 2. Risposta aperta
+
+No: su un array già ordinato, `sort` non cambia l'ordine osservabile e il test non distingue questa implementazione da una che lascia davvero invariato l'input. Occorre includere un array non ordinato e confrontarne lo stato dopo la chiamata con una copia dello stato precedente; verificare soltanto il booleano restituito non basta.
+
+</details>

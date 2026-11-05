@@ -18,7 +18,7 @@
 
 ### Exercises
 
-The [exercises-new](exercises-new/) directory contains exam-style exercises validated by the instructor.
+The [exercises-ai](code/exercises-ai) directory contains exam-style exercises validated by the instructor.
 
 For additional practice, use [PROMPT.md](exercises-new/PROMPT.md) with an AI assistant to generate more exercises on the course topics. The exam papers will be generated using the same method and validated by the instructor before use. Additional exercises generated independently for practice are not automatically instructor-validated.
 
@@ -56,6 +56,7 @@ Your pull requests are very welcome! To contribute, please refer to [this](https
 * [E2.5 — Strings](<slides/E2.5 — Strings.md>)
 * [E2.6 — Wrapper classes](<slides/E2.6 — Wrapper Classes.md>)
 * [E2.7 — Text input and output](<slides/E2.7 — Text Input and Output.md>)
+* [E2.8 — Unit testing with JUnit](<slides/E2.8 — Unit Testing with JUnit.md>)
 
 > **Practice:** [E2 — Java Basics](<exercises-new/E2 - Java Basics.md>)
 >
