@@ -194,13 +194,7 @@ Publish your project in a **public GitHub repository** and submit its URL to the
 | **Working functionality** | The main features work without crashes or blocking issues during normal use. |
 | **Presentation and usability** | The interface is visually coherent and easy to understand, with clear instructions, messages, and interaction flow. A text-based interface is also acceptable if well presented and usable. |
 
-The project adjusts the written exam score by **−3 to +3 points**:
-
-| Project quality | Adjustment |
-|---|---|
-| Below average | **−3** |
-| Average | **0** |
-| Above average | **+3** |
+The project adjusts the written exam score by **−3 to +3 points**: **−3** for a below-average project, **0** for an average project, and **+3** for an above-average project. Its weight is deliberately limited because projects can easily be copied, shared, or reused from previous years, making them a less reliable measure of individual understanding. The written exam therefore remains the main basis for assessing each student's knowledge and skills.
 
 ### Written exam
 
@@ -212,6 +206,8 @@ Each exercise contains one multiple-choice question and one open-ended question,
 |---|---|
 | Multiple choice | **1 point** for a correct answer; **0 points** for an incorrect or missing answer. No negative marking. |
 | Open-ended | Up to **2 points**, based on the correctness and completeness of the answer. |
+
+### Final grade
 
 **Final grade = written exam score + project adjustment.**
 
