@@ -8,8 +8,11 @@
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 ### Books
-* [Java Core — Course notes and exercises](<books/Java Core.pdf>)
+* [Java Core — Course notes](<books/Java Core.pdf>)
+* [Java Core Exercises — Exercises and solutions](<books/Java Core Exercises.pdf>)
 * Big Java - Early Objects 7th Edition; Horstmann; Wiley Press
+
+Generate both course PDFs with `python3 books/scripts/build_book.py`. Use `--output-dir <directory>` to generate them elsewhere. Labs are not included in these books.
 
 ### Documentation
 * [IntelliJ Tutorial](https://www.jetbrains.com/idea/resources/)

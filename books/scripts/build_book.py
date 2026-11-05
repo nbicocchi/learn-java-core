@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the course PDF with CLI tools; Python uses only its standard library."""
+"""Build separate course-notes and exercise PDFs; Python uses only its standard library."""
 
 import argparse
 import hashlib
@@ -191,7 +191,7 @@ def image_targets(document):
             yield from parser.targets
 
 
-def prepare_document(document, source, work, prefix, appendix=False):
+def prepare_document(document, source, work, prefix, heading_offset=0):
     headers = {}
     for node in nodes(document["blocks"]):
         if node["t"] == "Header":
@@ -200,8 +200,8 @@ def prepare_document(document, source, work, prefix, appendix=False):
             new_id = f"{prefix}-{old_id}"
             headers[old_id] = new_id
             content[1][0] = new_id
-            if appendix:
-                content[0] = min(content[0] + 2, 6)
+            if heading_offset:
+                content[0] = min(content[0] + heading_offset, 6)
 
     for node in nodes(document["blocks"]):
         if node["t"] == "Image":
@@ -280,48 +280,27 @@ def prepare_document(document, source, work, prefix, appendix=False):
     return document["blocks"]
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "books/Java Core.pdf",
-                        help="Output PDF (default: books/Java Core.pdf)")
-    args = parser.parse_args()
-    slides = sorted((ROOT / "slides").glob("*.md"), key=natural_key)
-    exercises = sorted((ROOT / "code/exercises-ai").glob("E[0-9]*.md"), key=natural_key)
-    if not slides or not exercises:
-        parser.error("Expected slides/*.md and exercise collections in code/exercises-ai/E*.md")
-
-    missing = dependency_error(slides + exercises)
-    if missing:
-        parser.error(missing)
-    if not TEMPLATE.is_file():
-        parser.error(f"Missing bundled Eisvogel template: {TEMPLATE}. Restore books/scripts/templates/eisvogel/.")
-    missing = latex_dependency_error()
-    if missing:
-        parser.error(missing)
-
-    output = args.output.expanduser().resolve()
+def build_book(sources, output, title, subtitle, exercise_book=False):
+    """Render one book, replacing its previous PDF only after a successful build."""
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".course-book-", dir=output.parent) as folder:
         work = Path(folder)
-        documents = [(source, read_document(source)) for source in slides + exercises]
+        documents = [(source, read_document(source)) for source in sources]
         # Reject external images before starting any rendering or PDF generation.
         for source, document in documents:
             for target in image_targets(document):
                 parsed = urlsplit(target)
                 if parsed.scheme or parsed.netloc:
                     raise ValueError(f"Use a local image in {source.name}: {target}")
-        book = None
+        book = documents[0][1]
         blocks = []
-        for index, (source, document) in enumerate(documents[:len(slides)]):
-            print(f"Slide: {source.stem}", flush=True)
-            if book is None:
-                book = document
-            blocks += prepare_document(document, source, work, f"slide-{index}")
-        blocks.append(heading(1, "Appendix — Exercises", "appendix-exercises"))
-        for index, (source, document) in enumerate(documents[len(slides):]):
-            print(f"Exercises: {source.stem}", flush=True)
-            blocks.append(heading(2, source.stem, f"exercise-collection-{index}"))
-            blocks += prepare_document(document, source, work, f"exercises-{index}", appendix=True)
+        for index, (source, document) in enumerate(documents):
+            kind = "Exercises" if exercise_book else "Slide"
+            print(f"{kind}: {source.stem}", flush=True)
+            if exercise_book:
+                blocks.append(heading(1, source.stem, f"exercise-collection-{index}"))
+            blocks += prepare_document(document, source, work, f"document-{index}",
+                                       heading_offset=1 if exercise_book else 0)
         book["blocks"] = blocks
         book["meta"] = {}
         manuscript = work / "book.json"
@@ -338,7 +317,7 @@ def main():
         run(["pandoc", str(manuscript), "--from=json", "--standalone", "--template", str(TEMPLATE),
              "--pdf-engine=xelatex", "--top-level-division=chapter",
              "--toc", "--toc-depth=1", "--highlight-style=tango",
-             "--metadata=title:Java Core", "--metadata=subtitle:Course notes and exercises",
+             f"--metadata=title:{title}", f"--metadata=subtitle:{subtitle}",
              "--metadata=author:Nicola Bicocchi",
              "--variable=book:true", "--variable=classoption:oneside", "--variable=classoption:open=any",
              "--variable=has-frontmatter:true", "--variable=papersize:a4",
@@ -346,7 +325,7 @@ def main():
              "--variable=mainfont:DejaVu Sans", "--variable=monofont:DejaVu Sans Mono",
              "--variable=titlepage:true", "--variable=titlepage-color:193549",
              "--variable=titlepage-text-color:FFFFFF", "--variable=titlepage-rule-color:5CC8FF",
-             "--variable=toc-own-page:true", "--variable=header-left:Java Core",
+             "--variable=toc-own-page:true", f"--variable=header-left:{title}",
              "--variable=header-right:Java 25", "--variable=linestretch:1.1",
              "--variable=colorlinks:true", "--include-in-header", str(header),
              "--output", str(temporary_pdf)], cwd=work)
@@ -354,7 +333,41 @@ def main():
             raise ValueError("The converter did not produce a valid PDF")
         # Both paths are on the same filesystem: failed builds never touch the old PDF.
         os.replace(temporary_pdf, output)
-    print(f"Created {output} ({len(slides)} lessons, {len(exercises)} exercise collections)")
+    unit = "exercise collections" if exercise_book else "lessons"
+    print(f"Created {output} ({len(sources)} {unit})")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "books",
+                        help="Directory for both PDFs (default: books/)")
+    parser.add_argument("--output", type=Path,
+                        help="Override the course-notes PDF path (default: <output-dir>/Java Core.pdf)")
+    parser.add_argument("--exercises-output", type=Path,
+                        help="Override the exercises PDF path (default: <output-dir>/Java Core Exercises.pdf)")
+    args = parser.parse_args()
+    output_dir = args.output_dir.expanduser().resolve()
+    notes_output = (args.output or output_dir / "Java Core.pdf").expanduser().resolve()
+    exercises_output = (args.exercises_output or output_dir / "Java Core Exercises.pdf").expanduser().resolve()
+    if notes_output == exercises_output:
+        parser.error("The course-notes and exercises PDFs must have different output paths")
+
+    slides = sorted((ROOT / "slides").glob("*.md"), key=natural_key)
+    exercises = sorted((ROOT / "code/exercises-ai").glob("E[0-9]*.md"), key=natural_key)
+    if not slides or not exercises:
+        parser.error("Expected slides/*.md and exercise collections in code/exercises-ai/E*.md")
+
+    missing = dependency_error(slides + exercises)
+    if missing:
+        parser.error(missing)
+    if not TEMPLATE.is_file():
+        parser.error(f"Missing bundled Eisvogel template: {TEMPLATE}. Restore books/scripts/templates/eisvogel/.")
+    missing = latex_dependency_error()
+    if missing:
+        parser.error(missing)
+
+    build_book(slides, notes_output, "Java Core", "Course notes")
+    build_book(exercises, exercises_output, "Java Core Exercises", "Exercises and solutions", exercise_book=True)
 
 
 if __name__ == "__main__":
