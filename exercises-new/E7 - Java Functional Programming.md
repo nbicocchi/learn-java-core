@@ -15,8 +15,8 @@ Il metodo va dichiarato nel corpo di una classe, le istruzioni in un suo metodo 
 ```java
 04  Predicate<Integer> nonNegative = value -> value >= 0;
 05  Predicate<Integer> allowed = nonNegative.and(below(5));
-06  System.out.println(allowed.test(-1));
-07  System.out.println(allowed.test(4));
+06  IO.println(allowed.test(-1));
+07  IO.println(allowed.test(4));
 ```
 
 ## 1. Scelta multipla
@@ -78,8 +78,8 @@ Il metodo va dichiarato nel corpo di una classe e le istruzioni in un suo metodo
 ```java
 04  Optional<String> name = Optional.of(" Ada ");
 05  Optional<Integer> length = name.map(String::strip).map(String::length);
-06  System.out.println(length.orElse(-1));
-07  System.out.println("[" + name.get() + "]");
+06  IO.println(length.orElse(-1));
+07  IO.println("[" + name.get() + "]");
 ```
 
 ## 1. Scelta multipla
@@ -137,8 +137,8 @@ Il metodo va dichiarato nel corpo di una classe e le istruzioni in un suo metodo
 ```java
 04  Function<Integer, Integer> increment = value -> value + 1;
 05  Function<Integer, Integer> twice = value -> 2 * value;
-06  System.out.println(increment.andThen(twice).apply(3));
-07  System.out.println(increment.compose(twice).apply(3));
+06  IO.println(increment.andThen(twice).apply(3));
+07  IO.println(increment.compose(twice).apply(3));
 ```
 
 ## 1. Scelta multipla
@@ -195,11 +195,11 @@ Il frammento è eseguito in un metodo con `java.util.List` e `java.util.stream.S
 01  List<String> names = List.of("Ada", "Linus", "Anna");
 02  Stream<String> selected = names.stream()
 03      .filter(name -> {
-04          System.out.println("Check " + name);
+04          IO.println("Check " + name);
 05          return name.startsWith("A");
 06      });
-07  System.out.println("Ready");
-08  System.out.println(selected.findFirst().orElse("None"));
+07  IO.println("Ready");
+08  IO.println(selected.findFirst().orElse("None"));
 ```
 
 ## 1. Scelta multipla
@@ -216,8 +216,8 @@ Seleziona l’unico output corretto, indicando le righe nell’ordine.
 In un’esecuzione separata, si mantengono le righe 1–6 ma si sostituiscono le righe 7–8 con:
 
 ```java
-09  System.out.println(selected.count());
-10  System.out.println(selected.toList());
+09  IO.println(selected.count());
+10  IO.println(selected.toList());
 ```
 
 Valuta se il programma stampi sia il numero sia la lista completa dei nomi selezionati. Se necessario, riscrivi soltanto le due nuove righe affinché il filtro venga eseguito una sola volta e siano disponibili entrambi i risultati. Le stampe diagnostiche del filtro possono rimanere.
@@ -241,8 +241,8 @@ Il terminale `count` consuma lo stream; non è possibile usarlo nuovamente per o
 
 ```java
 List<String> result = selected.toList();
-System.out.println(result.size());
-System.out.println(result);
+IO.println(result.size());
+IO.println(result);
 ```
 
 I messaggi diagnostici precedono le due stampe finali; il filtro non viene eseguito due volte.
@@ -267,7 +267,7 @@ Il frammento è eseguito in un metodo con `java.util.List` importata. I numeri d
 05      .flatMap(List::stream)
 06      .distinct()
 07      .toList();
-08  System.out.println(result);
+08  IO.println(result);
 ```
 
 ## 1. Scelta multipla
@@ -327,7 +327,7 @@ Il frammento è eseguito in un metodo con `java.util.List` importata. I numeri d
 03      .filter(value -> value >= 0)
 04      .mapToInt(value -> 2 * value)
 05      .sum();
-06  System.out.println(total);
+06  IO.println(total);
 ```
 
 ## 1. Scelta multipla
@@ -389,7 +389,7 @@ Frammento in un metodo con `java.util.List` importata. I numeri di riga non fann
 03      .limit(2)
 04      .filter(value -> value > 0)
 05      .toList();
-06  System.out.println(result);
+06  IO.println(result);
 ```
 
 ## 1. Scelta multipla
@@ -438,8 +438,8 @@ Frammento in un metodo con `java.util.*`, `java.util.function.Function` e `java.
 01  List<String> categories = List.of("book", "pen", "book");
 02  Map<String, Long> counts = categories.stream()
 03      .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-04  System.out.println(counts.get("book"));
-05  System.out.println(counts.size());
+04  IO.println(counts.get("book"));
+05  IO.println(counts.size());
 ```
 
 ## 1. Scelta multipla
@@ -489,8 +489,8 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 02  Optional<String> found = names.stream()
 03      .filter(name -> name.length() > 5)
 04      .findFirst();
-05  System.out.println(found.isPresent());
-06  System.out.println(found.orElse("None"));
+05  IO.println(found.isPresent());
+06  IO.println(found.orElse("None"));
 ```
 
 ## 1. Scelta multipla
@@ -544,7 +544,7 @@ Frammento in un metodo con `java.util.List` e `java.util.stream.Collectors` impo
 02  String text = codes.stream()
 03      .map(code -> code.toLowerCase(java.util.Locale.ROOT))
 04      .collect(Collectors.joining(","));
-05  System.out.println(text);
+05  IO.println(text);
 ```
 
 ## 1. Scelta multipla

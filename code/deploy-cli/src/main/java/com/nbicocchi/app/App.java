@@ -67,8 +67,8 @@ public class App {
     }
 
     private static void printUsage() {
-        System.out.println("Usage: java -jar deploy-cli-1.0-SNAPSHOT.jar <value> <from> <to>");
-        System.out.println("Scales: C (Celsius), F (Fahrenheit), K (Kelvin), case-insensitive.");
-        System.out.println("Example: java -jar deploy-cli-1.0-SNAPSHOT.jar 25 C F");
+        IO.println("Usage: java -jar deploy-cli-1.0-SNAPSHOT.jar <value> <from> <to>");
+        IO.println("Scales: C (Celsius), F (Fahrenheit), K (Kelvin), case-insensitive.");
+        IO.println("Example: java -jar deploy-cli-1.0-SNAPSHOT.jar 25 C F");
     }
 }

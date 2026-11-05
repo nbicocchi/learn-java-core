@@ -15,8 +15,8 @@ Il frammento è eseguito in un metodo con gli import indicati; i numeri di riga 
 03  List<String> input = List.of("Ada", "Linus", "Ada", "Grace");
 04  List<String> recipients = new ArrayList<>(input);
 05  recipients.remove("Ada");
-06  System.out.println(recipients);
-07  System.out.println(input.size());
+06  IO.println(recipients);
+07  IO.println(input.size());
 ```
 
 ## 1. Scelta multipla
@@ -75,9 +75,9 @@ Il metodo va dichiarato nel corpo di una classe e le istruzioni in un suo metodo
 
 ```java
 04  Map<String, Integer> counts = new HashMap<>();
-05  System.out.println(counts.put("home", 1));
-06  System.out.println(counts.put("home", 2));
-07  System.out.println(counts.size());
+05  IO.println(counts.put("home", 1));
+06  IO.println(counts.put("home", 2));
+07  IO.println(counts.size());
 ```
 
 ## 1. Scelta multipla
@@ -132,10 +132,10 @@ Il frammento è eseguito in un metodo con `java.util.Queue` e `java.util.ArrayDe
 01  Queue<String> pending = new ArrayDeque<>();
 02  pending.offer("A");
 03  pending.offer("B");
-04  System.out.println(pending.poll());
+04  IO.println(pending.poll());
 05  pending.offer("C");
-06  System.out.println(pending.peek());
-07  System.out.println(pending.size());
+06  IO.println(pending.peek());
+07  IO.println(pending.size());
 ```
 
 ## 1. Scelta multipla
@@ -195,7 +195,7 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 03  while (cursor.hasNext()) {
 04      if (cursor.next() == 0) cursor.remove();
 05  }
-06  System.out.println(quantities);
+06  IO.println(quantities);
 ```
 
 ## 1. Scelta multipla
@@ -245,8 +245,8 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 02  List<String> view = Collections.unmodifiableList(internal);
 03  List<String> snapshot = List.copyOf(internal);
 04  internal.add("Linus");
-05  System.out.println(view.size());
-06  System.out.println(snapshot.size());
+05  IO.println(view.size());
+06  IO.println(snapshot.size());
 ```
 
 ## 1. Scelta multipla
@@ -300,8 +300,8 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 02  scores.add(8);
 03  scores.add(5);
 04  scores.add(8);
-05  System.out.println(scores);
-06  System.out.println(scores.size());
+05  IO.println(scores);
+06  IO.println(scores.size());
 ```
 
 ## 1. Scelta multipla
@@ -356,9 +356,9 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 02  queue.offer(4);
 03  queue.offer(1);
 04  queue.offer(3);
-05  System.out.println(queue.poll());
-06  System.out.println(queue.poll());
-07  System.out.println(queue.peek());
+05  IO.println(queue.poll());
+06  IO.println(queue.poll());
+07  IO.println(queue.peek());
 ```
 
 ## 1. Scelta multipla
@@ -408,8 +408,8 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 02  contacts.put("Ada", "10");
 03  contacts.put("Linus", "20");
 04  contacts.put("Ada", "30");
-05  System.out.println(contacts.keySet());
-06  System.out.println(contacts.get("Ada"));
+05  IO.println(contacts.keySet());
+06  IO.println(contacts.get("Ada"));
 ```
 
 ## 1. Scelta multipla
@@ -461,8 +461,8 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 ```java
 01  List<Integer> codes = new ArrayList<>(List.of(10, 30, 50));
 02  int position = Collections.binarySearch(codes, 40);
-03  System.out.println(position);
-04  System.out.println(codes.size());
+03  IO.println(position);
+04  IO.println(codes.size());
 ```
 
 ## 1. Scelta multipla
@@ -516,8 +516,8 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 02  Set<String> second = new HashSet<>(Set.of("Ada", "Grace"));
 03  Set<String> common = new HashSet<>(first);
 04  common.retainAll(second);
-05  System.out.println(common.contains("Ada"));
-06  System.out.println(first.size());
+05  IO.println(common.contains("Ada"));
+06  IO.println(first.size());
 ```
 
 ## 1. Scelta multipla

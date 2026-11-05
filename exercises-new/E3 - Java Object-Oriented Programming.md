@@ -23,7 +23,7 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 11  Volume first = new Volume(3);
 12  Volume second = first;
 13  second.setLevel(5);
-14  System.out.println(first.getLevel());
+14  IO.println(first.getLevel());
 ```
 
 ## 1. Scelta multipla
@@ -83,8 +83,8 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 ```java
 06  Session first = new Session();
 07  Session second = new Session();
-08  System.out.println(first.number());
-09  System.out.println(second.number());
+08  IO.println(first.number());
+09  IO.println(second.number());
 ```
 
 ## 1. Scelta multipla
@@ -153,7 +153,7 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 
 ```java
 11  Box square = new Box(3);
-12  System.out.println(square.area());
+12  IO.println(square.area());
 ```
 
 ## 1. Scelta multipla
@@ -221,8 +221,8 @@ Le istruzioni dopo le classi sono eseguite in un metodo statico separato. I nume
 
 ```java
 13  Delivery delivery = new Express();
-14  System.out.println(delivery.fee());
-15  System.out.println(new Delivery().fee());
+14  IO.println(delivery.fee());
+15  IO.println(new Delivery().fee());
 ```
 
 ## 1. Scelta multipla
@@ -280,7 +280,7 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 ```java
 08  Ticket first = new Ticket(7);
 09  Object second = new Ticket(7);
-10  System.out.println(first.equals(second));
+10  IO.println(first.equals(second));
 ```
 
 ## 1. Scelta multipla
@@ -342,7 +342,7 @@ Le istruzioni dopo le classi sono eseguite in un metodo statico separato. I nume
 07  Employee original = new Employee(20);
 08  Person person = original;
 09  Employee recovered = (Employee) person;
-10  System.out.println(original == recovered);
+10  IO.println(original == recovered);
 ```
 
 ## 1. Scelta multipla
@@ -361,7 +361,7 @@ In un’esecuzione separata il report usa:
 ```java
 11  Person[] people = {new Employee(20), new Person()};
 12  for (Person value : people) {
-13      System.out.println(((Employee) value).salary());
+13      IO.println(((Employee) value).salary());
 14  }
 ```
 
@@ -387,7 +387,7 @@ Il ciclo originale stampa `20` e poi fallisce con `ClassCastException` sulla per
 ```java
 for (Person value : people) {
     if (value instanceof Employee employee)
-        System.out.println(employee.salary());
+        IO.println(employee.salary());
 }
 ```
 
@@ -414,13 +414,13 @@ Le istruzioni dopo le dichiarazioni sono eseguite in un metodo statico separato.
 04  class Email implements Notifier {
 05      @Override
 06      public void send(String text) {
-07          System.out.println("EMAIL: " + text);
+07          IO.println("EMAIL: " + text);
 08      }
 09  }
 10  class Sms implements Notifier {
 11      @Override
 12      public void send(String text) {
-13          System.out.println("SMS: " + text);
+13          IO.println("SMS: " + text);
 14      }
 15  }
 16  class Alarm {
@@ -522,7 +522,7 @@ final class PrefixedEmail extends PrefixedNotifier {
 
     @Override
     protected void deliver(String preparedText) {
-        System.out.println("EMAIL: " + preparedText);
+        IO.println("EMAIL: " + preparedText);
     }
 }
 ```
@@ -567,7 +567,7 @@ Le istruzioni dopo le dichiarazioni sono eseguite in un metodo statico separato.
 
 ```java
 16  Named component = new Tag("invoice");
-17  System.out.println(component.label());
+17  IO.println(component.label());
 ```
 
 ## 1. Scelta multipla
@@ -679,7 +679,7 @@ Le istruzioni dopo le classi sono eseguite in un metodo statico separato. I nume
 
 ```java
 23  Plan plan = new Metered(3);
-24  System.out.println(plan.total(4));
+24  IO.println(plan.total(4));
 ```
 
 ## 1. Scelta multipla
@@ -757,7 +757,7 @@ Le istruzioni dopo il record sono eseguite in un metodo statico separato. I nume
 06  int[] source = {4, 7};
 07  Reading reading = new Reading(source);
 08  source[0] = 9;
-09  System.out.println(reading.samples()[0]);
+09  IO.println(reading.samples()[0]);
 ```
 
 ## 1. Scelta multipla
@@ -822,7 +822,7 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 10  counter.set(4);
 11  Counter.Indicator indicator = counter.indicator();
 12  counter.set(7);
-13  System.out.println(indicator.read());
+13  IO.println(indicator.read());
 ```
 
 ## 1. Scelta multipla
@@ -892,7 +892,7 @@ Le istruzioni dopo le dichiarazioni sono eseguite in un metodo statico separato.
 ```java
 10  Job job = new Job();
 11  job.setState(State.DONE);
-12  System.out.println(job.state() == State.DONE);
+12  IO.println(job.state() == State.DONE);
 ```
 
 ## 1. Scelta multipla
@@ -957,7 +957,7 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 
 ```java
 12  Checkout checkout = new Checkout();
-13  System.out.println(checkout.total(20, "express"));
+13  IO.println(checkout.total(20, "express"));
 ```
 
 ## 1. Scelta multipla
@@ -1026,7 +1026,7 @@ Le istruzioni dopo le classi sono eseguite in un metodo statico separato. I nume
 
 ```java
 11  Account account = new LockedAccount();
-12  System.out.println(account.balance());
+12  IO.println(account.balance());
 ```
 
 ## 1. Scelta multipla
@@ -1087,7 +1087,7 @@ Le istruzioni dopo le dichiarazioni sono eseguite in un metodo statico separato.
 03      String scan();
 04  }
 05  class PrintOnly implements Device {
-06      public void print(String text) { System.out.println(text); }
+06      public void print(String text) { IO.println(text); }
 07      public String scan() { throw new UnsupportedOperationException(); }
 08  }
 ```

@@ -14,9 +14,9 @@ Il frammento è eseguito in un metodo. I numeri di riga non fanno parte del codi
 05          total += Integer.parseInt(row);
 06      }
 07  } catch (NumberFormatException exception) {
-08      System.out.println("Invalid row");
+08      IO.println("Invalid row");
 09  }
-10  System.out.println(total);
+10  IO.println(total);
 ```
 
 ## 1. Scelta multipla
@@ -54,7 +54,7 @@ for (String row : rows) {
     try {
         total += Integer.parseInt(row);
     } catch (NumberFormatException exception) {
-        System.out.println("Invalid row");
+        IO.println("Invalid row");
     }
 }
 ```
@@ -77,16 +77,16 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 01  class Trace implements AutoCloseable {
 02      private final String name;
 03      Trace(String name) { this.name = name; }
-04      public void close() { System.out.println("Close " + name); }
+04      public void close() { IO.println("Close " + name); }
 05  }
 ```
 
 ```java
 06  try (Trace first = new Trace("A"); Trace second = new Trace("B")) {
-07      System.out.println("Work");
+07      IO.println("Work");
 08      throw new IllegalArgumentException();
 09  } catch (IllegalArgumentException exception) {
-10      System.out.println("Handled");
+10      IO.println("Handled");
 11  }
 ```
 
@@ -155,13 +155,13 @@ Il metodo va dichiarato nel corpo di una classe e la chiamata in un suo metodo s
 04      } catch (NumberFormatException exception) {
 05          return 0;
 06      } finally {
-07          System.out.println("Done");
+07          IO.println("Done");
 08      }
 09  }
 ```
 
 ```java
-10  System.out.println(count("abc"));
+10  IO.println(count("abc"));
 ```
 
 ## 1. Scelta multipla
@@ -223,7 +223,7 @@ I metodi sono nella stessa classe, con `java.io.IOException` importata. Il secon
 02      throw new IOException("Offline");
 03  }
 04  static void printValue() {
-05      System.out.println(read());
+05      IO.println(read());
 06  }
 ```
 
@@ -257,9 +257,9 @@ Il requisito di `printValue` è stampare `Unavailable` in caso di `IOException`,
 
 ```java
 try {
-    System.out.println(read());
+    IO.println(read());
 } catch (IOException exception) {
-    System.out.println("Unavailable");
+    IO.println("Unavailable");
 }
 ```
 
@@ -279,11 +279,11 @@ Frammento in un metodo. I numeri di riga non fanno parte del codice.
 
 ```java
 01  try {
-02      System.out.println(Integer.parseInt("x"));
+02      IO.println(Integer.parseInt("x"));
 03  } catch (IllegalArgumentException exception) {
-04      System.out.println("Argument");
+04      IO.println("Argument");
 05  } catch (NumberFormatException exception) {
-06      System.out.println("Number");
+06      IO.println("Number");
 07  }
 ```
 
@@ -339,7 +339,7 @@ Metodo in una classe; la chiamata è in un metodo statico separato. I numeri di 
 07      }
 08  }
 09  // Chiamata in un altro metodo:
-10  System.out.println(check(false));
+10  IO.println(check(false));
 ```
 
 ## 1. Scelta multipla
@@ -371,7 +371,7 @@ Il `return` nel `finally` sostituisce l’uscita eccezionale del `try` con il va
 ### 2. Risposta breve
 
 ```java
-System.out.println("Cleanup");
+IO.println("Cleanup");
 ```
 
 Con `true`, dopo `Cleanup` il metodo restituisce `1`. Con `false`, dopo la stessa stampa propaga `IllegalArgumentException`, senza un valore di ritorno normale.
@@ -396,8 +396,8 @@ Classe e istruzioni in un metodo statico separato. I numeri di riga non fanno pa
 05  try (Connection connection = new Connection()) {
 06      throw new IllegalArgumentException("Work");
 07  } catch (RuntimeException exception) {
-08      System.out.println(exception.getMessage());
-09      System.out.println(exception.getSuppressed().length);
+08      IO.println(exception.getMessage());
+09      IO.println(exception.getSuppressed().length);
 10  }
 ```
 
@@ -450,13 +450,13 @@ Classe e istruzioni in un metodo statico separato. I numeri di riga non fanno pa
 04          this.name = name;
 05          if (name.equals("B")) throw new IllegalStateException("Open B");
 06      }
-07      public void close() { System.out.println("Close " + name); }
+07      public void close() { IO.println("Close " + name); }
 08  }
 09  // In un altro metodo:
 10  try (Resource first = new Resource("A"); Resource second = new Resource("B")) {
-11      System.out.println("Work");
+11      IO.println("Work");
 12  } catch (IllegalStateException exception) {
-13      System.out.println(exception.getMessage());
+13      IO.println(exception.getMessage());
 14  }
 ```
 
@@ -506,9 +506,9 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 01  Map<String, String> bookings = Map.of("A", "Ada");
 02  String name = bookings.get("B");
 03  if (name == null) {
-04      System.out.println("Missing");
+04      IO.println("Missing");
 05  } else {
-06      System.out.println(name);
+06      IO.println(name);
 07  }
 ```
 
@@ -563,10 +563,10 @@ Metodi nella stessa classe; istruzioni finali in un metodo statico separato. I n
 06  // In un altro metodo:
 07  for (int i = 0; i < 2; i++) {
 08      try {
-09          System.out.println(attempt());
+09          IO.println(attempt());
 10          break;
 11      } catch (IllegalStateException exception) {
-12          System.out.println("Failed");
+12          IO.println("Failed");
 13      }
 14  }
 ```

@@ -15,7 +15,7 @@ I metodi e le istruzioni si trovano rispettivamente nel corpo di una classe e in
 ```java
 04  List<Integer> values = List.of(4, 7);
 05  List<Number> numbers = values;
-06  System.out.println(numbers.get(0));
+06  IO.println(numbers.get(0));
 ```
 
 ## 1. Scelta multipla
@@ -85,7 +85,7 @@ I metodi vanno dichiarati nel corpo di una classe e le istruzioni in un suo meto
 ```
 
 ```java
-09  System.out.println(twice("3"));
+09  IO.println(twice("3"));
 ```
 
 ## 1. Scelta multipla
@@ -197,7 +197,7 @@ Classe e istruzioni in un metodo statico separato. I numeri di riga non fanno pa
 07  // In un altro metodo:
 08  Slot<String> slot = new Slot<>("Ada");
 09  slot.set("Linus");
-10  System.out.println(slot.get().length());
+10  IO.println(slot.get().length());
 ```
 
 ## 1. Scelta multipla
@@ -255,7 +255,7 @@ Metodo e istruzioni in un metodo statico separato, con `java.util.*` importata. 
 04  // In un altro metodo:
 05  List<Number> target = new ArrayList<>();
 06  append(target, 4);
-07  System.out.println(target.get(0));
+07  IO.println(target.get(0));
 ```
 
 ## 1. Scelta multipla
@@ -357,8 +357,8 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 ```java
 01  Object payload = List.of("Ada", "Linus");
 02  if (payload instanceof List<?> values) {
-03      System.out.println(values.size());
-04      System.out.println(values.get(0));
+03      IO.println(values.size());
+04      IO.println(values.get(0));
 05  }
 ```
 
@@ -409,7 +409,7 @@ Frammento in un metodo con `java.util.*` importata. I numeri di riga non fanno p
 02  List legacy = names;
 03  legacy.add(42);
 04  String first = names.get(0);
-05  System.out.println(first);
+05  IO.println(first);
 ```
 
 ## 1. Scelta multipla
@@ -460,7 +460,7 @@ Metodo e chiamata in un metodo statico separato. I numeri di riga non fanno part
 03      return second;
 04  }
 05  // In un altro metodo:
-06  System.out.println(larger("Ada", "Linus"));
+06  IO.println(larger("Ada", "Linus"));
 ```
 
 ## 1. Scelta multipla

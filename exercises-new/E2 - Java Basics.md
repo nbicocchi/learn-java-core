@@ -23,8 +23,8 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato, con `j
 11  int[] original = {2, 5};
 12  int[] alias = original;
 13  Measures.increase(original);
-14  System.out.println(Arrays.toString(alias));
-15  System.out.println(original == alias);
+14  IO.println(Arrays.toString(alias));
+15  IO.println(original == alias);
 ```
 
 ## 1. Scelta multipla
@@ -94,8 +94,8 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 13  int[][] copy = original.clone();
 14  copy[0][0] = 9;
 15  copy[1] = new int[]{7};
-16  System.out.println(original[0][0]);
-17  System.out.println(original[1][0]);
+16  IO.println(original[0][0]);
+17  IO.println(original[1][0]);
 ```
 
 ## 1. Scelta multipla
@@ -160,8 +160,8 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato, con `j
 08  int[] source = {4, 7};
 09  int[] expanded = Arrays.copyOf(source, 4);
 10  expanded[0] = 9;
-11  System.out.println(Arrays.toString(expanded));
-12  System.out.println(Arrays.toString(source));
+11  IO.println(Arrays.toString(expanded));
+12  IO.println(Arrays.toString(source));
 ```
 
 ## 1. Scelta multipla
@@ -222,8 +222,8 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato, con `j
 08  String saved = original;
 09  original = original.strip();
 10  original.toUpperCase(Locale.ROOT);
-11  System.out.println("[" + original + "]");
-12  System.out.println("[" + saved + "]");
+11  IO.println("[" + original + "]");
+12  IO.println("[" + saved + "]");
 ```
 
 ## 1. Scelta multipla
@@ -285,8 +285,8 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 
 ```java
 07  String line = "role:admin:local";
-08  System.out.println(Field.value(line));
-09  System.out.println(Field.value("role:").length());
+08  IO.println(Field.value(line));
+09  IO.println(Field.value("role:").length());
 ```
 
 ## 1. Scelta multipla
@@ -352,8 +352,8 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato, con `j
 07  register.append("Ada");
 08  String saved = register.toString();
 09  register.append(" Linus");
-10  System.out.println(saved);
-11  System.out.println(register.length());
+10  IO.println(saved);
+11  IO.println(register.length());
 ```
 
 ## 1. Scelta multipla
@@ -419,7 +419,7 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 ```java
 10  Integer stored = Integer.valueOf(2000);
 11  int requested = 2000;
-12  System.out.println(stored == requested);
+12  IO.println(stored == requested);
 ```
 
 ## 1. Scelta multipla
@@ -483,8 +483,8 @@ Le istruzioni dopo la classe sono eseguite in un metodo statico separato. I nume
 ```java
 06  Integer entered = Integer.valueOf(7);
 07  Long archived = Long.valueOf(7);
-08  System.out.println(entered.equals(archived));
-09  System.out.println(entered.intValue() == archived.longValue());
+08  IO.println(entered.equals(archived));
+09  IO.println(entered.intValue() == archived.longValue());
 ```
 
 ## 1. Scelta multipla
@@ -548,7 +548,7 @@ Il metodo va dichiarato nel corpo di una classe e le istruzioni in un suo metodo
 ```java
 04  List<Integer> stock = new ArrayList<>(List.of(10, 20, 30));
 05  stock.remove(1);
-06  System.out.println(stock);
+06  IO.println(stock);
 ```
 
 ## 1. Scelta multipla
@@ -611,7 +611,7 @@ Il frammento è eseguito in un metodo. I numeri di riga non fanno parte del codi
 07      count++;
 08  }
 09  double average = total / count;
-10  System.out.println(average);
+10  IO.println(average);
 ```
 
 ## 1. Scelta multipla

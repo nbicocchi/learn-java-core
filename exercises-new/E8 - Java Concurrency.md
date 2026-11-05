@@ -22,7 +22,7 @@ Le istruzioni dopo la classe sono eseguite in un metodo che dichiara `throws Int
 10  second.start();
 11  first.join();
 12  second.join();
-13  System.out.println(counter.get());
+13  IO.println(counter.get());
 ```
 
 ## 1. Scelta multipla
@@ -85,12 +85,12 @@ Le istruzioni dopo la classe sono eseguite in un metodo che dichiara `throws Int
 12  Thread worker = new Thread(() -> {
 13      try { gate.await(); }
 14      catch (InterruptedException exception) { throw new AssertionError(exception); }
-15      System.out.println("Passed");
+15      IO.println("Passed");
 16  });
 17  worker.start();
 18  gate.open();
 19  worker.join();
-20  System.out.println("End");
+20  IO.println("End");
 ```
 
 ## 1. Scelta multipla
@@ -139,8 +139,8 @@ Il frammento è eseguito in un metodo che dichiara `throws Exception`, con `java
 01  try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
 02      Future<Integer> result = executor.submit(() -> 6 * 7);
 03      executor.shutdown();
-04      System.out.println(result.get());
-05      System.out.println(executor.isShutdown());
+04      IO.println(result.get());
+05      IO.println(executor.isShutdown());
 06  }
 ```
 
@@ -206,10 +206,10 @@ Frammento in un metodo. I numeri di riga non fanno parte del codice.
 ```java
 01  Thread caller = Thread.currentThread();
 02  Thread worker = new Thread(() -> {
-03      System.out.println(Thread.currentThread() == caller);
+03      IO.println(Thread.currentThread() == caller);
 04  });
 05  worker.run();
-06  System.out.println("End");
+06  IO.println("End");
 ```
 
 ## 1. Scelta multipla
@@ -243,7 +243,7 @@ Proponi la sequenza minima che esegua l’attività in un nuovo thread e garanti
 ```java
 worker.start();
 worker.join();
-System.out.println("End");
+IO.println("End");
 ```
 
 `start` avvia il nuovo thread e `join` ne attende la conclusione; la verifica nel worker diventa `false`. Non si deve chiamare anche `run` per ripetere il lavoro.
@@ -267,7 +267,7 @@ Classe e istruzioni in un metodo statico separato. I numeri di riga non fanno pa
 04  Thread worker = new Thread(() -> result.value = 42);
 05  worker.start();
 06  worker.join();
-07  System.out.println(result.value);
+07  IO.println(result.value);
 ```
 
 ## 1. Scelta multipla
@@ -326,7 +326,7 @@ Classe e istruzioni in un metodo statico che dichiara `throws InterruptedExcepti
 11  b.start();
 12  a.join();
 13  b.join();
-14  System.out.println(pair.equal());
+14  IO.println(pair.equal());
 ```
 
 ## 1. Scelta multipla
@@ -383,12 +383,12 @@ Frammento in un metodo. I numeri di riga non fanno parte del codice.
 02  Object right = new Object();
 03  Thread a = new Thread(() -> {
 04      synchronized (left) {
-05          synchronized (right) { System.out.println("A"); }
+05          synchronized (right) { IO.println("A"); }
 06      }
 07  });
 08  Thread b = new Thread(() -> {
 09      synchronized (right) {
-10          synchronized (left) { System.out.println("B"); }
+10          synchronized (left) { IO.println("B"); }
 11      }
 12  });
 13  a.start();
@@ -443,9 +443,9 @@ Frammento in un metodo che dichiara `throws InterruptedException`, con `java.uti
 03          throw new IllegalArgumentException("Bad input");
 04      });
 05      try {
-06          System.out.println(result.get());
+06          IO.println(result.get());
 07      } catch (ExecutionException exception) {
-08          System.out.println(exception.getCause().getMessage());
+08          IO.println(exception.getCause().getMessage());
 09      }
 10  }
 ```
@@ -496,7 +496,7 @@ Frammento in un metodo con `java.util.concurrent.*` importata. I numeri di riga 
 01  BlockingQueue<String> queue = new ArrayBlockingQueue<>(1);
 02  try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
 03      executor.submit(() -> {
-04          System.out.println(queue.take());
+04          IO.println(queue.take());
 05          return null;
 06      });
 07      executor.submit(() -> {
@@ -554,11 +554,11 @@ Frammento in un metodo che dichiara `throws InterruptedException, ExecutionExcep
 
 ```java
 01  try {
-02      System.out.println(result.get(1, TimeUnit.MILLISECONDS));
+02      IO.println(result.get(1, TimeUnit.MILLISECONDS));
 03  } catch (TimeoutException exception) {
-04      System.out.println("Timeout");
+04      IO.println("Timeout");
 05  }
-06  System.out.println(result.isCancelled());
+06  IO.println(result.isCancelled());
 ```
 
 ## 1. Scelta multipla
