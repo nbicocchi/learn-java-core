@@ -22,16 +22,35 @@ The [exercises-ai](code/exercises-ai) directory contains exam-style exercises va
 
 For additional practice, use [PROMPT.md](code/exercises-ai/PROMPT.md) with an AI assistant to generate more exercises on the course topics. The exam papers will be generated using the same method and validated by the instructor before use. Additional exercises generated independently for practice are not automatically instructor-validated.
 
+### Guided labs
+
+The labs progressively build the same address-book application. Labs 1–3 and 5 include theory and a detailed tutorial; lab4 introduces the backend through theory and a completed example, without a construction tutorial. Application examples are independently runnable Java 25 Maven projects. Lab2 provides Docker/PostgreSQL, SQL scripts, and small JDBC console examples instead of a duplicate GUI project. Lab5 contains only the JavaFX REST client and uses the backend in lab4.
+
+* Lab 1 — JavaFX interface and in-memory contacts: [Theory](code/lab1/theory.md) · [Tutorial](code/lab1/tutorial.md)
+* Lab 2 — JDBC concepts, Docker, and PostgreSQL CLI: [Theory](code/lab2/theory.md) · [Tutorial](code/lab2/tutorial.md)
+* Lab 3 — Persistent JavaFX address book with JDBC: [Theory](code/lab3/theory.md) · [Tutorial](code/lab3/tutorial.md)
+* Lab 4 — Spring Boot REST backend: [Theory, runnable example, and curl requests](code/lab4/theory.md)
+* Lab 5 — JavaFX REST client for the lab4 backend: [Theory](code/lab5/theory.md) · [Tutorial](code/lab5/tutorial.md)
+* Lab 6: reserved for a later iteration; not implemented yet.
+
 ### Project
 
 Publish your project in a **public GitHub repository** and send its URL to the instructor **before the exam** for review. **Submitting the repository URL in advance is a requirement for admission to the exam.** Submit the repository URL through the [project submission form](https://docs.google.com/forms/d/e/1FAIpQLSeNDcHf6t4hLVJFgaQgIYuyHf9RBsqFUl9wXsMIVWy4_-a4QA/viewform?usp=dialog).
 
 The project must include:
 
-* A `README.md` describing the project, prerequisites, and exact Maven commands to build, test, and launch it.
+* A `README.md` describing the project, prerequisites, and exact startup instructions: provide either a launcher or an explicitly documented Maven command to run the application. Include any required build or setup steps.
 * A `LICENSE` file specifying the project's license.
-* Documentation explaining usage and the main design decisions.
+* Documentation explaining how to use the application and its main features.
 * Cross-platform support: **the instructor will run the project on Linux**. Avoid machine-specific absolute paths and hard-coded path separators; respect filename case and include all required resources.
+
+The project is assessed as a working application, based on:
+
+* **Reproducible startup:** the application starts on Linux using the launcher or Maven command documented in the README.
+* **Working functionality:** the main features work without crashes or blocking issues during normal use.
+* **Presentation and usability:** the interface is visually coherent and easy to understand, with clear instructions, messages, and interaction flow. A text-based interface is also acceptable if it is well presented and usable.
+
+The assessment focuses on the application as seen and used, not on a source-code review. Individual technical knowledge is assessed through the written exam.
 
 ### Contributing
 Your pull requests are very welcome! To contribute, please refer to [this](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) guide. For a more general introduction to GitHub, refer to [this](https://github.com/skills/) page. By contributing to this repository, you agree that your contributions will be licensed under the LICENSE file in the root directory of this source tree.

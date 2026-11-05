@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.nbicocchi.addressbook.controller.PersonEditDialogController"
+            stylesheets="@styles/address-book.css" prefWidth="480">
+    <content>
+        <VBox spacing="16">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            <Label text="Contact information" styleClass="section-title"/>
+            <GridPane hgap="16" vgap="12">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="100"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <children>
+                    <Label text="First name" GridPane.rowIndex="0"/>
+                    <Label text="Last name" GridPane.rowIndex="1"/>
+                    <Label text="Street" GridPane.rowIndex="2"/>
+                    <Label text="Postal code" GridPane.rowIndex="3"/>
+                    <Label text="City" GridPane.rowIndex="4"/>
+                    <Label text="Birthday" GridPane.rowIndex="5"/>
+                    <TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <TextField fx:id="streetField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <TextField fx:id="postalCodeField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <TextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                    <DatePicker fx:id="birthdayPicker" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                </children>
+            </GridPane>
+            <Label fx:id="errorLabel" wrapText="true" styleClass="error"/>
+        </VBox>
+    </content>
+    <buttonTypes>
+        <ButtonType fx:constant="OK"/>
+        <ButtonType fx:constant="CANCEL"/>
+    </buttonTypes>
+</DialogPane>
