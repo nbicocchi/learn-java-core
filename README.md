@@ -24,7 +24,7 @@ Course materials, practice activities, and Java application examples.
 ## Slides
 
 <details>
-<summary>Course slides, practice exercises, and suggested readings</summary>
+<summary>Course slides</summary>
 
 ### A0 — Computing in the Age of AI
 
@@ -198,7 +198,7 @@ The assessment focuses on the application **as seen and used**, not on a source-
 
 ### Written exam
 
-The written exam consists of **10 code-analysis exercises**, generated using the same [PROMPT.md](exercises/exercises-ai/PROMPT.md) available in the repository for the [AI exercise collection](exercises/exercises-ai/). Exam papers are validated by the instructor before use.
+The written exam consists of **10 code-analysis exercises** in 1 hour (6 minutes each), generated using the same [PROMPT.md](exercises/exercises-ai/PROMPT.md) available in the repository for the [AI exercise collection](exercises/exercises-ai/). Generated exercises are validated by the instructor before use.
 
 Each exercise contains one multiple-choice question and one open-ended question, for a maximum of **3 points per exercise** and **30 points overall**.
 
