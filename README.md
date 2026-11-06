@@ -46,7 +46,7 @@ Course materials, practice activities, and Java application examples.
 * [E2.7 — Text input and output](<slides/E2.7 — Text Input and Output.md>)
 * [E2.8 — Unit testing with JUnit](<slides/E2.8 — Unit Testing with JUnit.md>)
 
-> **Practice:** [E2 — Java Basics](<exercises/exercises-ai/E2 - Java Basics.md>)
+> **Practice:** [AI](<exercises/exercises-ai/E2 - Java Basics.md>) · [No AI](exercises/exercises-no-ai/src/main/java/com/nbicocchi/exercises/e2_basics/README.md)
 >
 > **Read:** Big Java (Chapters 2, 4, 5, 6, 7)
 
@@ -63,7 +63,7 @@ Course materials, practice activities, and Java application examples.
 * [E3.9 — Nested classes](<slides/E3.9 — Nested Classes.md>)
 * [E3.10 — SOLID principles](<slides/E3.10 — SOLID Principles.md>)
 
-> **Practice:** [E3 — Object-Oriented Programming](<exercises/exercises-ai/E3 - Java Object-Oriented Programming.md>)
+> **Practice:** [AI](<exercises/exercises-ai/E3 - Java Object-Oriented Programming.md>) · [No AI](exercises/exercises-no-ai/src/main/java/com/nbicocchi/exercises/e3_oop/README.md)
 >
 > **Read:** Big Java (Chapters 3, 8, 9, 10, 12); UML Distilled (Chapter 3)
 
@@ -75,7 +75,7 @@ Course materials, practice activities, and Java application examples.
 * [E4.4 — Maps](<slides/E4.4 — Maps.md>)
 * [E4.5 — Collection ordering and search](<slides/E4.5 — Collection Ordering and Search.md>)
 
-> **Practice:** [E4 — Collections](<exercises/exercises-ai/E4 - Java Collections.md>)
+> **Practice:** [AI](<exercises/exercises-ai/E4 - Java Collections.md>) · [No AI](exercises/exercises-no-ai/src/main/java/com/nbicocchi/exercises/e4_collections/README.md)
 >
 > **Read:** Big Java (Chapters 14, 15)
 
@@ -85,7 +85,7 @@ Course materials, practice activities, and Java application examples.
 * [E5.2 — Error handling and contracts](<slides/E5.2 — Error Handling and Contracts.md>)
 * [E5.3 — Resource ownership](<slides/E5.3 — Resource Ownership.md>)
 
-> **Practice:** [E5 — Exceptions](<exercises/exercises-ai/E5 - Java Exceptions.md>)
+> **Practice:** [AI](<exercises/exercises-ai/E5 - Java Exceptions.md>) · [No AI](exercises/exercises-no-ai/src/main/java/com/nbicocchi/exercises/e5_exceptions/README.md)
 >
 > **Read:** Big Java (Chapter 11)
 
@@ -95,7 +95,7 @@ Course materials, practice activities, and Java application examples.
 * [E6.2 — Bounds and wildcards](<slides/E6.2 — Bounds and Wildcards.md>)
 * [E6.3 — Type erasure](<slides/E6.3 — Type Erasure.md>)
 
-> **Practice:** [E6 — Generics](<exercises/exercises-ai/E6 - Java Generics.md>)
+> **Practice:** [AI](<exercises/exercises-ai/E6 - Java Generics.md>) · [No AI](exercises/exercises-no-ai/src/main/java/com/nbicocchi/exercises/e6_generics/README.md)
 >
 > **Read:** Big Java (Chapter 18)
 
@@ -106,7 +106,7 @@ Course materials, practice activities, and Java application examples.
 * [E7.3 — Stream pipelines](<slides/E7.3 — Stream Pipelines.md>)
 * [E7.4 — Stream collection and reduction](<slides/E7.4 — Stream Collection and Reduction.md>)
 
-> **Practice:** [E7 — Functional Programming](<exercises/exercises-ai/E7 - Java Functional Programming.md>)
+> **Practice:** [AI](<exercises/exercises-ai/E7 - Java Functional Programming.md>) · [No AI](exercises/exercises-no-ai/src/main/java/com/nbicocchi/exercises/e7_functional/README.md)
 >
 > **Read:** Big Java (Chapter 19); Object-Oriented vs Functional Programming (Chapter 1)
 
@@ -117,7 +117,7 @@ Course materials, practice activities, and Java application examples.
 * [E8.3 — Thread coordination](<slides/E8.3 — Thread Coordination.md>)
 * [E8.4 — Executors, tasks and futures](<slides/E8.4 — Executors Tasks and Futures.md>)
 
-> **Practice:** [E8 — Concurrency](<exercises/exercises-ai/E8 - Java Concurrency.md>)
+> **Practice:** [AI](<exercises/exercises-ai/E8 - Java Concurrency.md>) · [No AI](exercises/exercises-no-ai/src/main/java/com/nbicocchi/exercises/e8_concurrency/README.md)
 >
 > **Read:** Big Java (Chapter 22)
 
@@ -126,29 +126,25 @@ Course materials, practice activities, and Java application examples.
 ## Exercises
 
 <details>
-<summary>Exam preparation with and without AI</summary>
+<summary>Exercises with and without AI</summary>
 
-| Collection | Focus | How to work | Resources and validation |
-|---|---|---|---|
-| [no-ai](exercises/exercises-no-ai/) | Writing Java code from scratch | Follow the topic-specific instructions and implement solutions yourself, without AI-generated code. | Check your implementations with the supplied automated tests. |
-| [ai](exercises/exercises-ai/) | Code analysis and critical reasoning | Explain AI-generated code, reason about correctness, identify defects, and justify corrections or design choices rather than writing code from scratch. | Use [PROMPT.md](exercises/exercises-ai/PROMPT.md) with an AI assistant to generate additional exercises on the course topics. Exam papers will be generated using the same method and validated by the instructor before use; independently generated practice exercises are **not automatically instructor-validated**. |
+* [No AI](exercises/exercises-no-ai/) — Implement Java exercises independently. Validate with the supplied tests.
+* [AI](exercises/exercises-ai/) — Analyze code, identify defects, and justify design choices. Generate more exercises with [PROMPT.md](exercises/exercises-ai/PROMPT.md).
+
+Exam papers are instructor-validated; independently generated practice is not.
 
 </details>
 
 ## Labs
 
 <details>
-<summary>A guided path from a JavaFX frontend to a Spring backend</summary>
+<summary>From JavaFX to Spring Boot</summary>
 
-These incremental labs guide us through building a complete Java application together in class, from the desktop frontend to the backend and database. Follow them in order.
-
-| Lab | Topic | Material |
-|---|---|---|
-| 1 | JavaFX interface | [Theory](labs/lab1/theory.md) · [Tutorial](labs/lab1/tutorial.md) |
-| 2 | JDBC concepts, Docker, and PostgreSQL CLI | [Theory](labs/lab2/theory.md) · [Tutorial](labs/lab2/tutorial.md) |
-| 3 | Persistent JavaFX address book with JDBC | [Theory](labs/lab3/theory.md) · [Tutorial](labs/lab3/tutorial.md) |
-| 4 | Spring Boot REST backend | [Theory, runnable example, and curl requests](labs/lab4/theory.md) |
-| 5 | JavaFX REST client for the lab4 backend | [Theory](labs/lab5/theory.md) · [Tutorial](labs/lab5/tutorial.md) |
+1. JavaFX interface — [Theory](labs/lab1/theory.md) · [Tutorial](labs/lab1/tutorial.md)
+2. JDBC, Docker, and PostgreSQL — [Theory](labs/lab2/theory.md) · [Tutorial](labs/lab2/tutorial.md)
+3. JavaFX address book with JDBC — [Theory](labs/lab3/theory.md) · [Tutorial](labs/lab3/tutorial.md)
+4. Spring Boot REST backend — [Theory and example](labs/lab4/theory.md)
+5. JavaFX REST client — [Theory](labs/lab5/theory.md) · [Tutorial](labs/lab5/tutorial.md)
 
 </details>
 
@@ -157,58 +153,8 @@ These incremental labs guide us through building a complete Java application tog
 <details>
 <summary>Example applications</summary>
 
-| Project | Purpose |
-|---|---|
-| [deploy-cli](projects/deploy-cli/) | Command-line application deployment example. |
-| [deploy-gui](projects/deploy-gui/) | JavaFX application deployment example. |
-| [Purble Burger Fastfood](projects/purble-burger-fastfood/README.md) | A simple but well-implemented exam project (worth 1–2 points). |
-
-</details>
-
-## Exams
-
-<details>
-<summary>Project requirements and submission, written exam, and grading</summary>
-
-### Before the exam
-
-Publish your project in a **public GitHub repository** and submit its URL to the instructor **before the exam** through the [project submission form](https://docs.google.com/forms/d/e/1FAIpQLSeNDcHf6t4hLVJFgaQgIYuyHf9RBsqFUl9wXsMIVWy4_-a4QA/viewform?usp=dialog).
-
-**Submitting the repository URL in advance is a requirement for admission to the exam.**
-
-### Project requirements
-
-| Requirement | Expectations |
-|---|---|
-| **Development** | Develop the project **individually**, using **Java**, **Maven** for build and dependency management, and **AI-assisted coding tools**. |
-| **README** | Include a `README.md` describing the project goals, design decisions, internal structure, prerequisites, and **exact startup instructions**. Provide either a launcher or an explicitly documented Maven command, including any required build or setup steps. |
-| **License** | Include a `LICENSE` file specifying the project's license. |
-| **User documentation** | Document how to use the application and its main features. |
-| **Cross-platform support** | **The instructor will run the project on Linux.** Avoid machine-specific absolute paths and hard-coded path separators; respect filename case and include all required resources. |
-
-### Project assessment
-
-| Criterion | Expectations |
-|---|---|
-| **Reproducible startup** | The application starts on Linux using the launcher or Maven command documented in the README. |
-| **Working functionality** | The main features work without crashes or blocking issues during normal use. |
-| **Presentation and usability** | The interface is visually coherent and easy to understand, with clear instructions, messages, and interaction flow. A text-based interface is also acceptable if well presented and usable. |
-
-The project adjusts the written exam score by **−3 to +3 points**: **−3** for a below-average project, **0** for an average project, and **+3** for an above-average project. Its weight is deliberately limited because projects can easily be copied, shared, or reused from previous years, making them a less reliable measure of individual understanding. The written exam therefore remains the main basis for assessing each student's knowledge and skills.
-
-### Written exam
-
-The written exam lasts **1 hour** and consists of **10 code-analysis exercises** (6 minutes each), generated using the same [PROMPT.md](exercises/exercises-ai/PROMPT.md) available in the repository for the [AI exercise collection](exercises/exercises-ai/). The generated exercises are validated by the instructor before use.
-
-Each exercise contains one multiple-choice question and one open-ended question, for a maximum of **3 points per exercise** and **30 points overall**.
-
-| Question type | Score |
-|---|---|
-| Multiple choice | **1 point** for a correct answer; **0 points** for an incorrect or missing answer. No negative marking. |
-| Open-ended | Up to **2 points**, based on the correctness and completeness of the answer. |
-
-### Final grade
-
-**Final grade = written exam score + project adjustment.**
+* [deploy-cli](projects/deploy-cli/) — Command-line application deployment.
+* [deploy-gui](projects/deploy-gui/) — JavaFX application deployment.
+* [Purble Burger Fastfood](projects/purble-burger-fastfood/README.md) — Example exam project.
 
 </details>
