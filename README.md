@@ -129,9 +129,7 @@ Course materials, practice activities, and Java application examples.
 <summary>Exercises with and without AI</summary>
 
 * [No AI](exercises/exercises-no-ai/) — Implement Java exercises independently. Validate with the supplied tests.
-* [AI](exercises/exercises-ai/) — Analyze code, identify defects, and justify design choices. Generate more exercises with [PROMPT.md](exercises/exercises-ai/PROMPT.md).
-
-Exam papers are instructor-validated; independently generated practice is not.
+* [AI](exercises/exercises-ai/) — Analyze code, identify defects, and justify design choices. Generate more exercises with [PROMPT.md](exercises/exercises-ai/PROMPT.md). Exam papers are instructor-validated; independently generated practice is not.
 
 </details>
 
