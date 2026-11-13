@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.nbicocchi.addressbook.controller.PersonOverviewController"
+            stylesheets="@styles/address-book.css">
+    <top>
+        <VBox spacing="6" styleClass="header">
+            <Label text="ADDRESS BOOK" styleClass="eyebrow"/>
+            <Label text="Your contacts, at a glance." styleClass="title"/>
+            <Label text="Select a name on the left to explore the contact details." styleClass="subtitle"/>
+        </VBox>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.43">
+            <items>
+                <VBox spacing="12" minWidth="280" styleClass="panel">
+                    <Label text="Contacts" styleClass="section-title"/>
+                    <TableView fx:id="personTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="firstNameColumn" text="First name" prefWidth="150"/>
+                            <TableColumn fx:id="lastNameColumn" text="Last name" prefWidth="150"/>
+                        </columns>
+                        <placeholder><Label text="No contacts available."/></placeholder>
+                    </TableView>
+                    <Button fx:id="reloadSamplesButton" text="Reload sample contacts"
+                            onAction="#handleReloadSamples" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="16" minWidth="380" styleClass="panel">
+                    <Label text="Contact details" styleClass="section-title"/>
+                    <Label fx:id="selectionLabel" wrapText="true" styleClass="muted"/>
+                    <GridPane hgap="20" vgap="18">
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="95"/>
+                            <ColumnConstraints hgrow="ALWAYS"/>
+                        </columnConstraints>
+                        <children>
+                            <Label text="First name" styleClass="field-name" GridPane.rowIndex="0"/>
+                            <Label text="Last name" styleClass="field-name" GridPane.rowIndex="1"/>
+                            <Label text="Street" styleClass="field-name" GridPane.rowIndex="2"/>
+                            <Label text="Postal code" styleClass="field-name" GridPane.rowIndex="3"/>
+                            <Label text="City" styleClass="field-name" GridPane.rowIndex="4"/>
+                            <Label text="Birthday" styleClass="field-name" GridPane.rowIndex="5"/>
+                            <Label fx:id="firstNameLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                            <Label fx:id="lastNameLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                            <Label fx:id="streetLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                            <Label fx:id="postalCodeLabel" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                            <Label fx:id="cityLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                            <Label fx:id="birthdayLabel" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                        </children>
+                    </GridPane>
+                    <Region VBox.vgrow="ALWAYS"/>
+                    <Button fx:id="clearSelectionButton" text="Clear selection" onAction="#handleClearSelection"/>
+                </VBox>
+            </items>
+        </SplitPane>
+    </center>
+    <bottom>
+        <Label fx:id="statusLabel" styleClass="status" maxWidth="Infinity">
+            <padding><Insets top="12" right="24" bottom="12" left="24"/></padding>
+        </Label>
+    </bottom>
+</BorderPane>
